@@ -50,9 +50,9 @@ namespace ErpSigmaVenda
             this.PrecoTextBox.Text = this.oProduto.preco.ToString();
             this.DescricaoTextBox.Text = this.oProduto.descricao;
             this.Qnt_esTtextBox.Text = this.oProduto.estoque_qnt.ToString();
-            if (!String.IsNullOrEmpty(this.oFornecedor.nome))
+            if (!String.IsNullOrEmpty(this.oFornecedor.nomeCompleto))
             {
-                this.ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nome}";
+                this.ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
             }
         }
 
@@ -122,7 +122,7 @@ namespace ErpSigmaVenda
             if(frm.ShowDialog() == DialogResult.OK)
             {
                 this.oFornecedor = frm.oFornecedor;
-                ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nome}";
+                ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
             }
         }
     }

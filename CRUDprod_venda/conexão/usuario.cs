@@ -21,8 +21,7 @@ namespace ErpSigmaVenda.conexão
         }
     
         public int idusuario { get; set; }
-        public string nome { get; set; }
-        public string sobrenome { get; set; }
+        public string nomeCompleto { get; set; }
         public string email { get; set; }
         public string senha { get; set; }
         public string cpf { get; set; }
@@ -31,8 +30,8 @@ namespace ErpSigmaVenda.conexão
         public int idendereco { get; set; }
         public string role { get; set; }
     
+        public virtual endereco endereco { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<venda> venda { get; set; }
-        public virtual endereco endereco { get; set; }
     }
 }

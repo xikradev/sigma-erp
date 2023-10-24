@@ -34,8 +34,7 @@ namespace ErpSigmaVenda.login
 
         private void loading()
         {
-            NomeTextBox.Text = this.oUsuario.nome;
-            SobrenomeTextBox.Text = this.oUsuario.sobrenome;
+            NomeTextBox.Text = this.oUsuario.nomeCompleto;
             EmailTextBox.Text = this.oUsuario.email;
             CpfTextBox.Text = this.oUsuario.cpf;
             SenhaTextBox.Text = this.oUsuario.senha;
@@ -74,8 +73,7 @@ namespace ErpSigmaVenda.login
 
         private Boolean updateUsuario()
         {
-            this.oUsuario.nome = NomeTextBox.Text;
-            this.oUsuario.sobrenome = SobrenomeTextBox.Text;
+            this.oUsuario.nomeCompleto = NomeTextBox.Text;
             this.oUsuario.email = EmailTextBox.Text;
             this.oUsuario.cpf = CpfTextBox.Text;
             this.oUsuario.senha = SenhaTextBox.Text;

@@ -22,7 +22,7 @@ namespace ErpSigmaVenda.conexão
     
         public int idfornecedor { get; set; }
         public int idendereco { get; set; }
-        public string nome { get; set; }
+        public string nomeCompleto { get; set; }
         public string registro { get; set; }
     
         public virtual endereco endereco { get; set; }

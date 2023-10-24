@@ -5,10 +5,9 @@
       <PropertyRef Name="idcliente" />
     </Key>
     <Property Name="idcliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="sobrenome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nomeCompleto" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="cpf" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="registro" Type="varchar" MaxLength="18" Nullable="false" />
     <Property Name="sexo" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="dataNascimento" Type="datetime" Nullable="false" />
     <Property Name="idendereco" Type="int" Nullable="false" />
@@ -31,8 +30,8 @@
     </Key>
     <Property Name="idfornecedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idendereco" Type="int" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="cnpj" Type="varchar" MaxLength="18" Nullable="false" />
+    <Property Name="nomeCompleto" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="registro" Type="varchar" MaxLength="18" Nullable="false" />
   </EntityType>
   <EntityType Name="produto">
     <Key>
@@ -57,8 +56,7 @@
       <PropertyRef Name="idusuario" />
     </Key>
     <Property Name="idusuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="sobrenome" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="nomeCompleto" Type="varchar" MaxLength="200" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="senha" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="cpf" Type="varchar" MaxLength="14" Nullable="false" />

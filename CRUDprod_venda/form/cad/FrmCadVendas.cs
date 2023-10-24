@@ -57,9 +57,9 @@ namespace ErpSigmaVenda.vendas
             this.oVenda.idusuario = pLoginUsr.oUsuario.idusuario;
             this.PrecoTotalTb.Text = this.oVenda.precoTotal.ToString();
             this.QuantTb.Text = this.oVenda.quantidade.ToString();
-            if (!String.IsNullOrEmpty(this.oCliente.nome))
+            if (!String.IsNullOrEmpty(this.oCliente.nomeCompleto))
             {
-                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nome} {this.oCliente.sobrenome}";
+                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
             }
             if (!String.IsNullOrEmpty(this.oProduto.nome))
             {
@@ -109,7 +109,7 @@ namespace ErpSigmaVenda.vendas
             if(frm.ShowDialog() == DialogResult.OK)
             {
                 this.oCliente = frm.oCliente;
-                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nome} {this.oCliente.sobrenome}";
+                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
             }
         }
 

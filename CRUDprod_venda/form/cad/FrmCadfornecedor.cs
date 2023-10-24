@@ -31,8 +31,8 @@ namespace ErpSigmaVenda.fornecedores
 
         private void loading()
         {
-            this.NomeTextBox.Text = this.oFornecedor.nome;
-            this.CnpjTextBox.Text = this.oFornecedor.cnpj;
+            this.NomeTextBox.Text = this.oFornecedor.nomeCompleto;
+            this.CnpjTextBox.Text = this.oFornecedor.registro;
             this.CepTextBox.Text = this.oEndereco.cep;
             this.BairroTextBox.Text = this.oEndereco.complemento;
             this.RuaTextBox.Text = this.oEndereco.rua;
@@ -61,8 +61,8 @@ namespace ErpSigmaVenda.fornecedores
 
         private Boolean update(int numero)
         {
-            this.oFornecedor.nome = this.NomeTextBox.Text;
-            this.oFornecedor.cnpj = this.CnpjTextBox.Text;
+            this.oFornecedor.nomeCompleto = this.NomeTextBox.Text;
+            this.oFornecedor.registro = this.CnpjTextBox.Text;
             this.oEndereco.cep = this.CepTextBox.Text;
             this.oEndereco.complemento = this.BairroTextBox.Text;
             this.oEndereco.rua = this.RuaTextBox.Text;
@@ -130,7 +130,7 @@ namespace ErpSigmaVenda.fornecedores
             venda_produtoEntities db = new venda_produtoEntities();
             fornecedor foundedFornecedor = new fornecedor();
 
-            foundedFornecedor = db.fornecedor.Where(o => o.cnpj.Equals(CnpjTextBox.Text)).FirstOrDefault();
+            foundedFornecedor = db.fornecedor.Where(o => o.registro.Equals(CnpjTextBox.Text)).FirstOrDefault();
             if(foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor )
             {
                 MessageBox.Show("Já existe um Fornecedor com este CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);

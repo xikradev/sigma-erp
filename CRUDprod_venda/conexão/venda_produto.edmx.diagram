@@ -7,20 +7,20 @@
       <Diagram DiagramId="61bcee1cae3048729534f6eb49656aad" Name="Diagram1">
         <EntityTypeShape EntityType="venda_produtoModel.produto" Width="1.5" PointX="3" PointY="12.625" />
         <EntityTypeShape EntityType="venda_produtoModel.produto_fornecedor" Width="1.5" PointX="5.25" PointY="9.125" />
-        <EntityTypeShape EntityType="venda_produtoModel.usuario" Width="1.5" PointX="3" PointY="5" />
         <EntityTypeShape EntityType="venda_produtoModel.venda" Width="1.5" PointX="5.25" PointY="3.375" />
         <AssociationConnector Association="venda_produtoModel.FK_venda_produto" />
         <AssociationConnector Association="venda_produtoModel.produto_produtos_fornecedor_fk" />
-        <AssociationConnector Association="venda_produtoModel.FK_venda_usuario" />
         <EntityTypeShape EntityType="venda_produtoModel.endereco" Width="1.5" PointX="0.75" PointY="4.875" />
-        <AssociationConnector Association="venda_produtoModel.endereco_usuario_fk" />
-        <EntityTypeShape EntityType="venda_produtoModel.cliente" Width="1.5" PointX="3" PointY="16.375" />
-        <EntityTypeShape EntityType="venda_produtoModel.fornecedor" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="venda_produtoModel.cliente" Width="1.5" PointX="3" PointY="1.625" />
+        <EntityTypeShape EntityType="venda_produtoModel.fornecedor" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="venda_produtoModel.usuario" Width="1.5" PointX="3" PointY="5.125" />
         <AssociationConnector Association="venda_produtoModel.endereco_cliente_fk" />
         <AssociationConnector Association="venda_produtoModel.FK_venda_cliente" />
         <AssociationConnector Association="venda_produtoModel.endereco_fornecedor_fk" />
+        <AssociationConnector Association="venda_produtoModel.endereco_usuario_fk" />
         <AssociationConnector Association="venda_produtoModel.fornecedor_produtos_fornecedor_fk" />
-      </Diagram>
+        <AssociationConnector Association="venda_produtoModel.FK_venda_usuario" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -16,8 +16,11 @@ namespace ErpSigmaVenda.clientes
     {
         public cliente oCliente = new cliente();
         public endereco oEndereco = new endereco();
+        //regex para verificação de Email
         Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+        //Regex para verificação de CPF ou CNPJ
         Regex regexCpfCnpj = new Regex(@"^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$", RegexOptions.IgnoreCase);
+        //Regex para vericação de CEP
         Regex regexCep = new Regex(@"^\d{5}-\d{3}$", RegexOptions.IgnoreCase);
 
 
@@ -36,8 +39,7 @@ namespace ErpSigmaVenda.clientes
 
         private void loading()
         {
-            this.NomeTextBox.Text = this.oCliente.nome;
-            this.SobrenomeTextBox.Text = this.oCliente.sobrenome;
+            this.NomeComplTextBox.Text = this.oCliente.nomeCompleto;
             this.EmailTextBox.Text = this.oCliente.email;
             this.RegistroTextBox.Text = this.oCliente.registro; //referente CPF e CNPJ
             if (this.oCliente.sexo == "m")
@@ -83,8 +85,8 @@ namespace ErpSigmaVenda.clientes
         private Boolean updateCliente()
         {
 
-            this.oCliente.nome = NomeTextBox.Text;
-            this.oCliente.sobrenome = SobrenomeTextBox.Text;
+            this.oCliente.nomeCompleto = NomeComplTextBox.Text;
+            
             this.oCliente.email = EmailTextBox.Text;
             this.oCliente.registro = RegistroTextBox.Text;
             if (SexoComboBox.SelectedItem == "Masculino")
@@ -108,14 +110,9 @@ namespace ErpSigmaVenda.clientes
         
         private Boolean verifyCliente()
         {
-            if (String.IsNullOrEmpty(NomeTextBox.Text))
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (String.IsNullOrEmpty(SobrenomeTextBox.Text))
-            {
-                MessageBox.Show("O Campo Sobrenome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!regexEmail.IsMatch(EmailTextBox.Text))
