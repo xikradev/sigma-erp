@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="venda_produtoModelStoreContainer" CdmEntityContainer="venda_produtoEntities">
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="venda_produtoModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="sobrenome" ColumnName="sobrenome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="endereco">
+      <EntityTypeMapping TypeName="venda_produtoModel.endereco">
+        <MappingFragment StoreEntitySet="endereco">
+          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+          <ScalarProperty Name="bairro" ColumnName="bairro" />
+          <ScalarProperty Name="rua" ColumnName="rua" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="fornecedor">
+      <EntityTypeMapping TypeName="venda_produtoModel.fornecedor">
+        <MappingFragment StoreEntitySet="fornecedor">
+          <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
+          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produto">
+      <EntityTypeMapping TypeName="venda_produtoModel.produto">
+        <MappingFragment StoreEntitySet="produto">
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produto_fornecedor">
+      <EntityTypeMapping TypeName="venda_produtoModel.produto_fornecedor">
+        <MappingFragment StoreEntitySet="produto_fornecedor">
+          <ScalarProperty Name="codProduto" ColumnName="codProduto" />
+          <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="venda_produtoModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="idsuario" ColumnName="idsuario" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="sobrenome" ColumnName="sobrenome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="senha" ColumnName="senha" />
+          <ScalarProperty Name="cpf" ColumnName="cpf" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venda">
+      <EntityTypeMapping TypeName="venda_produtoModel.venda">
+        <MappingFragment StoreEntitySet="venda">
+          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+          <ScalarProperty Name="idsuario" ColumnName="idsuario" />
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

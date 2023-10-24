@@ -1,0 +1,29 @@
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csprojAssemblyReference.cache
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.Properties.Resources.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csproj.GenerateResource.cache
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csproj.CoreCompileInputs.cache
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Erp Sigma.exe.config
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Erp Sigma.exe
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Erp Sigma.pdb
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\EntityFramework.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\EntityFramework.xml
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csproj.CopyComplete
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\Erp Sigma.exe
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\Erp Sigma.pdb
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmBuscarCliente.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.Produtos.FrmBuscarFornecedor.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmBuscarProduto.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.clientes.FrmCadCliente.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.fornecedores.FrmCadfornecedor.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.login.FrmCadUsuario.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.FrmCadProduto.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.clientes.FrmNavCliente.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.fornecedores.FrmNavFornecedor.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.Produtos.FrmNavProduto.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.usuarios.FrmNavUsuario.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmNavVendas.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmCadVendas.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.FrmLogin.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.navegacao.btnVendas.resources

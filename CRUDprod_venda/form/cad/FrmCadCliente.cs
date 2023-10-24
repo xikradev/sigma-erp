@@ -1,0 +1,255 @@
+﻿using ErpSigmaVenda.conexão;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace ErpSigmaVenda.clientes
+{
+    public partial class FrmCadCliente : Form
+    {
+        public cliente oCliente = new cliente();
+        public endereco oEndereco = new endereco();
+        Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
+        Regex regexCpfCnpj = new Regex(@"^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$", RegexOptions.IgnoreCase);
+        Regex regexCep = new Regex(@"^\d{5}-\d{3}$", RegexOptions.IgnoreCase);
+
+
+        public FrmCadCliente()
+        {
+            InitializeComponent();
+        }
+
+       
+
+        private void ClienteForm_Load(object sender, EventArgs e)
+        {
+            
+            this.loading();
+        }
+
+        private void loading()
+        {
+            this.NomeTextBox.Text = this.oCliente.nome;
+            this.SobrenomeTextBox.Text = this.oCliente.sobrenome;
+            this.EmailTextBox.Text = this.oCliente.email;
+            this.RegistroTextBox.Text = this.oCliente.registro; //referente CPF e CNPJ
+            if (this.oCliente.sexo == "m")
+            {
+                this.SexoComboBox.SelectedItem = "Masculino";
+            }
+            else if (this.oCliente.sexo == "f")
+            {
+                this.SexoComboBox.SelectedItem = "Feminino";
+            }
+            if(this.oCliente.dataNascimento.Year > 1)
+            {
+                this.DataNascDTP.Value = this.oCliente.dataNascimento;
+            }
+            this.ComplTextBox.Text = this.oEndereco.complemento;
+            this.CepTextBox.Text = this.oEndereco.cep;
+            this.RuaTextBox.Text = this.oEndereco.rua;
+            this.NumeroTextBox.Text = this.oEndereco.numero.ToString();
+            this.CidadeTextBox.Text = this.oEndereco.cidade;
+            this.UFComboBox.SelectedItem = this.oEndereco.estado;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private Boolean updateCliente()
+        {
+
+            this.oCliente.nome = NomeTextBox.Text;
+            this.oCliente.sobrenome = SobrenomeTextBox.Text;
+            this.oCliente.email = EmailTextBox.Text;
+            this.oCliente.registro = RegistroTextBox.Text;
+            if (SexoComboBox.SelectedItem == "Masculino")
+            {
+                this.oCliente.sexo = "m";
+            }
+            else if (SexoComboBox.SelectedItem == "Feminino")
+            {
+                this.oCliente.sexo = "f";
+            }
+            else
+            {
+                MessageBox.Show("Deve se selecionar o Sexo do Cliente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            this.oCliente.dataNascimento = DateTime.Parse(DataNascDTP.Text);
+
+            return true;
+        }
+
+        
+        private Boolean verifyCliente()
+        {
+            if (String.IsNullOrEmpty(NomeTextBox.Text))
+            {
+                MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(SobrenomeTextBox.Text))
+            {
+                MessageBox.Show("O Campo Sobrenome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!regexEmail.IsMatch(EmailTextBox.Text))
+            {
+                MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!regexCpfCnpj.IsMatch(RegistroTextBox.Text))
+            {
+                MessageBox.Show("O Campo CPF/CNPJ não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if(DataNascDTP.Value > DateTime.Now)
+            {
+                MessageBox.Show("Coloque uma Data de Nascimento correta!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return updateCliente();
+        }
+
+
+
+
+        private Boolean updateEndereco(int numero)
+        {
+            this.oEndereco.complemento = ComplTextBox.Text;
+            this.oEndereco.cep = CepTextBox.Text;
+            this.oEndereco.rua = RuaTextBox.Text;
+            this.oEndereco.numero = numero;
+            this.oEndereco.cidade = CidadeTextBox.Text;
+            this.oEndereco.estado = UFComboBox.Text.Substring(0, 2);
+
+            return true;
+        }
+
+        
+        private Boolean verifyEndereco()
+        {
+            if (String.IsNullOrEmpty(ComplTextBox.Text))
+            {
+                MessageBox.Show("O Campo Complemento não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (!regexCep.IsMatch(CepTextBox.Text))
+            {
+                MessageBox.Show("O Campo CEP não estaformatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(RuaTextBox.Text)){
+                MessageBox.Show("O Campo Rua não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if(!int.TryParse(NumeroTextBox.Text, out int numero))
+            {
+                MessageBox.Show("O Campo Número deve conter números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(CidadeTextBox.Text))
+            {
+                MessageBox.Show("O Campo Cidade não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(UFComboBox.Text))
+            {
+                MessageBox.Show("O Campo Estado não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return updateEndereco(numero);
+        }
+        
+      
+        
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (verifyCliente() && verifyEndereco())
+            {
+                this.DialogResult = DialogResult.OK;
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CpfTextBox_Leave(object sender, EventArgs e)
+        {
+            venda_produtoEntities db = new venda_produtoEntities();
+            cliente foundedCliente = new cliente();
+
+            foundedCliente = db.cliente.Where(o => o.registro.Equals(RegistroTextBox.Text)).FirstOrDefault();
+            if(foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
+            {
+                MessageBox.Show("Já existe um Cliente com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                RegistroTextBox.Text = "";
+            }
+        }
+
+        private void EmailTextBox_Leave(object sender, EventArgs e)
+        {
+            venda_produtoEntities db = new venda_produtoEntities();
+            cliente foundedCliente = new cliente();
+
+            foundedCliente = db.cliente.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
+            if(foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
+            {
+                MessageBox.Show("Já existe um Cliente com este Email", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                EmailTextBox.Text = "";
+            }
+        }
+
+        private void CepTextBox_Leave(object sender, EventArgs e)
+        {
+            venda_produtoEntities db = new venda_produtoEntities();
+            endereco foundedEndereco = new endereco();
+            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            if(foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
+            {
+                MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CepTextBox.Text = "";
+            }
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
