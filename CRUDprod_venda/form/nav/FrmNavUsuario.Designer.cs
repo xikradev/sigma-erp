@@ -31,24 +31,23 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNavUsuario));
             this.dg = new System.Windows.Forms.DataGridView();
-            this.idusuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sobrenomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senhaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cpfDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataNascimentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enderecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.roleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.axUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.InsertButton = new System.Windows.Forms.ToolStripButton();
             this.UpdateButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteButton = new System.Windows.Forms.ToolStripButton();
+            this.axUsuarioBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idusuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cpfDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senhaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cep = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.roleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axUsuarioBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axUsuarioBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dg
@@ -60,14 +59,13 @@
             this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idusuario,
-            this.nomeDataGridViewTextBoxColumn,
-            this.sobrenomeDataGridViewTextBoxColumn,
+            this.nomeCompleto,
+            this.cpfDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
             this.senhaDataGridViewTextBoxColumn,
-            this.cpfDataGridViewTextBoxColumn,
-            this.sexoDataGridViewTextBoxColumn,
-            this.dataNascimentoDataGridViewTextBoxColumn,
-            this.enderecoDataGridViewTextBoxColumn,
+            this.rua,
+            this.cep,
+            this.estado,
             this.roleDataGridViewTextBoxColumn});
             this.dg.DataSource = this.axUsuarioBindingSource;
             this.dg.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -76,83 +74,9 @@
             this.dg.ReadOnly = true;
             this.dg.RowHeadersVisible = false;
             this.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg.Size = new System.Drawing.Size(865, 398);
+            this.dg.Size = new System.Drawing.Size(1116, 398);
             this.dg.TabIndex = 7;
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
-            // 
-            // idusuario
-            // 
-            this.idusuario.DataPropertyName = "idusuario";
-            this.idusuario.HeaderText = "idusuario";
-            this.idusuario.Name = "idusuario";
-            this.idusuario.ReadOnly = true;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sobrenomeDataGridViewTextBoxColumn
-            // 
-            this.sobrenomeDataGridViewTextBoxColumn.DataPropertyName = "sobrenome";
-            this.sobrenomeDataGridViewTextBoxColumn.HeaderText = "sobrenome";
-            this.sobrenomeDataGridViewTextBoxColumn.Name = "sobrenomeDataGridViewTextBoxColumn";
-            this.sobrenomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // senhaDataGridViewTextBoxColumn
-            // 
-            this.senhaDataGridViewTextBoxColumn.DataPropertyName = "senha";
-            this.senhaDataGridViewTextBoxColumn.HeaderText = "senha";
-            this.senhaDataGridViewTextBoxColumn.Name = "senhaDataGridViewTextBoxColumn";
-            this.senhaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cpfDataGridViewTextBoxColumn
-            // 
-            this.cpfDataGridViewTextBoxColumn.DataPropertyName = "cpf";
-            this.cpfDataGridViewTextBoxColumn.HeaderText = "cpf";
-            this.cpfDataGridViewTextBoxColumn.Name = "cpfDataGridViewTextBoxColumn";
-            this.cpfDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sexoDataGridViewTextBoxColumn
-            // 
-            this.sexoDataGridViewTextBoxColumn.DataPropertyName = "sexo";
-            this.sexoDataGridViewTextBoxColumn.HeaderText = "sexo";
-            this.sexoDataGridViewTextBoxColumn.Name = "sexoDataGridViewTextBoxColumn";
-            this.sexoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataNascimentoDataGridViewTextBoxColumn
-            // 
-            this.dataNascimentoDataGridViewTextBoxColumn.DataPropertyName = "dataNascimento";
-            this.dataNascimentoDataGridViewTextBoxColumn.HeaderText = "dataNascimento";
-            this.dataNascimentoDataGridViewTextBoxColumn.Name = "dataNascimentoDataGridViewTextBoxColumn";
-            this.dataNascimentoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // enderecoDataGridViewTextBoxColumn
-            // 
-            this.enderecoDataGridViewTextBoxColumn.DataPropertyName = "endereco";
-            this.enderecoDataGridViewTextBoxColumn.HeaderText = "endereco";
-            this.enderecoDataGridViewTextBoxColumn.Name = "enderecoDataGridViewTextBoxColumn";
-            this.enderecoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // roleDataGridViewTextBoxColumn
-            // 
-            this.roleDataGridViewTextBoxColumn.DataPropertyName = "role";
-            this.roleDataGridViewTextBoxColumn.HeaderText = "role";
-            this.roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
-            this.roleDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // axUsuarioBindingSource
-            // 
-            this.axUsuarioBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxUsuario);
             // 
             // toolStrip1
             // 
@@ -162,7 +86,7 @@
             this.DeleteButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(865, 52);
+            this.toolStrip1.Size = new System.Drawing.Size(1116, 52);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -196,11 +120,87 @@
             this.DeleteButton.Text = "Remover";
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
+            // axUsuarioBindingSource
+            // 
+            this.axUsuarioBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxUsuario);
+            // 
+            // idusuario
+            // 
+            this.idusuario.DataPropertyName = "idusuario";
+            this.idusuario.FillWeight = 28.167F;
+            this.idusuario.HeaderText = "Código";
+            this.idusuario.Name = "idusuario";
+            this.idusuario.ReadOnly = true;
+            // 
+            // nomeCompleto
+            // 
+            this.nomeCompleto.DataPropertyName = "nomeCompleto";
+            this.nomeCompleto.FillWeight = 48.6837F;
+            this.nomeCompleto.HeaderText = "Nome";
+            this.nomeCompleto.Name = "nomeCompleto";
+            this.nomeCompleto.ReadOnly = true;
+            // 
+            // cpfDataGridViewTextBoxColumn
+            // 
+            this.cpfDataGridViewTextBoxColumn.DataPropertyName = "cpf";
+            this.cpfDataGridViewTextBoxColumn.FillWeight = 28.167F;
+            this.cpfDataGridViewTextBoxColumn.HeaderText = "CPF";
+            this.cpfDataGridViewTextBoxColumn.Name = "cpfDataGridViewTextBoxColumn";
+            this.cpfDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
+            this.emailDataGridViewTextBoxColumn.FillWeight = 44.16516F;
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // senhaDataGridViewTextBoxColumn
+            // 
+            this.senhaDataGridViewTextBoxColumn.DataPropertyName = "senha";
+            this.senhaDataGridViewTextBoxColumn.FillWeight = 28.167F;
+            this.senhaDataGridViewTextBoxColumn.HeaderText = "Senha";
+            this.senhaDataGridViewTextBoxColumn.Name = "senhaDataGridViewTextBoxColumn";
+            this.senhaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rua
+            // 
+            this.rua.DataPropertyName = "rua";
+            this.rua.FillWeight = 28.167F;
+            this.rua.HeaderText = "Rua";
+            this.rua.Name = "rua";
+            this.rua.ReadOnly = true;
+            // 
+            // cep
+            // 
+            this.cep.DataPropertyName = "cep";
+            this.cep.FillWeight = 28.167F;
+            this.cep.HeaderText = "CEP";
+            this.cep.Name = "cep";
+            this.cep.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.DataPropertyName = "estado";
+            this.estado.FillWeight = 28.167F;
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            // 
+            // roleDataGridViewTextBoxColumn
+            // 
+            this.roleDataGridViewTextBoxColumn.DataPropertyName = "role";
+            this.roleDataGridViewTextBoxColumn.FillWeight = 28.167F;
+            this.roleDataGridViewTextBoxColumn.HeaderText = "Tipo";
+            this.roleDataGridViewTextBoxColumn.Name = "roleDataGridViewTextBoxColumn";
+            this.roleDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FrmNavUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(865, 450);
+            this.ClientSize = new System.Drawing.Size(1116, 450);
             this.Controls.Add(this.dg);
             this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;
@@ -210,9 +210,9 @@
             this.Text = "Usuários";
             this.Load += new System.EventHandler(this.UsuarioMainScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.axUsuarioBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axUsuarioBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,14 +227,13 @@
         private System.Windows.Forms.ToolStripButton DeleteButton;
         private System.Windows.Forms.BindingSource axUsuarioBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idusuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sobrenomeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cpfDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn senhaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cpfDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataNascimentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rua;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cep;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn roleDataGridViewTextBoxColumn;
     }
 }

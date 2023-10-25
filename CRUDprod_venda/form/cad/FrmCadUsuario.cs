@@ -18,7 +18,7 @@ namespace ErpSigmaVenda.login
         public usuario oUsuario = new usuario();
         public endereco oEndereco = new endereco();
         Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
-        Regex regexCpf = new Regex(@"^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2}|\d{3}\.?\d{3}\.?\d{3}-?\d{2})$", RegexOptions.IgnoreCase);
+        Regex regexCpfCnpj = new Regex(@"^(?:\d{3}\.\d{3}\.\d{3}-\d{2}|\d{2}\.\d{3}\.\d{3}\/\d{4}-\d{2})$", RegexOptions.IgnoreCase);
         Regex regexSenha = new Regex(@"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$");
         Regex regexCep = new Regex(@"^\d{5}-\d{3}$", RegexOptions.IgnoreCase);
 
@@ -125,14 +125,28 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("A senha não está formatada corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexCpf.IsMatch(CpfTextBox.Text))
+            if (!regexCpfCnpj.IsMatch(CpfTextBox.Text))
             {
-                MessageBox.Show("O Campo CPF não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo CPF/CNPJ não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (DataNascDTP.Value > DateTime.Now)
             {
                 MessageBox.Show("Coloque uma Data de Nascimento correta!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year) {
+                MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(CidadeTextBox.Text))
+            {
+                MessageBox.Show("O Campo Cidade não pode estar vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(UFComboBox.Text))
+            {
+                MessageBox.Show("O Campo Estado deve ser selecionado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -249,6 +263,72 @@ namespace ErpSigmaVenda.login
         private void BairroTextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void SenhaTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+
+            if (this.SenhaTextBox.Text.Length >= 8)
+            {
+                labelRule1.ForeColor = Color.ForestGreen;
+            }
+            else
+            {
+                labelRule1.ForeColor = Color.DarkRed;
+            }
+
+            if(Regex.IsMatch(this.SenhaTextBox.Text, @".*[A-Z].*"))
+            {
+                labelRule2.ForeColor = Color.ForestGreen;
+            }
+            else 
+            {
+                labelRule2.ForeColor = Color.DarkRed;
+            }
+
+            if (Regex.IsMatch(this.SenhaTextBox.Text, @".*\d.*"))
+            {
+                labelRule3.ForeColor = Color.ForestGreen;
+            }
+            else
+            {
+                labelRule3.ForeColor = Color.DarkRed;
+            }
+            
+            if (Regex.IsMatch(this.SenhaTextBox.Text, @".*[$*&@#].*"))
+            {
+                labelRule4.ForeColor = Color.ForestGreen;
+            }
+            else
+            {
+                labelRule4.ForeColor = Color.DarkRed;
+            }
+            if (!String.IsNullOrEmpty(this.SenhaTextBox.Text) && !Regex.IsMatch(this.SenhaTextBox.Text, @".*(.)\1.*"))
+            {
+                labelRule5.ForeColor = Color.ForestGreen;
+            }
+            else
+            {
+                labelRule5.ForeColor = Color.DarkRed;
+            }
+
+
+        }
+
+        private void label19_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label18_Click_1(object sender, EventArgs e)
+        {
+            
         }
     }
 }
