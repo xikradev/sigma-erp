@@ -274,6 +274,7 @@
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxUsuario.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxVenda.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.query.Qfornecedor.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxFornecedor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

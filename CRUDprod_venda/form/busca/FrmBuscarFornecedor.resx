@@ -158,19 +158,25 @@
   <data name="SearchBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIOSURBVEhL3VRNTxNRFO0KfwEL/0KFsKsLFmyqEIs0HaZm
-        EpO2700bwqJrpK4Bg7TBFNpEV3y4NLIxbhRwowt2fCT4D0wE4wdpS5Q873m905Q4084kQIInOemb23fP
-        ue++j9D/i0wm0098JoTYJ54wMV6UUvbxtODI5/M30ul0JRqNnonshJKFkrLn1pWcXdNjxMjkD5kvJZPJ
-        Hk7zB4hT4qaQUkkSzW4cq+yb2nlSDGaYQ0bvA5mQeBWJdvVDS/DRVl09/dTQnNqst+J2ddsxKXN6Z6Dn
-        aIuunAQm39bU6u6penX4Wy3vnGpivEIx/Ic5cmZVtyuVSt1iGW/oDaX+Om158rGhyiSa44pBjBGbp9Xg
-        2359pCTl0J6VWMYbVMWBfFxqifmlmF6AwR7LeIMm/ZJzL11FOhEnzLKsnyzjDUxy+h+E+kQJ8YNlvHHp
-        LaIqFts32Rd5kym3yDLewPXHkcOSXcVcKGdW9DElhlmmM3D9mxdt21WwnXZly7loLzi9O3DtKeEdErES
-        nPN/xNEWVE5zcPKoqM+5XO4mS3QHm5SxdPRXForNhw7EuNlzPHbPsbk0VncN4+uY+dBfmxzg+pNACSKo
-        lAnBIlGL0W/viDH+5fZwXEViiUZgEz8YGTPDA/fidcfkvmV1f5eC4kpM7iQe9EViRgMmQ6PGNw5fLGAy
-        GBv9HjMtk0PXHqHQX0s+a3pOuoQ2AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAIPSURBVEhL3VRNTxNRFO0KfwEL/0KFsKsLFiwahVik6TA1
+        k5i0fW/aEBZdI3UNGKQNptAmuuLDpZGNcaOAG12w4yPBf2AiGD9IW6Lkec/rnabEmXYmARI8yUnf3L57
+        zn33fYT+X2QymX7iMyHEPvGEifGilLKPpwVHPp+/kU6nK9Fo9ExkJ5QslJQ9t67k7JoeI0Ymf8h8KZlM
+        9nCaP0CcEjeFlEqSaHbjWGXf1M6TYjDDHDJ6H8iExKtItKsfWoKPturq6aeG5tRmvRW3q9uOSZnTOwM9
+        R1t05SQw+bamVndP1avD32p551QT4xWK4T/MkTOrul2pVOoWy3hDbyj112nLk48NVSbRHFcMYozYPK0G
+        3/brIyUph/asxDLeoCoO5ONSS8wvxfQCDPZYxhs06Zece+kq0ok4YZZl/WQZb2CS0/8g1CdKiB8s441L
+        bxFVsdi+yb7Im0y5RZbxBq4/jhyW7CrmQjmzoo8pMcwynYHr37xo266C7bQrW85Fe8Hp3YFrTwnvkIiV
+        4Jz/I462oHKag5NHRX3O5XI3WaI72KSMpaO/slBsPnQgxs2e47F7js2lsbprGF/HzIf+2uQA158EShBB
+        pUwIFolajH57R4zxL7eH4yoSSzQCm/jByJgZHrgXrzsm9y2r+7sUFFdicifxoC8SMxowGRo1vnH4YgGT
+        wdjo95hpmRy69giF/gIfYWt00W1MLAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="axFornecedorBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>326, 17</value>
+  </metadata>
   <metadata name="axFornecedorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
+  </metadata>
+  <metadata name="axFornecedorBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>326, 17</value>
   </metadata>
 </root>

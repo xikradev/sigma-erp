@@ -28,6 +28,7 @@ namespace ErpSigmaVenda.Produtos
             dg.DataSource = pFornecedor.GetFornecedor();
             FilterCb.SelectedIndex = 0;
             rowsCheck();
+            
         }
 
         private void rowsCheck()
@@ -45,20 +46,22 @@ namespace ErpSigmaVenda.Produtos
         private void SearchBtn_Click(object sender, EventArgs e)
         {
             string filter = "id";
-            if(FilterCb.SelectedItem == "Id")
+            if(FilterCb.SelectedItem == "Código")
             {
                 filter = "idfornecedor";
             }else if(FilterCb.SelectedItem == "Nome")
             {
-                filter = "nome";
-            }else if(FilterCb.SelectedItem == "CNPJ")
+                filter = "nomeCompleto";
+            }else if(FilterCb.SelectedItem == "CPF/CNPJ")
             {
-                filter = "cnpj";
+                filter = "registro";
+            }else if(FilterCb.SelectedItem == "Estado"){
+                filter = "endereco.estado";
             }
 
             try
             {
-                dg.DataSource = dbFornecedor.Database.SqlQuery<AxFornecedor>("select fornecedor.*, endereco.bairro as endereco from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco where " + filter + " like '" + SearchTextBox.Text + "%';").ToList();
+                dg.DataSource = dbFornecedor.Database.SqlQuery<AxFornecedor>("select fornecedor.*, endereco.rua, endereco.cep, endereco.estado from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco where " + filter + " like '" + SearchTextBox.Text + "%';").ToList();
 
             }
             catch(Exception ex)

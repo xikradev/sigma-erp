@@ -31,24 +31,11 @@ namespace ErpSigmaVenda.fornecedores
             {
                 db = new venda_produtoEntities();
                 db.endereco.Add(fornecedoresForm.oEndereco);
-
-                try
-                {
-                    db.SaveChanges();
-                    db = new venda_produtoEntities();
-                    fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
-                    db.fornecedor.Add(fornecedoresForm.oFornecedor);
-                    db.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    var teste = ex.Message;
-                    
-                }
-
-
-                
-                
+                db.SaveChanges();
+                db = new venda_produtoEntities();
+                fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
+                db.fornecedor.Add(fornecedoresForm.oFornecedor);
+                db.SaveChanges();
                 loading();
             }
         }

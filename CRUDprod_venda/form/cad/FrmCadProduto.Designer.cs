@@ -43,6 +43,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.ForneceorTb = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -155,7 +156,7 @@
             // 
             // ForneceorTb
             // 
-            this.ForneceorTb.Location = new System.Drawing.Point(42, 335);
+            this.ForneceorTb.Location = new System.Drawing.Point(42, 350);
             this.ForneceorTb.Name = "ForneceorTb";
             this.ForneceorTb.ReadOnly = true;
             this.ForneceorTb.Size = new System.Drawing.Size(233, 20);
@@ -165,12 +166,21 @@
             // 
             this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(281, 335);
+            this.button2.Location = new System.Drawing.Point(281, 350);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(26, 20);
             this.button2.TabIndex = 15;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(42, 331);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 13);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Buscar Fornecedor";
             // 
             // FrmCadProduto
             // 
@@ -178,6 +188,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 448);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.ForneceorTb);
             this.Controls.Add(this.Qnt_esTtextBox);
@@ -218,5 +229,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox ForneceorTb;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
     }
 }

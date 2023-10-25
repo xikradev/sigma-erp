@@ -14,7 +14,7 @@ namespace ErpSigmaVenda.query
         {
             venda_produtoEntities db = new venda_produtoEntities();
             StringBuilder query = new StringBuilder();
-            query.AppendLine("select fornecedor.*, endereco.rua, endereco.cep, encedereco.estado from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco ");
+            query.AppendLine("select fornecedor.*, endereco.rua, endereco.cep, endereco.estado from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco ");
             return db.Database.SqlQuery<AxFornecedor>(query.ToString()).ToList();
         }
     }
