@@ -374,7 +374,7 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.NumeroTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 216);
+            this.groupBox1.Location = new System.Drawing.Point(12, 210);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(519, 233);
             this.groupBox1.TabIndex = 75;

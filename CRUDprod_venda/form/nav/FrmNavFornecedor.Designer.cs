@@ -35,10 +35,6 @@
             this.UpdateButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             this.dg = new System.Windows.Forms.DataGridView();
-            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cnpjDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enderecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axFornecedorBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -46,6 +42,12 @@
             this.qfornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).BeginInit();
@@ -108,9 +110,11 @@
             this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idfornecedorDataGridViewTextBoxColumn,
-            this.nomeDataGridViewTextBoxColumn,
-            this.cnpjDataGridViewTextBoxColumn,
-            this.enderecoDataGridViewTextBoxColumn});
+            this.nomeCompleto,
+            this.registro,
+            this.Rua,
+            this.CEP,
+            this.estado});
             this.dg.DataSource = this.axFornecedorBindingSource2;
             this.dg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dg.Location = new System.Drawing.Point(0, 52);
@@ -122,34 +126,6 @@
             this.dg.TabIndex = 9;
             this.dg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_CellContentClick_1);
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
-            // 
-            // idfornecedorDataGridViewTextBoxColumn
-            // 
-            this.idfornecedorDataGridViewTextBoxColumn.DataPropertyName = "idfornecedor";
-            this.idfornecedorDataGridViewTextBoxColumn.HeaderText = "idfornecedor";
-            this.idfornecedorDataGridViewTextBoxColumn.Name = "idfornecedorDataGridViewTextBoxColumn";
-            this.idfornecedorDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // cnpjDataGridViewTextBoxColumn
-            // 
-            this.cnpjDataGridViewTextBoxColumn.DataPropertyName = "cnpj";
-            this.cnpjDataGridViewTextBoxColumn.HeaderText = "cnpj";
-            this.cnpjDataGridViewTextBoxColumn.Name = "cnpjDataGridViewTextBoxColumn";
-            this.cnpjDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // enderecoDataGridViewTextBoxColumn
-            // 
-            this.enderecoDataGridViewTextBoxColumn.DataPropertyName = "endereco";
-            this.enderecoDataGridViewTextBoxColumn.HeaderText = "endereco";
-            this.enderecoDataGridViewTextBoxColumn.Name = "enderecoDataGridViewTextBoxColumn";
-            this.enderecoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // axFornecedorBindingSource2
             // 
@@ -178,6 +154,48 @@
             // axFornecedorBindingSource3
             // 
             this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // idfornecedorDataGridViewTextBoxColumn
+            // 
+            this.idfornecedorDataGridViewTextBoxColumn.DataPropertyName = "idfornecedor";
+            this.idfornecedorDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.idfornecedorDataGridViewTextBoxColumn.Name = "idfornecedorDataGridViewTextBoxColumn";
+            this.idfornecedorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nomeCompleto
+            // 
+            this.nomeCompleto.DataPropertyName = "nomeCompleto";
+            this.nomeCompleto.HeaderText = "Nome";
+            this.nomeCompleto.Name = "nomeCompleto";
+            this.nomeCompleto.ReadOnly = true;
+            // 
+            // registro
+            // 
+            this.registro.DataPropertyName = "registro";
+            this.registro.HeaderText = "CPF/CNPJ";
+            this.registro.Name = "registro";
+            this.registro.ReadOnly = true;
+            // 
+            // Rua
+            // 
+            this.Rua.DataPropertyName = "rua";
+            this.Rua.HeaderText = "Rua";
+            this.Rua.Name = "Rua";
+            this.Rua.ReadOnly = true;
+            // 
+            // CEP
+            // 
+            this.CEP.DataPropertyName = "cep";
+            this.CEP.HeaderText = "CEP";
+            this.CEP.Name = "CEP";
+            this.CEP.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.DataPropertyName = "estado";
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
             // 
             // FrmNavFornecedor
             // 
@@ -221,8 +239,10 @@
         private System.Windows.Forms.BindingSource axFornecedorBindingSource3;
         private System.Windows.Forms.BindingSource axClienteBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idfornecedorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cnpjDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn registro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Rua;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CEP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
     }
 }

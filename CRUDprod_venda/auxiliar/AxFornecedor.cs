@@ -9,9 +9,11 @@ namespace ErpSigmaVenda.auxiliar
     class AxFornecedor
     {
         public int idfornecedor { get; set; }
-        public string nome { get; set; }
-        public string cnpj { get; set; }
-        public string endereco { get; set; }
+        public string nomeCompleto { get; set; }
+        public string registro { get; set; }
+        public string rua { get; set; }
+        public string cep { get; set; }
+        public string estado { get; set; }
 
     }
 }

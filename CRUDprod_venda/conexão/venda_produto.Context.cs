@@ -16,18 +16,18 @@ namespace ErpSigmaVenda.conexão
     public partial class venda_produtoEntities : DbContext
     {
         
-        public venda_produtoEntities()
-            : base("name=venda_produtoEntities_casa")
-        {
-        }
+        //public venda_produtoEntities()
+        //    : base("name=venda_produtoEntities_casa")
+        //{
+        //}
         
 
-        /*
+        
         public venda_produtoEntities()
             : base("name=venda_produtoEntities_trab")
         {
         }
-        */
+        
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -31,12 +31,14 @@ namespace ErpSigmaVenda.fornecedores
 
         private void loading()
         {
-            this.NomeTextBox.Text = this.oFornecedor.nomeCompleto;
+            this.NomeComplTextBox.Text = this.oFornecedor.nomeCompleto;
             this.CnpjTextBox.Text = this.oFornecedor.registro;
             this.CepTextBox.Text = this.oEndereco.cep;
-            this.BairroTextBox.Text = this.oEndereco.complemento;
+            this.ComplTextBox.Text = this.oEndereco.complemento;
             this.RuaTextBox.Text = this.oEndereco.rua;
             this.NumeroTextBox.Text = this.oEndereco.numero.ToString();
+            this.CidadeTextBox.Text = this.oEndereco.cidade;
+            this.UFComboBox.SelectedItem = this.oEndereco.estado;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -61,26 +63,28 @@ namespace ErpSigmaVenda.fornecedores
 
         private Boolean update(int numero)
         {
-            this.oFornecedor.nomeCompleto = this.NomeTextBox.Text;
+            this.oFornecedor.nomeCompleto = this.NomeComplTextBox.Text;
             this.oFornecedor.registro = this.CnpjTextBox.Text;
             this.oEndereco.cep = this.CepTextBox.Text;
-            this.oEndereco.complemento = this.BairroTextBox.Text;
+            this.oEndereco.complemento = this.ComplTextBox.Text;
             this.oEndereco.rua = this.RuaTextBox.Text;
             this.oEndereco.numero = int.Parse(this.NumeroTextBox.Text);
+            this.oEndereco.cidade = this.CidadeTextBox.Text;
+            this.oEndereco.estado = UFComboBox.Text.Substring(0, 2);
 
             return true;
         }
 
         private Boolean verify()
         {
-            if (String.IsNullOrEmpty(this.NomeTextBox.Text))
+            if (String.IsNullOrEmpty(this.NomeComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!regexCnpj.IsMatch(this.CnpjTextBox.Text))
             {
-                MessageBox.Show("O Campo CNPJ não está formatado corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo CPF/CNPJ não está formatado corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!regexCep.IsMatch(this.CepTextBox.Text))
@@ -88,7 +92,7 @@ namespace ErpSigmaVenda.fornecedores
                 MessageBox.Show("O Campo CEP não está formatado corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(BairroTextBox.Text))
+            if (String.IsNullOrEmpty(ComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Bairro não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -101,6 +105,15 @@ namespace ErpSigmaVenda.fornecedores
             if (!int.TryParse(NumeroTextBox.Text, out int numero))
             {
                 MessageBox.Show("O Campo Número deve conter números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(CidadeTextBox.Text))
+            {
+                MessageBox.Show("O Campo Cidade não pode estar vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(UFComboBox.Text)) {
+                MessageBox.Show("O Campo Estado deve ser selecionado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return update(numero);
@@ -149,6 +162,11 @@ namespace ErpSigmaVenda.fornecedores
                 MessageBox.Show("Já existe um Fornecedor com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CepTextBox.Text = "";
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
