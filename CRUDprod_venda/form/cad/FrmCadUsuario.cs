@@ -34,7 +34,7 @@ namespace ErpSigmaVenda.login
 
         private void loading()
         {
-            NomeTextBox.Text = this.oUsuario.nomeCompleto;
+            NomeComplTextBox.Text = this.oUsuario.nomeCompleto;
             EmailTextBox.Text = this.oUsuario.email;
             CpfTextBox.Text = this.oUsuario.cpf;
             SenhaTextBox.Text = this.oUsuario.senha;
@@ -60,10 +60,12 @@ namespace ErpSigmaVenda.login
             {
                 this.DataNascDTP.Value = this.oUsuario.dataNascimento;
             }
-            this.BairroTextBox.Text = this.oEndereco.complemento;
+            this.ComplTextBox.Text = this.oEndereco.complemento;
             this.CepTextBox.Text = this.oEndereco.cep;
             this.RuaTextBox.Text = this.oEndereco.rua;
             this.NumeroTextBox.Text = this.oEndereco.numero.ToString();
+            this.CidadeTextBox.Text = this.oEndereco.cidade;
+            this.UFComboBox.SelectedItem = this.oEndereco.estado;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -73,7 +75,7 @@ namespace ErpSigmaVenda.login
 
         private Boolean updateUsuario()
         {
-            this.oUsuario.nomeCompleto = NomeTextBox.Text;
+            this.oUsuario.nomeCompleto = NomeComplTextBox.Text;
             this.oUsuario.email = EmailTextBox.Text;
             this.oUsuario.cpf = CpfTextBox.Text;
             this.oUsuario.senha = SenhaTextBox.Text;
@@ -108,14 +110,9 @@ namespace ErpSigmaVenda.login
 
         private Boolean verifyUsuario()
         {
-            if (String.IsNullOrEmpty(NomeTextBox.Text))
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (String.IsNullOrEmpty(SobrenomeTextBox.Text))
-            {
-                MessageBox.Show("O Campo Sobrenome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!regexEmail.IsMatch(EmailTextBox.Text))
@@ -144,17 +141,19 @@ namespace ErpSigmaVenda.login
 
         private Boolean updateEndereco(int numero)
         {
-            this.oEndereco.complemento = this.BairroTextBox.Text;
+            this.oEndereco.complemento = this.ComplTextBox.Text;
             this.oEndereco.rua = this.RuaTextBox.Text;
             this.oEndereco.cep = this.CepTextBox.Text;
             this.oEndereco.numero = numero;
+            this.oEndereco.cidade = this.CidadeTextBox.Text;
+            this.oEndereco.estado = UFComboBox.Text.Substring(0, 2);
             return true;
         }
 
 
         private Boolean verifyEndereco()
         {
-            if (String.IsNullOrEmpty(BairroTextBox.Text))
+            if (String.IsNullOrEmpty(ComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Bairro não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -245,6 +244,11 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CepTextBox.Text = "";
             }
+        }
+
+        private void BairroTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

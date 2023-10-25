@@ -35,7 +35,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.CepTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.BairroTextBox = new System.Windows.Forms.TextBox();
+            this.ComplTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.DataNascDTP = new System.Windows.Forms.DateTimePicker();
@@ -45,9 +45,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.SobrenomeTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.NomeTextBox = new System.Windows.Forms.TextBox();
+            this.NomeComplTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.SenhaTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,6 +58,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.UFComboBox = new System.Windows.Forms.ComboBox();
+            this.CidadeTextBox = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,7 +83,7 @@
             // 
             // RuaTextBox
             // 
-            this.RuaTextBox.Location = new System.Drawing.Point(59, 380);
+            this.RuaTextBox.Location = new System.Drawing.Point(64, 325);
             this.RuaTextBox.Name = "RuaTextBox";
             this.RuaTextBox.Size = new System.Drawing.Size(267, 20);
             this.RuaTextBox.TabIndex = 52;
@@ -89,7 +91,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(56, 364);
+            this.label10.Location = new System.Drawing.Point(61, 309);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(27, 13);
             this.label10.TabIndex = 51;
@@ -114,21 +116,22 @@
             this.label9.TabIndex = 49;
             this.label9.Text = "CEP";
             // 
-            // BairroTextBox
+            // ComplTextBox
             // 
-            this.BairroTextBox.Location = new System.Drawing.Point(59, 325);
-            this.BairroTextBox.Name = "BairroTextBox";
-            this.BairroTextBox.Size = new System.Drawing.Size(268, 20);
-            this.BairroTextBox.TabIndex = 48;
+            this.ComplTextBox.Location = new System.Drawing.Point(64, 380);
+            this.ComplTextBox.Name = "ComplTextBox";
+            this.ComplTextBox.Size = new System.Drawing.Size(268, 20);
+            this.ComplTextBox.TabIndex = 48;
+            this.ComplTextBox.TextChanged += new System.EventHandler(this.BairroTextBox_TextChanged);
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(56, 309);
+            this.label8.Location = new System.Drawing.Point(61, 364);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.Size = new System.Drawing.Size(71, 13);
             this.label8.TabIndex = 47;
-            this.label8.Text = "Bairro";
+            this.label8.Text = "Complemento";
             // 
             // label7
             // 
@@ -203,37 +206,21 @@
             this.label3.TabIndex = 39;
             this.label3.Text = "Email";
             // 
-            // SobrenomeTextBox
+            // NomeComplTextBox
             // 
-            this.SobrenomeTextBox.Location = new System.Drawing.Point(232, 53);
-            this.SobrenomeTextBox.Name = "SobrenomeTextBox";
-            this.SobrenomeTextBox.Size = new System.Drawing.Size(273, 20);
-            this.SobrenomeTextBox.TabIndex = 38;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(229, 37);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(61, 13);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "Sobrenome";
-            // 
-            // NomeTextBox
-            // 
-            this.NomeTextBox.Location = new System.Drawing.Point(59, 53);
-            this.NomeTextBox.Name = "NomeTextBox";
-            this.NomeTextBox.Size = new System.Drawing.Size(150, 20);
-            this.NomeTextBox.TabIndex = 36;
+            this.NomeComplTextBox.Location = new System.Drawing.Point(59, 53);
+            this.NomeComplTextBox.Name = "NomeComplTextBox";
+            this.NomeComplTextBox.Size = new System.Drawing.Size(446, 20);
+            this.NomeComplTextBox.TabIndex = 36;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(56, 37);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(35, 13);
+            this.label12.Size = new System.Drawing.Size(82, 13);
             this.label12.TabIndex = 35;
-            this.label12.Text = "Nome";
+            this.label12.Text = "Nome Completo";
             // 
             // SenhaTextBox
             // 
@@ -277,7 +264,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 489);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 540);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.toolStrip1.Size = new System.Drawing.Size(579, 39);
@@ -312,7 +299,7 @@
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(298, 150);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(208, 80);
+            this.label18.Size = new System.Drawing.Size(207, 80);
             this.label18.TabIndex = 65;
             this.label18.Text = "- 8 caracteres no mínimo;\r\n- 1 Letra Maiúscula no mínimo;\r\n- 1 Número no mínimo;\r" +
     "\n- 1 Símbolo no mínimo: ($*&@#);\r\n- Sem sequencias (aa, bb, 44, 55);";
@@ -349,12 +336,77 @@
             this.label16.TabIndex = 68;
             this.label16.Text = "Ex: 00000-000";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(278, 418);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(40, 13);
+            this.label13.TabIndex = 77;
+            this.label13.Text = "Estado";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(61, 418);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 13);
+            this.label17.TabIndex = 76;
+            this.label17.Text = "Cidade";
+            // 
+            // UFComboBox
+            // 
+            this.UFComboBox.FormattingEnabled = true;
+            this.UFComboBox.Items.AddRange(new object[] {
+            "RO-Rondônia",
+            "AC-Acre",
+            "AM-Amazonas",
+            "RR-Roraima",
+            "PA-Pará",
+            "AP-Amapá",
+            "TO-Tocantins",
+            "MA-Maranhão",
+            "PI-Piauí\t",
+            "CE-Ceará",
+            "RN-Rio Grande do Norte",
+            "PB-Paraíba",
+            "PE-Pernambuco",
+            "AL-Alagoas",
+            "SE-Sergipe",
+            "BA-Bahia",
+            "MG-Minas Gerais",
+            "ES-Espírito Santo",
+            "RJ-Rio de Janeiro",
+            "SP-São Paulo",
+            "PR-Paraná\t",
+            "SC-Santa Catarina",
+            "RS-Rio Grande do Sul",
+            "MS-Mato Grosso do Sul",
+            "MT-Mato Grosso",
+            "GO-Goiás",
+            "DF-Distrito Federal"});
+            this.UFComboBox.Location = new System.Drawing.Point(276, 433);
+            this.UFComboBox.Name = "UFComboBox";
+            this.UFComboBox.Size = new System.Drawing.Size(121, 21);
+            this.UFComboBox.TabIndex = 75;
+            // 
+            // CidadeTextBox
+            // 
+            this.CidadeTextBox.Location = new System.Drawing.Point(60, 434);
+            this.CidadeTextBox.Name = "CidadeTextBox";
+            this.CidadeTextBox.Size = new System.Drawing.Size(173, 20);
+            this.CidadeTextBox.TabIndex = 74;
+            // 
             // FrmCadUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 528);
+            this.ClientSize = new System.Drawing.Size(579, 579);
             this.ControlBox = false;
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.UFComboBox);
+            this.Controls.Add(this.CidadeTextBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
@@ -370,7 +422,7 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.CepTextBox);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.BairroTextBox);
+            this.Controls.Add(this.ComplTextBox);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.DataNascDTP);
@@ -380,9 +432,7 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.SobrenomeTextBox);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.NomeTextBox);
+            this.Controls.Add(this.NomeComplTextBox);
             this.Controls.Add(this.label12);
             this.Name = "FrmCadUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -403,7 +453,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox CepTextBox;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox BairroTextBox;
+        private System.Windows.Forms.TextBox ComplTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker DataNascDTP;
@@ -413,9 +463,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox SobrenomeTextBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox NomeTextBox;
+        private System.Windows.Forms.TextBox NomeComplTextBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox SenhaTextBox;
         private System.Windows.Forms.Label label1;
@@ -428,5 +476,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox UFComboBox;
+        private System.Windows.Forms.TextBox CidadeTextBox;
     }
 }

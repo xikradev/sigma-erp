@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Validation;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -48,7 +49,21 @@ namespace ErpSigmaVenda
             {
                 db = new venda_produtoEntities();
                 db.endereco.Add(usuarioForm.oEndereco);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var validationErrors in ex.EntityValidationErrors)
+                    {
+                        foreach (var validationError in validationErrors.ValidationErrors)
+                        {
+                            Console.WriteLine($"Propriedade: {validationError.PropertyName}, Erro: {validationError.ErrorMessage}");
+                        }
+                    }
+                }
+
                 db = new venda_produtoEntities();
                 usuarioForm.oUsuario.idendereco = usuarioForm.oEndereco.idendereco;
                 db.usuario.Add(usuarioForm.oUsuario);
