@@ -17,7 +17,7 @@ namespace ErpSigmaVenda
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new btnVendas());
+            Application.Run(new FrmTelaPrincipal());
         }
     }
 }

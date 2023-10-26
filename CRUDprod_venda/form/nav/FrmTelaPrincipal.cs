@@ -1,4 +1,5 @@
 ﻿using ErpSigmaVenda.clientes;
+using ErpSigmaVenda.form.nav;
 using ErpSigmaVenda.fornecedores;
 using ErpSigmaVenda.Produtos;
 using ErpSigmaVenda.query;
@@ -16,11 +17,11 @@ using System.Windows.Forms;
 
 namespace ErpSigmaVenda.navegacao
 {
-    public partial class btnVendas : Form
+    public partial class FrmTelaPrincipal : Form
     {
         
 
-        public btnVendas()
+        public FrmTelaPrincipal()
         {
             InitializeComponent();
             
@@ -97,6 +98,12 @@ namespace ErpSigmaVenda.navegacao
 
         }
 
-        
+        private void SwitchUserBtn_Click(object sender, EventArgs e)
+        {
+            FrmInfoUser frm = new FrmInfoUser();
+            frm.ShowDialog();
+                
+            
+        }
     }
 }

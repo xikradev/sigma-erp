@@ -104,6 +104,12 @@
       <DependentUpon>FrmCadCliente.cs</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="form\nav\FrmInfoUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\nav\FrmInfoUser.Designer.cs">
+      <DependentUpon>FrmInfoUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="form\nav\FrmNavCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </Compile>
     <EmbeddedResource Include="form\cad\FrmCadCliente.resx">
       <DependentUpon>FrmCadCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\nav\FrmInfoUser.resx">
+      <DependentUpon>FrmInfoUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="form\nav\FrmNavCliente.resx">
       <DependentUpon>FrmNavCliente.cs</DependentUpon>

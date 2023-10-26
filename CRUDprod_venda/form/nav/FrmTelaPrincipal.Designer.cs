@@ -1,6 +1,6 @@
 ﻿namespace ErpSigmaVenda.navegacao
 {
-    partial class btnVendas
+    partial class FrmTelaPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(btnVendas));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTelaPrincipal));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnProduto = new System.Windows.Forms.ToolStripButton();
             this.btnVenda = new System.Windows.Forms.ToolStripButton();
@@ -154,6 +154,7 @@
             this.SwitchUserBtn.Name = "SwitchUserBtn";
             this.SwitchUserBtn.Size = new System.Drawing.Size(102, 21);
             this.SwitchUserBtn.Text = "Trocar Usuário";
+            this.SwitchUserBtn.Click += new System.EventHandler(this.SwitchUserBtn_Click);
             // 
             // btnVendas
             // 
