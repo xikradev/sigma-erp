@@ -38,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.SexoComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.DataNascDTP = new System.Windows.Forms.DateTimePicker();
@@ -61,16 +60,13 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PJuridicaBtn = new System.Windows.Forms.RadioButton();
             this.PFisicaBtn = new System.Windows.Forms.RadioButton();
-            this.PFisicaGroupBox = new System.Windows.Forms.GroupBox();
-            this.CpfTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CnpjTextBox = new System.Windows.Forms.MaskedTextBox();
-            this.PJuridicaGruopBox = new System.Windows.Forms.GroupBox();
+            this.RegisterGroupBox = new System.Windows.Forms.GroupBox();
+            this.RegisterTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.RegisterLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            this.PFisicaGroupBox.SuspendLayout();
-            this.PJuridicaGruopBox.SuspendLayout();
+            this.RegisterGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -156,15 +152,6 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Email";
             this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 31);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 13);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "CNPJ";
             // 
             // SexoComboBox
             // 
@@ -411,53 +398,34 @@
             this.PFisicaBtn.UseVisualStyleBackColor = true;
             this.PFisicaBtn.CheckedChanged += new System.EventHandler(this.PFisicaBtn_CheckedChanged);
             // 
-            // PFisicaGroupBox
+            // RegisterGroupBox
             // 
-            this.PFisicaGroupBox.Controls.Add(this.CpfTextBox);
-            this.PFisicaGroupBox.Controls.Add(this.label2);
-            this.PFisicaGroupBox.Location = new System.Drawing.Point(211, 87);
-            this.PFisicaGroupBox.Name = "PFisicaGroupBox";
-            this.PFisicaGroupBox.Size = new System.Drawing.Size(273, 90);
-            this.PFisicaGroupBox.TabIndex = 77;
-            this.PFisicaGroupBox.TabStop = false;
-            this.PFisicaGroupBox.Text = "Pessoa Física";
-            this.PFisicaGroupBox.Visible = false;
+            this.RegisterGroupBox.Controls.Add(this.RegisterTextBox);
+            this.RegisterGroupBox.Controls.Add(this.RegisterLabel);
+            this.RegisterGroupBox.Location = new System.Drawing.Point(211, 87);
+            this.RegisterGroupBox.Name = "RegisterGroupBox";
+            this.RegisterGroupBox.Size = new System.Drawing.Size(273, 90);
+            this.RegisterGroupBox.TabIndex = 77;
+            this.RegisterGroupBox.TabStop = false;
+            this.RegisterGroupBox.Text = "Pessoa Física";
             // 
-            // CpfTextBox
+            // RegisterTextBox
             // 
-            this.CpfTextBox.Location = new System.Drawing.Point(26, 48);
-            this.CpfTextBox.Mask = "999,999,999-99";
-            this.CpfTextBox.Name = "CpfTextBox";
-            this.CpfTextBox.Size = new System.Drawing.Size(209, 20);
-            this.CpfTextBox.TabIndex = 2;
+            this.RegisterTextBox.Location = new System.Drawing.Point(26, 48);
+            this.RegisterTextBox.Mask = "999,999,999-99";
+            this.RegisterTextBox.Name = "RegisterTextBox";
+            this.RegisterTextBox.Size = new System.Drawing.Size(209, 20);
+            this.RegisterTextBox.TabIndex = 2;
+            this.RegisterTextBox.Leave += new System.EventHandler(this.RegisterTextBox_Leave);
             // 
-            // label2
+            // RegisterLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(23, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "CPF";
-            // 
-            // CnpjTextBox
-            // 
-            this.CnpjTextBox.Location = new System.Drawing.Point(21, 47);
-            this.CnpjTextBox.Mask = "99,999,999/9999-99";
-            this.CnpjTextBox.Name = "CnpjTextBox";
-            this.CnpjTextBox.Size = new System.Drawing.Size(208, 20);
-            this.CnpjTextBox.TabIndex = 78;
-            // 
-            // PJuridicaGruopBox
-            // 
-            this.PJuridicaGruopBox.Controls.Add(this.label5);
-            this.PJuridicaGruopBox.Controls.Add(this.CnpjTextBox);
-            this.PJuridicaGruopBox.Location = new System.Drawing.Point(206, 87);
-            this.PJuridicaGruopBox.Name = "PJuridicaGruopBox";
-            this.PJuridicaGruopBox.Size = new System.Drawing.Size(282, 90);
-            this.PJuridicaGruopBox.TabIndex = 79;
-            this.PJuridicaGruopBox.TabStop = false;
-            this.PJuridicaGruopBox.Text = "Pessoa Jurídica";
+            this.RegisterLabel.AutoSize = true;
+            this.RegisterLabel.Location = new System.Drawing.Point(23, 31);
+            this.RegisterLabel.Name = "RegisterLabel";
+            this.RegisterLabel.Size = new System.Drawing.Size(27, 13);
+            this.RegisterLabel.TabIndex = 1;
+            this.RegisterLabel.Text = "CPF";
             // 
             // FrmCadCliente
             // 
@@ -465,8 +433,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(547, 601);
             this.ControlBox = false;
-            this.Controls.Add(this.PJuridicaGruopBox);
-            this.Controls.Add(this.PFisicaGroupBox);
+            this.Controls.Add(this.RegisterGroupBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label14);
@@ -490,10 +457,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.PFisicaGroupBox.ResumeLayout(false);
-            this.PFisicaGroupBox.PerformLayout();
-            this.PJuridicaGruopBox.ResumeLayout(false);
-            this.PJuridicaGruopBox.PerformLayout();
+            this.RegisterGroupBox.ResumeLayout(false);
+            this.RegisterGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -507,7 +472,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox SexoComboBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker DataNascDTP;
@@ -532,10 +496,8 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton PJuridicaBtn;
         private System.Windows.Forms.RadioButton PFisicaBtn;
-        private System.Windows.Forms.GroupBox PFisicaGroupBox;
-        private System.Windows.Forms.MaskedTextBox CpfTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox CnpjTextBox;
-        private System.Windows.Forms.GroupBox PJuridicaGruopBox;
+        private System.Windows.Forms.GroupBox RegisterGroupBox;
+        private System.Windows.Forms.MaskedTextBox RegisterTextBox;
+        private System.Windows.Forms.Label RegisterLabel;
     }
 }

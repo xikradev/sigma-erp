@@ -38,6 +38,7 @@ namespace ErpSigmaVenda.navegacao
             FrmLogin frm = new FrmLogin();
             if(frm.ShowDialog() == DialogResult.OK)
             {
+                this.SwitchUserBtn.Visible = true;
                 var oUsuario = pLoginUsr.oUsuario;
                 if (oUsuario.role.Equals("ADM"))
                 {

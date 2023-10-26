@@ -154,9 +154,10 @@
             this.SwitchUserBtn.Name = "SwitchUserBtn";
             this.SwitchUserBtn.Size = new System.Drawing.Size(102, 21);
             this.SwitchUserBtn.Text = "Trocar Usuário";
+            this.SwitchUserBtn.Visible = false;
             this.SwitchUserBtn.Click += new System.EventHandler(this.SwitchUserBtn_Click);
             // 
-            // btnVendas
+            // FrmTelaPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -167,7 +168,7 @@
             this.Controls.Add(this.toolStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimizeBox = false;
-            this.Name = "btnVendas";
+            this.Name = "FrmTelaPrincipal";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NavegationForm";
