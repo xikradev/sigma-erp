@@ -26,7 +26,6 @@ C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaV
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmNavVendas.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmCadVendas.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.FrmLogin.resources
-C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.navegacao.btnVendas.resources
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Erp Sigma.exe.config
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Erp Sigma.exe
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Erp Sigma.pdb
@@ -57,3 +56,5 @@ C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csproj.Cop
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\Erp Sigma.exe
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\Erp Sigma.pdb
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\ErpSigmaVenda.navegacao.FrmTelaPrincipal.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.form.nav.FrmInfoUser.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.navegacao.FrmTelaPrincipal.resources

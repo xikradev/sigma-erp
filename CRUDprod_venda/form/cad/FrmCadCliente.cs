@@ -16,11 +16,9 @@ namespace ErpSigmaVenda.clientes
     {
         public cliente oCliente = new cliente();
         public endereco oEndereco = new endereco();
-        //regex para verificação de Email
         Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
-        //Regex para verificação de CPF ou CNPJ
-        Regex regexCpfCnpj = new Regex(@"^([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})$", RegexOptions.IgnoreCase);
-        //Regex para vericação de CEP
+        Regex cpfRegex = new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
+        Regex cnpjRegex = new Regex(@"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$");
         Regex regexCep = new Regex(@"^\d{5}-\d{3}$", RegexOptions.IgnoreCase);
 
 
@@ -33,6 +31,7 @@ namespace ErpSigmaVenda.clientes
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
+            this.PJuridicaBtn.Checked = true;
             
             this.loading();
         }
@@ -41,7 +40,23 @@ namespace ErpSigmaVenda.clientes
         {
             this.NomeComplTextBox.Text = this.oCliente.nomeCompleto;
             this.EmailTextBox.Text = this.oCliente.email;
-            this.RegistroTextBox.Text = this.oCliente.registro; //referente CPF e CNPJ
+            if (!String.IsNullOrEmpty(this.oCliente.registro))
+            {
+                if (cpfRegex.IsMatch(this.oCliente.registro))
+                {
+                    this.PFisicaBtn.Checked = true;
+                    this.PFisicaGroupBox.Visible = true;
+                    this.PJuridicaGruopBox.Visible = false;
+                    this.CpfTextBox.Text = this.oCliente.registro;
+                }
+                else if (cnpjRegex.IsMatch(this.oCliente.registro))
+                {
+                    this.PJuridicaBtn.Checked = true;
+                    this.PJuridicaGruopBox.Visible = true;
+                    this.PFisicaGroupBox.Visible = false;
+                    this.CnpjTextBox.Text = this.oCliente.registro;
+                }
+            }
             if (this.oCliente.sexo == "m")
             {
                 this.SexoComboBox.SelectedItem = "Masculino";
@@ -88,7 +103,16 @@ namespace ErpSigmaVenda.clientes
             this.oCliente.nomeCompleto = NomeComplTextBox.Text;
             
             this.oCliente.email = EmailTextBox.Text;
-            this.oCliente.registro = RegistroTextBox.Text;
+            
+            if (PJuridicaBtn.Checked)
+            {
+                this.oCliente.registro = CnpjTextBox.Text;
+            }
+            else
+            {
+                this.oCliente.registro = CpfTextBox.Text;
+            }
+
             if (SexoComboBox.SelectedItem == "Masculino")
             {
                 this.oCliente.sexo = "m";
@@ -120,10 +144,21 @@ namespace ErpSigmaVenda.clientes
                 MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexCpfCnpj.IsMatch(RegistroTextBox.Text))
+            if (PJuridicaBtn.Checked)
             {
-                MessageBox.Show("O Campo CPF/CNPJ não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                if (!cnpjRegex.IsMatch(CnpjTextBox.Text))
+                {
+                    MessageBox.Show("O Campo CNPJ não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                if (!cpfRegex.IsMatch(CpfTextBox.Text))
+                {
+                    MessageBox.Show("O Campo CPF não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
             if(DataNascDTP.Value > DateTime.Now)
             {
@@ -206,11 +241,11 @@ namespace ErpSigmaVenda.clientes
             venda_produtoEntities db = new venda_produtoEntities();
             cliente foundedCliente = new cliente();
 
-            foundedCliente = db.cliente.Where(o => o.registro.Equals(RegistroTextBox.Text)).FirstOrDefault();
+            foundedCliente = db.cliente.Where(o => o.registro.Equals(CnpjTextBox.Text)).FirstOrDefault();
             if(foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
             {
                 MessageBox.Show("Já existe um Cliente com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                RegistroTextBox.Text = "";
+                CnpjTextBox.Text = "";
             }
         }
 
@@ -248,5 +283,33 @@ namespace ErpSigmaVenda.clientes
         {
 
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PFisicaBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PFisicaBtn.Checked)
+            {
+                this.PFisicaGroupBox.Visible = true;
+                this.PJuridicaGruopBox.Visible = false;
+
+            }
+        }
+
+        private void PJuridicaBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (PJuridicaBtn.Checked)
+            {
+                this.PFisicaGroupBox.Visible = false;
+                this.PJuridicaGruopBox.Visible = true;
+
+            }
+
+        }
+
+        
     }
 }

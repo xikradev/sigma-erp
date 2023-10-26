@@ -31,12 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadCliente));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.NomeComplTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.RegistroTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SexoComboBox = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,32 +52,40 @@
             this.label11 = new System.Windows.Forms.Label();
             this.NumeroTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.CidadeTextBox = new System.Windows.Forms.TextBox();
             this.UFComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PJuridicaBtn = new System.Windows.Forms.RadioButton();
+            this.PFisicaBtn = new System.Windows.Forms.RadioButton();
+            this.PFisicaGroupBox = new System.Windows.Forms.GroupBox();
+            this.CpfTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CnpjTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.PJuridicaGruopBox = new System.Windows.Forms.GroupBox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.PFisicaGroupBox.SuspendLayout();
+            this.PJuridicaGruopBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
             this.toolStripSeparator2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 474);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 562);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(543, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(547, 39);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -91,6 +100,11 @@
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
@@ -101,6 +115,11 @@
             this.toolStripButton2.Text = "Salvar";
             this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
             // 
             // NomeComplTextBox
             // 
@@ -121,7 +140,7 @@
             // EmailTextBox
             // 
             this.EmailTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EmailTextBox.Location = new System.Drawing.Point(42, 99);
+            this.EmailTextBox.Location = new System.Drawing.Point(49, 196);
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(214, 20);
             this.EmailTextBox.TabIndex = 19;
@@ -131,38 +150,30 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 83);
+            this.label3.Location = new System.Drawing.Point(46, 180);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 18;
             this.label3.Text = "Email";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // RegistroTextBox
-            // 
-            this.RegistroTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.RegistroTextBox.Location = new System.Drawing.Point(274, 99);
-            this.RegistroTextBox.Name = "RegistroTextBox";
-            this.RegistroTextBox.Size = new System.Drawing.Size(214, 20);
-            this.RegistroTextBox.TabIndex = 21;
-            this.RegistroTextBox.Leave += new System.EventHandler(this.CpfTextBox_Leave);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(273, 83);
+            this.label5.Location = new System.Drawing.Point(21, 31);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.Size = new System.Drawing.Size(34, 13);
             this.label5.TabIndex = 20;
-            this.label5.Text = "CPF/CNPJ";
+            this.label5.Text = "CNPJ";
             // 
             // SexoComboBox
             // 
+            this.SexoComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SexoComboBox.FormattingEnabled = true;
             this.SexoComboBox.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.SexoComboBox.Location = new System.Drawing.Point(42, 171);
+            this.SexoComboBox.Location = new System.Drawing.Point(46, 268);
             this.SexoComboBox.Name = "SexoComboBox";
             this.SexoComboBox.Size = new System.Drawing.Size(121, 21);
             this.SexoComboBox.TabIndex = 22;
@@ -171,7 +182,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(42, 156);
+            this.label6.Location = new System.Drawing.Point(46, 253);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 23;
@@ -180,7 +191,7 @@
             // DataNascDTP
             // 
             this.DataNascDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataNascDTP.Location = new System.Drawing.Point(251, 172);
+            this.DataNascDTP.Location = new System.Drawing.Point(254, 269);
             this.DataNascDTP.Name = "DataNascDTP";
             this.DataNascDTP.Size = new System.Drawing.Size(231, 20);
             this.DataNascDTP.TabIndex = 24;
@@ -188,7 +199,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(248, 156);
+            this.label7.Location = new System.Drawing.Point(251, 253);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 25;
@@ -264,22 +275,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(39, 122);
+            this.label14.Location = new System.Drawing.Point(46, 219);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(134, 13);
             this.label14.TabIndex = 67;
             this.label14.Text = "Ex: exemplo44@gmail.com";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label15.Location = new System.Drawing.Point(273, 122);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(210, 13);
-            this.label15.TabIndex = 68;
-            this.label15.Text = "CPF Ex : 000.000.000-00 ou 00000000000";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // label16
             // 
@@ -300,6 +300,7 @@
             // 
             // UFComboBox
             // 
+            this.UFComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UFComboBox.FormattingEnabled = true;
             this.UFComboBox.Items.AddRange(new object[] {
             "RO-Rondônia",
@@ -352,17 +353,6 @@
             this.label12.TabIndex = 73;
             this.label12.Text = "Estado";
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label13.Location = new System.Drawing.Point(273, 135);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(258, 13);
-            this.label13.TabIndex = 74;
-            this.label13.Text = "CNPJ Ex : 00.000.000/0000-00 ou 00000000000000";
-            this.label13.Click += new System.EventHandler(this.label13_Click);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label10);
@@ -378,39 +368,112 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.NumeroTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(12, 210);
+            this.groupBox1.Location = new System.Drawing.Point(16, 309);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(519, 233);
             this.groupBox1.TabIndex = 75;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Endereço:";
             // 
-            // toolStripSeparator1
+            // groupBox2
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
+            this.groupBox2.Controls.Add(this.PJuridicaBtn);
+            this.groupBox2.Controls.Add(this.PFisicaBtn);
+            this.groupBox2.Location = new System.Drawing.Point(42, 87);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(149, 90);
+            this.groupBox2.TabIndex = 76;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Tipo de Cliente";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // toolStripSeparator2
+            // PJuridicaBtn
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 39);
+            this.PJuridicaBtn.AutoSize = true;
+            this.PJuridicaBtn.Location = new System.Drawing.Point(7, 54);
+            this.PJuridicaBtn.Name = "PJuridicaBtn";
+            this.PJuridicaBtn.Size = new System.Drawing.Size(101, 17);
+            this.PJuridicaBtn.TabIndex = 1;
+            this.PJuridicaBtn.TabStop = true;
+            this.PJuridicaBtn.Text = "Pessoa Jurídica";
+            this.PJuridicaBtn.UseVisualStyleBackColor = true;
+            this.PJuridicaBtn.CheckedChanged += new System.EventHandler(this.PJuridicaBtn_CheckedChanged);
+            // 
+            // PFisicaBtn
+            // 
+            this.PFisicaBtn.AutoSize = true;
+            this.PFisicaBtn.Location = new System.Drawing.Point(7, 31);
+            this.PFisicaBtn.Name = "PFisicaBtn";
+            this.PFisicaBtn.Size = new System.Drawing.Size(92, 17);
+            this.PFisicaBtn.TabIndex = 0;
+            this.PFisicaBtn.TabStop = true;
+            this.PFisicaBtn.Text = "Pessoa Física";
+            this.PFisicaBtn.UseVisualStyleBackColor = true;
+            this.PFisicaBtn.CheckedChanged += new System.EventHandler(this.PFisicaBtn_CheckedChanged);
+            // 
+            // PFisicaGroupBox
+            // 
+            this.PFisicaGroupBox.Controls.Add(this.CpfTextBox);
+            this.PFisicaGroupBox.Controls.Add(this.label2);
+            this.PFisicaGroupBox.Location = new System.Drawing.Point(211, 87);
+            this.PFisicaGroupBox.Name = "PFisicaGroupBox";
+            this.PFisicaGroupBox.Size = new System.Drawing.Size(273, 90);
+            this.PFisicaGroupBox.TabIndex = 77;
+            this.PFisicaGroupBox.TabStop = false;
+            this.PFisicaGroupBox.Text = "Pessoa Física";
+            this.PFisicaGroupBox.Visible = false;
+            // 
+            // CpfTextBox
+            // 
+            this.CpfTextBox.Location = new System.Drawing.Point(26, 48);
+            this.CpfTextBox.Mask = "999,999,999-99";
+            this.CpfTextBox.Name = "CpfTextBox";
+            this.CpfTextBox.Size = new System.Drawing.Size(209, 20);
+            this.CpfTextBox.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(23, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "CPF";
+            // 
+            // CnpjTextBox
+            // 
+            this.CnpjTextBox.Location = new System.Drawing.Point(21, 47);
+            this.CnpjTextBox.Mask = "99,999,999/9999-99";
+            this.CnpjTextBox.Name = "CnpjTextBox";
+            this.CnpjTextBox.Size = new System.Drawing.Size(208, 20);
+            this.CnpjTextBox.TabIndex = 78;
+            // 
+            // PJuridicaGruopBox
+            // 
+            this.PJuridicaGruopBox.Controls.Add(this.label5);
+            this.PJuridicaGruopBox.Controls.Add(this.CnpjTextBox);
+            this.PJuridicaGruopBox.Location = new System.Drawing.Point(206, 87);
+            this.PJuridicaGruopBox.Name = "PJuridicaGruopBox";
+            this.PJuridicaGruopBox.Size = new System.Drawing.Size(282, 90);
+            this.PJuridicaGruopBox.TabIndex = 79;
+            this.PJuridicaGruopBox.TabStop = false;
+            this.PJuridicaGruopBox.Text = "Pessoa Jurídica";
             // 
             // FrmCadCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 513);
+            this.ClientSize = new System.Drawing.Size(547, 601);
             this.ControlBox = false;
+            this.Controls.Add(this.PJuridicaGruopBox);
+            this.Controls.Add(this.PFisicaGroupBox);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.DataNascDTP);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.SexoComboBox);
-            this.Controls.Add(this.RegistroTextBox);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
@@ -425,6 +488,12 @@
             this.toolStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.PFisicaGroupBox.ResumeLayout(false);
+            this.PFisicaGroupBox.PerformLayout();
+            this.PJuridicaGruopBox.ResumeLayout(false);
+            this.PJuridicaGruopBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -438,7 +507,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox EmailTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox RegistroTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox SexoComboBox;
         private System.Windows.Forms.Label label6;
@@ -453,15 +521,21 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox NumeroTextBox;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox CidadeTextBox;
         private System.Windows.Forms.ComboBox UFComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton PJuridicaBtn;
+        private System.Windows.Forms.RadioButton PFisicaBtn;
+        private System.Windows.Forms.GroupBox PFisicaGroupBox;
+        private System.Windows.Forms.MaskedTextBox CpfTextBox;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.MaskedTextBox CnpjTextBox;
+        private System.Windows.Forms.GroupBox PJuridicaGruopBox;
     }
 }
