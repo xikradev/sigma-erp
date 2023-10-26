@@ -156,3 +156,8 @@ C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\System.Xm
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\System.Xml.XPath.XDocument.dll
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\Erp Sigma.exe.config
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Library.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\ViaCep.dll
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\System.Net.Http.Formatting.xml

@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ViaCep;
 
 namespace ErpSigmaVenda.clientes
 {
@@ -33,6 +34,9 @@ namespace ErpSigmaVenda.clientes
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
+
+            
+
             this.PJuridicaBtn.Checked = true;
             
             this.loading();
@@ -260,6 +264,26 @@ namespace ErpSigmaVenda.clientes
 
         private void CepTextBox_Leave(object sender, EventArgs e)
         {
+            try
+            {
+                var result = new ViaCepClient().Search(this.CepTextBox.Text);
+                if(result != null)
+                {
+                    this.RuaTextBox.Text = result.Street;
+                    this.ComplTextBox.Text = result.Neighborhood +" "+ result.Complement;
+                    this.CidadeTextBox.Text = result.City;
+                    //this.UFComboBox.Contains(result.StateInitials);
+                }
+                else
+                {
+                    MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }catch(Exception ex)
+            {
+                MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
             
             venda_produtoEntities db = new venda_produtoEntities();
             endereco foundedEndereco = new endereco();
@@ -269,6 +293,8 @@ namespace ErpSigmaVenda.clientes
                 MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CepTextBox.Text = "";
             }
+
+            
         }
 
         private void label15_Click(object sender, EventArgs e)
@@ -352,5 +378,7 @@ namespace ErpSigmaVenda.clientes
                 RegisterTextBox.Text = "";
             }
         }
+
+        
     }
 }
