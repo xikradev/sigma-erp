@@ -82,7 +82,7 @@ namespace ErpSigmaVenda.clientes
             this.ComplTextBox.Text = this.oEndereco.complemento;
             this.CepTextBox.Text = this.oEndereco.cep;
             this.RuaTextBox.Text = this.oEndereco.rua;
-            this.NumeroTextBox.Text = this.oEndereco.numero.ToString();
+            this.NumeroTextBox.Text = this.oEndereco.numero == 0? "" : this.oEndereco.numero.ToString();
             this.CidadeTextBox.Text = this.oEndereco.cidade;
             this.UFComboBox.SelectedItem = this.oEndereco.estado;
             this.backupRegistro = this.RegisterTextBox.Text;
@@ -110,19 +110,9 @@ namespace ErpSigmaVenda.clientes
 
         private Boolean updateCliente()
         {
-
             this.oCliente.nomeCompleto = NomeComplTextBox.Text;
-            
             this.oCliente.email = EmailTextBox.Text;
-            
-            if (PJuridicaBtn.Checked)
-            {
-               
-            }
-            else
-            {
-                this.oCliente.registro = RegisterTextBox.Text;
-            }
+            this.oCliente.registro = RegisterTextBox.Text;
 
             if (SexoComboBox.SelectedItem == "Masculino")
             {
@@ -157,11 +147,11 @@ namespace ErpSigmaVenda.clientes
             }
             if (PJuridicaBtn.Checked)
             {
-                
-                
+                if (!cnpjRegex.IsMatch(RegisterTextBox.Text))
+                {
                     MessageBox.Show("O Campo CNPJ não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
-                
+                }
             }
             else
             {
@@ -171,9 +161,9 @@ namespace ErpSigmaVenda.clientes
                     return false;
                 }
             }
-            if(DataNascDTP.Value > DateTime.Now)
+            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year)
             {
-                MessageBox.Show("Coloque uma Data de Nascimento correta!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -262,40 +252,7 @@ namespace ErpSigmaVenda.clientes
             }
         }
 
-        private void CepTextBox_Leave(object sender, EventArgs e)
-        {
-            try
-            {
-                var result = new ViaCepClient().Search(this.CepTextBox.Text);
-                if(result != null)
-                {
-                    this.RuaTextBox.Text = result.Street;
-                    this.ComplTextBox.Text = result.Neighborhood +" "+ result.Complement;
-                    this.CidadeTextBox.Text = result.City;
-                    //this.UFComboBox.Contains(result.StateInitials);
-                }
-                else
-                {
-                    MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
-            }catch(Exception ex)
-            {
-                MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            
-            venda_produtoEntities db = new venda_produtoEntities();
-            endereco foundedEndereco = new endereco();
-            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
-            if(foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
-            {
-                MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                CepTextBox.Text = "";
-            }
-
-            
-        }
+        
 
         private void label15_Click(object sender, EventArgs e)
         {
@@ -318,6 +275,9 @@ namespace ErpSigmaVenda.clientes
             {
                 this.RegisterGroupBox.Text = "Pessoa Física";
                 this.RegisterLabel.Text = "CPF";
+                this.SexoComboBox.SelectedItem = "";
+                this.SexoComboBox.Items.RemoveAt(2); 
+                this.SexoComboBox.Enabled = true;
                 if (this.backupRegistro.Length > 14 && this.RegisterTextBox.Text.Length > 12) {
                     this.backupRegistro = this.RegisterTextBox.Text;
                 }
@@ -340,6 +300,9 @@ namespace ErpSigmaVenda.clientes
             {
                 this.RegisterGroupBox.Text = "Pessoa Jurídica";
                 this.RegisterLabel.Text = "CNPJ";
+                this.SexoComboBox.Items.Add("Não se Aplica");
+                this.SexoComboBox.SelectedItem = "Não se Aplica";
+                this.SexoComboBox.Enabled = false;
                 if (this.backupRegistro.Length < 14 && this.RegisterTextBox.Text.Length <= 12)
                 {
                     this.backupRegistro = this.RegisterTextBox.Text;
@@ -379,6 +342,38 @@ namespace ErpSigmaVenda.clientes
             }
         }
 
-        
+        private void CepTextBox_Leave(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = new ViaCepClient().Search(this.CepTextBox.Text);
+                if (result != null)
+                {
+                    this.RuaTextBox.Text = result.Street;
+                    this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
+                    this.CidadeTextBox.Text = result.City;
+                    this.UFComboBox.SelectedItem = $"{result.StateInitials}";
+                }
+                else
+                {
+                    MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+            venda_produtoEntities db = new venda_produtoEntities();
+            endereco foundedEndereco = new endereco();
+            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
+            {
+                MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CepTextBox.Text = "";
+            }
+        }
     }
 }

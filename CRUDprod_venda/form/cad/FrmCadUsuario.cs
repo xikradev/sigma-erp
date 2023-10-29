@@ -130,11 +130,6 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("O Campo CPF/CNPJ não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (DataNascDTP.Value > DateTime.Now)
-            {
-                MessageBox.Show("Coloque uma Data de Nascimento correta!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
             if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year) {
                 MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;

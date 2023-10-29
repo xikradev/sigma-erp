@@ -44,7 +44,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.ComplTextBox = new System.Windows.Forms.TextBox();
-            this.CepTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.RuaTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -57,6 +56,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CepTextBox = new System.Windows.Forms.MaskedTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.PJuridicaBtn = new System.Windows.Forms.RadioButton();
             this.PFisicaBtn = new System.Windows.Forms.RadioButton();
@@ -208,15 +208,6 @@
             this.ComplTextBox.Size = new System.Drawing.Size(268, 20);
             this.ComplTextBox.TabIndex = 27;
             // 
-            // CepTextBox
-            // 
-            this.CepTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.CepTextBox.Location = new System.Drawing.Point(312, 45);
-            this.CepTextBox.Name = "CepTextBox";
-            this.CepTextBox.Size = new System.Drawing.Size(156, 20);
-            this.CepTextBox.TabIndex = 29;
-            this.CepTextBox.Leave += new System.EventHandler(this.CepTextBox_Leave);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -290,33 +281,33 @@
             this.UFComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UFComboBox.FormattingEnabled = true;
             this.UFComboBox.Items.AddRange(new object[] {
-            "RO-Rondônia",
-            "AC-Acre",
-            "AM-Amazonas",
-            "RR-Roraima",
-            "PA-Pará",
-            "AP-Amapá",
-            "TO-Tocantins",
-            "MA-Maranhão",
-            "PI-Piauí\t",
-            "CE-Ceará",
-            "RN-Rio Grande do Norte",
-            "PB-Paraíba",
-            "PE-Pernambuco",
-            "AL-Alagoas",
-            "SE-Sergipe",
-            "BA-Bahia",
-            "MG-Minas Gerais",
-            "ES-Espírito Santo",
-            "RJ-Rio de Janeiro",
-            "SP-São Paulo",
-            "PR-Paraná\t",
-            "SC-Santa Catarina",
-            "RS-Rio Grande do Sul",
-            "MS-Mato Grosso do Sul",
-            "MT-Mato Grosso",
-            "GO-Goiás",
-            "DF-Distrito Federal"});
+            "RO",
+            "AC",
+            "AM",
+            "RR",
+            "PA",
+            "AP",
+            "TO",
+            "MA",
+            "PI",
+            "CE",
+            "RN",
+            "PB",
+            "PE",
+            "AL",
+            "SE",
+            "BA",
+            "MG",
+            "ES",
+            "RJ",
+            "SP",
+            "PR",
+            "SC",
+            "RS",
+            "MS",
+            "MT",
+            "GO",
+            "DF"});
             this.UFComboBox.Location = new System.Drawing.Point(242, 159);
             this.UFComboBox.Name = "UFComboBox";
             this.UFComboBox.Size = new System.Drawing.Size(121, 21);
@@ -342,6 +333,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.CepTextBox);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label12);
@@ -349,7 +341,6 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.UFComboBox);
-            this.groupBox1.Controls.Add(this.CepTextBox);
             this.groupBox1.Controls.Add(this.CidadeTextBox);
             this.groupBox1.Controls.Add(this.RuaTextBox);
             this.groupBox1.Controls.Add(this.label16);
@@ -361,6 +352,15 @@
             this.groupBox1.TabIndex = 75;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Endereço:";
+            // 
+            // CepTextBox
+            // 
+            this.CepTextBox.Location = new System.Drawing.Point(312, 45);
+            this.CepTextBox.Mask = "99999-999";
+            this.CepTextBox.Name = "CepTextBox";
+            this.CepTextBox.Size = new System.Drawing.Size(142, 20);
+            this.CepTextBox.TabIndex = 74;
+            this.CepTextBox.Leave += new System.EventHandler(this.CepTextBox_Leave);
             // 
             // groupBox2
             // 
@@ -478,7 +478,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox ComplTextBox;
-        private System.Windows.Forms.TextBox CepTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox RuaTextBox;
         private System.Windows.Forms.Label label10;
@@ -499,5 +498,6 @@
         private System.Windows.Forms.GroupBox RegisterGroupBox;
         private System.Windows.Forms.MaskedTextBox RegisterTextBox;
         private System.Windows.Forms.Label RegisterLabel;
+        private System.Windows.Forms.MaskedTextBox CepTextBox;
     }
 }
