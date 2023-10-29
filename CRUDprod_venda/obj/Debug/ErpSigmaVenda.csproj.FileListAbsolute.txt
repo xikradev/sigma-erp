@@ -265,3 +265,11 @@ C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Newtonsoft.Json.xml
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Net.Http.Formatting.xml
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csproj.SuggestedBindingRedirects.cache
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\Erp Sigma.exe.config
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Docker.DotNet.dll
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Buffers.dll
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Docker.DotNet.pdb
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Buffers.xml
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\System.Threading.Tasks.Extensions.xml
