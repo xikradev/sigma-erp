@@ -21,7 +21,6 @@ namespace ErpSigmaVenda.clientes
         Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", RegexOptions.IgnoreCase);
         Regex cpfRegex = new Regex(@"^\d{3}\.\d{3}\.\d{3}-\d{2}$");
         Regex cnpjRegex = new Regex(@"^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$");
-        Regex regexCep = new Regex(@"^\d{5}-\d{3}$", RegexOptions.IgnoreCase);
         string backupRegistro = "";
 
 
@@ -86,25 +85,7 @@ namespace ErpSigmaVenda.clientes
             this.backupRegistro = this.RegisterTextBox.Text;
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private Boolean updateCliente()
         {
@@ -133,44 +114,32 @@ namespace ErpSigmaVenda.clientes
         
         private Boolean verifyCliente()
         {
-            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text) || NomeComplTextBox.Text.Length > 150)
             {
-                MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo Nome não pode estar vazio e não pode ultrapassar de 150 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexEmail.IsMatch(EmailTextBox.Text))
+            if (EmailValidation())
             {
-                MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (PJuridicaBtn.Checked)
+            if (cpfValidation())
             {
-                if (!cnpjRegex.IsMatch(RegisterTextBox.Text))
-                {
-                    MessageBox.Show("O Campo CNPJ não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                if(DataNascDTP.Value.Year > DateTime.Now.Year)
+                if(PJuridicaBtn.Checked && DataNascDTP.Value.Year > DateTime.Now.Year)
                 {
                     MessageBox.Show("Data de Nascimento incorreta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
+
             }
-            else
+            else if(cnpjValidation())
             {
-                if (!cpfRegex.IsMatch(RegisterTextBox.Text))
-                {
-                    MessageBox.Show("O Campo CPF não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year && DataNascDTP.Value.Year > DateTime.Now.Year)
+                if (PJuridicaBtn.Checked &&(DataNascDTP.Value.Year + 18) > DateTime.Now.Year && DataNascDTP.Value.Year > DateTime.Now.Year)
                 {
                     MessageBox.Show("Data de Nascimento", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
             }
-            
-
             return updateCliente();
         }
 
@@ -184,7 +153,7 @@ namespace ErpSigmaVenda.clientes
             this.oEndereco.rua = RuaTextBox.Text;
             this.oEndereco.numero = numero;
             this.oEndereco.cidade = CidadeTextBox.Text;
-            this.oEndereco.estado = UFComboBox.Text.Substring(0, 2);
+            this.oEndereco.estado = UFComboBox.Text;
 
             return true;
         }
@@ -192,28 +161,23 @@ namespace ErpSigmaVenda.clientes
         
         private Boolean verifyEndereco()
         {
-            if (String.IsNullOrEmpty(ComplTextBox.Text))
+            if (String.IsNullOrEmpty(ComplTextBox.Text) && ComplTextBox.Text.Length > 100)
             {
-                MessageBox.Show("O Campo Complemento não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo Complemento não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexCep.IsMatch(CepTextBox.Text))
-            {
-                MessageBox.Show("O Campo CEP não estaformatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (String.IsNullOrEmpty(RuaTextBox.Text)){
-                MessageBox.Show("O Campo Rua não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (String.IsNullOrEmpty(RuaTextBox.Text) && RuaTextBox.Text.Length > 100){
+                MessageBox.Show("O Campo Rua não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if(!int.TryParse(NumeroTextBox.Text, out int numero))
             {
-                MessageBox.Show("O Campo Número deve conter números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo Número deve conter somente números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(CidadeTextBox.Text))
+            if (String.IsNullOrEmpty(CidadeTextBox.Text) && CidadeTextBox.Text.Length > 50)
             {
-                MessageBox.Show("O Campo Cidade não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo Cidade não pode ser vazio e não pode ultrapassar de 50 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (String.IsNullOrEmpty(UFComboBox.Text))
@@ -243,7 +207,9 @@ namespace ErpSigmaVenda.clientes
 
         
 
-        private void EmailTextBox_Leave(object sender, EventArgs e)
+        
+
+        private bool EmailValidation()
         {
             venda_produtoEntities db = new venda_produtoEntities();
             cliente foundedCliente = new cliente();
@@ -251,27 +217,22 @@ namespace ErpSigmaVenda.clientes
             foundedCliente = db.cliente.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
             if(foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
             {
-                MessageBox.Show("Já existe um Cliente com este Email", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                EmailTextBox.Text = "";
+                MessageBox.Show("Já existe um registro com esse Email, por favor insire outro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }else if (!regexEmail.IsMatch(EmailTextBox.Text))
+            {
+                MessageBox.Show("O Campo Email tem que estar no formato correto", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }else if(EmailTextBox.Text.Length > 80)
+            {
+                MessageBox.Show("O Campo Email não pode ultrapassar 80 Caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
             }
+
+            return false;
         }
 
-        
-
-        private void label15_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void PFisicaBtn_CheckedChanged(object sender, EventArgs e)
         {
@@ -322,26 +283,51 @@ namespace ErpSigmaVenda.clientes
 
         }
 
-        private void RegisterTextBox_Leave(object sender, EventArgs e)
+        private bool cpfValidation()
         {
-            if (this.PFisicaBtn.Checked && !Cpf.Validar(this.RegisterTextBox.Text))
-            {
-                MessageBox.Show("CPF Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            if (this.PJuridicaBtn.Checked && !Cnpj.Validar(this.RegisterTextBox.Text))
-            {
-                MessageBox.Show("CNPJ Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
             venda_produtoEntities db = new venda_produtoEntities();
             cliente foundedCliente = new cliente();
 
             foundedCliente = db.cliente.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+
+            if (this.PFisicaBtn.Checked && !Cpf.Validar(this.RegisterTextBox.Text))
+            {
+                MessageBox.Show("CPF Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+            
             if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
             {
-                MessageBox.Show("Já existe um Cliente com este CPF/CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Já existe um Cliente com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegisterTextBox.Text = "";
+                return true;
             }
+
+            return false;
+
+        }
+
+        private bool cnpjValidation()
+        {
+            venda_produtoEntities db = new venda_produtoEntities();
+            cliente foundedCliente = new cliente();
+
+            foundedCliente = db.cliente.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+
+            if (this.PJuridicaBtn.Checked && !Cnpj.Validar(this.RegisterTextBox.Text))
+            {
+                MessageBox.Show("CNPJ Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+            
+            if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
+            {
+                MessageBox.Show("Já existe um Cliente com este CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                RegisterTextBox.Text = "";
+                return true;
+            }
+
+            return false;
         }
 
         private void CepTextBox_Leave(object sender, EventArgs e)
@@ -378,9 +364,8 @@ namespace ErpSigmaVenda.clientes
             }
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
+       
 
-        }
+        
     }
 }

@@ -146,8 +146,6 @@
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(212, 20);
             this.EmailTextBox.TabIndex = 19;
-            this.EmailTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
-            this.EmailTextBox.Leave += new System.EventHandler(this.EmailTextBox_Leave);
             // 
             // label3
             // 
@@ -157,7 +155,6 @@
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 18;
             this.label3.Text = "Email";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // SexoComboBox
             // 
@@ -170,7 +167,6 @@
             this.SexoComboBox.Name = "SexoComboBox";
             this.SexoComboBox.Size = new System.Drawing.Size(121, 21);
             this.SexoComboBox.TabIndex = 22;
-            this.SexoComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -180,7 +176,6 @@
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Sexo";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // DataNascDTP
             // 
@@ -379,7 +374,6 @@
             this.groupBox2.TabIndex = 76;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tipo de Cliente";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // PJuridicaBtn
             // 
@@ -423,7 +417,6 @@
             this.RegisterTextBox.Name = "RegisterTextBox";
             this.RegisterTextBox.Size = new System.Drawing.Size(209, 20);
             this.RegisterTextBox.TabIndex = 2;
-            this.RegisterTextBox.Leave += new System.EventHandler(this.RegisterTextBox_Leave);
             // 
             // RegisterLabel
             // 
