@@ -13,6 +13,7 @@ namespace ErpSigmaVenda.auxiliar
         public string email { get; set; }
         public string registro { get; set; }
         public string sexo { get; set; }
+        public string seguimento { get; set; }
         public DateTime dataNascimento { get; set; }
         public string endereco { get; set; }
     }

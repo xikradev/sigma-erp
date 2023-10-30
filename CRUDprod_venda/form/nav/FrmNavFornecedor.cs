@@ -53,7 +53,7 @@ namespace ErpSigmaVenda.fornecedores
 
         private void loading()
         {
-            dg.DataSource = pFornecedor.GetFornecedor();
+            dgPF.DataSource = pFornecedor.GetFornecedor().Where(o => o.seguimento == null);
             if(db.fornecedor.ToList().Count == 0)
             {
                 UpdateButton.Enabled = false;
@@ -75,7 +75,7 @@ namespace ErpSigmaVenda.fornecedores
         {
             try
             {
-                AxFornecedor axFornecedor = (AxFornecedor)dg.SelectedRows[0].DataBoundItem;
+                AxFornecedor axFornecedor = (AxFornecedor)dgPF.SelectedRows[0].DataBoundItem;
                 this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
             }
             catch(Exception ex)

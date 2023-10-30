@@ -14,6 +14,8 @@ namespace ErpSigmaVenda.auxiliar
         public string rua { get; set; }
         public string cep { get; set; }
         public string estado { get; set; }
+        public string sexo { get; set; }
+        public string seguimento { get; set; }
 
     }
 }

@@ -63,10 +63,16 @@
             this.RegisterGroupBox = new System.Windows.Forms.GroupBox();
             this.RegisterTextBox = new System.Windows.Forms.MaskedTextBox();
             this.RegisterLabel = new System.Windows.Forms.Label();
+            this.SexoGB = new System.Windows.Forms.GroupBox();
+            this.SeguimGB = new System.Windows.Forms.GroupBox();
+            this.SeguimTextBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.RegisterGroupBox.SuspendLayout();
+            this.SexoGB.SuspendLayout();
+            this.SeguimGB.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -78,10 +84,10 @@
             this.toolStripSeparator1,
             this.toolStripButton2,
             this.toolStripSeparator2});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 562);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 557);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.toolStrip1.Size = new System.Drawing.Size(547, 39);
+            this.toolStrip1.Size = new System.Drawing.Size(555, 39);
             this.toolStrip1.TabIndex = 14;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -119,15 +125,15 @@
             // 
             // NomeComplTextBox
             // 
-            this.NomeComplTextBox.Location = new System.Drawing.Point(42, 47);
+            this.NomeComplTextBox.Location = new System.Drawing.Point(15, 47);
             this.NomeComplTextBox.Name = "NomeComplTextBox";
-            this.NomeComplTextBox.Size = new System.Drawing.Size(446, 20);
+            this.NomeComplTextBox.Size = new System.Drawing.Size(519, 20);
             this.NomeComplTextBox.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 31);
+            this.label1.Location = new System.Drawing.Point(12, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
             this.label1.TabIndex = 8;
@@ -136,9 +142,9 @@
             // EmailTextBox
             // 
             this.EmailTextBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.EmailTextBox.Location = new System.Drawing.Point(49, 196);
+            this.EmailTextBox.Location = new System.Drawing.Point(251, 198);
             this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.Size = new System.Drawing.Size(214, 20);
+            this.EmailTextBox.Size = new System.Drawing.Size(212, 20);
             this.EmailTextBox.TabIndex = 19;
             this.EmailTextBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.EmailTextBox.Leave += new System.EventHandler(this.EmailTextBox_Leave);
@@ -146,7 +152,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 180);
+            this.label3.Location = new System.Drawing.Point(248, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 18;
@@ -160,7 +166,7 @@
             this.SexoComboBox.Items.AddRange(new object[] {
             "Masculino",
             "Feminino"});
-            this.SexoComboBox.Location = new System.Drawing.Point(46, 268);
+            this.SexoComboBox.Location = new System.Drawing.Point(27, 52);
             this.SexoComboBox.Name = "SexoComboBox";
             this.SexoComboBox.Size = new System.Drawing.Size(121, 21);
             this.SexoComboBox.TabIndex = 22;
@@ -169,16 +175,17 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 253);
+            this.label6.Location = new System.Drawing.Point(27, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 13);
             this.label6.TabIndex = 23;
             this.label6.Text = "Sexo";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // DataNascDTP
             // 
             this.DataNascDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DataNascDTP.Location = new System.Drawing.Point(254, 269);
+            this.DataNascDTP.Location = new System.Drawing.Point(251, 257);
             this.DataNascDTP.Name = "DataNascDTP";
             this.DataNascDTP.Size = new System.Drawing.Size(231, 20);
             this.DataNascDTP.TabIndex = 24;
@@ -186,7 +193,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(251, 253);
+            this.label7.Location = new System.Drawing.Point(248, 241);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(104, 13);
             this.label7.TabIndex = 25;
@@ -253,7 +260,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label14.Location = new System.Drawing.Point(46, 219);
+            this.label14.Location = new System.Drawing.Point(248, 221);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(134, 13);
             this.label14.TabIndex = 67;
@@ -346,7 +353,7 @@
             this.groupBox1.Controls.Add(this.label16);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.NumeroTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(16, 309);
+            this.groupBox1.Location = new System.Drawing.Point(15, 288);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(519, 233);
             this.groupBox1.TabIndex = 75;
@@ -366,9 +373,9 @@
             // 
             this.groupBox2.Controls.Add(this.PJuridicaBtn);
             this.groupBox2.Controls.Add(this.PFisicaBtn);
-            this.groupBox2.Location = new System.Drawing.Point(42, 87);
+            this.groupBox2.Location = new System.Drawing.Point(15, 81);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(149, 90);
+            this.groupBox2.Size = new System.Drawing.Size(200, 90);
             this.groupBox2.TabIndex = 76;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tipo de Cliente";
@@ -402,9 +409,9 @@
             // 
             this.RegisterGroupBox.Controls.Add(this.RegisterTextBox);
             this.RegisterGroupBox.Controls.Add(this.RegisterLabel);
-            this.RegisterGroupBox.Location = new System.Drawing.Point(211, 87);
+            this.RegisterGroupBox.Location = new System.Drawing.Point(251, 81);
             this.RegisterGroupBox.Name = "RegisterGroupBox";
-            this.RegisterGroupBox.Size = new System.Drawing.Size(273, 90);
+            this.RegisterGroupBox.Size = new System.Drawing.Size(283, 90);
             this.RegisterGroupBox.TabIndex = 77;
             this.RegisterGroupBox.TabStop = false;
             this.RegisterGroupBox.Text = "Pessoa Física";
@@ -427,20 +434,59 @@
             this.RegisterLabel.TabIndex = 1;
             this.RegisterLabel.Text = "CPF";
             // 
+            // SexoGB
+            // 
+            this.SexoGB.Controls.Add(this.label6);
+            this.SexoGB.Controls.Add(this.SexoComboBox);
+            this.SexoGB.Location = new System.Drawing.Point(15, 182);
+            this.SexoGB.Name = "SexoGB";
+            this.SexoGB.Size = new System.Drawing.Size(200, 100);
+            this.SexoGB.TabIndex = 78;
+            this.SexoGB.TabStop = false;
+            this.SexoGB.Text = "Sexo";
+            this.SexoGB.Visible = false;
+            // 
+            // SeguimGB
+            // 
+            this.SeguimGB.Controls.Add(this.label2);
+            this.SeguimGB.Controls.Add(this.SeguimTextBox);
+            this.SeguimGB.Location = new System.Drawing.Point(15, 177);
+            this.SeguimGB.Name = "SeguimGB";
+            this.SeguimGB.Size = new System.Drawing.Size(200, 105);
+            this.SeguimGB.TabIndex = 79;
+            this.SeguimGB.TabStop = false;
+            this.SeguimGB.Text = "Seguimento";
+            // 
+            // SeguimTextBox
+            // 
+            this.SeguimTextBox.Location = new System.Drawing.Point(27, 52);
+            this.SeguimTextBox.Name = "SeguimTextBox";
+            this.SeguimTextBox.Size = new System.Drawing.Size(160, 20);
+            this.SeguimTextBox.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(27, 33);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Seguimento";
+            // 
             // FrmCadCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(547, 601);
+            this.ClientSize = new System.Drawing.Size(555, 596);
             this.ControlBox = false;
+            this.Controls.Add(this.SeguimGB);
+            this.Controls.Add(this.SexoGB);
             this.Controls.Add(this.RegisterGroupBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.DataNascDTP);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.SexoComboBox);
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
@@ -459,6 +505,10 @@
             this.groupBox2.PerformLayout();
             this.RegisterGroupBox.ResumeLayout(false);
             this.RegisterGroupBox.PerformLayout();
+            this.SexoGB.ResumeLayout(false);
+            this.SexoGB.PerformLayout();
+            this.SeguimGB.ResumeLayout(false);
+            this.SeguimGB.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,5 +549,9 @@
         private System.Windows.Forms.MaskedTextBox RegisterTextBox;
         private System.Windows.Forms.Label RegisterLabel;
         private System.Windows.Forms.MaskedTextBox CepTextBox;
+        private System.Windows.Forms.GroupBox SexoGB;
+        private System.Windows.Forms.GroupBox SeguimGB;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox SeguimTextBox;
     }
 }

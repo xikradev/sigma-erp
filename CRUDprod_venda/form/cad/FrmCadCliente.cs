@@ -34,9 +34,6 @@ namespace ErpSigmaVenda.clientes
 
         private void ClienteForm_Load(object sender, EventArgs e)
         {
-
-            
-
             this.PJuridicaBtn.Checked = true;
             
             this.loading();
@@ -66,12 +63,13 @@ namespace ErpSigmaVenda.clientes
                 }
             }
             this.RegisterTextBox.Text = this.oCliente.registro;
+            this.SeguimTextBox.Text = this.oCliente.seguimento;
             this.backupRegistro = this.RegisterTextBox.Text;
-            if (this.oCliente.sexo == "m")
+            if (this.oCliente.sexo == "F")
             {
                 this.SexoComboBox.SelectedItem = "Masculino";
             }
-            else if (this.oCliente.sexo == "f")
+            else if (this.oCliente.sexo == "F")
             {
                 this.SexoComboBox.SelectedItem = "Feminino";
             }
@@ -113,20 +111,20 @@ namespace ErpSigmaVenda.clientes
             this.oCliente.nomeCompleto = NomeComplTextBox.Text;
             this.oCliente.email = EmailTextBox.Text;
             this.oCliente.registro = RegisterTextBox.Text;
-
+            this.oCliente.seguimento = PJuridicaBtn.Checked ? SeguimTextBox.Text : null;
             if (SexoComboBox.SelectedItem == "Masculino")
             {
-                this.oCliente.sexo = "m";
+                this.oCliente.sexo = "M";
             }
             else if (SexoComboBox.SelectedItem == "Feminino")
             {
-                this.oCliente.sexo = "f";
+                this.oCliente.sexo = "F";
             }
             else
             {
-                MessageBox.Show("Deve se selecionar o Sexo do Cliente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                this.oCliente.sexo = PFisicaBtn.Checked ? this.oCliente.sexo : null;
             }
+            
             this.oCliente.dataNascimento = DateTime.Parse(DataNascDTP.Text);
 
             return true;
@@ -152,6 +150,11 @@ namespace ErpSigmaVenda.clientes
                     MessageBox.Show("O Campo CNPJ não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
+                if(DataNascDTP.Value.Year > DateTime.Now.Year)
+                {
+                    MessageBox.Show("Data de Nascimento incorreta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
             else
             {
@@ -160,12 +163,13 @@ namespace ErpSigmaVenda.clientes
                     MessageBox.Show("O Campo CPF não está em formatação correta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
+                if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year && DataNascDTP.Value.Year > DateTime.Now.Year)
+                {
+                    MessageBox.Show("Data de Nascimento", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
             }
-            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year)
-            {
-                MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            
 
             return updateCliente();
         }
@@ -275,9 +279,8 @@ namespace ErpSigmaVenda.clientes
             {
                 this.RegisterGroupBox.Text = "Pessoa Física";
                 this.RegisterLabel.Text = "CPF";
-                this.SexoComboBox.SelectedItem = "";
-                this.SexoComboBox.Items.RemoveAt(2); 
-                this.SexoComboBox.Enabled = true;
+                this.SeguimGB.Visible = false;
+                this.SexoGB.Visible = true;
                 if (this.backupRegistro.Length > 14 && this.RegisterTextBox.Text.Length > 12) {
                     this.backupRegistro = this.RegisterTextBox.Text;
                 }
@@ -300,9 +303,8 @@ namespace ErpSigmaVenda.clientes
             {
                 this.RegisterGroupBox.Text = "Pessoa Jurídica";
                 this.RegisterLabel.Text = "CNPJ";
-                this.SexoComboBox.Items.Add("Não se Aplica");
-                this.SexoComboBox.SelectedItem = "Não se Aplica";
-                this.SexoComboBox.Enabled = false;
+                this.SeguimGB.Visible = true;
+                this.SexoGB.Visible = false;
                 if (this.backupRegistro.Length < 14 && this.RegisterTextBox.Text.Length <= 12)
                 {
                     this.backupRegistro = this.RegisterTextBox.Text;
@@ -374,6 +376,11 @@ namespace ErpSigmaVenda.clientes
                 MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CepTextBox.Text = "";
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

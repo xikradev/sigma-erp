@@ -10,7 +10,8 @@
     <Property Name="registro" Type="varchar" MaxLength="18" Nullable="false" />
     <Property Name="dataNascimento" Type="datetime" Nullable="false" />
     <Property Name="idendereco" Type="int" Nullable="false" />
-    <Property Name="sexo" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="sexo" Type="char" MaxLength="3" />
+    <Property Name="seguimento" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="endereco">
     <Key>
@@ -34,7 +35,8 @@
     <Property Name="registro" Type="varchar" MaxLength="18" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="dataNascimento" Type="datetime" Nullable="false" />
-    <Property Name="sexo" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="sexo" Type="char" MaxLength="3" />
+    <Property Name="seguimento" Type="varchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="produto">
     <Key>

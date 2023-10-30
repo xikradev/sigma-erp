@@ -27,6 +27,7 @@ namespace ErpSigmaVenda.conexão
         public System.DateTime dataNascimento { get; set; }
         public int idendereco { get; set; }
         public string sexo { get; set; }
+        public string seguimento { get; set; }
     
         public virtual endereco endereco { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -42,7 +42,8 @@ namespace ErpSigmaVenda.clientes
         private void loading()
         {
             var oUsuario = pLoginUsr.oUsuario;
-            dg.DataSource = pCliente.GetCliente();
+            dgPF.DataSource = pCliente.GetCliente().Where(o => o.seguimento == null).ToList();
+            dgPJ.DataSource = pCliente.GetCliente().Where(o => o.sexo == null).ToList();
             if(db.cliente.ToList().Count() == 0 && oUsuario.role.Equals("ADM"))
             {
                 InsertButton.Enabled = true;
@@ -94,7 +95,7 @@ namespace ErpSigmaVenda.clientes
         {
             try
             {
-                AxCliente axCliente = (AxCliente)dg.SelectedRows[0].DataBoundItem;
+                AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
                 this.oCliente = db.cliente.Find(axCliente.idcliente);
 
             }catch(Exception ex)
@@ -112,6 +113,20 @@ namespace ErpSigmaVenda.clientes
             {
                 db.SaveChanges();
                 this.loading();
+            }
+        }
+
+        private void dgPJ_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                AxCliente axCliente = (AxCliente)dgPJ.SelectedRows[0].DataBoundItem;
+                this.oCliente = db.cliente.Find(axCliente.idcliente);
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

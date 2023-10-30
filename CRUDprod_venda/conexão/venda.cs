@@ -23,7 +23,7 @@ namespace ErpSigmaVenda.conexão
         public int quantidade { get; set; }
     
         public virtual produto produto { get; set; }
-        public virtual cliente cliente { get; set; }
         public virtual usuario usuario { get; set; }
+        public virtual cliente cliente { get; set; }
     }
 }
