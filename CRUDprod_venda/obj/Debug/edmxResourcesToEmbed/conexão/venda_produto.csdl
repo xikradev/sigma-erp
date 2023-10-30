@@ -127,9 +127,9 @@
     <Property Name="nomeCompleto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
     <Property Name="registro" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
-    <Property Name="sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="dataNascimento" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="idendereco" Type="Int32" Nullable="false" />
+    <Property Name="sexo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_cliente_fk" FromRole="cliente" ToRole="endereco" />
     <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="cliente" ToRole="venda" />
   </EntityType>
@@ -141,6 +141,9 @@
     <Property Name="idendereco" Type="Int32" Nullable="false" />
     <Property Name="nomeCompleto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="registro" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="dataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="sexo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_fornecedor_fk" FromRole="fornecedor" ToRole="endereco" />
     <NavigationProperty Name="produto_fornecedor" Relationship="venda_produtoModel.fornecedor_produtos_fornecedor_fk" FromRole="fornecedor" ToRole="produto_fornecedor" />
   </EntityType>
@@ -153,10 +156,10 @@
     <Property Name="email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
     <Property Name="senha" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="cpf" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-    <Property Name="sexo" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="dataNascimento" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="idendereco" Type="Int32" Nullable="false" />
     <Property Name="role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="sexo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_usuario_fk" FromRole="usuario" ToRole="endereco" />
     <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="usuario" ToRole="venda" />
   </EntityType>

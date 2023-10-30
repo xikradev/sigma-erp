@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ErpSigmaVenda.form.relatorios;
 
 namespace ErpSigmaVenda.fornecedores
 {
@@ -104,6 +105,12 @@ namespace ErpSigmaVenda.fornecedores
                 db.SaveChanges();
                 loading();
             }
+        }
+
+        private void btnRelatorio_Click(object sender, EventArgs e)
+        {
+            FrmRelFornecedores frm = new FrmRelFornecedores();
+            frm.Show();
         }
     }
 }

@@ -35,6 +35,12 @@
             this.UpdateButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             this.dg = new System.Windows.Forms.DataGridView();
+            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axFornecedorBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -42,12 +48,7 @@
             this.qfornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
-            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRelatorio = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).BeginInit();
@@ -64,7 +65,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.InsertButton,
             this.UpdateButton,
-            this.DeleteButton});
+            this.DeleteButton,
+            this.btnRelatorio});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 52);
@@ -127,34 +129,6 @@
             this.dg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_CellContentClick_1);
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
             // 
-            // axFornecedorBindingSource2
-            // 
-            this.axFornecedorBindingSource2.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
-            // axFornecedorBindingSource1
-            // 
-            this.axFornecedorBindingSource1.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
-            // axFornecedorBindingSource
-            // 
-            this.axFornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
-            // fornecedorBindingSource
-            // 
-            this.fornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.fornecedor);
-            // 
-            // qfornecedorBindingSource
-            // 
-            this.qfornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.query.pFornecedor);
-            // 
-            // axClienteBindingSource
-            // 
-            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
-            // 
-            // axFornecedorBindingSource3
-            // 
-            this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
             // idfornecedorDataGridViewTextBoxColumn
             // 
             this.idfornecedorDataGridViewTextBoxColumn.DataPropertyName = "idfornecedor";
@@ -196,6 +170,43 @@
             this.estado.HeaderText = "Estado";
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
+            // 
+            // axFornecedorBindingSource2
+            // 
+            this.axFornecedorBindingSource2.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // axFornecedorBindingSource1
+            // 
+            this.axFornecedorBindingSource1.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // axFornecedorBindingSource
+            // 
+            this.axFornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // fornecedorBindingSource
+            // 
+            this.fornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.fornecedor);
+            // 
+            // qfornecedorBindingSource
+            // 
+            this.qfornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.query.pFornecedor);
+            // 
+            // axClienteBindingSource
+            // 
+            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
+            // 
+            // axFornecedorBindingSource3
+            // 
+            this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // btnRelatorio
+            // 
+            this.btnRelatorio.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRelatorio.Image = ((System.Drawing.Image)(resources.GetObject("btnRelatorio.Image")));
+            this.btnRelatorio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRelatorio.Name = "btnRelatorio";
+            this.btnRelatorio.Size = new System.Drawing.Size(23, 49);
+            this.btnRelatorio.Click += new System.EventHandler(this.btnRelatorio_Click);
             // 
             // FrmNavFornecedor
             // 
@@ -244,5 +255,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Rua;
         private System.Windows.Forms.DataGridViewTextBoxColumn CEP;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.ToolStripButton btnRelatorio;
     }
 }

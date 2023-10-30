@@ -31,12 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNavCliente));
             this.dg = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.InsertButton = new System.Windows.Forms.ToolStripButton();
-            this.UpdateButton = new System.Windows.Forms.ToolStripButton();
-            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
-            this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.idcliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,9 +38,16 @@
             this.sexoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataNascimentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.enderecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.InsertButton = new System.Windows.Forms.ToolStripButton();
+            this.UpdateButton = new System.Windows.Forms.ToolStripButton();
+            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
+            this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRelatorio = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axClienteBindingSource)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,60 +77,6 @@
             this.dg.TabIndex = 5;
             this.dg.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_CellContentClick);
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.InsertButton,
-            this.UpdateButton,
-            this.DeleteButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 52);
-            this.toolStrip1.TabIndex = 6;
-            this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
-            // 
-            // InsertButton
-            // 
-            this.InsertButton.Enabled = false;
-            this.InsertButton.Image = ((System.Drawing.Image)(resources.GetObject("InsertButton.Image")));
-            this.InsertButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.InsertButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InsertButton.Name = "InsertButton";
-            this.InsertButton.Size = new System.Drawing.Size(89, 49);
-            this.InsertButton.Text = "Incluir";
-            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
-            // 
-            // UpdateButton
-            // 
-            this.UpdateButton.Enabled = false;
-            this.UpdateButton.Image = ((System.Drawing.Image)(resources.GetObject("UpdateButton.Image")));
-            this.UpdateButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.UpdateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(102, 49);
-            this.UpdateButton.Text = "Atualizar";
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Enabled = false;
-            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
-            this.DeleteButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(103, 49);
-            this.DeleteButton.Text = "Remover";
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
-            // axClienteBindingSource
-            // 
-            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
-            // 
-            // clienteBindingSource
-            // 
-            this.clienteBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.cliente);
             // 
             // idcliente
             // 
@@ -180,6 +127,70 @@
             this.enderecoDataGridViewTextBoxColumn.Name = "enderecoDataGridViewTextBoxColumn";
             this.enderecoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // axClienteBindingSource
+            // 
+            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.InsertButton,
+            this.UpdateButton,
+            this.DeleteButton,
+            this.btnRelatorio});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 52);
+            this.toolStrip1.TabIndex = 6;
+            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
+            // 
+            // InsertButton
+            // 
+            this.InsertButton.Enabled = false;
+            this.InsertButton.Image = ((System.Drawing.Image)(resources.GetObject("InsertButton.Image")));
+            this.InsertButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.InsertButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.InsertButton.Name = "InsertButton";
+            this.InsertButton.Size = new System.Drawing.Size(89, 49);
+            this.InsertButton.Text = "Incluir";
+            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
+            // 
+            // UpdateButton
+            // 
+            this.UpdateButton.Enabled = false;
+            this.UpdateButton.Image = ((System.Drawing.Image)(resources.GetObject("UpdateButton.Image")));
+            this.UpdateButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.UpdateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(102, 49);
+            this.UpdateButton.Text = "Atualizar";
+            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Enabled = false;
+            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
+            this.DeleteButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(103, 49);
+            this.DeleteButton.Text = "Remover";
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // clienteBindingSource
+            // 
+            this.clienteBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.cliente);
+            // 
+            // btnRelatorio
+            // 
+            this.btnRelatorio.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRelatorio.Image = ((System.Drawing.Image)(resources.GetObject("btnRelatorio.Image")));
+            this.btnRelatorio.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRelatorio.Name = "btnRelatorio";
+            this.btnRelatorio.Size = new System.Drawing.Size(23, 49);
+            this.btnRelatorio.Text = "toolStripButton1";
+            // 
             // FrmNavCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,9 +205,9 @@
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.ClienteMainScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axClienteBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axClienteBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clienteBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -219,5 +230,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sexoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataNascimentoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripButton btnRelatorio;
     }
 }

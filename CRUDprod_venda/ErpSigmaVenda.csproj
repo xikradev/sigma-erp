@@ -45,6 +45,24 @@
     <Reference Include="Library, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Cpf.Cnpj.1.0.2\lib\netstandard2.0\Library.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -158,6 +176,12 @@
     <Compile Include="form\busca\FrmBuscarFornecedor.Designer.cs">
       <DependentUpon>FrmBuscarFornecedor.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\relatorios\FrmRelFornecedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\relatorios\FrmRelFornecedores.Designer.cs">
+      <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
     <Compile Include="persistencia\pUsuario.cs" />
@@ -226,6 +250,7 @@
     <Compile Include="form\cad\FrmCadVendas.Designer.cs">
       <DependentUpon>FrmCadVendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="venda_produtoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -264,6 +289,10 @@
     <EmbeddedResource Include="form\nav\FrmNavProduto.resx">
       <DependentUpon>FrmNavProduto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\relatorios\FrmRelFornecedores.resx">
+      <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="form\relatorios\RelFornecedor.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -308,6 +337,7 @@
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxVenda.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.query.Qfornecedor.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxFornecedor.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.conexão.fornecedor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -345,6 +375,19 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>venda_produto.edmx</DependentUpon>
       <LastGenOutput>venda_produto.cs</LastGenOutput>
+    </Content>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup />

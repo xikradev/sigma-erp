@@ -25,10 +25,10 @@ namespace ErpSigmaVenda.conexão
         public string email { get; set; }
         public string senha { get; set; }
         public string cpf { get; set; }
-        public string sexo { get; set; }
         public System.DateTime dataNascimento { get; set; }
         public int idendereco { get; set; }
         public string role { get; set; }
+        public string sexo { get; set; }
     
         public virtual endereco endereco { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -50,9 +50,9 @@
     <EntitySetMapping Name="cliente">
       <EntityTypeMapping TypeName="venda_produtoModel.cliente">
         <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
           <ScalarProperty Name="idendereco" ColumnName="idendereco" />
           <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
           <ScalarProperty Name="registro" ColumnName="registro" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
@@ -63,6 +63,9 @@
     <EntitySetMapping Name="fornecedor">
       <EntityTypeMapping TypeName="venda_produtoModel.fornecedor">
         <MappingFragment StoreEntitySet="fornecedor">
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="registro" ColumnName="registro" />
           <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
           <ScalarProperty Name="idendereco" ColumnName="idendereco" />
@@ -73,10 +76,10 @@
     <EntitySetMapping Name="usuario">
       <EntityTypeMapping TypeName="venda_produtoModel.usuario">
         <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="idendereco" ColumnName="idendereco" />
           <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
           <ScalarProperty Name="cpf" ColumnName="cpf" />
           <ScalarProperty Name="senha" ColumnName="senha" />
           <ScalarProperty Name="email" ColumnName="email" />
