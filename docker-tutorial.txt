@@ -1,6 +1,0 @@
-#fazendo download da imagem na máquina
-docker pull mcr.microsoft.com/mssql/server:2019-latest
-
-#Código de execução da criação do container
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=abcde.123" -p 1433:1433 -d --name sqlserver-container mcr.microsoft.com/mssql/server:2019-latest
-
