@@ -123,22 +123,29 @@ namespace ErpSigmaVenda.clientes
             {
                 return false;
             }
-            if (cpfValidation())
+            if (cnpjValidation())
             {
-                if(PJuridicaBtn.Checked && DataNascDTP.Value.Year > DateTime.Now.Year)
-                {
-                    MessageBox.Show("Data de Nascimento incorreta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+                return false;
 
             }
-            else if(cnpjValidation())
+            else if(cpfValidation())
             {
-                if (PJuridicaBtn.Checked &&(DataNascDTP.Value.Year + 18) > DateTime.Now.Year && DataNascDTP.Value.Year > DateTime.Now.Year)
-                {
-                    MessageBox.Show("Data de Nascimento", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
+                return false;
+            }
+            if (PJuridicaBtn.Checked && DataNascDTP.Value.Year > DateTime.Now.Year)
+            {
+                MessageBox.Show("Data de Nascimento incorreta", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (PFisicaBtn.Checked && (DataNascDTP.Value.Year + 18) > DateTime.Now.Year || DataNascDTP.Value.Year > DateTime.Now.Year)
+            {
+                MessageBox.Show("O Cliente não pode ser Menor de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (PJuridicaBtn.Checked && (String.IsNullOrEmpty(SeguimTextBox.Text) || SeguimTextBox.Text.Length > 100))
+            {
+                MessageBox.Show("O Campo Seguimento não pode ser vazio e nem pode ultrpassar mais de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
             return updateCliente();
         }
@@ -161,12 +168,12 @@ namespace ErpSigmaVenda.clientes
         
         private Boolean verifyEndereco()
         {
-            if (String.IsNullOrEmpty(ComplTextBox.Text) && ComplTextBox.Text.Length > 100)
+            if (String.IsNullOrEmpty(ComplTextBox.Text) || ComplTextBox.Text.Length > 100)
             {
                 MessageBox.Show("O Campo Complemento não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(RuaTextBox.Text) && RuaTextBox.Text.Length > 100){
+            if (String.IsNullOrEmpty(RuaTextBox.Text) || RuaTextBox.Text.Length > 100){
                 MessageBox.Show("O Campo Rua não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
@@ -175,7 +182,7 @@ namespace ErpSigmaVenda.clientes
                 MessageBox.Show("O Campo Número deve conter somente números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(CidadeTextBox.Text) && CidadeTextBox.Text.Length > 50)
+            if (String.IsNullOrEmpty(CidadeTextBox.Text) || CidadeTextBox.Text.Length > 50)
             {
                 MessageBox.Show("O Campo Cidade não pode ser vazio e não pode ultrapassar de 50 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -183,6 +190,11 @@ namespace ErpSigmaVenda.clientes
             if (String.IsNullOrEmpty(UFComboBox.Text))
             {
                 MessageBox.Show("O Campo Estado não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(CepTextBox.Text) || searchCep(CepTextBox.Text) == null)
+            {
+                MessageBox.Show("O Campo Complemento não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -330,29 +342,33 @@ namespace ErpSigmaVenda.clientes
             return false;
         }
 
-        private void CepTextBox_Leave(object sender, EventArgs e)
+        private ViaCepResult searchCep(string cep)
         {
             try
             {
-                var result = new ViaCepClient().Search(this.CepTextBox.Text);
-                if (result != null)
-                {
-                    this.RuaTextBox.Text = result.Street;
-                    this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
-                    this.CidadeTextBox.Text = result.City;
-                    this.UFComboBox.SelectedItem = $"{result.StateInitials}";
-                }
-                else
-                {
-                    MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-
+                return new ViaCepClient().Search(cep);
+            }catch(Exception ex)
+            {
+                return null;
             }
-            catch (Exception ex)
+
+        }
+
+        private void CepTextBox_Leave(object sender, EventArgs e)
+        {
+
+            var result = searchCep(this.CepTextBox.Text);
+            if (result != null)
+            {
+                this.RuaTextBox.Text = result.Street;
+                this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
+                this.CidadeTextBox.Text = result.City;
+                this.UFComboBox.SelectedItem = result.StateInitials;
+            }
+            else
             {
                 MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
 
             venda_produtoEntities db = new venda_produtoEntities();
             endereco foundedEndereco = new endereco();

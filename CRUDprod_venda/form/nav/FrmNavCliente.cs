@@ -23,15 +23,7 @@ namespace ErpSigmaVenda.clientes
             InitializeComponent();
         }
 
-        private void dg_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+        
 
         private void ClienteMainScreen_Load(object sender, EventArgs e)
         {
