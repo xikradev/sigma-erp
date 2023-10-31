@@ -53,7 +53,8 @@ namespace ErpSigmaVenda.fornecedores
 
         private void loading()
         {
-            dgPF.DataSource = pFornecedor.GetFornecedor().Where(o => o.seguimento == null);
+            dgPF.DataSource = pFornecedor.GetFornecedor().Where(o => o.seguimento == null).ToList();
+            dgPJ.DataSource = pFornecedor.GetFornecedor().Where(o => o.sexo == null).ToList();
             if(db.fornecedor.ToList().Count == 0)
             {
                 UpdateButton.Enabled = false;
@@ -111,6 +112,19 @@ namespace ErpSigmaVenda.fornecedores
         {
             FrmRelFornecedores frm = new FrmRelFornecedores();
             frm.Show();
+        }
+
+        private void dgPJ_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                AxFornecedor axFornecedor = (AxFornecedor)dgPJ.SelectedRows[0].DataBoundItem;
+                this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

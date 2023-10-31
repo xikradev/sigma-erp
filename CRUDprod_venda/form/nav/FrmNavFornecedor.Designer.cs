@@ -36,26 +36,37 @@
             this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             this.btnRelatorio = new System.Windows.Forms.ToolStripButton();
             this.dgPF = new System.Windows.Forms.DataGridView();
-            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rua = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CEP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgPJ = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.seguimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axFornecedorBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axFornecedorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.qfornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.axFornecedorBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.complemento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource)).BeginInit();
@@ -74,7 +85,7 @@
             this.btnRelatorio});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 52);
+            this.toolStrip1.Size = new System.Drawing.Size(973, 52);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -128,9 +139,10 @@
             this.idfornecedorDataGridViewTextBoxColumn,
             this.nomeCompleto,
             this.registro,
-            this.Rua,
-            this.CEP,
-            this.estado});
+            this.email,
+            this.sexo,
+            this.complemento,
+            this.cep});
             this.dgPF.DataSource = this.axFornecedorBindingSource2;
             this.dgPF.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPF.Location = new System.Drawing.Point(3, 3);
@@ -138,45 +150,10 @@
             this.dgPF.ReadOnly = true;
             this.dgPF.RowHeadersVisible = false;
             this.dgPF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPF.Size = new System.Drawing.Size(786, 366);
+            this.dgPF.Size = new System.Drawing.Size(959, 366);
             this.dgPF.TabIndex = 9;
             this.dgPF.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dg_CellContentClick_1);
             this.dgPF.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
-            // 
-            // nomeCompleto
-            // 
-            this.nomeCompleto.DataPropertyName = "nomeCompleto";
-            this.nomeCompleto.HeaderText = "Nome";
-            this.nomeCompleto.Name = "nomeCompleto";
-            this.nomeCompleto.ReadOnly = true;
-            // 
-            // registro
-            // 
-            this.registro.DataPropertyName = "registro";
-            this.registro.HeaderText = "CPF/CNPJ";
-            this.registro.Name = "registro";
-            this.registro.ReadOnly = true;
-            // 
-            // Rua
-            // 
-            this.Rua.DataPropertyName = "rua";
-            this.Rua.HeaderText = "Rua";
-            this.Rua.Name = "Rua";
-            this.Rua.ReadOnly = true;
-            // 
-            // CEP
-            // 
-            this.CEP.DataPropertyName = "cep";
-            this.CEP.HeaderText = "CEP";
-            this.CEP.Name = "CEP";
-            this.CEP.ReadOnly = true;
-            // 
-            // estado
-            // 
-            this.estado.DataPropertyName = "estado";
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
             // 
             // tabControl1
             // 
@@ -186,7 +163,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 52);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 398);
+            this.tabControl1.Size = new System.Drawing.Size(973, 398);
             this.tabControl1.TabIndex = 10;
             // 
             // tabPage1
@@ -195,31 +172,100 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 372);
+            this.tabPage1.Size = new System.Drawing.Size(965, 372);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Pessoa Física";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.dgPJ);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 372);
+            this.tabPage2.Size = new System.Drawing.Size(965, 372);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Pessoa Jurídica";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // idfornecedorDataGridViewTextBoxColumn
+            // dgPJ
             // 
-            this.idfornecedorDataGridViewTextBoxColumn.DataPropertyName = "idfornecedor";
-            this.idfornecedorDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.idfornecedorDataGridViewTextBoxColumn.Name = "idfornecedorDataGridViewTextBoxColumn";
-            this.idfornecedorDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dgPJ.AllowUserToAddRows = false;
+            this.dgPJ.AllowUserToDeleteRows = false;
+            this.dgPJ.AutoGenerateColumns = false;
+            this.dgPJ.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgPJ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPJ.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.seguimento,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6});
+            this.dgPJ.DataSource = this.axFornecedorBindingSource2;
+            this.dgPJ.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgPJ.Location = new System.Drawing.Point(3, 3);
+            this.dgPJ.Name = "dgPJ";
+            this.dgPJ.ReadOnly = true;
+            this.dgPJ.RowHeadersVisible = false;
+            this.dgPJ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPJ.Size = new System.Drawing.Size(959, 366);
+            this.dgPJ.TabIndex = 10;
+            this.dgPJ.SelectionChanged += new System.EventHandler(this.dgPJ_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "nomeCompleto";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "registro";
+            this.dataGridViewTextBoxColumn3.HeaderText = "CNPJ";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "email";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // seguimento
+            // 
+            this.seguimento.DataPropertyName = "seguimento";
+            this.seguimento.HeaderText = "Seguimento";
+            this.seguimento.Name = "seguimento";
+            this.seguimento.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "rua";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Endereço";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "cep";
+            this.dataGridViewTextBoxColumn6.HeaderText = "CEP";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
             // axFornecedorBindingSource2
             // 
             this.axFornecedorBindingSource2.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "idfornecedor";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // axFornecedorBindingSource1
             // 
@@ -245,11 +291,60 @@
             // 
             this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
             // 
+            // idfornecedorDataGridViewTextBoxColumn
+            // 
+            this.idfornecedorDataGridViewTextBoxColumn.DataPropertyName = "idfornecedor";
+            this.idfornecedorDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.idfornecedorDataGridViewTextBoxColumn.Name = "idfornecedorDataGridViewTextBoxColumn";
+            this.idfornecedorDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nomeCompleto
+            // 
+            this.nomeCompleto.DataPropertyName = "nomeCompleto";
+            this.nomeCompleto.HeaderText = "Nome";
+            this.nomeCompleto.Name = "nomeCompleto";
+            this.nomeCompleto.ReadOnly = true;
+            // 
+            // registro
+            // 
+            this.registro.DataPropertyName = "registro";
+            this.registro.HeaderText = "CPF";
+            this.registro.Name = "registro";
+            this.registro.ReadOnly = true;
+            // 
+            // email
+            // 
+            this.email.DataPropertyName = "email";
+            this.email.HeaderText = "Email";
+            this.email.Name = "email";
+            this.email.ReadOnly = true;
+            // 
+            // sexo
+            // 
+            this.sexo.DataPropertyName = "sexo";
+            this.sexo.HeaderText = "Sexo";
+            this.sexo.Name = "sexo";
+            this.sexo.ReadOnly = true;
+            // 
+            // complemento
+            // 
+            this.complemento.DataPropertyName = "complemento";
+            this.complemento.HeaderText = "Endereço";
+            this.complemento.Name = "complemento";
+            this.complemento.ReadOnly = true;
+            // 
+            // cep
+            // 
+            this.cep.DataPropertyName = "cep";
+            this.cep.HeaderText = "CEP";
+            this.cep.Name = "cep";
+            this.cep.ReadOnly = true;
+            // 
             // FrmNavFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(973, 450);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;
@@ -263,6 +358,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource)).EndInit();
@@ -288,15 +385,24 @@
         private System.Windows.Forms.DataGridView dgPF;
         private System.Windows.Forms.BindingSource axFornecedorBindingSource3;
         private System.Windows.Forms.BindingSource axClienteBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idfornecedorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rua;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CEP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.ToolStripButton btnRelatorio;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dgPJ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn seguimento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idfornecedorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn registro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sexo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn complemento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cep;
     }
 }
