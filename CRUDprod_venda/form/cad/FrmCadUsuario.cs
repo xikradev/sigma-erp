@@ -1,4 +1,5 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using CpfCnpjLibrary;
+using ErpSigmaVenda.conexão;
 using ErpSigmaVenda.conexão;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ViaCep;
 
 namespace ErpSigmaVenda.login
 {
@@ -89,7 +91,7 @@ namespace ErpSigmaVenda.login
             else
             {
                 MessageBox.Show("Deve se selecionar o Tipo de Usuário", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return false;
+                return false;
             }
             if (SexoComboBox.SelectedItem == "Masculino")
             {
@@ -102,7 +104,7 @@ namespace ErpSigmaVenda.login
             else
             {
                 MessageBox.Show("Deve se selecionar o Sexo do Usuário", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //return false;
+                return false;
             }
             this.oUsuario.dataNascimento = DateTime.Parse(DataNascDTP.Text);
             return true;
@@ -110,40 +112,30 @@ namespace ErpSigmaVenda.login
 
         private Boolean verifyUsuario()
         {
-            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text) || NomeComplTextBox.Text.Length > 150)
             {
                 MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexEmail.IsMatch(EmailTextBox.Text))
+            if (emailValidation() || EmailTextBox.Text.Length > 80)
             {
                 MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexSenha.IsMatch(SenhaTextBox.Text))
+            if (!regexSenha.IsMatch(SenhaTextBox.Text) || SenhaTextBox.Text.Length > 20)
             {
                 MessageBox.Show("A senha não está formatada corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexCpfCnpj.IsMatch(CpfTextBox.Text))
+            if (cpfValidation())
             {
-                MessageBox.Show("O Campo CPF/CNPJ não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year) {
+            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year || DataNascDTP.Value.Year > DateTime.Now.Year) {
                 MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(CidadeTextBox.Text))
-            {
-                MessageBox.Show("O Campo Cidade não pode estar vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (String.IsNullOrEmpty(UFComboBox.Text))
-            {
-                MessageBox.Show("O Campo Estado deve ser selecionado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            
 
             return updateUsuario();
         }
@@ -162,17 +154,17 @@ namespace ErpSigmaVenda.login
 
         private Boolean verifyEndereco()
         {
-            if (String.IsNullOrEmpty(ComplTextBox.Text))
+            if (String.IsNullOrEmpty(ComplTextBox.Text) || ComplTextBox.Text.Length > 100)
             {
                 MessageBox.Show("O Campo Bairro não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!regexCep.IsMatch(CepTextBox.Text))
+            if (String.IsNullOrEmpty(CepTextBox.Text) || searchCep(CepTextBox.Text) == null)
             {
                 MessageBox.Show("O Campo CEP não estaformatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(RuaTextBox.Text))
+            if (String.IsNullOrEmpty(RuaTextBox.Text) || RuaTextBox.Text.Length > 100)
             {
                 MessageBox.Show("O Campo Rua não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -182,6 +174,17 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("O Campo Número deve conter números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            if (String.IsNullOrEmpty(UFComboBox.Text))
+            {
+                MessageBox.Show("O Campo Estado não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (String.IsNullOrEmpty(CidadeTextBox.Text) || CidadeTextBox.Text.Length > 50)
+            {
+                MessageBox.Show("O Campo Cidade não pode ser vazio e não pode ultrapassar de 50 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
             return updateEndereco(numero);
         }
 
@@ -194,32 +197,14 @@ namespace ErpSigmaVenda.login
             
         }
 
-        private void label18_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label14_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CepTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void EmailTextBox_TextChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void EmailTextBox_Leave(object sender, EventArgs e)
+        private bool emailValidation()
         {
             venda_produtoEntities db = new venda_produtoEntities();
             usuario foundedUsuario = new usuario();
@@ -228,37 +213,55 @@ namespace ErpSigmaVenda.login
             {
                 MessageBox.Show("Já existe um Usuário com este Email", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 EmailTextBox.Text = "";
+                return true;
             }
+
+            if (!regexEmail.IsMatch(EmailTextBox.Text))
+            {
+                MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+            return false;
         }
 
-        private void CpfTextBox_Leave(object sender, EventArgs e)
+        private bool cpfValidation()
         {
             venda_produtoEntities db = new venda_produtoEntities();
-            usuario foundedUsuario = new usuario();
-            foundedUsuario = db.usuario.Where(o => o.cpf.Equals(CpfTextBox.Text)).FirstOrDefault();
-            if (foundedUsuario != null && this.oUsuario.idusuario != foundedUsuario.idusuario)
+            usuario foundedCliente = new usuario();
+
+            foundedCliente = db.usuario.Where(o => o.cpf.Equals(CpfTextBox.Text)).FirstOrDefault();
+
+            if (!Cpf.Validar(this.CpfTextBox.Text))
+            {
+                MessageBox.Show("CPF Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return true;
+            }
+
+            if (foundedCliente != null && this.oUsuario.idusuario != foundedCliente.idusuario)
             {
                 MessageBox.Show("Já existe um Usuário com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CpfTextBox.Text = "";
+                return true;
             }
+
+            return false;
+
         }
 
-        private void CepTextBox_Leave(object sender, EventArgs e)
+        private ViaCepResult searchCep(string cep)
         {
-            venda_produtoEntities db = new venda_produtoEntities();
-            endereco foundedEndereco = new endereco();
-            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
-            if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
+            try
             {
-                MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                CepTextBox.Text = "";
+                return new ViaCepClient().Search(cep);
             }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
         }
 
-        private void BairroTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void SenhaTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -311,19 +314,29 @@ namespace ErpSigmaVenda.login
 
         }
 
-        private void label19_Click(object sender, EventArgs e)
+        private void CepTextBox_Leave(object sender, EventArgs e)
         {
+            var result = searchCep(this.CepTextBox.Text);
+            if (result != null)
+            {
+                this.RuaTextBox.Text = result.Street;
+                this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
+                this.CidadeTextBox.Text = result.City;
+                this.UFComboBox.SelectedItem = result.StateInitials;
+            }
+            else
+            {
+                MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label18_Click_1(object sender, EventArgs e)
-        {
-            
+            venda_produtoEntities db = new venda_produtoEntities();
+            endereco foundedEndereco = new endereco();
+            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
+            {
+                MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CepTextBox.Text = "";
+            }
         }
     }
 }

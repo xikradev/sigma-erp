@@ -58,13 +58,13 @@
             this.UFComboBox = new System.Windows.Forms.ComboBox();
             this.CidadeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CepTextBox = new System.Windows.Forms.MaskedTextBox();
             this.CpfTextBox = new System.Windows.Forms.MaskedTextBox();
             this.labelRule2 = new System.Windows.Forms.Label();
             this.labelRule3 = new System.Windows.Forms.Label();
             this.labelRule4 = new System.Windows.Forms.Label();
             this.labelRule5 = new System.Windows.Forms.Label();
             this.labelRule1 = new System.Windows.Forms.Label();
-            this.CepTextBox = new System.Windows.Forms.MaskedTextBox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -116,7 +116,6 @@
             this.ComplTextBox.Name = "ComplTextBox";
             this.ComplTextBox.Size = new System.Drawing.Size(275, 20);
             this.ComplTextBox.TabIndex = 48;
-            this.ComplTextBox.TextChanged += new System.EventHandler(this.BairroTextBox_TextChanged);
             // 
             // label8
             // 
@@ -181,8 +180,6 @@
             this.EmailTextBox.Name = "EmailTextBox";
             this.EmailTextBox.Size = new System.Drawing.Size(214, 20);
             this.EmailTextBox.TabIndex = 40;
-            this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
-            this.EmailTextBox.Leave += new System.EventHandler(this.EmailTextBox_Leave);
             // 
             // label3
             // 
@@ -292,7 +289,6 @@
             this.label14.Size = new System.Drawing.Size(134, 13);
             this.label14.TabIndex = 66;
             this.label14.Text = "Ex: exemplo44@gmail.com";
-            this.label14.Click += new System.EventHandler(this.label14_Click);
             // 
             // label13
             // 
@@ -317,33 +313,33 @@
             this.UFComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.UFComboBox.FormattingEnabled = true;
             this.UFComboBox.Items.AddRange(new object[] {
-            "RO-Rondônia",
-            "AC-Acre",
-            "AM-Amazonas",
-            "RR-Roraima",
-            "PA-Pará",
-            "AP-Amapá",
-            "TO-Tocantins",
-            "MA-Maranhão",
-            "PI-Piauí\t",
-            "CE-Ceará",
-            "RN-Rio Grande do Norte",
-            "PB-Paraíba",
-            "PE-Pernambuco",
-            "AL-Alagoas",
-            "SE-Sergipe",
-            "BA-Bahia",
-            "MG-Minas Gerais",
-            "ES-Espírito Santo",
-            "RJ-Rio de Janeiro",
-            "SP-São Paulo",
-            "PR-Paraná\t",
-            "SC-Santa Catarina",
-            "RS-Rio Grande do Sul",
-            "MS-Mato Grosso do Sul",
-            "MT-Mato Grosso",
-            "GO-Goiás",
-            "DF-Distrito Federal"});
+            "RO",
+            "AC",
+            "AM",
+            "RR",
+            "PA",
+            "AP",
+            "TO",
+            "MA",
+            "PI",
+            "CE",
+            "RN",
+            "PB",
+            "PE",
+            "AL",
+            "SE",
+            "BA",
+            "MG",
+            "ES",
+            "RJ",
+            "SP",
+            "PR",
+            "SC",
+            "RS",
+            "MS",
+            "MT",
+            "GO",
+            "DF"});
             this.UFComboBox.Location = new System.Drawing.Point(229, 153);
             this.UFComboBox.Name = "UFComboBox";
             this.UFComboBox.Size = new System.Drawing.Size(128, 21);
@@ -377,6 +373,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Endereço";
             // 
+            // CepTextBox
+            // 
+            this.CepTextBox.Location = new System.Drawing.Point(323, 45);
+            this.CepTextBox.Mask = "99999-999";
+            this.CepTextBox.Name = "CepTextBox";
+            this.CepTextBox.Size = new System.Drawing.Size(122, 20);
+            this.CepTextBox.TabIndex = 85;
+            this.CepTextBox.Leave += new System.EventHandler(this.CepTextBox_Leave);
+            // 
             // CpfTextBox
             // 
             this.CpfTextBox.Location = new System.Drawing.Point(315, 102);
@@ -394,7 +399,6 @@
             this.labelRule2.Size = new System.Drawing.Size(151, 16);
             this.labelRule2.TabIndex = 80;
             this.labelRule2.Text = "- 1 Letra Maiúscula no mínimo;";
-            this.labelRule2.Click += new System.EventHandler(this.label4_Click);
             // 
             // labelRule3
             // 
@@ -415,7 +419,6 @@
             this.labelRule4.Size = new System.Drawing.Size(156, 16);
             this.labelRule4.TabIndex = 82;
             this.labelRule4.Text = "- 1 Símbolo no mínimo: ($*&@#);";
-            this.labelRule4.Click += new System.EventHandler(this.label19_Click);
             // 
             // labelRule5
             // 
@@ -437,15 +440,6 @@
             this.labelRule1.Size = new System.Drawing.Size(126, 16);
             this.labelRule1.TabIndex = 84;
             this.labelRule1.Text = "- 8 caracteres no mínimo;";
-            this.labelRule1.Click += new System.EventHandler(this.label18_Click_1);
-            // 
-            // CepTextBox
-            // 
-            this.CepTextBox.Location = new System.Drawing.Point(323, 45);
-            this.CepTextBox.Mask = "99999-999";
-            this.CepTextBox.Name = "CepTextBox";
-            this.CepTextBox.Size = new System.Drawing.Size(122, 20);
-            this.CepTextBox.TabIndex = 85;
             // 
             // FrmCadUsuario
             // 

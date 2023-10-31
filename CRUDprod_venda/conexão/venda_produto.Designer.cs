@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\projetos-trabalho\sigma-erp\CRUDprod_venda\conexão\venda_produto.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\conexão\venda_produto.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

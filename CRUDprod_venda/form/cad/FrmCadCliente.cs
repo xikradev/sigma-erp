@@ -194,7 +194,7 @@ namespace ErpSigmaVenda.clientes
             }
             if (String.IsNullOrEmpty(CepTextBox.Text) || searchCep(CepTextBox.Text) == null)
             {
-                MessageBox.Show("O Campo Complemento não pode ser vazio e não pode ultrapassar de 100 caracteres", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("O Campo CEP não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 

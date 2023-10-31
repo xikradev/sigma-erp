@@ -138,7 +138,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ItensVend__idpro__4AB81AF0">
+        <Association Name="FK__ItensVend__idpro__4BAC3F29">
           <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
           <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,7 +150,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ItensVend__idven__49C3F6B7">
+        <Association Name="FK__ItensVend__idven__4CA06362">
           <End Role="venda" Type="Self.venda" Multiplicity="0..1" />
           <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,11 +235,11 @@
             <End Role="endereco" EntitySet="endereco" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
-          <AssociationSet Name="FK__ItensVend__idpro__4AB81AF0" Association="Self.FK__ItensVend__idpro__4AB81AF0">
+          <AssociationSet Name="FK__ItensVend__idpro__4BAC3F29" Association="Self.FK__ItensVend__idpro__4BAC3F29">
             <End Role="produto" EntitySet="produto" />
             <End Role="ItensVenda" EntitySet="ItensVenda" />
           </AssociationSet>
-          <AssociationSet Name="FK__ItensVend__idven__49C3F6B7" Association="Self.FK__ItensVend__idven__49C3F6B7">
+          <AssociationSet Name="FK__ItensVend__idven__4CA06362" Association="Self.FK__ItensVend__idven__4CA06362">
             <End Role="venda" EntitySet="venda" />
             <End Role="ItensVenda" EntitySet="ItensVenda" />
           </AssociationSet>
