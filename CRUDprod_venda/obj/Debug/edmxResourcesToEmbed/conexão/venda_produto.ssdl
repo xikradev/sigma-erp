@@ -43,11 +43,11 @@
       <PropertyRef Name="iditem" />
     </Key>
     <Property Name="iditem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idvenda" Type="int" />
-    <Property Name="idproduto" Type="int" />
-    <Property Name="quantidade" Type="int" />
-    <Property Name="precoUnit" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="precoTotal" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="idvenda" Type="int" Nullable="false" />
+    <Property Name="idproduto" Type="int" Nullable="false" />
+    <Property Name="quantidade" Type="int" Nullable="false" />
+    <Property Name="precoUnit" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="precoTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
   </EntityType>
   <EntityType Name="produto">
     <Key>
@@ -134,7 +134,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ItensVend__idpro__4BAC3F29">
-    <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+    <End Role="produto" Type="Self.produto" Multiplicity="1" />
     <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="produto">
@@ -146,7 +146,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__ItensVend__idven__4CA06362">
-    <End Role="venda" Type="Self.venda" Multiplicity="0..1" />
+    <End Role="venda" Type="Self.venda" Multiplicity="1" />
     <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="venda">

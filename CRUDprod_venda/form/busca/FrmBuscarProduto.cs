@@ -1,4 +1,6 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,7 @@ namespace ErpSigmaVenda.vendas
     public partial class FrmBuscarProduto : Form
     {
         venda_produtoEntities dbProduto = new venda_produtoEntities();
-        public produto oProduto = new produto();
+        public AxProduto oProduto = new AxProduto();
 
         public FrmBuscarProduto()
         {
@@ -33,7 +35,7 @@ namespace ErpSigmaVenda.vendas
 
         private void PesquisarProdFrm_Load(object sender, EventArgs e)
         {
-            dg.DataSource = dbProduto.produto.ToList();
+            dg.DataSource = pProduto.GetProduto();
             FilterCb.SelectedIndex = 0;
             rowsCheck();
         }
@@ -65,8 +67,7 @@ namespace ErpSigmaVenda.vendas
 
             try
             {
-                dg.DataSource = dbProduto.Database.SqlQuery<produto>("select * from produto where "+filter+" like '" + SearchTextBox.Text + "%';").ToList();
-                
+                dg.DataSource = SearchProduct(filter, SearchTextBox.Text);
             }
             catch (Exception ex)
             {
@@ -76,11 +77,21 @@ namespace ErpSigmaVenda.vendas
             rowsCheck();
         }
 
+        private IEnumerable<AxProduto> SearchProduct(string filter, string textBox)
+        {
+            string query = "select prod.*, prod_forn.codProduto, forn.idfornecedor, forn.nomeCompleto as fornecedor from produto_fornecedor prod_forn " +
+                "inner join produto prod on prod_forn.idproduto = prod.idproduto " +
+                "inner join fornecedor forn on prod_forn.idfornecedor = forn.idfornecedor " +
+                "where " + filter + " like '" + SearchTextBox.Text + "%'; ";
+
+            return dbProduto.Database.SqlQuery<AxProduto>(query).ToList();
+        }
+
         private void dg_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                this.oProduto = (produto)dg.SelectedRows[0].DataBoundItem;
+                this.oProduto = (AxProduto)dg.SelectedRows[0].DataBoundItem;
             }
             catch(Exception ex)
             {

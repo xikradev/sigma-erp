@@ -31,6 +31,12 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBuscarProduto));
             this.dg = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fornecedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.axProdutoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -39,9 +45,12 @@
             this.SearchTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.SearchBtn = new System.Windows.Forms.ToolStripButton();
             this.FilterCb = new System.Windows.Forms.ToolStripComboBox();
+            this.produtoBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axProdutoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // dg
@@ -51,16 +60,61 @@
             this.dg.AutoGenerateColumns = false;
             this.dg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg.DataSource = this.produtoBindingSource;
+            this.dg.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn5,
+            this.fornecedor});
+            this.dg.DataSource = this.axProdutoBindingSource;
             this.dg.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dg.Location = new System.Drawing.Point(0, 0);
             this.dg.Name = "dg";
             this.dg.ReadOnly = true;
             this.dg.RowHeadersVisible = false;
             this.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg.Size = new System.Drawing.Size(740, 307);
+            this.dg.Size = new System.Drawing.Size(740, 370);
             this.dg.TabIndex = 0;
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "idproduto";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Código";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "nome";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Nome";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "preco";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Preço Unitário";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "estoque_qnt";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Quantidade no Estoque";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // fornecedor
+            // 
+            this.fornecedor.DataPropertyName = "fornecedor";
+            this.fornecedor.HeaderText = "Fornecedor";
+            this.fornecedor.Name = "fornecedor";
+            this.fornecedor.ReadOnly = true;
+            // 
+            // axProdutoBindingSource
+            // 
+            this.axProdutoBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxProduto);
             // 
             // toolStrip1
             // 
@@ -72,7 +126,7 @@
             this.SearchTextBox,
             this.SearchBtn,
             this.FilterCb});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 268);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 331);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.toolStrip1.Size = new System.Drawing.Size(740, 39);
@@ -107,8 +161,8 @@
             this.OkBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.OkBtn.Name = "OkBtn";
             this.OkBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.OkBtn.Size = new System.Drawing.Size(74, 36);
-            this.OkBtn.Text = "Salvar";
+            this.OkBtn.Size = new System.Drawing.Size(97, 36);
+            this.OkBtn.Text = "Selecionar";
             this.OkBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.OkBtn.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -139,11 +193,15 @@
             this.FilterCb.Name = "FilterCb";
             this.FilterCb.Size = new System.Drawing.Size(121, 39);
             // 
+            // produtoBindingSource1
+            // 
+            this.produtoBindingSource1.DataSource = typeof(ErpSigmaVenda.conexão.produto);
+            // 
             // FrmBuscarProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(740, 307);
+            this.ClientSize = new System.Drawing.Size(740, 370);
             this.ControlBox = false;
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dg);
@@ -152,9 +210,11 @@
             this.Text = "Buscar Produto";
             this.Load += new System.EventHandler(this.PesquisarProdFrm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axProdutoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -176,5 +236,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descricaoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estoqueqntDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripComboBox FilterCb;
+        private System.Windows.Forms.BindingSource axProdutoBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fornecedor;
+        private System.Windows.Forms.BindingSource produtoBindingSource1;
     }
 }

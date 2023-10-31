@@ -1,4 +1,6 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -16,9 +18,11 @@ namespace ErpSigmaVenda.vendas
     {
         public cliente oCliente { get; set; }
         public usuario oUsuario = pLoginUsr.oUsuario;
-        public produto oProduto { get; set; }
+        public AxItemProd itemProd { get; set; }
         public venda oVenda { get; set; }
-        
+        public List<AxItemProd> items = new List<AxItemProd>();
+        private venda_produtoEntities db = new venda_produtoEntities();
+
 
 
         public FrmCadVendas()
@@ -53,19 +57,19 @@ namespace ErpSigmaVenda.vendas
 
         private void loading()
         {
-           
-            this.oVenda.idusuario = pLoginUsr.oUsuario.idusuario;
-            this.PrecoTotalTb.Text = this.oVenda.precoTotal.ToString();
-            //this.QuantTb.Text = this.oVenda.quantidade.ToString();
-            if (!String.IsNullOrEmpty(this.oCliente.nomeCompleto))
-            {
-                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
-            }
-            if (!String.IsNullOrEmpty(this.oProduto.nome))
-            {
-                ProdutoTb.Text = $"{this.oProduto.idproduto}- {this.oProduto.nome}";
-            }
+            //dgItem.DataSource = new List<AxItemProd>();
             
+
+            dgItem.DataSource = this.items;
+
+            for (int i = 0; i < dgItem.Rows.Count; i++)
+            {
+                var currentRow = dgItem.Rows[i];
+
+                currentRow.Cells[idprodutoDataGridViewTextBoxColumn.Index].Value = ((AxItemProd)dgItem.SelectedRows[i].DataBoundItem).idproduto;
+                //currentRow.Cells[idprodutoDataGridViewTextBoxColumn.Index].Value = ((AxItemProd)dgItem.SelectedRows[i].DataBoundItem).idproduto;
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -73,33 +77,11 @@ namespace ErpSigmaVenda.vendas
 
         }
 
-        private void calulatingPrice()
-        {
-            this.PrecoUniTb.Text = this.oProduto.preco.ToString();
-            if (!String.IsNullOrEmpty(QuantTb.Text))
-            {
-                if (decimal.TryParse(this.QuantTb.Text, out decimal qtn))
-                {
-                    decimal totalPrice = this.oProduto.preco * qtn;
-                    this.PrecoTotalTb.Text = totalPrice.ToString();
-                }
-            }
-            else
-            {
-                PrecoTotalTb.Text = "";
-            }
-            
-        }
+        
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FrmBuscarProduto frm = new FrmBuscarProduto();
-            if(frm.ShowDialog() == DialogResult.OK)
-            {
-                this.oProduto = frm.oProduto;
-                ProdutoTb.Text = $"{this.oProduto.idproduto}- {this.oProduto.nome}";
-                calulatingPrice();
-            }
+            
 
         }
 
@@ -115,7 +97,7 @@ namespace ErpSigmaVenda.vendas
 
         private void QuantTb_TextChanged(object sender, EventArgs e)
         {
-            calulatingPrice();
+            
 
         }
 
@@ -131,11 +113,7 @@ namespace ErpSigmaVenda.vendas
 
         private Boolean verify()
         {
-            if (String.IsNullOrEmpty(ProdutoTb.Text))
-            {
-                MessageBox.Show("Deve selecionar um Produto para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            
             if (String.IsNullOrEmpty(ClienteTb.Text))
             {
                 MessageBox.Show("Deve selecionar um Cliente para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -166,6 +144,40 @@ namespace ErpSigmaVenda.vendas
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void AddProdBtn_Click(object sender, EventArgs e)
+        {
+            FrmBuscarProduto frm = new FrmBuscarProduto();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                this.items.Add(pItemProd.GetItem(frm.oProduto.idproduto));
+                loading();
+            }
+        }
+
+        private void RemoveProdBtn_Click(object sender, EventArgs e)
+        {
+            this.items.Remove(this.itemProd);
+            loading();
+        }
+
+        
+
+        private void dgItem_SelectionChanged_1(object sender, EventArgs e)
+        {
+            if (dgItem.Rows.Count > 0) {
+                this.itemProd = (AxItemProd)dgItem.SelectedRows[0].DataBoundItem;
+            }
+           
+        }
+
+        private void dgItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+
+
+
         }
     }
 }

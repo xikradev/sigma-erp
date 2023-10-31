@@ -98,6 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="auxiliar\AxItemProd.cs" />
     <Compile Include="conexão\cliente.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
     </Compile>
@@ -185,6 +186,7 @@
     <Compile Include="form\relatorios\FrmRelFornecedores.Designer.cs">
       <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="persistencia\pItemProd.cs" />
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
     <Compile Include="persistencia\pUsuario.cs" />
@@ -340,7 +342,11 @@
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxVenda.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.query.Qfornecedor.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxFornecedor.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxItemProd.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxProduto.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.conexão.fornecedor.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.conexão.ItensVenda.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.conexão.produto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

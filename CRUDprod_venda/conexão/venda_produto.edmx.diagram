@@ -20,9 +20,9 @@
         <AssociationConnector Association="venda_produtoModel.produto_produtos_fornecedor_fk" />
         <AssociationConnector Association="venda_produtoModel.FK_venda_usuario" />
         <EntityTypeShape EntityType="venda_produtoModel.ItensVenda" Width="1.5" PointX="7.5" PointY="8.25" />
-        <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0" />
-        <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idven__49C3F6B7" />
-      </Diagram>
+        <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29" />
+        <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idven__4CA06362" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

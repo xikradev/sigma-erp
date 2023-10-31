@@ -15,11 +15,11 @@ namespace ErpSigmaVenda.conexão
     public partial class ItensVenda
     {
         public int iditem { get; set; }
-        public Nullable<int> idvenda { get; set; }
-        public Nullable<int> idproduto { get; set; }
-        public Nullable<int> quantidade { get; set; }
-        public Nullable<decimal> precoUnit { get; set; }
-        public Nullable<decimal> precoTotal { get; set; }
+        public int idvenda { get; set; }
+        public int idproduto { get; set; }
+        public int quantidade { get; set; }
+        public decimal precoUnit { get; set; }
+        public decimal precoTotal { get; set; }
     
         public virtual produto produto { get; set; }
         public virtual venda venda { get; set; }

@@ -73,7 +73,7 @@
             this.dg.ReadOnly = true;
             this.dg.RowHeadersVisible = false;
             this.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg.Size = new System.Drawing.Size(800, 398);
+            this.dg.Size = new System.Drawing.Size(891, 398);
             this.dg.TabIndex = 5;
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
             // 
@@ -143,7 +143,7 @@
             this.DeleteButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 52);
+            this.toolStrip1.Size = new System.Drawing.Size(891, 52);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(891, 450);
             this.Controls.Add(this.dg);
             this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;

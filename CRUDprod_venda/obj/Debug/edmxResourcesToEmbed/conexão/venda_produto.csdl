@@ -37,11 +37,11 @@
       <End Role="venda" EntitySet="venda" />
     </AssociationSet>
     <EntitySet Name="ItensVenda" EntityType="venda_produtoModel.ItensVenda" />
-    <AssociationSet Name="FK__ItensVend__idpro__4AB81AF0" Association="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0">
+    <AssociationSet Name="FK__ItensVend__idpro__4BAC3F29" Association="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29">
       <End Role="produto" EntitySet="produto" />
       <End Role="ItensVenda" EntitySet="ItensVenda" />
     </AssociationSet>
-    <AssociationSet Name="FK__ItensVend__idven__49C3F6B7" Association="venda_produtoModel.FK__ItensVend__idven__49C3F6B7">
+    <AssociationSet Name="FK__ItensVend__idven__4CA06362" Association="venda_produtoModel.FK__ItensVend__idven__4CA06362">
       <End Role="venda" EntitySet="venda" />
       <End Role="ItensVenda" EntitySet="ItensVenda" />
     </AssociationSet>
@@ -101,7 +101,7 @@
     <Property Name="descricao" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
     <Property Name="estoque_qnt" Type="Int32" Nullable="false" />
     <NavigationProperty Name="produto_fornecedor" Relationship="venda_produtoModel.produto_produtos_fornecedor_fk" FromRole="produto" ToRole="produto_fornecedor" />
-    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0" FromRole="produto" ToRole="ItensVenda" />
+    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29" FromRole="produto" ToRole="ItensVenda" />
   </EntityType>
   <EntityType Name="produto_fornecedor">
     <Key>
@@ -142,7 +142,7 @@
     <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="cliente" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="venda" ToRole="cliente" />
     <NavigationProperty Name="usuario" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="venda" ToRole="usuario" />
-    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idven__49C3F6B7" FromRole="venda" ToRole="ItensVenda" />
+    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idven__4CA06362" FromRole="venda" ToRole="ItensVenda" />
   </EntityType>
   <Association Name="endereco_cliente_fk">
     <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1" />
@@ -241,16 +241,16 @@
       <PropertyRef Name="iditem" />
     </Key>
     <Property Name="iditem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idvenda" Type="Int32" />
-    <Property Name="idproduto" Type="Int32" />
-    <Property Name="quantidade" Type="Int32" />
-    <Property Name="precoUnit" Type="Decimal" Precision="10" Scale="2" />
-    <Property Name="precoTotal" Type="Decimal" Precision="10" Scale="2" />
-    <NavigationProperty Name="produto" Relationship="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0" FromRole="ItensVenda" ToRole="produto" />
-    <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK__ItensVend__idven__49C3F6B7" FromRole="ItensVenda" ToRole="venda" />
+    <Property Name="idvenda" Type="Int32" Nullable="false" />
+    <Property Name="idproduto" Type="Int32" Nullable="false" />
+    <Property Name="quantidade" Type="Int32" Nullable="false" />
+    <Property Name="precoUnit" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <Property Name="precoTotal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+    <NavigationProperty Name="produto" Relationship="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29" FromRole="ItensVenda" ToRole="produto" />
+    <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK__ItensVend__idven__4CA06362" FromRole="ItensVenda" ToRole="venda" />
   </EntityType>
-  <Association Name="FK__ItensVend__idpro__4AB81AF0">
-    <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="0..1" />
+  <Association Name="FK__ItensVend__idpro__4BAC3F29">
+    <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="1" />
     <End Type="venda_produtoModel.ItensVenda" Role="ItensVenda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="produto">
@@ -261,8 +261,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__ItensVend__idven__49C3F6B7">
-    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="0..1" />
+  <Association Name="FK__ItensVend__idven__4CA06362">
+    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="1" />
     <End Type="venda_produtoModel.ItensVenda" Role="ItensVenda" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="venda">
