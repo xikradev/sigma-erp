@@ -31,13 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNavCliente));
             this.dgPF = new System.Windows.Forms.DataGridView();
-            this.idcliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataNascimentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.enderecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.InsertButton = new System.Windows.Forms.ToolStripButton();
@@ -56,6 +49,13 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.idcliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.registro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataNascimentoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enderecoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axClienteBindingSource)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -91,55 +91,6 @@
             this.dgPF.Size = new System.Drawing.Size(867, 366);
             this.dgPF.TabIndex = 5;
             this.dgPF.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
-            // 
-            // idcliente
-            // 
-            this.idcliente.DataPropertyName = "idcliente";
-            this.idcliente.HeaderText = "Código";
-            this.idcliente.Name = "idcliente";
-            this.idcliente.ReadOnly = true;
-            // 
-            // nomeCompleto
-            // 
-            this.nomeCompleto.DataPropertyName = "nomeCompleto";
-            this.nomeCompleto.HeaderText = "Nome";
-            this.nomeCompleto.Name = "nomeCompleto";
-            this.nomeCompleto.ReadOnly = true;
-            // 
-            // registro
-            // 
-            this.registro.DataPropertyName = "registro";
-            this.registro.HeaderText = "CPF/CNPJ";
-            this.registro.Name = "registro";
-            this.registro.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sexoDataGridViewTextBoxColumn
-            // 
-            this.sexoDataGridViewTextBoxColumn.DataPropertyName = "sexo";
-            this.sexoDataGridViewTextBoxColumn.HeaderText = "Sexo";
-            this.sexoDataGridViewTextBoxColumn.Name = "sexoDataGridViewTextBoxColumn";
-            this.sexoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataNascimentoDataGridViewTextBoxColumn
-            // 
-            this.dataNascimentoDataGridViewTextBoxColumn.DataPropertyName = "dataNascimento";
-            this.dataNascimentoDataGridViewTextBoxColumn.HeaderText = "Data de Nascimento";
-            this.dataNascimentoDataGridViewTextBoxColumn.Name = "dataNascimentoDataGridViewTextBoxColumn";
-            this.dataNascimentoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // enderecoDataGridViewTextBoxColumn
-            // 
-            this.enderecoDataGridViewTextBoxColumn.DataPropertyName = "endereco";
-            this.enderecoDataGridViewTextBoxColumn.HeaderText = "Endereço";
-            this.enderecoDataGridViewTextBoxColumn.Name = "enderecoDataGridViewTextBoxColumn";
-            this.enderecoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // axClienteBindingSource
             // 
@@ -312,6 +263,55 @@
             // 
             this.clienteBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.cliente);
             // 
+            // idcliente
+            // 
+            this.idcliente.DataPropertyName = "idcliente";
+            this.idcliente.HeaderText = "Código";
+            this.idcliente.Name = "idcliente";
+            this.idcliente.ReadOnly = true;
+            // 
+            // nomeCompleto
+            // 
+            this.nomeCompleto.DataPropertyName = "nomeCompleto";
+            this.nomeCompleto.HeaderText = "Nome";
+            this.nomeCompleto.Name = "nomeCompleto";
+            this.nomeCompleto.ReadOnly = true;
+            // 
+            // registro
+            // 
+            this.registro.DataPropertyName = "registro";
+            this.registro.HeaderText = "CPF";
+            this.registro.Name = "registro";
+            this.registro.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sexoDataGridViewTextBoxColumn
+            // 
+            this.sexoDataGridViewTextBoxColumn.DataPropertyName = "sexo";
+            this.sexoDataGridViewTextBoxColumn.HeaderText = "Sexo";
+            this.sexoDataGridViewTextBoxColumn.Name = "sexoDataGridViewTextBoxColumn";
+            this.sexoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataNascimentoDataGridViewTextBoxColumn
+            // 
+            this.dataNascimentoDataGridViewTextBoxColumn.DataPropertyName = "dataNascimento";
+            this.dataNascimentoDataGridViewTextBoxColumn.HeaderText = "Data de Nascimento";
+            this.dataNascimentoDataGridViewTextBoxColumn.Name = "dataNascimentoDataGridViewTextBoxColumn";
+            this.dataNascimentoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // enderecoDataGridViewTextBoxColumn
+            // 
+            this.enderecoDataGridViewTextBoxColumn.DataPropertyName = "endereco";
+            this.enderecoDataGridViewTextBoxColumn.HeaderText = "Endereço";
+            this.enderecoDataGridViewTextBoxColumn.Name = "enderecoDataGridViewTextBoxColumn";
+            this.enderecoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // FrmNavCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -348,13 +348,6 @@
         private System.Windows.Forms.ToolStripButton DeleteButton;
         private System.Windows.Forms.BindingSource clienteBindingSource;
         private System.Windows.Forms.BindingSource axClienteBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idcliente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn registro;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataNascimentoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ToolStripButton btnRelatorio;
         private System.Windows.Forms.TabControl ClienteTabControl;
         private System.Windows.Forms.TabPage tabPage1;
@@ -367,5 +360,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idcliente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nomeCompleto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn registro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sexoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataNascimentoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enderecoDataGridViewTextBoxColumn;
     }
 }
