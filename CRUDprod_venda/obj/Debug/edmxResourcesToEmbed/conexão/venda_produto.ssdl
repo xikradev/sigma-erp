@@ -38,6 +38,17 @@
     <Property Name="sexo" Type="char" MaxLength="3" />
     <Property Name="seguimento" Type="varchar" MaxLength="100" />
   </EntityType>
+  <EntityType Name="ItensVenda">
+    <Key>
+      <PropertyRef Name="iditem" />
+    </Key>
+    <Property Name="iditem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idvenda" Type="int" />
+    <Property Name="idproduto" Type="int" />
+    <Property Name="quantidade" Type="int" />
+    <Property Name="precoUnit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="precoTotal" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
   <EntityType Name="produto">
     <Key>
       <PropertyRef Name="idproduto" />
@@ -75,12 +86,12 @@
       <PropertyRef Name="idvenda" />
     </Key>
     <Property Name="idvenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="idproduto" Type="int" Nullable="false" />
     <Property Name="idusuario" Type="int" Nullable="false" />
     <Property Name="idcliente" Type="int" Nullable="false" />
     <Property Name="precoTotal" Type="decimal" Precision="30" Scale="2" Nullable="false" />
     <Property Name="data" Type="datetime" Nullable="false" />
-    <Property Name="quantidade" Type="int" Nullable="false" />
+    <Property Name="metodo_pagamento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="endereco_cliente_fk">
     <End Role="endereco" Type="Self.endereco" Multiplicity="1" />
@@ -122,6 +133,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ItensVend__idpro__4AB81AF0">
+    <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+    <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="produto">
+        <PropertyRef Name="idproduto" />
+      </Principal>
+      <Dependent Role="ItensVenda">
+        <PropertyRef Name="idproduto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ItensVend__idven__49C3F6B7">
+    <End Role="venda" Type="Self.venda" Multiplicity="0..1" />
+    <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="venda">
+        <PropertyRef Name="idvenda" />
+      </Principal>
+      <Dependent Role="ItensVenda">
+        <PropertyRef Name="idvenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_venda_cliente">
     <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
     <End Role="venda" Type="Self.venda" Multiplicity="*" />
@@ -131,18 +166,6 @@
       </Principal>
       <Dependent Role="venda">
         <PropertyRef Name="idcliente" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_venda_produto">
-    <End Role="produto" Type="Self.produto" Multiplicity="1" />
-    <End Role="venda" Type="Self.venda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="produto">
-        <PropertyRef Name="idproduto" />
-      </Principal>
-      <Dependent Role="venda">
-        <PropertyRef Name="idproduto" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -190,6 +213,7 @@
     <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="endereco" EntityType="Self.endereco" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="fornecedor" EntityType="Self.fornecedor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItensVenda" EntityType="Self.ItensVenda" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="produto" EntityType="Self.produto" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="produto_fornecedor" EntityType="Self.produto_fornecedor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
@@ -206,12 +230,16 @@
       <End Role="endereco" EntitySet="endereco" />
       <End Role="usuario" EntitySet="usuario" />
     </AssociationSet>
+    <AssociationSet Name="FK__ItensVend__idpro__4AB81AF0" Association="Self.FK__ItensVend__idpro__4AB81AF0">
+      <End Role="produto" EntitySet="produto" />
+      <End Role="ItensVenda" EntitySet="ItensVenda" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ItensVend__idven__49C3F6B7" Association="Self.FK__ItensVend__idven__49C3F6B7">
+      <End Role="venda" EntitySet="venda" />
+      <End Role="ItensVenda" EntitySet="ItensVenda" />
+    </AssociationSet>
     <AssociationSet Name="FK_venda_cliente" Association="Self.FK_venda_cliente">
       <End Role="cliente" EntitySet="cliente" />
-      <End Role="venda" EntitySet="venda" />
-    </AssociationSet>
-    <AssociationSet Name="FK_venda_produto" Association="Self.FK_venda_produto">
-      <End Role="produto" EntitySet="produto" />
       <End Role="venda" EntitySet="venda" />
     </AssociationSet>
     <AssociationSet Name="FK_venda_usuario" Association="Self.FK_venda_usuario">

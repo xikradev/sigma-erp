@@ -1,36 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="venda_produtoModelStoreContainer" CdmEntityContainer="venda_produtoEntities">
-    <EntitySetMapping Name="produto">
-      <EntityTypeMapping TypeName="venda_produtoModel.produto">
-        <MappingFragment StoreEntitySet="produto">
-          <ScalarProperty Name="estoque_qnt" ColumnName="estoque_qnt" />
-          <ScalarProperty Name="descricao" ColumnName="descricao" />
-          <ScalarProperty Name="preco" ColumnName="preco" />
-          <ScalarProperty Name="nome" ColumnName="nome" />
-          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="produto_fornecedor">
-      <EntityTypeMapping TypeName="venda_produtoModel.produto_fornecedor">
-        <MappingFragment StoreEntitySet="produto_fornecedor">
-          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-          <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
-          <ScalarProperty Name="codProduto" ColumnName="codProduto" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="venda">
-      <EntityTypeMapping TypeName="venda_produtoModel.venda">
-        <MappingFragment StoreEntitySet="venda">
-          <ScalarProperty Name="quantidade" ColumnName="quantidade" />
-          <ScalarProperty Name="data" ColumnName="data" />
-          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+    <EntitySetMapping Name="cliente">
+      <EntityTypeMapping TypeName="venda_produtoModel.cliente">
+        <MappingFragment StoreEntitySet="cliente">
+          <ScalarProperty Name="seguimento" ColumnName="seguimento" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+          <ScalarProperty Name="registro" ColumnName="registro" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
           <ScalarProperty Name="idcliente" ColumnName="idcliente" />
-          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -61,17 +42,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="cliente">
-      <EntityTypeMapping TypeName="venda_produtoModel.cliente">
-        <MappingFragment StoreEntitySet="cliente">
-          <ScalarProperty Name="seguimento" ColumnName="seguimento" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
-          <ScalarProperty Name="idendereco" ColumnName="idendereco" />
-          <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
-          <ScalarProperty Name="registro" ColumnName="registro" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
-          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+    <EntitySetMapping Name="produto">
+      <EntityTypeMapping TypeName="venda_produtoModel.produto">
+        <MappingFragment StoreEntitySet="produto">
+          <ScalarProperty Name="estoque_qnt" ColumnName="estoque_qnt" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="produto_fornecedor">
+      <EntityTypeMapping TypeName="venda_produtoModel.produto_fornecedor">
+        <MappingFragment StoreEntitySet="produto_fornecedor">
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+          <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
+          <ScalarProperty Name="codProduto" ColumnName="codProduto" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -87,6 +74,31 @@
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
           <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venda">
+      <EntityTypeMapping TypeName="venda_produtoModel.venda">
+        <MappingFragment StoreEntitySet="venda">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="metodo_pagamento" ColumnName="metodo_pagamento" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItensVenda">
+      <EntityTypeMapping TypeName="venda_produtoModel.ItensVenda">
+        <MappingFragment StoreEntitySet="ItensVenda">
+          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+          <ScalarProperty Name="precoUnit" ColumnName="precoUnit" />
+          <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+          <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
+          <ScalarProperty Name="iditem" ColumnName="iditem" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

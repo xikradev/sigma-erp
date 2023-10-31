@@ -107,6 +107,9 @@
     <Compile Include="conexão\fornecedor.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
     </Compile>
+    <Compile Include="conexão\ItensVenda.cs">
+      <DependentUpon>venda_produto.tt</DependentUpon>
+    </Compile>
     <Compile Include="conexão\produto.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
     </Compile>

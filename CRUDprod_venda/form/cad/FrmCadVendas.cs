@@ -56,7 +56,7 @@ namespace ErpSigmaVenda.vendas
            
             this.oVenda.idusuario = pLoginUsr.oUsuario.idusuario;
             this.PrecoTotalTb.Text = this.oVenda.precoTotal.ToString();
-            this.QuantTb.Text = this.oVenda.quantidade.ToString();
+            //this.QuantTb.Text = this.oVenda.quantidade.ToString();
             if (!String.IsNullOrEmpty(this.oCliente.nomeCompleto))
             {
                 ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
@@ -122,9 +122,9 @@ namespace ErpSigmaVenda.vendas
         private Boolean update(int qtn)
         {
             this.oVenda.idcliente = this.oCliente.idcliente;
-            this.oVenda.idproduto = this.oProduto.idproduto;
+            //this.oVenda.idproduto = this.oProduto.idproduto;
             this.oVenda.precoTotal = decimal.Parse(PrecoTotalTb.Text);
-            this.oVenda.quantidade = qtn;
+            //this.oVenda.quantidade = qtn;
             this.oVenda.data = DateTime.Now;
             return true;
         }

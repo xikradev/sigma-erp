@@ -14,16 +14,23 @@ namespace ErpSigmaVenda.conexão
     
     public partial class venda
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public venda()
+        {
+            this.ItensVenda = new HashSet<ItensVenda>();
+        }
+    
         public int idvenda { get; set; }
-        public int idproduto { get; set; }
         public int idusuario { get; set; }
         public int idcliente { get; set; }
         public decimal precoTotal { get; set; }
         public System.DateTime data { get; set; }
-        public int quantidade { get; set; }
+        public string metodo_pagamento { get; set; }
+        public string status { get; set; }
     
-        public virtual produto produto { get; set; }
         public virtual cliente cliente { get; set; }
         public virtual usuario usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItensVenda> ItensVenda { get; set; }
     }
 }

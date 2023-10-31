@@ -17,8 +17,8 @@ namespace ErpSigmaVenda.conexão
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public produto()
         {
-            this.venda = new HashSet<venda>();
             this.produto_fornecedor = new HashSet<produto_fornecedor>();
+            this.ItensVenda = new HashSet<ItensVenda>();
         }
     
         public int idproduto { get; set; }
@@ -28,8 +28,8 @@ namespace ErpSigmaVenda.conexão
         public int estoque_qnt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<venda> venda { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<produto_fornecedor> produto_fornecedor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItensVenda> ItensVenda { get; set; }
     }
 }

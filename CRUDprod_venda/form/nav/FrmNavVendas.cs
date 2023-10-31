@@ -64,7 +64,7 @@ namespace ErpSigmaVenda.vendas
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             FrmCadVendas vendasForm = new FrmCadVendas();
-            vendasForm.oProduto = this.db.produto.Find(this.oVenda.idproduto);
+            //vendasForm.oProduto = this.db.produto.Find(this.oVenda.idproduto);
             vendasForm.oCliente = this.db.cliente.Find(this.oVenda.idcliente);
             vendasForm.oVenda = this.db.venda.Find(this.oVenda.idvenda);
             if (vendasForm.ShowDialog() == DialogResult.OK) {

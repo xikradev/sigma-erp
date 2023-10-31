@@ -15,27 +15,23 @@ namespace ErpSigmaVenda.conexão
     
     public partial class venda_produtoEntities : DbContext
     {
-        //public venda_produtoEntities()
-        //    : base("name=venda_produtoEntities")
-        //{
-        //}
-
         public venda_produtoEntities()
             : base("name=venda_produtoEntities_casa")
         {
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<produto> produto { get; set; }
-        public virtual DbSet<produto_fornecedor> produto_fornecedor { get; set; }
-        public virtual DbSet<venda> venda { get; set; }
+        public virtual DbSet<cliente> cliente { get; set; }
         public virtual DbSet<endereco> endereco { get; set; }
         public virtual DbSet<fornecedor> fornecedor { get; set; }
-        public virtual DbSet<cliente> cliente { get; set; }
+        public virtual DbSet<produto> produto { get; set; }
+        public virtual DbSet<produto_fornecedor> produto_fornecedor { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<venda> venda { get; set; }
+        public virtual DbSet<ItensVenda> ItensVenda { get; set; }
     }
 }

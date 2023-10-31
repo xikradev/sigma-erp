@@ -12,13 +12,16 @@ namespace ErpSigmaVenda.conexão
     using System;
     using System.Collections.Generic;
     
-    public partial class produto_fornecedor
+    public partial class ItensVenda
     {
-        public int codProduto { get; set; }
-        public int idfornecedor { get; set; }
-        public int idproduto { get; set; }
+        public int iditem { get; set; }
+        public Nullable<int> idvenda { get; set; }
+        public Nullable<int> idproduto { get; set; }
+        public Nullable<int> quantidade { get; set; }
+        public Nullable<decimal> precoUnit { get; set; }
+        public Nullable<decimal> precoTotal { get; set; }
     
-        public virtual fornecedor fornecedor { get; set; }
         public virtual produto produto { get; set; }
+        public virtual venda venda { get; set; }
     }
 }

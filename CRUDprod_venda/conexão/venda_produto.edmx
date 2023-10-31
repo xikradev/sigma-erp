@@ -43,6 +43,17 @@
           <Property Name="sexo" Type="char" MaxLength="3" />
           <Property Name="seguimento" Type="varchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="ItensVenda">
+          <Key>
+            <PropertyRef Name="iditem" />
+          </Key>
+          <Property Name="iditem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idvenda" Type="int" />
+          <Property Name="idproduto" Type="int" />
+          <Property Name="quantidade" Type="int" />
+          <Property Name="precoUnit" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="precoTotal" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
         <EntityType Name="produto">
           <Key>
             <PropertyRef Name="idproduto" />
@@ -80,12 +91,12 @@
             <PropertyRef Name="idvenda" />
           </Key>
           <Property Name="idvenda" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idproduto" Type="int" Nullable="false" />
           <Property Name="idusuario" Type="int" Nullable="false" />
           <Property Name="idcliente" Type="int" Nullable="false" />
           <Property Name="precoTotal" Type="decimal" Precision="30" Scale="2" Nullable="false" />
           <Property Name="data" Type="datetime" Nullable="false" />
-          <Property Name="quantidade" Type="int" Nullable="false" />
+          <Property Name="metodo_pagamento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <Association Name="endereco_cliente_fk">
           <End Role="endereco" Type="Self.endereco" Multiplicity="1" />
@@ -127,6 +138,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ItensVend__idpro__4AB81AF0">
+          <End Role="produto" Type="Self.produto" Multiplicity="0..1" />
+          <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="idproduto" />
+            </Principal>
+            <Dependent Role="ItensVenda">
+              <PropertyRef Name="idproduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItensVend__idven__49C3F6B7">
+          <End Role="venda" Type="Self.venda" Multiplicity="0..1" />
+          <End Role="ItensVenda" Type="Self.ItensVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="venda">
+              <PropertyRef Name="idvenda" />
+            </Principal>
+            <Dependent Role="ItensVenda">
+              <PropertyRef Name="idvenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_venda_cliente">
           <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
           <End Role="venda" Type="Self.venda" Multiplicity="*" />
@@ -136,18 +171,6 @@
             </Principal>
             <Dependent Role="venda">
               <PropertyRef Name="idcliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_venda_produto">
-          <End Role="produto" Type="Self.produto" Multiplicity="1" />
-          <End Role="venda" Type="Self.venda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="produto">
-              <PropertyRef Name="idproduto" />
-            </Principal>
-            <Dependent Role="venda">
-              <PropertyRef Name="idproduto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -195,6 +218,7 @@
           <EntitySet Name="cliente" EntityType="Self.cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="endereco" EntityType="Self.endereco" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="fornecedor" EntityType="Self.fornecedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItensVenda" EntityType="Self.ItensVenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="produto" EntityType="Self.produto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="produto_fornecedor" EntityType="Self.produto_fornecedor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
@@ -211,12 +235,16 @@
             <End Role="endereco" EntitySet="endereco" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
+          <AssociationSet Name="FK__ItensVend__idpro__4AB81AF0" Association="Self.FK__ItensVend__idpro__4AB81AF0">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="ItensVenda" EntitySet="ItensVenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItensVend__idven__49C3F6B7" Association="Self.FK__ItensVend__idven__49C3F6B7">
+            <End Role="venda" EntitySet="venda" />
+            <End Role="ItensVenda" EntitySet="ItensVenda" />
+          </AssociationSet>
           <AssociationSet Name="FK_venda_cliente" Association="Self.FK_venda_cliente">
             <End Role="cliente" EntitySet="cliente" />
-            <End Role="venda" EntitySet="venda" />
-          </AssociationSet>
-          <AssociationSet Name="FK_venda_produto" Association="Self.FK_venda_produto">
-            <End Role="produto" EntitySet="produto" />
             <End Role="venda" EntitySet="venda" />
           </AssociationSet>
           <AssociationSet Name="FK_venda_usuario" Association="Self.FK_venda_usuario">
@@ -237,29 +265,13 @@
     <edmx:ConceptualModels>
       <Schema Namespace="venda_produtoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="venda_produtoEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="produto" EntityType="venda_produtoModel.produto" />
-          <EntitySet Name="produto_fornecedor" EntityType="venda_produtoModel.produto_fornecedor" />
-          <EntitySet Name="venda" EntityType="venda_produtoModel.venda" />
-          <AssociationSet Name="FK_venda_produto" Association="venda_produtoModel.FK_venda_produto">
-            <End Role="produto" EntitySet="produto" />
-            <End Role="venda" EntitySet="venda" />
-          </AssociationSet>
-          <AssociationSet Name="produto_produtos_fornecedor_fk" Association="venda_produtoModel.produto_produtos_fornecedor_fk">
-            <End Role="produto" EntitySet="produto" />
-            <End Role="produto_fornecedor" EntitySet="produto_fornecedor" />
-          </AssociationSet>
+          <EntitySet Name="cliente" EntityType="venda_produtoModel.cliente" />
           <EntitySet Name="endereco" EntityType="venda_produtoModel.endereco" />
           <EntitySet Name="fornecedor" EntityType="venda_produtoModel.fornecedor" />
-          <AssociationSet Name="endereco_fornecedor_fk" Association="venda_produtoModel.endereco_fornecedor_fk">
-            <End Role="endereco" EntitySet="endereco" />
-            <End Role="fornecedor" EntitySet="fornecedor" />
-          </AssociationSet>
-          <AssociationSet Name="fornecedor_produtos_fornecedor_fk" Association="venda_produtoModel.fornecedor_produtos_fornecedor_fk">
-            <End Role="fornecedor" EntitySet="fornecedor" />
-            <End Role="produto_fornecedor" EntitySet="produto_fornecedor" />
-          </AssociationSet>
-          <EntitySet Name="cliente" EntityType="venda_produtoModel.cliente" />
+          <EntitySet Name="produto" EntityType="venda_produtoModel.produto" />
+          <EntitySet Name="produto_fornecedor" EntityType="venda_produtoModel.produto_fornecedor" />
           <EntitySet Name="usuario" EntityType="venda_produtoModel.usuario" />
+          <EntitySet Name="venda" EntityType="venda_produtoModel.venda" />
           <AssociationSet Name="endereco_cliente_fk" Association="venda_produtoModel.endereco_cliente_fk">
             <End Role="endereco" EntitySet="endereco" />
             <End Role="cliente" EntitySet="cliente" />
@@ -268,78 +280,51 @@
             <End Role="cliente" EntitySet="cliente" />
             <End Role="venda" EntitySet="venda" />
           </AssociationSet>
+          <AssociationSet Name="endereco_fornecedor_fk" Association="venda_produtoModel.endereco_fornecedor_fk">
+            <End Role="endereco" EntitySet="endereco" />
+            <End Role="fornecedor" EntitySet="fornecedor" />
+          </AssociationSet>
           <AssociationSet Name="endereco_usuario_fk" Association="venda_produtoModel.endereco_usuario_fk">
             <End Role="endereco" EntitySet="endereco" />
             <End Role="usuario" EntitySet="usuario" />
+          </AssociationSet>
+          <AssociationSet Name="fornecedor_produtos_fornecedor_fk" Association="venda_produtoModel.fornecedor_produtos_fornecedor_fk">
+            <End Role="fornecedor" EntitySet="fornecedor" />
+            <End Role="produto_fornecedor" EntitySet="produto_fornecedor" />
+          </AssociationSet>
+          <AssociationSet Name="produto_produtos_fornecedor_fk" Association="venda_produtoModel.produto_produtos_fornecedor_fk">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="produto_fornecedor" EntitySet="produto_fornecedor" />
           </AssociationSet>
           <AssociationSet Name="FK_venda_usuario" Association="venda_produtoModel.FK_venda_usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="venda" EntitySet="venda" />
           </AssociationSet>
+          <EntitySet Name="ItensVenda" EntityType="venda_produtoModel.ItensVenda" />
+          <AssociationSet Name="FK__ItensVend__idpro__4AB81AF0" Association="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0">
+            <End Role="produto" EntitySet="produto" />
+            <End Role="ItensVenda" EntitySet="ItensVenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ItensVend__idven__49C3F6B7" Association="venda_produtoModel.FK__ItensVend__idven__49C3F6B7">
+            <End Role="venda" EntitySet="venda" />
+            <End Role="ItensVenda" EntitySet="ItensVenda" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="produto">
+        <EntityType Name="cliente">
           <Key>
-            <PropertyRef Name="idproduto" />
+            <PropertyRef Name="idcliente" />
           </Key>
-          <Property Name="idproduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="preco" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="descricao" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="estoque_qnt" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_produto" FromRole="produto" ToRole="venda" />
-          <NavigationProperty Name="produto_fornecedor" Relationship="venda_produtoModel.produto_produtos_fornecedor_fk" FromRole="produto" ToRole="produto_fornecedor" />
+          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nomeCompleto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="registro" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
+          <Property Name="dataNascimento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="idendereco" Type="Int32" Nullable="false" />
+          <Property Name="sexo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="seguimento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_cliente_fk" FromRole="cliente" ToRole="endereco" />
+          <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="cliente" ToRole="venda" />
         </EntityType>
-        <EntityType Name="produto_fornecedor">
-          <Key>
-            <PropertyRef Name="codProduto" />
-          </Key>
-          <Property Name="codProduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idfornecedor" Type="Int32" Nullable="false" />
-          <Property Name="idproduto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="produto" Relationship="venda_produtoModel.produto_produtos_fornecedor_fk" FromRole="produto_fornecedor" ToRole="produto" />
-          <NavigationProperty Name="fornecedor" Relationship="venda_produtoModel.fornecedor_produtos_fornecedor_fk" FromRole="produto_fornecedor" ToRole="fornecedor" />
-        </EntityType>
-        <EntityType Name="venda">
-          <Key>
-            <PropertyRef Name="idvenda" />
-          </Key>
-          <Property Name="idvenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idproduto" Type="Int32" Nullable="false" />
-          <Property Name="idusuario" Type="Int32" Nullable="false" />
-          <Property Name="idcliente" Type="Int32" Nullable="false" />
-          <Property Name="precoTotal" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
-          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="quantidade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="produto" Relationship="venda_produtoModel.FK_venda_produto" FromRole="venda" ToRole="produto" />
-          <NavigationProperty Name="cliente" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="venda" ToRole="cliente" />
-          <NavigationProperty Name="usuario" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="venda" ToRole="usuario" />
-        </EntityType>
-        <Association Name="FK_venda_produto">
-          <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="1" />
-          <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="produto">
-              <PropertyRef Name="idproduto" />
-            </Principal>
-            <Dependent Role="venda">
-              <PropertyRef Name="idproduto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="produto_produtos_fornecedor_fk">
-          <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="venda_produtoModel.produto_fornecedor" Role="produto_fornecedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="produto">
-              <PropertyRef Name="idproduto" />
-            </Principal>
-            <Dependent Role="produto_fornecedor">
-              <PropertyRef Name="idproduto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="endereco">
           <Key>
             <PropertyRef Name="idendereco" />
@@ -351,8 +336,8 @@
           <Property Name="numero" Type="Int32" Nullable="false" />
           <Property Name="estado" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="cidade" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="fornecedor" Relationship="venda_produtoModel.endereco_fornecedor_fk" FromRole="endereco" ToRole="fornecedor" />
           <NavigationProperty Name="cliente" Relationship="venda_produtoModel.endereco_cliente_fk" FromRole="endereco" ToRole="cliente" />
+          <NavigationProperty Name="fornecedor" Relationship="venda_produtoModel.endereco_fornecedor_fk" FromRole="endereco" ToRole="fornecedor" />
           <NavigationProperty Name="usuario" Relationship="venda_produtoModel.endereco_usuario_fk" FromRole="endereco" ToRole="usuario" />
         </EntityType>
         <EntityType Name="fornecedor">
@@ -370,48 +355,27 @@
           <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_fornecedor_fk" FromRole="fornecedor" ToRole="endereco" />
           <NavigationProperty Name="produto_fornecedor" Relationship="venda_produtoModel.fornecedor_produtos_fornecedor_fk" FromRole="fornecedor" ToRole="produto_fornecedor" />
         </EntityType>
-        <Association Name="endereco_fornecedor_fk">
-          <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="venda_produtoModel.fornecedor" Role="fornecedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="endereco">
-              <PropertyRef Name="idendereco" />
-            </Principal>
-            <Dependent Role="fornecedor">
-              <PropertyRef Name="idendereco" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fornecedor_produtos_fornecedor_fk">
-          <End Type="venda_produtoModel.fornecedor" Role="fornecedor" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="venda_produtoModel.produto_fornecedor" Role="produto_fornecedor" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="fornecedor">
-              <PropertyRef Name="idfornecedor" />
-            </Principal>
-            <Dependent Role="produto_fornecedor">
-              <PropertyRef Name="idfornecedor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="cliente">
+        <EntityType Name="produto">
           <Key>
-            <PropertyRef Name="idcliente" />
+            <PropertyRef Name="idproduto" />
           </Key>
-          <Property Name="idcliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nomeCompleto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="registro" Type="String" Nullable="false" MaxLength="18" FixedLength="false" Unicode="false" />
-          <Property Name="dataNascimento" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="idendereco" Type="Int32" Nullable="false" />
-          <Property Name="sexo" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="seguimento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_cliente_fk" FromRole="cliente" ToRole="endereco" />
-          <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="cliente" ToRole="venda" />
+          <Property Name="idproduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nome" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="preco" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="descricao" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estoque_qnt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="produto_fornecedor" Relationship="venda_produtoModel.produto_produtos_fornecedor_fk" FromRole="produto" ToRole="produto_fornecedor" />
+          <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0" FromRole="produto" ToRole="ItensVenda" />
+        </EntityType>
+        <EntityType Name="produto_fornecedor">
+          <Key>
+            <PropertyRef Name="codProduto" />
+          </Key>
+          <Property Name="codProduto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idfornecedor" Type="Int32" Nullable="false" />
+          <Property Name="idproduto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="fornecedor" Relationship="venda_produtoModel.fornecedor_produtos_fornecedor_fk" FromRole="produto_fornecedor" ToRole="fornecedor" />
+          <NavigationProperty Name="produto" Relationship="venda_produtoModel.produto_produtos_fornecedor_fk" FromRole="produto_fornecedor" ToRole="produto" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
@@ -428,6 +392,21 @@
           <Property Name="sexo" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_usuario_fk" FromRole="usuario" ToRole="endereco" />
           <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="usuario" ToRole="venda" />
+        </EntityType>
+        <EntityType Name="venda">
+          <Key>
+            <PropertyRef Name="idvenda" />
+          </Key>
+          <Property Name="idvenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idusuario" Type="Int32" Nullable="false" />
+          <Property Name="idcliente" Type="Int32" Nullable="false" />
+          <Property Name="precoTotal" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
+          <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="metodo_pagamento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cliente" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="venda" ToRole="cliente" />
+          <NavigationProperty Name="usuario" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="venda" ToRole="usuario" />
+          <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idven__49C3F6B7" FromRole="venda" ToRole="ItensVenda" />
         </EntityType>
         <Association Name="endereco_cliente_fk">
           <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1" />
@@ -453,6 +432,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="endereco_fornecedor_fk">
+          <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="venda_produtoModel.fornecedor" Role="fornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="endereco">
+              <PropertyRef Name="idendereco" />
+            </Principal>
+            <Dependent Role="fornecedor">
+              <PropertyRef Name="idendereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="endereco_usuario_fk">
           <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -464,6 +457,34 @@
             </Principal>
             <Dependent Role="usuario">
               <PropertyRef Name="idendereco" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fornecedor_produtos_fornecedor_fk">
+          <End Type="venda_produtoModel.fornecedor" Role="fornecedor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="venda_produtoModel.produto_fornecedor" Role="produto_fornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fornecedor">
+              <PropertyRef Name="idfornecedor" />
+            </Principal>
+            <Dependent Role="produto_fornecedor">
+              <PropertyRef Name="idfornecedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="produto_produtos_fornecedor_fk">
+          <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="venda_produtoModel.produto_fornecedor" Role="produto_fornecedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="idproduto" />
+            </Principal>
+            <Dependent Role="produto_fornecedor">
+              <PropertyRef Name="idproduto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -479,42 +500,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ItensVenda">
+          <Key>
+            <PropertyRef Name="iditem" />
+          </Key>
+          <Property Name="iditem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idvenda" Type="Int32" />
+          <Property Name="idproduto" Type="Int32" />
+          <Property Name="quantidade" Type="Int32" />
+          <Property Name="precoUnit" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="precoTotal" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="produto" Relationship="venda_produtoModel.FK__ItensVend__idpro__4AB81AF0" FromRole="ItensVenda" ToRole="produto" />
+          <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK__ItensVend__idven__49C3F6B7" FromRole="ItensVenda" ToRole="venda" />
+        </EntityType>
+        <Association Name="FK__ItensVend__idpro__4AB81AF0">
+          <End Type="venda_produtoModel.produto" Role="produto" Multiplicity="0..1" />
+          <End Type="venda_produtoModel.ItensVenda" Role="ItensVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produto">
+              <PropertyRef Name="idproduto" />
+            </Principal>
+            <Dependent Role="ItensVenda">
+              <PropertyRef Name="idproduto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ItensVend__idven__49C3F6B7">
+          <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="0..1" />
+          <End Type="venda_produtoModel.ItensVenda" Role="ItensVenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="venda">
+              <PropertyRef Name="idvenda" />
+            </Principal>
+            <Dependent Role="ItensVenda">
+              <PropertyRef Name="idvenda" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="venda_produtoModelStoreContainer" CdmEntityContainer="venda_produtoEntities">
-          <EntitySetMapping Name="produto">
-            <EntityTypeMapping TypeName="venda_produtoModel.produto">
-              <MappingFragment StoreEntitySet="produto">
-                <ScalarProperty Name="estoque_qnt" ColumnName="estoque_qnt" />
-                <ScalarProperty Name="descricao" ColumnName="descricao" />
-                <ScalarProperty Name="preco" ColumnName="preco" />
-                <ScalarProperty Name="nome" ColumnName="nome" />
-                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="produto_fornecedor">
-            <EntityTypeMapping TypeName="venda_produtoModel.produto_fornecedor">
-              <MappingFragment StoreEntitySet="produto_fornecedor">
-                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-                <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
-                <ScalarProperty Name="codProduto" ColumnName="codProduto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="venda">
-            <EntityTypeMapping TypeName="venda_produtoModel.venda">
-              <MappingFragment StoreEntitySet="venda">
-                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
-                <ScalarProperty Name="data" ColumnName="data" />
-                <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+          <EntitySetMapping Name="cliente">
+            <EntityTypeMapping TypeName="venda_produtoModel.cliente">
+              <MappingFragment StoreEntitySet="cliente">
+                <ScalarProperty Name="seguimento" ColumnName="seguimento" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="idendereco" ColumnName="idendereco" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="registro" ColumnName="registro" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
                 <ScalarProperty Name="idcliente" ColumnName="idcliente" />
-                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
-                <ScalarProperty Name="idvenda" ColumnName="idvenda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -545,17 +584,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="cliente">
-            <EntityTypeMapping TypeName="venda_produtoModel.cliente">
-              <MappingFragment StoreEntitySet="cliente">
-                <ScalarProperty Name="seguimento" ColumnName="seguimento" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="idendereco" ColumnName="idendereco" />
-                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
-                <ScalarProperty Name="registro" ColumnName="registro" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
-                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <EntitySetMapping Name="produto">
+            <EntityTypeMapping TypeName="venda_produtoModel.produto">
+              <MappingFragment StoreEntitySet="produto">
+                <ScalarProperty Name="estoque_qnt" ColumnName="estoque_qnt" />
+                <ScalarProperty Name="descricao" ColumnName="descricao" />
+                <ScalarProperty Name="preco" ColumnName="preco" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produto_fornecedor">
+            <EntityTypeMapping TypeName="venda_produtoModel.produto_fornecedor">
+              <MappingFragment StoreEntitySet="produto_fornecedor">
+                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+                <ScalarProperty Name="idfornecedor" ColumnName="idfornecedor" />
+                <ScalarProperty Name="codProduto" ColumnName="codProduto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -571,6 +616,31 @@
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="nomeCompleto" ColumnName="nomeCompleto" />
                 <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="venda">
+            <EntityTypeMapping TypeName="venda_produtoModel.venda">
+              <MappingFragment StoreEntitySet="venda">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="metodo_pagamento" ColumnName="metodo_pagamento" />
+                <ScalarProperty Name="data" ColumnName="data" />
+                <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+                <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+                <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+                <ScalarProperty Name="idvenda" ColumnName="idvenda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItensVenda">
+            <EntityTypeMapping TypeName="venda_produtoModel.ItensVenda">
+              <MappingFragment StoreEntitySet="ItensVenda">
+                <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+                <ScalarProperty Name="precoUnit" ColumnName="precoUnit" />
+                <ScalarProperty Name="quantidade" ColumnName="quantidade" />
+                <ScalarProperty Name="idproduto" ColumnName="idproduto" />
+                <ScalarProperty Name="idvenda" ColumnName="idvenda" />
+                <ScalarProperty Name="iditem" ColumnName="iditem" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
