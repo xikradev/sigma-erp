@@ -57,6 +57,7 @@ namespace ErpSigmaVenda.vendas
 
         private void loading()
         {
+            MetPagCB.SelectedIndex = 0;
             var oUsuario = pLoginUsr.oUsuario;
             VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
             dgItem.DataSource = items;
@@ -85,46 +86,17 @@ namespace ErpSigmaVenda.vendas
             }
         }
 
-        private void QuantTb_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dgItem.Rows.Count > 0 && dgItem.SelectedRows.Count > 0)
-                {
-                    if (int.TryParse(QuantTb.Text, out int num))
-                    {
-                        this.items[itemIndex].quantidade = num;
-                        this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
-                        dgItem.Refresh();
-                    }
-                    else if (String.IsNullOrEmpty(QuantTb.Text))
-                    {
-                        this.items[itemIndex].quantidade = 0;
-                        this.items[itemIndex].precoTotal = 0;
-                        dgItem.Refresh();
-                    }
+        
 
-                    PrecoTotalTb.Text = "0";
-
-                    foreach (var item in this.items)
-                    {
-                        PrecoTotalTb.Text = (decimal.Parse(PrecoTotalTb.Text) + item.precoTotal).ToString();
-                    }
-                }
-            }catch(Exception ex)
-            {
-
-            }
-
-        }
-
-        private Boolean update(int qtn)
+        private Boolean update()
         {
             this.oVenda.idcliente = this.oCliente.idcliente;
-            //this.oVenda.idproduto = this.oProduto.idproduto;
+         
             this.oVenda.precoTotal = decimal.Parse(PrecoTotalTb.Text);
-            //this.oVenda.quantidade = qtn;
+           
             this.oVenda.data = DateTime.Now;
+
+
             return true;
         }
 
@@ -133,20 +105,17 @@ namespace ErpSigmaVenda.vendas
             
             if (String.IsNullOrEmpty(ClienteTb.Text))
             {
-                MessageBox.Show("Deve selecionar um Cliente para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Selecione um Cliente para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!int.TryParse(QuantTb.Text, out int qtn)) {
-                MessageBox.Show("Deve o campo Quantidade só deve conter números para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }if(dgItem.Rows.Count == 0)
+            if(dgItem.Rows.Count == 0)
             {
-                MessageBox.Show("Deve o campo Quantidade só deve conter números para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Você precisa Adicionar ao menos um produto para registrar a venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
 
-            return update(qtn);
+            return update();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -197,13 +166,9 @@ namespace ErpSigmaVenda.vendas
             {
                 if (dgItem.Rows.Count > 0)
                 {
-                    if (dgItem.SelectedRows.Count == 0)
-                    {
-                        QuantTb.Text = "";
-                    }
-                    this.itemIndex = dgItem.SelectedRows[0].Index;
-                    QuantTb.Text = items[itemIndex].quantidade.ToString();
                     
+                    this.itemIndex = dgItem.SelectedRows[0].Index;
+
                 }
                 else
                 {
@@ -228,6 +193,43 @@ namespace ErpSigmaVenda.vendas
         private void QuantTb_Leave(object sender, EventArgs e)
         {
             
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FrmNavVendas frm = new FrmNavVendas();
+            frm.ShowDialog();
+        }
+
+        private void dgItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                string quantity = dgItem.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                if (int.TryParse(quantity, out int num))
+                {
+                    this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
+                    dgItem.Refresh();
+
+
+                }
+                PrecoTotalTb.Text = "0";
+
+                foreach (var item in this.items)
+                {
+                    PrecoTotalTb.Text = (decimal.Parse(PrecoTotalTb.Text) + item.precoTotal).ToString();
+                }
+                QuantTb.Text = "0";
+                foreach(var item in this.items){
+                    QuantTb.Text = (decimal.Parse(QuantTb.Text) + item.quantidade).ToString();
+                }
+            }
         }
     }
 }

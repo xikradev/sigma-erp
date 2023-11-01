@@ -72,8 +72,6 @@ namespace ErpSigmaVenda.navegacao
 
         private void btnVenda_Click(object sender, EventArgs e)
         {
-            //FrmNavVendas vendaMainScreen = new FrmNavVendas();
-            //vendaMainScreen.ShowDialog();
             FrmCadVendas frm = new FrmCadVendas();
             frm.ShowDialog();
         }

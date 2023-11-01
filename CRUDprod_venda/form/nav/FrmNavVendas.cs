@@ -34,7 +34,6 @@ namespace ErpSigmaVenda.vendas
 
                 db = new venda_produtoEntities();
                 db.venda.Add(vendasForm.oVenda);
-                db.produto.SqlQuery("");
                 db.SaveChanges();
                 loading();
             }
@@ -51,13 +50,13 @@ namespace ErpSigmaVenda.vendas
             dg.DataSource = pVenda.GetVenda();
             if(db.venda.ToList().Count() == 0)
             {
-                UpdateButton.Enabled = false;
-                DeleteButton.Enabled = false;
+                //UpdateButton.Enabled = false;
+                //DeleteButton.Enabled = false;
             }
             else
             {
-                UpdateButton.Enabled = true;
-                DeleteButton.Enabled = true;
+                //UpdateButton.Enabled = true;
+                //DeleteButton.Enabled = true;
             }
         }
 

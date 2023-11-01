@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNavVendas));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dg = new System.Windows.Forms.DataGridView();
             this.idvenda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vendedor = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,15 +39,14 @@
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.InsertButton = new System.Windows.Forms.ToolStripButton();
-            this.UpdateButton = new System.Windows.Forms.ToolStripButton();
-            this.DeleteButton = new System.Windows.Forms.ToolStripButton();
             this.vendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVendaBindingSource)).BeginInit();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vendaBindingSource)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dg
@@ -67,13 +65,12 @@
             this.quantidadeDataGridViewTextBoxColumn,
             this.dataDataGridViewTextBoxColumn});
             this.dg.DataSource = this.axVendaBindingSource;
-            this.dg.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dg.Location = new System.Drawing.Point(0, 52);
+            this.dg.Location = new System.Drawing.Point(1, 82);
             this.dg.Name = "dg";
             this.dg.ReadOnly = true;
             this.dg.RowHeadersVisible = false;
             this.dg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg.Size = new System.Drawing.Size(891, 398);
+            this.dg.Size = new System.Drawing.Size(891, 564);
             this.dg.TabIndex = 5;
             this.dg.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
             // 
@@ -109,10 +106,10 @@
             // precoTotalDataGridViewTextBoxColumn
             // 
             this.precoTotalDataGridViewTextBoxColumn.DataPropertyName = "precoTotal";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.precoTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.precoTotalDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.precoTotalDataGridViewTextBoxColumn.HeaderText = "Total";
             this.precoTotalDataGridViewTextBoxColumn.Name = "precoTotalDataGridViewTextBoxColumn";
             this.precoTotalDataGridViewTextBoxColumn.ReadOnly = true;
@@ -135,59 +132,44 @@
             // 
             this.axVendaBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxVenda);
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.InsertButton,
-            this.UpdateButton,
-            this.DeleteButton});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(891, 52);
-            this.toolStrip1.TabIndex = 6;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // InsertButton
-            // 
-            this.InsertButton.Image = ((System.Drawing.Image)(resources.GetObject("InsertButton.Image")));
-            this.InsertButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.InsertButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.InsertButton.Name = "InsertButton";
-            this.InsertButton.Size = new System.Drawing.Size(89, 49);
-            this.InsertButton.Text = "Incluir";
-            this.InsertButton.Click += new System.EventHandler(this.InsertButton_Click);
-            // 
-            // UpdateButton
-            // 
-            this.UpdateButton.Image = ((System.Drawing.Image)(resources.GetObject("UpdateButton.Image")));
-            this.UpdateButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.UpdateButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(102, 49);
-            this.UpdateButton.Text = "Atualizar";
-            this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
-            // 
-            // DeleteButton
-            // 
-            this.DeleteButton.Image = ((System.Drawing.Image)(resources.GetObject("DeleteButton.Image")));
-            this.DeleteButton.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.DeleteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(103, 49);
-            this.DeleteButton.Text = "Remover";
-            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
             // vendaBindingSource
             // 
             this.vendaBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.venda);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(891, 76);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(11, 35);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(246, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Pesquisar";
             // 
             // FrmNavVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 450);
+            this.ClientSize = new System.Drawing.Size(891, 517);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.dg);
-            this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmNavVendas";
@@ -196,21 +178,16 @@
             this.Load += new System.EventHandler(this.VendaMainScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axVendaBindingSource)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.vendaBindingSource)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dg;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton InsertButton;
-        private System.Windows.Forms.ToolStripButton UpdateButton;
-        private System.Windows.Forms.ToolStripButton DeleteButton;
         private System.Windows.Forms.BindingSource vendaBindingSource;
         private System.Windows.Forms.BindingSource axVendaBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idvenda;
@@ -220,5 +197,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataDataGridViewTextBoxColumn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
