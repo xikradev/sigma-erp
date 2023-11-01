@@ -168,10 +168,15 @@ namespace ErpSigmaVenda.vendas
             {
                 AxItemProd newItem = pItemProd.GetItem(frm.oProduto.idproduto);
 
-
-                this.items.Add(newItem);
-
-                dgItem.Refresh();
+                if(!items.Any(o => o.idproduto == newItem.idproduto))
+                {
+                    this.items.Add(newItem);
+                    dgItem.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Esse item já foi adicionado na Venda", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
