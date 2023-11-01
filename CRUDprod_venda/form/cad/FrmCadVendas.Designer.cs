@@ -40,24 +40,24 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.ClienteTb = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.VendedorTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.AddProdBtn = new System.Windows.Forms.Button();
             this.RemoveProdBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgItem = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axItemProdBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgItem)).BeginInit();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
@@ -158,13 +158,13 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // textBox1
+            // VendedorTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(21, 46);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(233, 20);
-            this.textBox1.TabIndex = 17;
+            this.VendedorTextBox.Location = new System.Drawing.Point(21, 46);
+            this.VendedorTextBox.Name = "VendedorTextBox";
+            this.VendedorTextBox.ReadOnly = true;
+            this.VendedorTextBox.Size = new System.Drawing.Size(233, 20);
+            this.VendedorTextBox.TabIndex = 17;
             // 
             // label1
             // 
@@ -202,7 +202,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.RemoveProdBtn);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.VendedorTextBox);
             this.groupBox1.Controls.Add(this.AddProdBtn);
             this.groupBox1.Controls.Add(this.PrecoTotalTb);
             this.groupBox1.Controls.Add(this.label3);
@@ -237,16 +237,6 @@
             this.dgItem.TabIndex = 22;
             this.dgItem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItem_CellContentClick);
             this.dgItem.SelectionChanged += new System.EventHandler(this.dgItem_SelectionChanged_1);
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dgItem);
-            this.groupBox2.Location = new System.Drawing.Point(0, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(627, 344);
-            this.groupBox2.TabIndex = 23;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Produtos";
             // 
             // idprodutoDataGridViewTextBoxColumn
             // 
@@ -287,6 +277,16 @@
             // 
             this.axItemProdBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxItemProd);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgItem);
+            this.groupBox2.Location = new System.Drawing.Point(0, 12);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(627, 344);
+            this.groupBox2.TabIndex = 23;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Produtos";
+            // 
             // FrmCadVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,8 +305,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgItem)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,7 +323,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.TextBox ClienteTb;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox VendedorTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button AddProdBtn;
         private System.Windows.Forms.Button RemoveProdBtn;

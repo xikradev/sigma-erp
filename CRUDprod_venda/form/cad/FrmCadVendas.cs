@@ -57,6 +57,8 @@ namespace ErpSigmaVenda.vendas
 
         private void loading()
         {
+            var oUsuario = pLoginUsr.oUsuario;
+            VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
             dgItem.DataSource = items;
         }
 
@@ -132,11 +134,6 @@ namespace ErpSigmaVenda.vendas
             if (String.IsNullOrEmpty(ClienteTb.Text))
             {
                 MessageBox.Show("Deve selecionar um Cliente para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (String.IsNullOrEmpty(QuantTb.Text))
-            {
-                MessageBox.Show("Deve ser preenchido o campo Quantidade para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (!int.TryParse(QuantTb.Text, out int qtn)) {

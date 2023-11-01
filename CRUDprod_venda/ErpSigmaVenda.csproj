@@ -341,6 +341,7 @@
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxUsuario.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.auxiliar.AxVenda.datasource" />
     <None Include="Properties\DataSources\CRUDprod_venda.query.Qfornecedor.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxCliente.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxFornecedor.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxItemProd.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxProduto.datasource" />

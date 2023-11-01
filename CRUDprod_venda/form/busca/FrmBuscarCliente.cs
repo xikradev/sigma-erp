@@ -25,14 +25,15 @@ namespace ErpSigmaVenda.vendas
 
         private void PesquisarCliFrm_Load(object sender, EventArgs e)
         {
-            dg.DataSource = pCliente.GetCliente();
+            dgPF.DataSource = pCliente.GetCliente().Where(o => o.sexo != null).ToList();
+            dgPJ.DataSource = pCliente.GetCliente().Where(o => o.seguimento != null).ToList();
             FilterCb.SelectedIndex = 0;
             rowsCheck();
         }
 
         private void rowsCheck()
         {
-            if (dg.RowCount <= 0)
+            if (dgPF.RowCount <= 0)
             {
                 this.OkBtn.Enabled = false;
             }
@@ -53,17 +54,23 @@ namespace ErpSigmaVenda.vendas
             if(FilterCb.SelectedItem == "Id")
             {
                 filter = "idcliente";
-            }else if(FilterCb.SelectedItem == "CPF")
+            }else if(FilterCb.SelectedItem == "CPF/CNPJ")
             {
-                filter = "cpf";
+                filter = "registro";
             }else if(FilterCb.SelectedItem == "Nome")
             {
-                filter = "nome";
+                filter = "nomeCompleto";
             }
 
             try
             {
-                dg.DataSource = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.bairro as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco where " + filter + " like '" + SearchTextBox.Text + "%';").ToList();
+                dgPF.DataSource = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                    "where " + filter + " like '" + SearchTextBox.Text + "%' " +
+                    "and sexo IS NOT NULL;").ToList();
+
+                dgPJ.DataSource = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                    "where " + filter + " like '" + SearchTextBox.Text + "%' " +
+                    "and seguimento IS NOT NULL;").ToList();
 
             }
             catch (Exception ex)
@@ -78,10 +85,14 @@ namespace ErpSigmaVenda.vendas
         {
             try
             {
-                AxCliente axCliente = (AxCliente)dg.SelectedRows[0].DataBoundItem;
-                this.oCliente = dbCliente.cliente.Find(axCliente.idcliente);
+                if (dgPF.Rows.Count > 0)
+                {
+                    AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
+                    this.oCliente = dbCliente.cliente.Find(axCliente.idcliente);
+                }
 
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
 
             }
@@ -95,6 +106,22 @@ namespace ErpSigmaVenda.vendas
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void dgPJ_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgPJ.Rows.Count > 0)
+                {
+                    AxCliente axCliente = (AxCliente)dgPJ.SelectedRows[0].DataBoundItem;
+                    this.oCliente = dbCliente.cliente.Find(axCliente.idcliente);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
