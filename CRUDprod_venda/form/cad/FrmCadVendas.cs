@@ -139,6 +139,10 @@ namespace ErpSigmaVenda.vendas
             if (!int.TryParse(QuantTb.Text, out int qtn)) {
                 MessageBox.Show("Deve o campo Quantidade só deve conter números para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            }if(dgItem.Rows.Count == 0)
+            {
+                MessageBox.Show("Deve o campo Quantidade só deve conter números para registrar uma Venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
 
 
