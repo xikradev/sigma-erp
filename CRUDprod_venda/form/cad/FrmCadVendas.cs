@@ -18,9 +18,9 @@ namespace ErpSigmaVenda.vendas
     {
         public cliente oCliente { get; set; }
         public usuario oUsuario = pLoginUsr.oUsuario;
-        public AxItemProd itemProd { get; set; }
+        private int itemIndex;
         public venda oVenda { get; set; }
-        public List<AxItemProd> items = new List<AxItemProd>();
+        private BindingList<AxItemProd> items = new BindingList<AxItemProd>();
         private venda_produtoEntities db = new venda_produtoEntities();
 
 
@@ -57,19 +57,7 @@ namespace ErpSigmaVenda.vendas
 
         private void loading()
         {
-            //dgItem.DataSource = new List<AxItemProd>();
-            
-
-            dgItem.DataSource = this.items;
-
-            for (int i = 0; i < dgItem.Rows.Count; i++)
-            {
-                var currentRow = dgItem.Rows[i];
-
-                currentRow.Cells[idprodutoDataGridViewTextBoxColumn.Index].Value = ((AxItemProd)dgItem.SelectedRows[i].DataBoundItem).idproduto;
-                //currentRow.Cells[idprodutoDataGridViewTextBoxColumn.Index].Value = ((AxItemProd)dgItem.SelectedRows[i].DataBoundItem).idproduto;
-            }
-
+            dgItem.DataSource = items;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -97,7 +85,34 @@ namespace ErpSigmaVenda.vendas
 
         private void QuantTb_TextChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                if (dgItem.Rows.Count > 0 && dgItem.SelectedRows.Count > 0)
+                {
+                    if (int.TryParse(QuantTb.Text, out int num))
+                    {
+                        this.items[itemIndex].quantidade = num;
+                        this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
+                        dgItem.Refresh();
+                    }
+                    else if (String.IsNullOrEmpty(QuantTb.Text))
+                    {
+                        this.items[itemIndex].quantidade = 0;
+                        this.items[itemIndex].precoTotal = 0;
+                        dgItem.Refresh();
+                    }
+
+                    PrecoTotalTb.Text = "0";
+
+                    foreach (var item in this.items)
+                    {
+                        PrecoTotalTb.Text = (decimal.Parse(PrecoTotalTb.Text) + item.precoTotal).ToString();
+                    }
+                }
+            }catch(Exception ex)
+            {
+
+            }
 
         }
 
@@ -151,25 +166,49 @@ namespace ErpSigmaVenda.vendas
             FrmBuscarProduto frm = new FrmBuscarProduto();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                this.items.Add(pItemProd.GetItem(frm.oProduto.idproduto));
-                loading();
+                AxItemProd newItem = pItemProd.GetItem(frm.oProduto.idproduto);
+
+
+                this.items.Add(newItem);
+
+                dgItem.Refresh();
             }
         }
 
         private void RemoveProdBtn_Click(object sender, EventArgs e)
         {
-            this.items.Remove(this.itemProd);
-            loading();
+            this.items.RemoveAt(this.itemIndex);
+            dgItem.Refresh();
         }
 
         
 
         private void dgItem_SelectionChanged_1(object sender, EventArgs e)
         {
-            if (dgItem.Rows.Count > 0) {
-                this.itemProd = (AxItemProd)dgItem.SelectedRows[0].DataBoundItem;
+            
+
+            try
+            {
+                if (dgItem.Rows.Count > 0)
+                {
+                    if (dgItem.SelectedRows.Count == 0)
+                    {
+                        QuantTb.Text = "";
+                    }
+                    this.itemIndex = dgItem.SelectedRows[0].Index;
+                    QuantTb.Text = items[itemIndex].quantidade.ToString();
+                    
+                }
+                else
+                {
+                    QuantTb.Text = "";
+                    PrecoTotalTb.Text = "";
+                }
             }
-           
+            catch(Exception ex)
+            {
+
+            }
         }
 
         private void dgItem_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -178,6 +217,11 @@ namespace ErpSigmaVenda.vendas
 
 
 
+        }
+
+        private void QuantTb_Leave(object sender, EventArgs e)
+        {
+            
         }
     }
 }

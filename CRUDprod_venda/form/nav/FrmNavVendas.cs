@@ -26,7 +26,7 @@ namespace ErpSigmaVenda.vendas
         private void InsertButton_Click(object sender, EventArgs e)
         {
             FrmCadVendas vendasForm = new FrmCadVendas();
-            vendasForm.itemProd = new AxItemProd();
+            
             vendasForm.oCliente = new cliente();
             vendasForm.oVenda = new venda();
             if(vendasForm.ShowDialog() == DialogResult.OK)

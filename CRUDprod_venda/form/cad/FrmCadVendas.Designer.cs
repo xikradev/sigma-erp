@@ -35,8 +35,6 @@
             this.QuantTb = new System.Windows.Forms.TextBox();
             this.PrecoTotalTb = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.PrecoUniTb = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -87,10 +85,11 @@
             this.QuantTb.Size = new System.Drawing.Size(202, 20);
             this.QuantTb.TabIndex = 6;
             this.QuantTb.TextChanged += new System.EventHandler(this.QuantTb_TextChanged);
+            this.QuantTb.Leave += new System.EventHandler(this.QuantTb_Leave);
             // 
             // PrecoTotalTb
             // 
-            this.PrecoTotalTb.Location = new System.Drawing.Point(24, 299);
+            this.PrecoTotalTb.Location = new System.Drawing.Point(24, 255);
             this.PrecoTotalTb.Name = "PrecoTotalTb";
             this.PrecoTotalTb.ReadOnly = true;
             this.PrecoTotalTb.Size = new System.Drawing.Size(199, 20);
@@ -99,30 +98,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 283);
+            this.label5.Location = new System.Drawing.Point(21, 239);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "Preço Total";
-            // 
-            // PrecoUniTb
-            // 
-            this.PrecoUniTb.Location = new System.Drawing.Point(24, 252);
-            this.PrecoUniTb.Name = "PrecoUniTb";
-            this.PrecoUniTb.ReadOnly = true;
-            this.PrecoUniTb.Size = new System.Drawing.Size(199, 20);
-            this.PrecoUniTb.TabIndex = 10;
-            this.PrecoUniTb.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(21, 236);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(74, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Preço Unitário";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.label5.Text = "Preço Total da Venda";
             // 
             // toolStrip1
             // 
@@ -219,12 +199,10 @@
             // 
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.QuantTb);
-            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.RemoveProdBtn);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.PrecoUniTb);
             this.groupBox1.Controls.Add(this.AddProdBtn);
             this.groupBox1.Controls.Add(this.PrecoTotalTb);
             this.groupBox1.Controls.Add(this.label3);
@@ -252,6 +230,7 @@
             this.dgItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgItem.Location = new System.Drawing.Point(3, 16);
             this.dgItem.Name = "dgItem";
+            this.dgItem.ReadOnly = true;
             this.dgItem.RowHeadersVisible = false;
             this.dgItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgItem.Size = new System.Drawing.Size(621, 325);
@@ -267,37 +246,42 @@
             this.groupBox2.Size = new System.Drawing.Size(627, 344);
             this.groupBox2.TabIndex = 23;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBox2.Text = "Produtos";
             // 
             // idprodutoDataGridViewTextBoxColumn
             // 
             this.idprodutoDataGridViewTextBoxColumn.DataPropertyName = "idproduto";
             this.idprodutoDataGridViewTextBoxColumn.HeaderText = "Código";
             this.idprodutoDataGridViewTextBoxColumn.Name = "idprodutoDataGridViewTextBoxColumn";
+            this.idprodutoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nomeDataGridViewTextBoxColumn
             // 
             this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
             this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
             this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // quantidadeDataGridViewTextBoxColumn
             // 
             this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "quantidade";
             this.quantidadeDataGridViewTextBoxColumn.HeaderText = "Quantidade";
             this.quantidadeDataGridViewTextBoxColumn.Name = "quantidadeDataGridViewTextBoxColumn";
+            this.quantidadeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // precoUnitDataGridViewTextBoxColumn
             // 
             this.precoUnitDataGridViewTextBoxColumn.DataPropertyName = "precoUnit";
             this.precoUnitDataGridViewTextBoxColumn.HeaderText = "Preço Unitário";
             this.precoUnitDataGridViewTextBoxColumn.Name = "precoUnitDataGridViewTextBoxColumn";
+            this.precoUnitDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // precoTotalDataGridViewTextBoxColumn
             // 
             this.precoTotalDataGridViewTextBoxColumn.DataPropertyName = "precoTotal";
             this.precoTotalDataGridViewTextBoxColumn.HeaderText = "Preço Total";
             this.precoTotalDataGridViewTextBoxColumn.Name = "precoTotalDataGridViewTextBoxColumn";
+            this.precoTotalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // axItemProdBindingSource
             // 
@@ -334,8 +318,6 @@
         private System.Windows.Forms.TextBox QuantTb;
         private System.Windows.Forms.TextBox PrecoTotalTb;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox PrecoUniTb;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
