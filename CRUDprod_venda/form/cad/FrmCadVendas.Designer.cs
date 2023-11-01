@@ -45,7 +45,7 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.CodVendaTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.PrecoTotalTb = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,6 +56,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.MetPagCB = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
             this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -206,11 +209,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.MetPagCB);
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.CodVendaTextBox);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.RemoveProdBtn);
@@ -244,18 +248,18 @@
             this.label2.TabIndex = 21;
             this.label2.Text = "Código da Venda";
             // 
-            // textBox1
+            // CodVendaTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 32);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 20;
+            this.CodVendaTextBox.Location = new System.Drawing.Point(13, 32);
+            this.CodVendaTextBox.Name = "CodVendaTextBox";
+            this.CodVendaTextBox.ReadOnly = true;
+            this.CodVendaTextBox.Size = new System.Drawing.Size(121, 20);
+            this.CodVendaTextBox.TabIndex = 20;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(866, 16);
+            this.label5.Location = new System.Drawing.Point(660, 16);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(111, 13);
             this.label5.TabIndex = 27;
@@ -263,7 +267,7 @@
             // 
             // PrecoTotalTb
             // 
-            this.PrecoTotalTb.Location = new System.Drawing.Point(869, 35);
+            this.PrecoTotalTb.Location = new System.Drawing.Point(663, 35);
             this.PrecoTotalTb.Name = "PrecoTotalTb";
             this.PrecoTotalTb.ReadOnly = true;
             this.PrecoTotalTb.Size = new System.Drawing.Size(176, 20);
@@ -272,7 +276,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(671, 16);
+            this.label4.Location = new System.Drawing.Point(465, 16);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(122, 13);
             this.label4.TabIndex = 25;
@@ -280,7 +284,7 @@
             // 
             // QuantTb
             // 
-            this.QuantTb.Location = new System.Drawing.Point(674, 35);
+            this.QuantTb.Location = new System.Drawing.Point(468, 35);
             this.QuantTb.Name = "QuantTb";
             this.QuantTb.ReadOnly = true;
             this.QuantTb.Size = new System.Drawing.Size(176, 20);
@@ -288,6 +292,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.DescontoTextBox);
             this.groupBox1.Controls.Add(this.label4);
@@ -346,6 +352,32 @@
             this.label7.Size = new System.Drawing.Size(115, 13);
             this.label7.TabIndex = 24;
             this.label7.Text = "Método de Pagamento";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(863, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Status da Venda";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(866, 35);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(176, 20);
+            this.textBox2.TabIndex = 32;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(919, 16);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(126, 42);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Encerrar Venda";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // idprodutoDataGridViewTextBoxColumn
             // 
@@ -429,7 +461,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CodVendaTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox PrecoTotalTb;
@@ -446,5 +478,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoUnitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

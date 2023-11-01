@@ -345,9 +345,11 @@
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxFornecedor.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxItemProd.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxProduto.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.auxiliar.AxVenda.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.conexão.fornecedor.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.conexão.ItensVenda.datasource" />
     <None Include="Properties\DataSources\ErpSigmaVenda.conexão.produto.datasource" />
+    <None Include="Properties\DataSources\ErpSigmaVenda.conexão.venda.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

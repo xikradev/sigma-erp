@@ -59,7 +59,7 @@ namespace ErpSigmaVenda.vendas
         {
             MetPagCB.SelectedIndex = 0;
             var oUsuario = pLoginUsr.oUsuario;
-            VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
+            //VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
             dgItem.DataSource = items;
         }
 
@@ -90,13 +90,28 @@ namespace ErpSigmaVenda.vendas
 
         private Boolean update()
         {
+            this.oVenda = new venda();
             this.oVenda.idcliente = this.oCliente.idcliente;
-         
+            this.oVenda.idusuario =  pLoginUsr.oUsuario.idusuario;
             this.oVenda.precoTotal = decimal.Parse(PrecoTotalTb.Text);
-           
             this.oVenda.data = DateTime.Now;
+            this.oVenda.metodo_pagamento = MetPagCB.SelectedItem.ToString();
+            db = new venda_produtoEntities();
+            db.venda.Add(this.oVenda);
+            db.SaveChanges();
+            foreach (var item in this.items)
+            {
+                ItensVenda oItemProd = new ItensVenda();
+                oItemProd.idvenda = this.oVenda.idvenda;
+                oItemProd.idproduto = item.idproduto;
+                oItemProd.quantidade = item.quantidade;
+                oItemProd.precoUnit = item.precoUnit;
+                oItemProd.precoTotal = item.precoTotal;
 
-
+                db = new venda_produtoEntities();
+                db.ItensVenda.Add(oItemProd);
+                db.SaveChanges();
+            }
             return true;
         }
 
@@ -122,7 +137,7 @@ namespace ErpSigmaVenda.vendas
         {
             if (verify())
             {
-                this.DialogResult = DialogResult.OK;
+                MessageBox.Show("Venda Registrada com Sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -203,7 +218,23 @@ namespace ErpSigmaVenda.vendas
         private void button3_Click(object sender, EventArgs e)
         {
             FrmNavVendas frm = new FrmNavVendas();
-            frm.ShowDialog();
+            if(frm.ShowDialog() == DialogResult.OK)
+            {
+                this.oVenda = db.venda.Find(frm.oVenda.idvenda);
+                CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
+                MetPagCB.SelectedItem = this.oVenda.metodo_pagamento;
+                this.oCliente = db.cliente.Find(this.oVenda.idcliente);
+                this.items = searchItems(this.oVenda.idvenda);
+                dgItem.DataSource = this.items;
+                ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
+                loadFields();
+            }  
+        }
+
+        private BindingList<AxItemProd> searchItems(int id)
+        {
+            return new BindingList<AxItemProd>(db.Database.SqlQuery<AxItemProd>($"select ItensVenda.idproduto, ItensVenda.quantidade, produto.nome, produto.preco as precoUnit, ItensVenda.precoTotal from ItensVenda "+
+            $"inner join produto on ItensVenda.idproduto = produto.idproduto where ItensVenda.idvenda = {id}; ").ToList());
         }
 
         private void dgItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -219,16 +250,23 @@ namespace ErpSigmaVenda.vendas
 
 
                 }
-                PrecoTotalTb.Text = "0";
 
-                foreach (var item in this.items)
-                {
-                    PrecoTotalTb.Text = (decimal.Parse(PrecoTotalTb.Text) + item.precoTotal).ToString();
-                }
-                QuantTb.Text = "0";
-                foreach(var item in this.items){
-                    QuantTb.Text = (decimal.Parse(QuantTb.Text) + item.quantidade).ToString();
-                }
+                loadFields();
+            }
+        }
+
+        private void loadFields()
+        {
+            PrecoTotalTb.Text = "0";
+
+            foreach (var item in this.items)
+            {
+                PrecoTotalTb.Text = (decimal.Parse(PrecoTotalTb.Text) + item.precoTotal).ToString();
+            }
+            QuantTb.Text = "0";
+            foreach (var item in this.items)
+            {
+                QuantTb.Text = (decimal.Parse(QuantTb.Text) + item.quantidade).ToString();
             }
         }
     }

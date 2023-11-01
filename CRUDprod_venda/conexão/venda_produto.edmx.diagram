@@ -11,17 +11,17 @@
         <EntityTypeShape EntityType="venda_produtoModel.produto" Width="1.5" PointX="3" PointY="13.25" />
         <EntityTypeShape EntityType="venda_produtoModel.produto_fornecedor" Width="1.5" PointX="5.25" PointY="9.375" />
         <EntityTypeShape EntityType="venda_produtoModel.usuario" Width="1.5" PointX="3" PointY="1.375" />
-        <EntityTypeShape EntityType="venda_produtoModel.venda" Width="1.5" PointX="5.25" PointY="3.375" />
         <AssociationConnector Association="venda_produtoModel.endereco_cliente_fk" />
-        <AssociationConnector Association="venda_produtoModel.FK_venda_cliente" />
         <AssociationConnector Association="venda_produtoModel.endereco_fornecedor_fk" />
         <AssociationConnector Association="venda_produtoModel.endereco_usuario_fk" />
         <AssociationConnector Association="venda_produtoModel.fornecedor_produtos_fornecedor_fk" />
         <AssociationConnector Association="venda_produtoModel.produto_produtos_fornecedor_fk" />
-        <AssociationConnector Association="venda_produtoModel.FK_venda_usuario" />
         <EntityTypeShape EntityType="venda_produtoModel.ItensVenda" Width="1.5" PointX="7.5" PointY="8.25" />
         <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29" />
+        <EntityTypeShape EntityType="venda_produtoModel.venda" Width="1.5" PointX="5.25" PointY="3.375" />
+        <AssociationConnector Association="venda_produtoModel.FK_venda_cliente" />
         <AssociationConnector Association="venda_produtoModel.FK__ItensVend__idven__4CA06362" />
+        <AssociationConnector Association="venda_produtoModel.FK_venda_usuario" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

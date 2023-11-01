@@ -31,7 +31,7 @@ namespace ErpSigmaVenda.conexão
         public virtual DbSet<produto> produto { get; set; }
         public virtual DbSet<produto_fornecedor> produto_fornecedor { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
-        public virtual DbSet<venda> venda { get; set; }
         public virtual DbSet<ItensVenda> ItensVenda { get; set; }
+        public virtual DbSet<venda> venda { get; set; }
     }
 }

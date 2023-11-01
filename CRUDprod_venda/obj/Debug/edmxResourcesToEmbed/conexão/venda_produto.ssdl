@@ -91,7 +91,6 @@
     <Property Name="precoTotal" Type="decimal" Precision="30" Scale="2" Nullable="false" />
     <Property Name="data" Type="datetime" Nullable="false" />
     <Property Name="metodo_pagamento" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <Association Name="endereco_cliente_fk">
     <End Role="endereco" Type="Self.endereco" Multiplicity="1" />

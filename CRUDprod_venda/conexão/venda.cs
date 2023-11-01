@@ -26,11 +26,10 @@ namespace ErpSigmaVenda.conexão
         public decimal precoTotal { get; set; }
         public System.DateTime data { get; set; }
         public string metodo_pagamento { get; set; }
-        public string status { get; set; }
     
         public virtual cliente cliente { get; set; }
-        public virtual usuario usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ItensVenda> ItensVenda { get; set; }
+        public virtual usuario usuario { get; set; }
     }
 }

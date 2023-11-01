@@ -7,14 +7,9 @@
     <EntitySet Name="produto" EntityType="venda_produtoModel.produto" />
     <EntitySet Name="produto_fornecedor" EntityType="venda_produtoModel.produto_fornecedor" />
     <EntitySet Name="usuario" EntityType="venda_produtoModel.usuario" />
-    <EntitySet Name="venda" EntityType="venda_produtoModel.venda" />
     <AssociationSet Name="endereco_cliente_fk" Association="venda_produtoModel.endereco_cliente_fk">
       <End Role="endereco" EntitySet="endereco" />
       <End Role="cliente" EntitySet="cliente" />
-    </AssociationSet>
-    <AssociationSet Name="FK_venda_cliente" Association="venda_produtoModel.FK_venda_cliente">
-      <End Role="cliente" EntitySet="cliente" />
-      <End Role="venda" EntitySet="venda" />
     </AssociationSet>
     <AssociationSet Name="endereco_fornecedor_fk" Association="venda_produtoModel.endereco_fornecedor_fk">
       <End Role="endereco" EntitySet="endereco" />
@@ -32,18 +27,23 @@
       <End Role="produto" EntitySet="produto" />
       <End Role="produto_fornecedor" EntitySet="produto_fornecedor" />
     </AssociationSet>
-    <AssociationSet Name="FK_venda_usuario" Association="venda_produtoModel.FK_venda_usuario">
-      <End Role="usuario" EntitySet="usuario" />
-      <End Role="venda" EntitySet="venda" />
-    </AssociationSet>
     <EntitySet Name="ItensVenda" EntityType="venda_produtoModel.ItensVenda" />
     <AssociationSet Name="FK__ItensVend__idpro__4BAC3F29" Association="venda_produtoModel.FK__ItensVend__idpro__4BAC3F29">
       <End Role="produto" EntitySet="produto" />
       <End Role="ItensVenda" EntitySet="ItensVenda" />
     </AssociationSet>
+    <EntitySet Name="venda" EntityType="venda_produtoModel.venda" />
+    <AssociationSet Name="FK_venda_cliente" Association="venda_produtoModel.FK_venda_cliente">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="venda" EntitySet="venda" />
+    </AssociationSet>
     <AssociationSet Name="FK__ItensVend__idven__4CA06362" Association="venda_produtoModel.FK__ItensVend__idven__4CA06362">
       <End Role="venda" EntitySet="venda" />
       <End Role="ItensVenda" EntitySet="ItensVenda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_venda_usuario" Association="venda_produtoModel.FK_venda_usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="venda" EntitySet="venda" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="cliente">
@@ -129,21 +129,6 @@
     <NavigationProperty Name="endereco" Relationship="venda_produtoModel.endereco_usuario_fk" FromRole="usuario" ToRole="endereco" />
     <NavigationProperty Name="venda" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="usuario" ToRole="venda" />
   </EntityType>
-  <EntityType Name="venda">
-    <Key>
-      <PropertyRef Name="idvenda" />
-    </Key>
-    <Property Name="idvenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="idusuario" Type="Int32" Nullable="false" />
-    <Property Name="idcliente" Type="Int32" Nullable="false" />
-    <Property Name="precoTotal" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
-    <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="metodo_pagamento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="cliente" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="venda" ToRole="cliente" />
-    <NavigationProperty Name="usuario" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="venda" ToRole="usuario" />
-    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idven__4CA06362" FromRole="venda" ToRole="ItensVenda" />
-  </EntityType>
   <Association Name="endereco_cliente_fk">
     <End Type="venda_produtoModel.endereco" Role="endereco" Multiplicity="1" />
     <End Type="venda_produtoModel.cliente" Role="cliente" Multiplicity="*" />
@@ -153,18 +138,6 @@
       </Principal>
       <Dependent Role="cliente">
         <PropertyRef Name="idendereco" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_venda_cliente">
-    <End Type="venda_produtoModel.cliente" Role="cliente" Multiplicity="1" />
-    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="cliente">
-        <PropertyRef Name="idcliente" />
-      </Principal>
-      <Dependent Role="venda">
-        <PropertyRef Name="idcliente" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -224,18 +197,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_venda_usuario">
-    <End Type="venda_produtoModel.usuario" Role="usuario" Multiplicity="1" />
-    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="usuario">
-        <PropertyRef Name="idusuario" />
-      </Principal>
-      <Dependent Role="venda">
-        <PropertyRef Name="idusuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="ItensVenda">
     <Key>
       <PropertyRef Name="iditem" />
@@ -261,6 +222,32 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="venda">
+    <Key>
+      <PropertyRef Name="idvenda" />
+    </Key>
+    <Property Name="idvenda" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idusuario" Type="Int32" Nullable="false" />
+    <Property Name="idcliente" Type="Int32" Nullable="false" />
+    <Property Name="precoTotal" Type="Decimal" Nullable="false" Precision="30" Scale="2" />
+    <Property Name="data" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="metodo_pagamento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cliente" Relationship="venda_produtoModel.FK_venda_cliente" FromRole="venda" ToRole="cliente" />
+    <NavigationProperty Name="ItensVenda" Relationship="venda_produtoModel.FK__ItensVend__idven__4CA06362" FromRole="venda" ToRole="ItensVenda" />
+    <NavigationProperty Name="usuario" Relationship="venda_produtoModel.FK_venda_usuario" FromRole="venda" ToRole="usuario" />
+  </EntityType>
+  <Association Name="FK_venda_cliente">
+    <End Type="venda_produtoModel.cliente" Role="cliente" Multiplicity="1" />
+    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="idcliente" />
+      </Principal>
+      <Dependent Role="venda">
+        <PropertyRef Name="idcliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__ItensVend__idven__4CA06362">
     <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="1" />
     <End Type="venda_produtoModel.ItensVenda" Role="ItensVenda" Multiplicity="*" />
@@ -270,6 +257,18 @@
       </Principal>
       <Dependent Role="ItensVenda">
         <PropertyRef Name="idvenda" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_venda_usuario">
+    <End Type="venda_produtoModel.usuario" Role="usuario" Multiplicity="1" />
+    <End Type="venda_produtoModel.venda" Role="venda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idusuario" />
+      </Principal>
+      <Dependent Role="venda">
+        <PropertyRef Name="idusuario" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

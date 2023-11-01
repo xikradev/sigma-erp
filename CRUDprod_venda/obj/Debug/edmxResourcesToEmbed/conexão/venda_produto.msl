@@ -77,19 +77,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="venda">
-      <EntityTypeMapping TypeName="venda_produtoModel.venda">
-        <MappingFragment StoreEntitySet="venda">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="metodo_pagamento" ColumnName="metodo_pagamento" />
-          <ScalarProperty Name="data" ColumnName="data" />
-          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
-          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
-          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
-          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="ItensVenda">
       <EntityTypeMapping TypeName="venda_produtoModel.ItensVenda">
         <MappingFragment StoreEntitySet="ItensVenda">
@@ -99,6 +86,18 @@
           <ScalarProperty Name="idproduto" ColumnName="idproduto" />
           <ScalarProperty Name="idvenda" ColumnName="idvenda" />
           <ScalarProperty Name="iditem" ColumnName="iditem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="venda">
+      <EntityTypeMapping TypeName="venda_produtoModel.venda">
+        <MappingFragment StoreEntitySet="venda">
+          <ScalarProperty Name="metodo_pagamento" ColumnName="metodo_pagamento" />
+          <ScalarProperty Name="data" ColumnName="data" />
+          <ScalarProperty Name="precoTotal" ColumnName="precoTotal" />
+          <ScalarProperty Name="idcliente" ColumnName="idcliente" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+          <ScalarProperty Name="idvenda" ColumnName="idvenda" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

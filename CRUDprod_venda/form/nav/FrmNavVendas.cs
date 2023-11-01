@@ -16,29 +16,14 @@ namespace ErpSigmaVenda.vendas
     public partial class FrmNavVendas : Form
     {
         private venda_produtoEntities db = new venda_produtoEntities();
-        venda oVenda = new venda();
+        public venda oVenda = new venda();
 
         public FrmNavVendas()
         {
             InitializeComponent();
         }
 
-        private void InsertButton_Click(object sender, EventArgs e)
-        {
-            FrmCadVendas vendasForm = new FrmCadVendas();
-            
-            vendasForm.oCliente = new cliente();
-            vendasForm.oVenda = new venda();
-            if(vendasForm.ShowDialog() == DialogResult.OK)
-            {
-
-                db = new venda_produtoEntities();
-                db.venda.Add(vendasForm.oVenda);
-                db.SaveChanges();
-                loading();
-            }
-
-        }
+       
 
         private void VendaMainScreen_Load(object sender, EventArgs e)
         {
@@ -47,30 +32,10 @@ namespace ErpSigmaVenda.vendas
 
         private void loading()
         {
-            dg.DataSource = pVenda.GetVenda();
-            if(db.venda.ToList().Count() == 0)
-            {
-                //UpdateButton.Enabled = false;
-                //DeleteButton.Enabled = false;
-            }
-            else
-            {
-                //UpdateButton.Enabled = true;
-                //DeleteButton.Enabled = true;
-            }
+            dg.DataSource = pVenda.GetVenda().ToList();
         }
 
-        private void UpdateButton_Click(object sender, EventArgs e)
-        {
-            FrmCadVendas vendasForm = new FrmCadVendas();
-            //vendasForm.oProduto = this.db.produto.Find(this.oVenda.idproduto);
-            vendasForm.oCliente = this.db.cliente.Find(this.oVenda.idcliente);
-            vendasForm.oVenda = this.db.venda.Find(this.oVenda.idvenda);
-            if (vendasForm.ShowDialog() == DialogResult.OK) {
-                db.SaveChanges();
-                loading();
-            }
-        }
+        
 
         private void dg_SelectionChanged(object sender, EventArgs e)
         {
@@ -85,14 +50,26 @@ namespace ErpSigmaVenda.vendas
             }
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        
+
+        private void dg_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(MessageBox.Show("Você tem certeza que deseja apagar esse dado?", "",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+
+        }
+
+        private void dg_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
             {
-                db.venda.Remove(db.venda.Find(this.oVenda.idvenda));
-                db.SaveChanges();
-                loading();
+                object oIndex = dg.Rows[e.RowIndex].Cells[0].Value;
+                if (oIndex != null)
+                {
+                    string idvenda = oIndex.ToString();
+
+                    this.oVenda = db.venda.Find(int.Parse(idvenda));
+                    this.DialogResult = DialogResult.OK;
+                }
+
             }
         }
     }
