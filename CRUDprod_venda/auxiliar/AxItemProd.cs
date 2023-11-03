@@ -8,6 +8,7 @@ namespace ErpSigmaVenda.auxiliar
 {
     public class AxItemProd
     {
+        public int iditem { get; set; }
         public int idproduto { get; set; }
         public string nome { get; set; }
         public int quantidade { get; set; }

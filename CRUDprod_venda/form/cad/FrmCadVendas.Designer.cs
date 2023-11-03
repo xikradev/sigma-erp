@@ -33,7 +33,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.AtualizarVendaBtn = new System.Windows.Forms.ToolStripButton();
+            this.FinalizarVendaBtn = new System.Windows.Forms.ToolStripButton();
             this.ClienteTb = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.VendedorTextBox = new System.Windows.Forms.TextBox();
@@ -43,22 +44,22 @@
             this.dgItem = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.EncerrarBtn = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.MetPagCB = new System.Windows.Forms.ComboBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CodVendaTextBox = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.PrecoTotalTb = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.QuantTb = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.DescontoTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.MetPagCB = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.StatusTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.DescontoTextBox = new System.Windows.Forms.TextBox();
             this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,7 +88,8 @@
             this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.AtualizarVendaBtn,
+            this.FinalizarVendaBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 570);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -106,16 +108,29 @@
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // toolStripButton2
+            // AtualizarVendaBtn
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(121, 36);
-            this.toolStripButton2.Text = "Finalizar Venda";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.AtualizarVendaBtn.Enabled = false;
+            this.AtualizarVendaBtn.Image = ((System.Drawing.Image)(resources.GetObject("AtualizarVendaBtn.Image")));
+            this.AtualizarVendaBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.AtualizarVendaBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.AtualizarVendaBtn.Name = "AtualizarVendaBtn";
+            this.AtualizarVendaBtn.Size = new System.Drawing.Size(124, 36);
+            this.AtualizarVendaBtn.Text = "Atualizar Venda";
+            this.AtualizarVendaBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.AtualizarVendaBtn.Click += new System.EventHandler(this.AtualizarVendaBtn_Click);
+            // 
+            // FinalizarVendaBtn
+            // 
+            this.FinalizarVendaBtn.Enabled = false;
+            this.FinalizarVendaBtn.Image = ((System.Drawing.Image)(resources.GetObject("FinalizarVendaBtn.Image")));
+            this.FinalizarVendaBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.FinalizarVendaBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FinalizarVendaBtn.Name = "FinalizarVendaBtn";
+            this.FinalizarVendaBtn.Size = new System.Drawing.Size(121, 36);
+            this.FinalizarVendaBtn.Text = "Finalizar Venda";
+            this.FinalizarVendaBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.FinalizarVendaBtn.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // ClienteTb
             // 
@@ -192,8 +207,9 @@
             this.dgItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgItem.Size = new System.Drawing.Size(1071, 360);
             this.dgItem.TabIndex = 22;
-            this.dgItem.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItem_CellContentClick);
             this.dgItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItem_CellValueChanged);
+            this.dgItem.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgItem_RowsAdded);
+            this.dgItem.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgItem_RowsRemoved);
             this.dgItem.SelectionChanged += new System.EventHandler(this.dgItem_SelectionChanged_1);
             // 
             // groupBox2
@@ -209,7 +225,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.EncerrarBtn);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.MetPagCB);
             this.groupBox3.Controls.Add(this.button3);
@@ -230,14 +246,45 @@
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
             // 
-            // button1
+            // EncerrarBtn
             // 
-            this.button1.Location = new System.Drawing.Point(919, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 42);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Cancelar Venda";
-            this.button1.UseVisualStyleBackColor = true;
+            this.EncerrarBtn.Location = new System.Drawing.Point(919, 16);
+            this.EncerrarBtn.Name = "EncerrarBtn";
+            this.EncerrarBtn.Size = new System.Drawing.Size(126, 42);
+            this.EncerrarBtn.TabIndex = 25;
+            this.EncerrarBtn.Text = "Encerrar Venda";
+            this.EncerrarBtn.UseVisualStyleBackColor = true;
+            this.EncerrarBtn.Click += new System.EventHandler(this.EncerrarBtn_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(488, 64);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(115, 13);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Método de Pagamento";
+            // 
+            // MetPagCB
+            // 
+            this.MetPagCB.FormattingEnabled = true;
+            this.MetPagCB.Items.AddRange(new object[] {
+            "Dinheiro",
+            "Pix"});
+            this.MetPagCB.Location = new System.Drawing.Point(488, 83);
+            this.MetPagCB.Name = "MetPagCB";
+            this.MetPagCB.Size = new System.Drawing.Size(197, 21);
+            this.MetPagCB.TabIndex = 23;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(272, 68);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(118, 37);
+            this.button3.TabIndex = 22;
+            this.button3.Text = "Filtrar Venda";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label2
             // 
@@ -255,6 +302,15 @@
             this.CodVendaTextBox.ReadOnly = true;
             this.CodVendaTextBox.Size = new System.Drawing.Size(121, 20);
             this.CodVendaTextBox.TabIndex = 20;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(919, 68);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 42);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "Cancelar Venda";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -293,7 +349,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.textBox2);
+            this.groupBox1.Controls.Add(this.StatusTextBox);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.DescontoTextBox);
             this.groupBox1.Controls.Add(this.label4);
@@ -307,12 +363,22 @@
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             // 
-            // DescontoTextBox
+            // label8
             // 
-            this.DescontoTextBox.Location = new System.Drawing.Point(15, 35);
-            this.DescontoTextBox.Name = "DescontoTextBox";
-            this.DescontoTextBox.Size = new System.Drawing.Size(169, 20);
-            this.DescontoTextBox.TabIndex = 29;
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(863, 16);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 13);
+            this.label8.TabIndex = 31;
+            this.label8.Text = "Status da Venda";
+            // 
+            // StatusTextBox
+            // 
+            this.StatusTextBox.Location = new System.Drawing.Point(866, 35);
+            this.StatusTextBox.Name = "StatusTextBox";
+            this.StatusTextBox.ReadOnly = true;
+            this.StatusTextBox.Size = new System.Drawing.Size(176, 20);
+            this.StatusTextBox.TabIndex = 32;
             // 
             // label6
             // 
@@ -323,61 +389,13 @@
             this.label6.TabIndex = 30;
             this.label6.Text = "Desconto";
             // 
-            // button3
+            // DescontoTextBox
             // 
-            this.button3.Location = new System.Drawing.Point(272, 68);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(118, 37);
-            this.button3.TabIndex = 22;
-            this.button3.Text = "Filtrar Venda";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // MetPagCB
-            // 
-            this.MetPagCB.FormattingEnabled = true;
-            this.MetPagCB.Items.AddRange(new object[] {
-            "Dinheiro",
-            "Pix"});
-            this.MetPagCB.Location = new System.Drawing.Point(488, 83);
-            this.MetPagCB.Name = "MetPagCB";
-            this.MetPagCB.Size = new System.Drawing.Size(197, 21);
-            this.MetPagCB.TabIndex = 23;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(488, 64);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(115, 13);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "Método de Pagamento";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(863, 16);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(86, 13);
-            this.label8.TabIndex = 31;
-            this.label8.Text = "Status da Venda";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(866, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(176, 20);
-            this.textBox2.TabIndex = 32;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(919, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(126, 42);
-            this.button4.TabIndex = 25;
-            this.button4.Text = "Encerrar Venda";
-            this.button4.UseVisualStyleBackColor = true;
+            this.DescontoTextBox.Location = new System.Drawing.Point(15, 35);
+            this.DescontoTextBox.Name = "DescontoTextBox";
+            this.DescontoTextBox.Size = new System.Drawing.Size(169, 20);
+            this.DescontoTextBox.TabIndex = 29;
+            this.DescontoTextBox.TextChanged += new System.EventHandler(this.DescontoTextBox_TextChanged);
             // 
             // idprodutoDataGridViewTextBoxColumn
             // 
@@ -449,7 +467,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton FinalizarVendaBtn;
         private System.Windows.Forms.TextBox ClienteTb;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox VendedorTextBox;
@@ -478,8 +496,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoUnitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button EncerrarBtn;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox StatusTextBox;
+        private System.Windows.Forms.ToolStripButton AtualizarVendaBtn;
     }
 }

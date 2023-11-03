@@ -137,7 +137,26 @@
         AABJRU5ErkJggg==
 </value>
   </data>
-  <data name="toolStripButton2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="AtualizarVendaBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALzSURBVFhH1VdLixNBEC4QQREMimvMdE/ERRCF9bV48S2o
+        oCIePCjiwV8geFEURfwL4kERfLB6MLj4+AWKQaIkme7JDxDEgwh6UNcX+KiaKSfdmceamdkFP/gIk6qu
+        +qiu7qmB/wvj7bkg/R0g1Flw9GWQ+h5I1cDnGyD0OXD83SCfz2fvErGstxqT3AT54hMm/Z1N9CFf4a/l
+        1QVQ9xeBo+6CbP5MTpbF5i/8nYBaewlH62O0XYHlr+bxUwqk3g6y+9oOmoOi8xZq3haOGiaXupUoLIJQ
+        h2Gk+T0WjOh4T3HfL2KJ90NNb8T/xsD19uLvaazWk8RqLW59Q9vBKDn9lypAeDsx8A8rQMj7yDH2Sgf1
+        S+hrr694X6HW9aPnRAEr/Coa30VOAYPGO8Ye/w5XHcF1U3Ysg4kCgmNlOFX0F6zILrYOD6e3GeN8tmL+
+        ZUxA3R/nzjUc1VG25kOw5562YzJjAujI2E6TbMkHs+GSaAmoqgVBk0QOWAlqpryYLjnREiD0PstIx6kI
+        VrYW4paOZhIac9gbIdUFS4DQZ9gyS5D6tiWALpayIbubYOnLDxGlusYWhPAeWQJEbx1bykN4axo5MGcE
+        qR9bRkdtYEt5oJhmDqEesAVB5bDKg+UqG4ONTjPErELq87YAHGD6wCORdFRM0tEqAqGfWQKsRqdLwTTG
+        2Qoul7ygt6gdD19S5uiWLaBYcsJgk0t1iy2MVAH4IimaXHjH7Zg4sDjeerYy0iswZY1Tw8L199jvmIAT
+        bDWQvQW4Xzley64+Ea41YgXzIeaKwRRAYxPNcObCkJNQ767hFemgC0eoh7H1FNNVW9lrAH0BYcO5+lCy
+        CNw/Ok70YUIXCyWjQUZ4B/D5Evo042uQQXKMmYpQgN3trt4GVf0mFmxYUtlp0M0EfSQkdTtdPkJdSRy1
+        pyUONY66Ewy6hUEXCX0LjnTexxMNsvMxEO3oVby6RFClaEoW6iSe5et4OhqYlCbpq9gDp4IjOyMfpzMG
+        gD9uaugxJy+vEgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="FinalizarVendaBtn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALQSURBVFhH1Vc9iBNBFF78KURRzuxOcqJEBM+YmclFYmF3
@@ -170,9 +189,6 @@
         uegAAAAASUVORK5CYII=
 </value>
   </data>
-  <metadata name="axItemProdBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>122, 17</value>
-  </metadata>
   <metadata name="axItemProdBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>122, 17</value>
   </metadata>
