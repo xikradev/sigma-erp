@@ -131,7 +131,13 @@ namespace ErpSigmaVenda.vendas
                 db = new venda_produtoEntities();
                 db.ItensVenda.Add(oItemProd);
                 db.SaveChanges();
+                db = new venda_produtoEntities();
+                produto oProduto = db.produto.Find(oItemProd.idproduto);
+                oProduto.estoque_qnt -= oItemProd.quantidade;
+                db.SaveChanges();
+                
             }
+
             return true;
         }
 
@@ -149,7 +155,14 @@ namespace ErpSigmaVenda.vendas
                 return false;
             }
 
-
+            foreach(var item in this.items)
+            {
+                if ((item.estoque_qnt - item.quantidade) <= 10)
+                {
+                    MessageBox.Show($"não pode vender {item.quantidade} quantidade do produto {item.nome}, tem que deixar pelo menos 10 quantidades no estoque, reponha o estoque ou diminua a quantidade na venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
             return registrandoVenda();
         }
 
@@ -262,7 +275,7 @@ namespace ErpSigmaVenda.vendas
 
         private BindingList<AxItemProd> searchItems(int id)
         {
-            return new BindingList<AxItemProd>(db.Database.SqlQuery<AxItemProd>($"select ItensVenda.iditem,ItensVenda.idproduto, ItensVenda.quantidade, produto.nome, produto.preco as precoUnit, ItensVenda.precoTotal from ItensVenda "+
+            return new BindingList<AxItemProd>(db.Database.SqlQuery<AxItemProd>($"select ItensVenda.iditem,ItensVenda.idproduto, ItensVenda.quantidade, produto.nome, produto.preco as precoUnit, produto.estoque_qnt, ItensVenda.precoTotal from ItensVenda " +
             $"inner join produto on ItensVenda.idproduto = produto.idproduto where ItensVenda.idvenda = {id}; ").ToList());
         }
 
@@ -387,39 +400,41 @@ namespace ErpSigmaVenda.vendas
         private void AtualizarVendaBtn_Click(object sender, EventArgs e)
         {
             db = new venda_produtoEntities();
-            updatingVenda();
-            db.SaveChanges();
-            List<ItensVenda> itensSaveds = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
-            //remover items
-            foreach(var item in itensSaveds)
+            if(verify() == true)
             {
-                db = new venda_produtoEntities();
-                var itemFounded = this.items.FirstOrDefault(o => o.iditem == item.iditem);
-                if(itemFounded == null)
+                db.SaveChanges();
+                List<ItensVenda> itensSaveds = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
+                //remover items
+                foreach (var item in itensSaveds)
                 {
-                    db.ItensVenda.Remove(db.ItensVenda.Find(item.iditem));
-                    db.SaveChanges();
+                    db = new venda_produtoEntities();
+                    var itemFounded = this.items.FirstOrDefault(o => o.iditem == item.iditem);
+                    if (itemFounded == null)
+                    {
+                        db.ItensVenda.Remove(db.ItensVenda.Find(item.iditem));
+                        db.SaveChanges();
+                    }
                 }
+                //atualizar e adiconar itens
+                foreach (var item in this.items)
+                {
+                    db = new venda_produtoEntities();
+                    var itemFounded = itensSaveds.FirstOrDefault(o => o.iditem == item.iditem);
+                    if (itemFounded != null)
+                    {
+                        updatingItems(itemFounded, item);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        ItensVenda newItem = new ItensVenda();
+                        updatingItems(newItem, item);
+                        db.ItensVenda.Add(newItem);
+                        db.SaveChanges();
+                    }
+                }
+                MessageBox.Show("Venda Atualizada com sucesso!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            //atualizar e adiconar itens
-            foreach(var item in this.items)
-            {
-                db = new venda_produtoEntities();
-                var itemFounded = itensSaveds.FirstOrDefault(o => o.iditem == item.iditem);
-                if(itemFounded != null)
-                {
-                    updatingItems(itemFounded, item);
-                    db.SaveChanges();
-                }
-                else
-                {
-                    ItensVenda newItem = new ItensVenda();
-                    updatingItems(newItem, item);
-                    db.ItensVenda.Add(newItem);
-                    db.SaveChanges();
-                }
-            }
-            MessageBox.Show("Venda Atualizada com sucesso!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -455,17 +470,23 @@ namespace ErpSigmaVenda.vendas
         {
             if (e.ColumnIndex == 2)
             {
-                if (!IsNumeric(e.FormattedValue.ToString()))
+                if (!IsNumeric(e.FormattedValue.ToString(), out double result))
                 {
                     MessageBox.Show("Por Favor digite apenas Números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     e.Cancel = true;
                 }
+                int stockQnt = int.Parse(dgItem.Rows[e.RowIndex].Cells[5].Value.ToString());
+                if ((stockQnt - result) <= 10)
+                {
+                    MessageBox.Show("não pode vender esta quantidade desse produto, tem que deixar pelo menos 10 quantidades no estoque, reponha o estoque ou diminua a quantidade na venda", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);                    
+                    e.Cancel = true;
+                }
+
             }
         }
 
-        private bool IsNumeric(string text)
+        private bool IsNumeric(string text, out double result)
         {
-            double result;
             return double.TryParse(text, out result);
         }
     }

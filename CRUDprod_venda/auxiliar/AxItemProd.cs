@@ -14,6 +14,6 @@ namespace ErpSigmaVenda.auxiliar
         public int quantidade { get; set; }
         public decimal precoUnit { get; set; }
         public decimal precoTotal { get; set; }
-
+        public int estoque_qnt { get; set; }
     }
 }

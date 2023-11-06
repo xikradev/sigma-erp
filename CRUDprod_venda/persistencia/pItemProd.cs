@@ -14,7 +14,7 @@ namespace ErpSigmaVenda.persistencia
         {
             venda_produtoEntities db = new venda_produtoEntities();
             StringBuilder query = new StringBuilder();
-            query.AppendLine($"select idproduto, nome, preco as precoUnit from produto where idproduto = {id};");
+            query.AppendLine($"select idproduto, nome, preco as precoUnit, estoque_qnt from produto where idproduto = {id};");
             return db.Database.SqlQuery<AxItemProd>(query.ToString()).FirstOrDefault();
         }
     }

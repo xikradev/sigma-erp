@@ -42,6 +42,7 @@
             this.AddProdBtn = new System.Windows.Forms.Button();
             this.RemoveProdBtn = new System.Windows.Forms.Button();
             this.dgItem = new System.Windows.Forms.DataGridView();
+            this.axItemProdBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.EncerrarBtn = new System.Windows.Forms.Button();
@@ -65,13 +66,13 @@
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.axItemProdBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.estoque_qnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgItem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -199,7 +200,8 @@
             this.nomeDataGridViewTextBoxColumn,
             this.quantidadeDataGridViewTextBoxColumn,
             this.precoUnitDataGridViewTextBoxColumn,
-            this.precoTotalDataGridViewTextBoxColumn});
+            this.precoTotalDataGridViewTextBoxColumn,
+            this.estoque_qnt});
             this.dgItem.DataSource = this.axItemProdBindingSource;
             this.dgItem.Location = new System.Drawing.Point(0, 129);
             this.dgItem.Name = "dgItem";
@@ -213,6 +215,10 @@
             this.dgItem.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgItem_RowsAdded);
             this.dgItem.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgItem_RowsRemoved);
             this.dgItem.SelectionChanged += new System.EventHandler(this.dgItem_SelectionChanged_1);
+            // 
+            // axItemProdBindingSource
+            // 
+            this.axItemProdBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxItemProd);
             // 
             // groupBox2
             // 
@@ -434,9 +440,11 @@
             this.precoTotalDataGridViewTextBoxColumn.Name = "precoTotalDataGridViewTextBoxColumn";
             this.precoTotalDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // axItemProdBindingSource
+            // estoque_qnt
             // 
-            this.axItemProdBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxItemProd);
+            this.estoque_qnt.DataPropertyName = "estoque_qnt";
+            this.estoque_qnt.HeaderText = "Quantidade em Estoque";
+            this.estoque_qnt.Name = "estoque_qnt";
             // 
             // FrmCadVendas
             // 
@@ -455,12 +463,12 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgItem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -494,14 +502,15 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox MetPagCB;
+        private System.Windows.Forms.Button EncerrarBtn;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox StatusTextBox;
+        private System.Windows.Forms.ToolStripButton AtualizarVendaBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idprodutoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoUnitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotalDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button EncerrarBtn;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox StatusTextBox;
-        private System.Windows.Forms.ToolStripButton AtualizarVendaBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estoque_qnt;
     }
 }
