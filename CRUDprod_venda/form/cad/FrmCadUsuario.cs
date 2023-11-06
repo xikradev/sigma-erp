@@ -50,6 +50,7 @@ namespace ErpSigmaVenda.login
                 TipoUsrComboBox.SelectedItem = "Vendedor";
                 
             }
+
             if (this.oUsuario.sexo == "m")
             {
                 SexoComboBox.SelectedItem = "Masculino";

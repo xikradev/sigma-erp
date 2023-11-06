@@ -64,7 +64,7 @@ namespace ErpSigmaVenda.clientes
             this.RegisterTextBox.Text = this.oCliente.registro;
             this.SeguimTextBox.Text = this.oCliente.seguimento;
             this.backupRegistro = this.RegisterTextBox.Text;
-            if (this.oCliente.sexo == "F")
+            if (this.oCliente.sexo == "M")
             {
                 this.SexoComboBox.SelectedItem = "Masculino";
             }
