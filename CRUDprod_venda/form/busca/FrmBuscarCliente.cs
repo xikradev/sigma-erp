@@ -25,8 +25,7 @@ namespace ErpSigmaVenda.vendas
 
         private void PesquisarCliFrm_Load(object sender, EventArgs e)
         {
-            dgPF.DataSource = pCliente.GetCliente().Where(o => o.sexo != null).ToList();
-            dgPJ.DataSource = pCliente.GetCliente().Where(o => o.seguimento != null).ToList();
+            tabCheck();
             FilterCb.SelectedIndex = 0;
             rowsCheck();
         }
@@ -64,14 +63,38 @@ namespace ErpSigmaVenda.vendas
 
             try
             {
-                dgPF.DataSource = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                
+                if(PersonsTypeTabControl.SelectedIndex == 0)
+                {
+                    List<AxCliente> pfList = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
                     "where " + filter + " like '" + SearchTextBox.Text + "%' " +
                     "and sexo IS NOT NULL;").ToList();
+                    if (pfList.Count() > 0)
+                    {
+                        dgPF.DataSource = pfList;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Nenhum Cliente Pessoa Física encontrado com esse filtro, tente novamente!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+               
 
-                dgPJ.DataSource = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                if(PersonsTypeTabControl.SelectedIndex == 1)
+                {
+                    List<AxCliente> pJList = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
                     "where " + filter + " like '" + SearchTextBox.Text + "%' " +
                     "and seguimento IS NOT NULL;").ToList();
+                    if(pJList.Count() > 0)
+                    {
+                        dgPJ.DataSource = pJList;
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Nenhum Cliente Pessoa Jurídica encontrado com esse filtro, tente novamente!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
 
+                }
             }
             catch (Exception ex)
             {
@@ -121,6 +144,28 @@ namespace ErpSigmaVenda.vendas
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void FilterClearBtn_Click(object sender, EventArgs e)
+        {
+            tabCheck();
+        }
+
+        private void PersonsTypeTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tabCheck();
+        }
+
+        private void tabCheck()
+        {
+            if (PersonsTypeTabControl.SelectedIndex == 0)
+            {
+                dgPF.DataSource = pCliente.GetCliente().Where(o => o.sexo != null).ToList();
+            }
+            else if (PersonsTypeTabControl.SelectedIndex == 1)
+            {
+                dgPJ.DataSource = pCliente.GetCliente().Where(o => o.seguimento != null).ToList();
             }
         }
     }

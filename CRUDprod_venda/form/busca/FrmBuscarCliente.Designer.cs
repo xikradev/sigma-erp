@@ -38,11 +38,12 @@
             this.SearchBtn = new System.Windows.Forms.ToolStripButton();
             this.FilterCb = new System.Windows.Forms.ToolStripComboBox();
             this.dgPF = new System.Windows.Forms.DataGridView();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.PersonsTypeTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgPJ = new System.Windows.Forms.DataGridView();
             this.seguimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FilterClearBtn = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeCompletoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +60,7 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.PersonsTypeTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).BeginInit();
@@ -75,7 +76,8 @@
             this.OkBtn,
             this.SearchTextBox,
             this.SearchBtn,
-            this.FilterCb});
+            this.FilterCb,
+            this.FilterClearBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 411);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -119,7 +121,6 @@
             // SearchTextBox
             // 
             this.SearchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchTextBox.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.SearchTextBox.Name = "SearchTextBox";
             this.SearchTextBox.Size = new System.Drawing.Size(200, 39);
             // 
@@ -168,42 +169,44 @@
             this.dgPF.ReadOnly = true;
             this.dgPF.RowHeadersVisible = false;
             this.dgPF.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPF.Size = new System.Drawing.Size(786, 379);
+            this.dgPF.Size = new System.Drawing.Size(786, 367);
             this.dgPF.TabIndex = 2;
             this.dgPF.SelectionChanged += new System.EventHandler(this.dg_SelectionChanged);
             // 
-            // tabControl1
+            // PersonsTypeTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 411);
-            this.tabControl1.TabIndex = 4;
+            this.PersonsTypeTabControl.Controls.Add(this.tabPage1);
+            this.PersonsTypeTabControl.Controls.Add(this.tabPage2);
+            this.PersonsTypeTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersonsTypeTabControl.ItemSize = new System.Drawing.Size(80, 30);
+            this.PersonsTypeTabControl.Location = new System.Drawing.Point(0, 0);
+            this.PersonsTypeTabControl.Name = "PersonsTypeTabControl";
+            this.PersonsTypeTabControl.SelectedIndex = 0;
+            this.PersonsTypeTabControl.Size = new System.Drawing.Size(800, 411);
+            this.PersonsTypeTabControl.TabIndex = 4;
+            this.PersonsTypeTabControl.SelectedIndexChanged += new System.EventHandler(this.PersonsTypeTabControl_SelectedIndexChanged);
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Transparent;
             this.tabPage1.Controls.Add(this.dgPF);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 385);
+            this.tabPage1.Size = new System.Drawing.Size(792, 373);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Pessoa Física";
-            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.Transparent;
             this.tabPage2.Controls.Add(this.dgPJ);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 385);
+            this.tabPage2.Size = new System.Drawing.Size(792, 373);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pessoa Jurídica";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // dgPJ
             // 
@@ -227,7 +230,7 @@
             this.dgPJ.ReadOnly = true;
             this.dgPJ.RowHeadersVisible = false;
             this.dgPJ.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPJ.Size = new System.Drawing.Size(786, 379);
+            this.dgPJ.Size = new System.Drawing.Size(786, 367);
             this.dgPJ.TabIndex = 3;
             this.dgPJ.SelectionChanged += new System.EventHandler(this.dgPJ_SelectionChanged);
             // 
@@ -237,6 +240,17 @@
             this.seguimento.HeaderText = "Seguimento";
             this.seguimento.Name = "seguimento";
             this.seguimento.ReadOnly = true;
+            // 
+            // FilterClearBtn
+            // 
+            this.FilterClearBtn.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.FilterClearBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.FilterClearBtn.Image = ((System.Drawing.Image)(resources.GetObject("FilterClearBtn.Image")));
+            this.FilterClearBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FilterClearBtn.Name = "FilterClearBtn";
+            this.FilterClearBtn.Size = new System.Drawing.Size(78, 36);
+            this.FilterClearBtn.Text = "Limpar Filtro";
+            this.FilterClearBtn.Click += new System.EventHandler(this.FilterClearBtn_Click);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -339,7 +353,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.PersonsTypeTabControl);
             this.Controls.Add(this.toolStrip1);
             this.Name = "FrmBuscarCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -348,7 +362,7 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.PersonsTypeTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).EndInit();
@@ -384,7 +398,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl PersonsTypeTabControl;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgPJ;
@@ -395,5 +409,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn seguimento;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.ToolStripButton FilterClearBtn;
     }
 }

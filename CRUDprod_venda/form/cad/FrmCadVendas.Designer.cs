@@ -50,7 +50,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.CodVendaTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.CancelarVendaBtn = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.PrecoTotalTb = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -207,6 +207,8 @@
             this.dgItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgItem.Size = new System.Drawing.Size(1071, 360);
             this.dgItem.TabIndex = 22;
+            this.dgItem.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItem_CellEndEdit);
+            this.dgItem.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgItem_CellValidating);
             this.dgItem.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgItem_CellValueChanged);
             this.dgItem.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgItem_RowsAdded);
             this.dgItem.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgItem_RowsRemoved);
@@ -231,7 +233,7 @@
             this.groupBox3.Controls.Add(this.button3);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.CodVendaTextBox);
-            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.Controls.Add(this.CancelarVendaBtn);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.RemoveProdBtn);
             this.groupBox3.Controls.Add(this.VendedorTextBox);
@@ -303,14 +305,15 @@
             this.CodVendaTextBox.Size = new System.Drawing.Size(121, 20);
             this.CodVendaTextBox.TabIndex = 20;
             // 
-            // button1
+            // CancelarVendaBtn
             // 
-            this.button1.Location = new System.Drawing.Point(919, 68);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 42);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "Cancelar Venda";
-            this.button1.UseVisualStyleBackColor = true;
+            this.CancelarVendaBtn.Location = new System.Drawing.Point(919, 68);
+            this.CancelarVendaBtn.Name = "CancelarVendaBtn";
+            this.CancelarVendaBtn.Size = new System.Drawing.Size(126, 42);
+            this.CancelarVendaBtn.TabIndex = 19;
+            this.CancelarVendaBtn.Text = "Cancelar Venda";
+            this.CancelarVendaBtn.UseVisualStyleBackColor = true;
+            this.CancelarVendaBtn.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label5
             // 
@@ -480,7 +483,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox CodVendaTextBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CancelarVendaBtn;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox PrecoTotalTb;
         private System.Windows.Forms.Label label4;

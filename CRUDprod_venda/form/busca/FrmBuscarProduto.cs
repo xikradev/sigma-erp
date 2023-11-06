@@ -54,25 +54,36 @@ namespace ErpSigmaVenda.vendas
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            string filter="id";
+            string filter="Id";
 
             if(FilterCb.SelectedItem == "Id")
             {
-                filter = "idproduto";
+                filter = "prod.idproduto";
             }
             else if(FilterCb.SelectedItem == "Nome")
             {
-                filter = "nome";
+                filter = "prod.nome";
             }
 
             try
             {
-                dg.DataSource = SearchProduct(filter, SearchTextBox.Text);
+                IEnumerable<AxProduto> productList = SearchProduct(filter, SearchTextBox.Text);
+                if (productList.Count() > 0)
+                {
+                    dg.DataSource = productList;
+                }
+                else
+                {
+                    MessageBox.Show($"Nenhum Produto Encontrado com esse filtro, tente novamente!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao Tentar procurar no Banco de Dados", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
 
             rowsCheck();
         }
@@ -107,6 +118,12 @@ namespace ErpSigmaVenda.vendas
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            dg.DataSource = pProduto.GetProduto();
+            rowsCheck();
         }
     }
 }

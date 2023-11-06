@@ -157,6 +157,10 @@ namespace ErpSigmaVenda.vendas
         {
             if (verify())
             {
+                StatusTextBox.Text = VENDA_FECHADA;
+                CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
+                FinalizarVendaBtn.Enabled = false;
+                AtualizarVendaBtn.Enabled = true;
                 MessageBox.Show("Venda Registrada com Sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -172,11 +176,14 @@ namespace ErpSigmaVenda.vendas
             if (frm.ShowDialog() == DialogResult.OK)
             {
                 AxItemProd newItem = pItemProd.GetItem(frm.oProduto.idproduto);
-
+                newItem.quantidade = 1;
                 if(!items.Any(o => o.idproduto == newItem.idproduto))
                 {
+                    newItem.quantidade = 1;
+                    newItem.precoTotal = newItem.quantidade * newItem.precoUnit;
                     this.items.Add(newItem);
                     dgItem.Refresh();
+                    loadFields();
                 }
                 else
                 {
@@ -187,14 +194,10 @@ namespace ErpSigmaVenda.vendas
 
         private void RemoveProdBtn_Click(object sender, EventArgs e)
         {
-            if(this.items.Count > 0)
+            if(this.items.Count > 0 && dgItem.SelectedRows.Count > 0)
             {
                 this.items.RemoveAt(this.itemIndex);
                 loadFields();
-                if(StatusTextBox.Text == VENDA_FECHADA)
-                {
-                    
-                }
             }
 
         }
@@ -271,10 +274,25 @@ namespace ErpSigmaVenda.vendas
 
                 if (int.TryParse(quantity, out int num))
                 {
-                    this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
-                    dgItem.Refresh();
-
-
+                    if(num > 0)
+                    {
+                        this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
+                        dgItem.Refresh();
+                    }
+                    else if(num == 0)
+                    {
+                        this.items[itemIndex].quantidade = 1;
+                        num = 1;
+                        this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
+                        dgItem.Refresh();
+                    }
+                    else
+                    {
+                        this.items[itemIndex].quantidade = num * -1;
+                        num =num * -1;
+                        this.items[itemIndex].precoTotal = num * this.items[itemIndex].precoUnit;
+                        dgItem.Refresh();
+                    }
                 }
 
                 loadFields();
@@ -321,10 +339,16 @@ namespace ErpSigmaVenda.vendas
 
         private void EncerrarBtn_Click(object sender, EventArgs e)
         {
+            clearFields();
+        }
+
+        private void clearFields()
+        {
             this.oVenda = null;
             this.items.Clear();
             this.oCliente = null;
             this.oUsuario = pLoginUsr.oUsuario;
+            DescontoTextBox.Text = "";
             ClienteTb.Text = "";
             VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
             StatusTextBox.Text = VENDA_ABERTA;
@@ -395,6 +419,54 @@ namespace ErpSigmaVenda.vendas
                     db.SaveChanges();
                 }
             }
+            MessageBox.Show("Venda Atualizada com sucesso!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if(this.oVenda != null)
+            {
+                if(MessageBox.Show("Você tem certeza que deseja Cancelar essa venda? ela será apagada permanentemente","",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    var itemsToBeDeleted = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
+                    foreach (var item in itemsToBeDeleted)
+                    {
+                        db.ItensVenda.Remove(item);
+                    }
+                    db.venda.Remove(this.oVenda);
+                    db.SaveChanges();
+                    clearFields();
+                    MessageBox.Show("Venda Cancelada com Sucesso!!","", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Você precisa selecionar uma venda para que ela possa ser apagada","", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void dgItem_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgItem_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                if (!IsNumeric(e.FormattedValue.ToString()))
+                {
+                    MessageBox.Show("Por Favor digite apenas Números", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private bool IsNumeric(string text)
+        {
+            double result;
+            return double.TryParse(text, out result);
         }
     }
 }
