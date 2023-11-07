@@ -341,7 +341,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>tableFornecedor</DataSetName>
-            <Top>0.17639cm</Top>
+            <Top>2.37243cm</Top>
             <Left>0cm</Left>
             <Height>1.2cm</Height>
             <Width>18cm</Width>
@@ -352,13 +352,13 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>3.39583in</Height>
         <Style />
       </Body>
       <Width>18cm</Width>
       <Page>
         <PageHeader>
-          <Height>0.65cm</Height>
+          <Height>2.21104cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -369,16 +369,21 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Fornecedor</Value>
-                      <Style />
+                      <Value>ERP Sigma
+</Value>
+                      <Style>
+                        <FontSize>15pt</FontSize>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Height>0.6cm</Height>
-              <Width>2.5cm</Width>
+              <Top>0.34078cm</Top>
+              <Left>1.21708cm</Left>
+              <Height>0.75875cm</Height>
+              <Width>3.42604cm</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -397,7 +402,7 @@
           </Style>
         </PageHeader>
         <PageFooter>
-          <Height>2.32833cm</Height>
+          <Height>4.78895cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>

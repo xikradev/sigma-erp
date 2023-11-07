@@ -401,3 +401,4 @@ C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\zh-CHT\Microsoft.ReportV
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\ErpSigmaVenda.form.relatorios.FrmRelFornecedores.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmBuscarVenda.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmNavVendas.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.form.relatorios.FrmRelVenda.resources

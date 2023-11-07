@@ -42,9 +42,16 @@
             this.AddProdBtn = new System.Windows.Forms.Button();
             this.RemoveProdBtn = new System.Windows.Forms.Button();
             this.dgItem = new System.Windows.Forms.DataGridView();
+            this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estoque_qnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axItemProdBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ReportBtn = new System.Windows.Forms.Button();
             this.EncerrarBtn = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.MetPagCB = new System.Windows.Forms.ComboBox();
@@ -61,12 +68,6 @@
             this.StatusTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.DescontoTextBox = new System.Windows.Forms.TextBox();
-            this.idprodutoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nomeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoUnitDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoTotalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estoque_qnt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axItemProdBindingSource)).BeginInit();
@@ -216,6 +217,46 @@
             this.dgItem.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgItem_RowsRemoved);
             this.dgItem.SelectionChanged += new System.EventHandler(this.dgItem_SelectionChanged_1);
             // 
+            // idprodutoDataGridViewTextBoxColumn
+            // 
+            this.idprodutoDataGridViewTextBoxColumn.DataPropertyName = "idproduto";
+            this.idprodutoDataGridViewTextBoxColumn.HeaderText = "Código";
+            this.idprodutoDataGridViewTextBoxColumn.Name = "idprodutoDataGridViewTextBoxColumn";
+            this.idprodutoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nomeDataGridViewTextBoxColumn
+            // 
+            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
+            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // quantidadeDataGridViewTextBoxColumn
+            // 
+            this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.HeaderText = "Quantidade";
+            this.quantidadeDataGridViewTextBoxColumn.Name = "quantidadeDataGridViewTextBoxColumn";
+            // 
+            // precoUnitDataGridViewTextBoxColumn
+            // 
+            this.precoUnitDataGridViewTextBoxColumn.DataPropertyName = "precoUnit";
+            this.precoUnitDataGridViewTextBoxColumn.HeaderText = "Preço Unitário";
+            this.precoUnitDataGridViewTextBoxColumn.Name = "precoUnitDataGridViewTextBoxColumn";
+            this.precoUnitDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // precoTotalDataGridViewTextBoxColumn
+            // 
+            this.precoTotalDataGridViewTextBoxColumn.DataPropertyName = "precoTotal";
+            this.precoTotalDataGridViewTextBoxColumn.HeaderText = "Preço Total";
+            this.precoTotalDataGridViewTextBoxColumn.Name = "precoTotalDataGridViewTextBoxColumn";
+            this.precoTotalDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // estoque_qnt
+            // 
+            this.estoque_qnt.DataPropertyName = "estoque_qnt";
+            this.estoque_qnt.HeaderText = "Quantidade em Estoque";
+            this.estoque_qnt.Name = "estoque_qnt";
+            // 
             // axItemProdBindingSource
             // 
             this.axItemProdBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxItemProd);
@@ -233,6 +274,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.ReportBtn);
             this.groupBox3.Controls.Add(this.EncerrarBtn);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.MetPagCB);
@@ -253,6 +295,17 @@
             this.groupBox3.Size = new System.Drawing.Size(1071, 123);
             this.groupBox3.TabIndex = 24;
             this.groupBox3.TabStop = false;
+            // 
+            // ReportBtn
+            // 
+            this.ReportBtn.Enabled = false;
+            this.ReportBtn.Location = new System.Drawing.Point(725, 68);
+            this.ReportBtn.Name = "ReportBtn";
+            this.ReportBtn.Size = new System.Drawing.Size(134, 42);
+            this.ReportBtn.TabIndex = 26;
+            this.ReportBtn.Text = "Gerar Relatório";
+            this.ReportBtn.UseVisualStyleBackColor = true;
+            this.ReportBtn.Click += new System.EventHandler(this.button1_Click_2);
             // 
             // EncerrarBtn
             // 
@@ -406,47 +459,7 @@
             this.DescontoTextBox.TabIndex = 29;
             this.DescontoTextBox.TextChanged += new System.EventHandler(this.DescontoTextBox_TextChanged);
             // 
-            // idprodutoDataGridViewTextBoxColumn
-            // 
-            this.idprodutoDataGridViewTextBoxColumn.DataPropertyName = "idproduto";
-            this.idprodutoDataGridViewTextBoxColumn.HeaderText = "Código";
-            this.idprodutoDataGridViewTextBoxColumn.Name = "idprodutoDataGridViewTextBoxColumn";
-            this.idprodutoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomeDataGridViewTextBoxColumn
-            // 
-            this.nomeDataGridViewTextBoxColumn.DataPropertyName = "nome";
-            this.nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-            this.nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-            this.nomeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantidadeDataGridViewTextBoxColumn
-            // 
-            this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "quantidade";
-            this.quantidadeDataGridViewTextBoxColumn.HeaderText = "Quantidade";
-            this.quantidadeDataGridViewTextBoxColumn.Name = "quantidadeDataGridViewTextBoxColumn";
-            // 
-            // precoUnitDataGridViewTextBoxColumn
-            // 
-            this.precoUnitDataGridViewTextBoxColumn.DataPropertyName = "precoUnit";
-            this.precoUnitDataGridViewTextBoxColumn.HeaderText = "Preço Unitário";
-            this.precoUnitDataGridViewTextBoxColumn.Name = "precoUnitDataGridViewTextBoxColumn";
-            this.precoUnitDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // precoTotalDataGridViewTextBoxColumn
-            // 
-            this.precoTotalDataGridViewTextBoxColumn.DataPropertyName = "precoTotal";
-            this.precoTotalDataGridViewTextBoxColumn.HeaderText = "Preço Total";
-            this.precoTotalDataGridViewTextBoxColumn.Name = "precoTotalDataGridViewTextBoxColumn";
-            this.precoTotalDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // estoque_qnt
-            // 
-            this.estoque_qnt.DataPropertyName = "estoque_qnt";
-            this.estoque_qnt.HeaderText = "Quantidade em Estoque";
-            this.estoque_qnt.Name = "estoque_qnt";
-            // 
-            // FrmCadVendas
+            // FrmNavVendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -456,7 +469,7 @@
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.toolStrip1);
-            this.Name = "FrmCadVendas";
+            this.Name = "FrmNavVendas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edição de Vendas";
             this.Load += new System.EventHandler(this.VendasForm_Load);
@@ -512,5 +525,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precoUnitDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoTotalDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estoque_qnt;
+        private System.Windows.Forms.Button ReportBtn;
     }
 }

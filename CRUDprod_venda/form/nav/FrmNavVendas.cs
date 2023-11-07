@@ -1,5 +1,6 @@
 ﻿using ErpSigmaVenda.auxiliar;
 using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.form.relatorios;
 using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
@@ -174,6 +175,7 @@ namespace ErpSigmaVenda.vendas
                 CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
                 FinalizarVendaBtn.Enabled = false;
                 AtualizarVendaBtn.Enabled = true;
+                ReportBtn.Enabled = true;
                 MessageBox.Show("Venda Registrada com Sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
@@ -267,7 +269,7 @@ namespace ErpSigmaVenda.vendas
                 this.items = searchItems(this.oVenda.idvenda);
                 StatusTextBox.Text = VENDA_FECHADA;
                 dgItem.DataSource = this.items;
-                
+                ReportBtn.Enabled = true;
                 ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
                 loadFields();
             }  
@@ -353,6 +355,7 @@ namespace ErpSigmaVenda.vendas
         private void EncerrarBtn_Click(object sender, EventArgs e)
         {
             clearFields();
+
         }
 
         private void clearFields()
@@ -365,6 +368,7 @@ namespace ErpSigmaVenda.vendas
             ClienteTb.Text = "";
             VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
             StatusTextBox.Text = VENDA_ABERTA;
+            ReportBtn.Enabled = false;
             MetPagCB.SelectedIndex = 0;
             CodVendaTextBox.Text = "";
         }
@@ -488,6 +492,27 @@ namespace ErpSigmaVenda.vendas
         private bool IsNumeric(string text, out double result)
         {
             return double.TryParse(text, out result);
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if(this.oVenda != null)
+            {
+                AxRelVenda report = reportGenerator(this.oVenda, this.oUsuario, this.oCliente);
+                FrmRelVenda frm = new FrmRelVenda(report);
+                frm.ShowDialog();
+            }
+        }
+
+        private AxRelVenda reportGenerator(venda oVenda, usuario oUsuario, cliente oCliente)
+        {
+            AxRelVenda axRelVenda = new AxRelVenda();
+
+            axRelVenda.oVenda = oVenda;
+            axRelVenda.oUsuario = oUsuario;
+            axRelVenda.oCliente = oCliente;
+
+            return axRelVenda;
         }
     }
 }

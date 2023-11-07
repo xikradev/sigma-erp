@@ -99,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="auxiliar\AxItemProd.cs" />
+    <Compile Include="auxiliar\AxRelVenda.cs" />
     <Compile Include="conexão\cliente.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
     </Compile>
@@ -186,6 +187,12 @@
     <Compile Include="form\relatorios\FrmRelFornecedores.Designer.cs">
       <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
     </Compile>
+    <Compile Include="form\relatorios\FrmRelVenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\relatorios\FrmRelVenda.Designer.cs">
+      <DependentUpon>FrmRelVenda.cs</DependentUpon>
+    </Compile>
     <Compile Include="persistencia\pItemProd.cs" />
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
@@ -249,10 +256,10 @@
     <Compile Include="form\busca\FrmBuscarVenda.Designer.cs">
       <DependentUpon>FrmBuscarVenda.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\cad\FrmNavVendas.cs">
+    <Compile Include="form\nav\FrmNavVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\cad\FrmNavVendas.Designer.cs">
+    <Compile Include="form\nav\FrmNavVendas.Designer.cs">
       <DependentUpon>FrmNavVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -297,7 +304,11 @@
     <EmbeddedResource Include="form\relatorios\FrmRelFornecedores.resx">
       <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="form\relatorios\FrmRelVenda.resx">
+      <DependentUpon>FrmRelVenda.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="form\relatorios\RelFornecedor.rdlc" />
+    <EmbeddedResource Include="form\relatorios\RelVenda.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -320,7 +331,7 @@
     <EmbeddedResource Include="form\busca\FrmBuscarVenda.resx">
       <DependentUpon>FrmBuscarVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\cad\FrmNavVendas.resx">
+    <EmbeddedResource Include="form\nav\FrmNavVendas.resx">
       <DependentUpon>FrmNavVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="conexão\venda_produto.edmx">
