@@ -22,8 +22,6 @@ C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaV
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.fornecedores.FrmNavFornecedor.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.Produtos.FrmNavProduto.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.usuarios.FrmNavUsuario.resources
-C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmNavVendas.resources
-C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmCadVendas.resources
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.FrmLogin.resources
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Erp Sigma.exe.config
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\Erp Sigma.exe
@@ -401,3 +399,5 @@ C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\ru\Microsoft.ReportViewe
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\obj\Debug\ErpSigmaVenda.form.relatorios.FrmRelFornecedores.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmBuscarVenda.resources
+C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.vendas.FrmNavVendas.resources

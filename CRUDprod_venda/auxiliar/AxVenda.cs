@@ -13,6 +13,6 @@ namespace ErpSigmaVenda.auxiliar
         public string cliente { get; set; }
         public decimal precoTotal { get; set; }
         public DateTime data { get; set; }
-        
+        public int idusuario { get; set; }
     }
 }

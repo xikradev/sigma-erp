@@ -243,17 +243,17 @@
     <Compile Include="form\busca\FrmBuscarProduto.Designer.cs">
       <DependentUpon>FrmBuscarProduto.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\nav\FrmNavVendas.cs">
+    <Compile Include="form\busca\FrmBuscarVenda.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="form\nav\FrmNavVendas.Designer.cs">
+    <Compile Include="form\busca\FrmBuscarVenda.Designer.cs">
+      <DependentUpon>FrmBuscarVenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="form\cad\FrmNavVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="form\cad\FrmNavVendas.Designer.cs">
       <DependentUpon>FrmNavVendas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="form\cad\FrmCadVendas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\cad\FrmCadVendas.Designer.cs">
-      <DependentUpon>FrmCadVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="venda_produtoDataSet.Designer.cs">
@@ -317,11 +317,11 @@
     <EmbeddedResource Include="form\busca\FrmBuscarProduto.resx">
       <DependentUpon>FrmBuscarProduto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\nav\FrmNavVendas.resx">
-      <DependentUpon>FrmNavVendas.cs</DependentUpon>
+    <EmbeddedResource Include="form\busca\FrmBuscarVenda.resx">
+      <DependentUpon>FrmBuscarVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\cad\FrmCadVendas.resx">
-      <DependentUpon>FrmCadVendas.cs</DependentUpon>
+    <EmbeddedResource Include="form\cad\FrmNavVendas.resx">
+      <DependentUpon>FrmNavVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="conexão\venda_produto.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

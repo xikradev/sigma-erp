@@ -49,7 +49,7 @@ namespace ErpSigmaVenda.vendas
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
-            string filter = "id";
+            string filter = "idcliente";
             if(FilterCb.SelectedItem == "Id")
             {
                 filter = "idcliente";
