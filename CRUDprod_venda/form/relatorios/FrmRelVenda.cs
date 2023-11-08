@@ -49,6 +49,9 @@ namespace ErpSigmaVenda.form.relatorios
             {
                 rptVenda.LocalReport.SetParameters(param);
             }
+            this.rptVenda.SetDisplayMode(DisplayMode.PrintLayout);
+            this.rptVenda.ZoomMode = ZoomMode.Percent;
+            this.rptVenda.ZoomPercent = 1;
             this.rptVenda.RefreshReport();
             
         }
