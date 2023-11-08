@@ -25,11 +25,11 @@ namespace ErpSigmaVenda.form.relatorios
 
         private void FrmRelVenda_Load(object sender, EventArgs e)
         {
-            List<ItensVenda> items = relVenda.oVenda.ItensVenda.ToList();
+            //List<ItensVenda> items = relVenda.oVenda.ItensVenda.ToList();
             rptVenda.Clear();
             rptVenda.Reset();
             rptVenda.LocalReport.ReportEmbeddedResource = "ErpSigmaVenda.form.relatorios.RelVenda.rdlc";
-            rptVenda.LocalReport.DataSources.Add(new ReportDataSource("ItensVenda", items));
+            //rptVenda.LocalReport.DataSources.Add(new ReportDataSource("ItensVenda", items));
             this.rptVenda.RefreshReport();
             //rptVenda
             //rptVenda.Clear();

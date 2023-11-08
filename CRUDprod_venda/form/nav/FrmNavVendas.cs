@@ -508,9 +508,9 @@ namespace ErpSigmaVenda.vendas
         {
             AxRelVenda axRelVenda = new AxRelVenda();
 
-            axRelVenda.oVenda = oVenda;
-            axRelVenda.oUsuario = oUsuario;
-            axRelVenda.oCliente = oCliente;
+            //axRelVenda.oVenda = oVenda;
+            //axRelVenda.oUsuario = oUsuario;
+            //axRelVenda.oCliente = oCliente;
 
             return axRelVenda;
         }
