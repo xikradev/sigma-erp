@@ -38,7 +38,12 @@ namespace ErpSigmaVenda.form.relatorios
                 new ReportParameter("paramAddress", relVenda.clientAddress.ToUpper()),
                 new ReportParameter("paramUF", relVenda.uf.ToUpper()),
                 new ReportParameter("paramCity", relVenda.city.ToUpper()),
-                new ReportParameter("paramRegister", relVenda.register)
+                new ReportParameter("paramRegister", relVenda.register),
+                new ReportParameter("paramSeller", relVenda.sellerName.ToUpper()),
+                new ReportParameter("paramDateOfSale", relVenda.dateOfSale.ToShortDateString().ToString()),
+                new ReportParameter("paramTotalProductsQty", relVenda.totalProductsQty.ToString()),
+                new ReportParameter("paramTotalSaleValue", $"R$ {relVenda.totalSaleValue.ToString()}"),
+                new ReportParameter("paramPaymentMethod", relVenda.paymentMethod.ToUpper())
             };
             foreach(ReportParameter param in parametros)
             {
