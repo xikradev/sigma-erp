@@ -498,19 +498,29 @@ namespace ErpSigmaVenda.vendas
         {
             if(this.oVenda != null)
             {
-                AxRelVenda report = reportGenerator(this.oVenda, this.oUsuario, this.oCliente);
+                AxRelVenda report = reportGenerator();
                 FrmRelVenda frm = new FrmRelVenda(report);
                 frm.ShowDialog();
             }
         }
 
-        private AxRelVenda reportGenerator(venda oVenda, usuario oUsuario, cliente oCliente)
+        private AxRelVenda reportGenerator()
         {
             AxRelVenda axRelVenda = new AxRelVenda();
 
-            //axRelVenda.oVenda = oVenda;
-            //axRelVenda.oUsuario = oUsuario;
-            //axRelVenda.oCliente = oCliente;
+            axRelVenda.idvenda = oVenda.idvenda;
+            axRelVenda.clientName = oCliente.nomeCompleto;
+            axRelVenda.clientEmail = oCliente.email;
+            axRelVenda.clientAddress = oCliente.endereco.rua + " " + oCliente.endereco.complemento;
+            axRelVenda.register = oCliente.registro;
+            axRelVenda.uf = oCliente.endereco.estado;
+            axRelVenda.city = oCliente.endereco.cidade;
+            axRelVenda.sellerName = oUsuario.nomeCompleto;
+            axRelVenda.dateOfSale = oVenda.data;
+            axRelVenda.paymentMethod = oVenda.metodo_pagamento;
+            axRelVenda.totalProductsQty = int.Parse(QuantTb.Text);
+            axRelVenda.totalSaleValue = oVenda.precoTotal;
+            axRelVenda.items = this.items.ToList();
 
             return axRelVenda;
         }

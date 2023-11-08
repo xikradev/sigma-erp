@@ -25,19 +25,27 @@ namespace ErpSigmaVenda.form.relatorios
 
         private void FrmRelVenda_Load(object sender, EventArgs e)
         {
-            //List<ItensVenda> items = relVenda.oVenda.ItensVenda.ToList();
+            List<AxItemProd> items = relVenda.items;
             rptVenda.Clear();
             rptVenda.Reset();
             rptVenda.LocalReport.ReportEmbeddedResource = "ErpSigmaVenda.form.relatorios.RelVenda.rdlc";
-            //rptVenda.LocalReport.DataSources.Add(new ReportDataSource("ItensVenda", items));
+            rptVenda.LocalReport.DataSources.Add(new ReportDataSource("ItensVenda", items));
+            ReportParameter[] parametros =
+            {
+                new ReportParameter("paramIdVenda", relVenda.idvenda.ToString()),
+                new ReportParameter("paramClientName", relVenda.clientName.ToUpper()),
+                new ReportParameter("paramClientEmail", relVenda.clientEmail.ToUpper()),
+                new ReportParameter("paramAddress", relVenda.clientAddress.ToUpper()),
+                new ReportParameter("paramUF", relVenda.uf.ToUpper()),
+                new ReportParameter("paramCity", relVenda.city.ToUpper()),
+                new ReportParameter("paramRegister", relVenda.register)
+            };
+            foreach(ReportParameter param in parametros)
+            {
+                rptVenda.LocalReport.SetParameters(param);
+            }
             this.rptVenda.RefreshReport();
-            //rptVenda
-            //rptVenda.Clear();
-            //rptFornecedor.Reset();
-            //rptFornecedor.LocalReport.ReportEmbeddedResource = "ErpSigmaVenda.form.relatorios.RelVenda.rdlc";
-            //rptFornecedor.LocalReport.DataSources.Add(new ReportDataSource("tableFornecedor", items));
-
-            //this.reportViewer1.RefreshReport();
+            
         }
     }
 }
