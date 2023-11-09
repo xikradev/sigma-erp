@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NomeTextBox = new System.Windows.Forms.TextBox();
             this.clienteTableAdapter1 = new ErpSigmaVenda.venda_produtoDataSetTableAdapters.clienteTableAdapter();
-            this.PrecoTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.DescricaoTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.ForneceorTb = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.PrecoTextBox = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,13 +67,6 @@
             // clienteTableAdapter1
             // 
             this.clienteTableAdapter1.ClearBeforeFill = true;
-            // 
-            // PrecoTextBox
-            // 
-            this.PrecoTextBox.Location = new System.Drawing.Point(42, 123);
-            this.PrecoTextBox.Name = "PrecoTextBox";
-            this.PrecoTextBox.Size = new System.Drawing.Size(254, 20);
-            this.PrecoTextBox.TabIndex = 3;
             // 
             // label2
             // 
@@ -182,12 +175,20 @@
             this.label4.TabIndex = 16;
             this.label4.Text = "Buscar Fornecedor";
             // 
+            // PrecoTextBox
+            // 
+            this.PrecoTextBox.Location = new System.Drawing.Point(42, 124);
+            this.PrecoTextBox.Name = "PrecoTextBox";
+            this.PrecoTextBox.Size = new System.Drawing.Size(254, 20);
+            this.PrecoTextBox.TabIndex = 17;
+            // 
             // FrmCadProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(344, 448);
             this.ControlBox = false;
+            this.Controls.Add(this.PrecoTextBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.ForneceorTb);
@@ -196,7 +197,6 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.DescricaoTextBox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.PrecoTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NomeTextBox);
             this.Controls.Add(this.label1);
@@ -218,7 +218,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox NomeTextBox;
         private venda_produtoDataSetTableAdapters.clienteTableAdapter clienteTableAdapter1;
-        private System.Windows.Forms.TextBox PrecoTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox DescricaoTextBox;
         private System.Windows.Forms.Label label3;
@@ -230,5 +229,6 @@
         private System.Windows.Forms.TextBox ForneceorTb;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox PrecoTextBox;
     }
 }

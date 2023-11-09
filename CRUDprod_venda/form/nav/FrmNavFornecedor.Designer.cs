@@ -43,7 +43,7 @@
             this.complemento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cep = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.axFornecedorBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.TypePersonTab = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgPJ = new System.Windows.Forms.DataGridView();
@@ -63,7 +63,7 @@
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.TypePersonTab.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).BeginInit();
@@ -197,16 +197,17 @@
             // 
             this.axFornecedorBindingSource2.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
             // 
-            // tabControl1
+            // TypePersonTab
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(0, 52);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(973, 398);
-            this.tabControl1.TabIndex = 10;
+            this.TypePersonTab.Controls.Add(this.tabPage1);
+            this.TypePersonTab.Controls.Add(this.tabPage2);
+            this.TypePersonTab.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TypePersonTab.Location = new System.Drawing.Point(0, 52);
+            this.TypePersonTab.Name = "TypePersonTab";
+            this.TypePersonTab.SelectedIndex = 0;
+            this.TypePersonTab.Size = new System.Drawing.Size(973, 398);
+            this.TypePersonTab.TabIndex = 10;
+            this.TypePersonTab.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -334,7 +335,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 450);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.TypePersonTab);
             this.Controls.Add(this.toolStrip1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -346,7 +347,7 @@
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.TypePersonTab.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPJ)).EndInit();
@@ -374,7 +375,7 @@
         private System.Windows.Forms.DataGridView dgPF;
         private System.Windows.Forms.BindingSource axFornecedorBindingSource3;
         private System.Windows.Forms.BindingSource axClienteBindingSource;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl TypePersonTab;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.DataGridView dgPJ;

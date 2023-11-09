@@ -74,15 +74,7 @@ namespace ErpSigmaVenda.fornecedores
 
         private void dg_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
-                AxFornecedor axFornecedor = (AxFornecedor)dgPF.SelectedRows[0].DataBoundItem;
-                this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
-            }
-            catch(Exception ex)
-            {
-
-            }
+            dgPF_SelectedItem();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -112,6 +104,11 @@ namespace ErpSigmaVenda.fornecedores
 
         private void dgPJ_SelectionChanged(object sender, EventArgs e)
         {
+            dgPJ_SelectedItem();
+        }
+
+        private void dgPJ_SelectedItem()
+        {
             try
             {
                 AxFornecedor axFornecedor = (AxFornecedor)dgPJ.SelectedRows[0].DataBoundItem;
@@ -120,6 +117,32 @@ namespace ErpSigmaVenda.fornecedores
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void dgPF_SelectedItem()
+        {
+            try
+            {
+                AxFornecedor axFornecedor = (AxFornecedor)dgPF.SelectedRows[0].DataBoundItem;
+                this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(TypePersonTab.SelectedIndex == 0)
+            {
+                dgPF_SelectedItem();
+
+            }else if(TypePersonTab.SelectedIndex == 1)
+            {
+                dgPJ_SelectedItem();
             }
         }
     }

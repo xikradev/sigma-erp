@@ -85,15 +85,7 @@ namespace ErpSigmaVenda.clientes
 
         private void dg_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
-                AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
-                this.oCliente = db.cliente.Find(axCliente.idcliente);
-
-            }catch(Exception ex)
-            {
-
-            }
+            dgPF_selectedItem();
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
@@ -110,6 +102,25 @@ namespace ErpSigmaVenda.clientes
 
         private void dgPJ_SelectionChanged(object sender, EventArgs e)
         {
+            dgPJ_selectedItem();
+        }
+
+        private void dgPF_selectedItem()
+        {
+            try
+            {
+                AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
+                this.oCliente = db.cliente.Find(axCliente.idcliente);
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void dgPJ_selectedItem()
+        {
             try
             {
                 AxCliente axCliente = (AxCliente)dgPJ.SelectedRows[0].DataBoundItem;
@@ -119,6 +130,17 @@ namespace ErpSigmaVenda.clientes
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void ClienteTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ClienteTabControl.SelectedIndex == 0)
+            {
+                dgPF_selectedItem();
+            }else if(ClienteTabControl.SelectedIndex == 1)
+            {
+                dgPJ_selectedItem();
             }
         }
     }
