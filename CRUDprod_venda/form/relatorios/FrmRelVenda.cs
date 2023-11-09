@@ -43,7 +43,8 @@ namespace ErpSigmaVenda.form.relatorios
                 new ReportParameter("paramDateOfSale", relVenda.dateOfSale.ToShortDateString().ToString()),
                 new ReportParameter("paramTotalProductsQty", relVenda.totalProductsQty.ToString()),
                 new ReportParameter("paramTotalSaleValue", $"R$ {relVenda.totalSaleValue.ToString()}"),
-                new ReportParameter("paramPaymentMethod", relVenda.paymentMethod.ToUpper())
+                new ReportParameter("paramPaymentMethod", relVenda.paymentMethod.ToUpper()),
+                new ReportParameter("paramLocalDate", generateLocalDate(DateTime.Now))
             };
             foreach(ReportParameter param in parametros)
             {
@@ -54,6 +55,22 @@ namespace ErpSigmaVenda.form.relatorios
             this.rptVenda.ZoomPercent = 1;
             this.rptVenda.RefreshReport();
             
+        }
+
+        private string generateLocalDate(DateTime date) {
+            string[] meses = new string[]
+            {
+                "janeiro", "fevereiro", "março", "abril", "maio", "junho",
+                "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"
+            };
+
+            int dia = date.Day;
+            int mes = date.Month;
+            int ano = date.Year;
+
+            string dataPorExtenso = $"Luziânia-GO,dia {dia}, de {meses[mes - 1]} de {ano}";
+
+            return dataPorExtenso;
         }
     }
 }
