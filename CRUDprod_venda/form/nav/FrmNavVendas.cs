@@ -93,20 +93,11 @@ namespace ErpSigmaVenda.vendas
 
         private void updatingVenda()
         {
-            if(this.oVenda != null)
-            {
-                this.oVenda = db.venda.Find(this.oVenda.idvenda);
-            }
-            else
-            {
-                this.oVenda = new venda();
-            }
             this.oVenda.idcliente = this.oCliente.idcliente;
             this.oVenda.idusuario = pLoginUsr.oUsuario.idusuario;
             this.oVenda.precoTotal = decimal.Parse(PrecoTotalTb.Text);
             this.oVenda.data = DateTime.Now;
-            this.oVenda.metodo_pagamento = MetPagCB.SelectedText;
-            db.SaveChanges();
+            this.oVenda.metodo_pagamento = MetPagCB.SelectedItem.ToString();
         }
 
         private void updatingItems(ItensVenda itemToBeSaved, AxItemProd itemContent)
@@ -121,6 +112,7 @@ namespace ErpSigmaVenda.vendas
 
         private Boolean registrandoVenda()
         {
+            this.oVenda = new venda();
             updatingVenda();
             db = new venda_produtoEntities();
             db.venda.Add(this.oVenda);
@@ -164,13 +156,14 @@ namespace ErpSigmaVenda.vendas
                     return false;
                 }
             }
-            return registrandoVenda();
+            return true;
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             if (verify())
             {
+                registrandoVenda();
                 StatusTextBox.Text = VENDA_FECHADA;
                 CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
                 FinalizarVendaBtn.Enabled = false;
@@ -406,6 +399,8 @@ namespace ErpSigmaVenda.vendas
             db = new venda_produtoEntities();
             if(verify() == true)
             {
+                this.oVenda = db.venda.Find(this.oVenda.idvenda);
+                updatingVenda();
                 db.SaveChanges();
                 List<ItensVenda> itensSaveds = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
                 //remover items

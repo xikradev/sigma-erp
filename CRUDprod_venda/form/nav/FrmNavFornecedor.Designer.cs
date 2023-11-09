@@ -34,7 +34,6 @@
             this.InsertButton = new System.Windows.Forms.ToolStripButton();
             this.UpdateButton = new System.Windows.Forms.ToolStripButton();
             this.DeleteButton = new System.Windows.Forms.ToolStripButton();
-            this.btnRelatorio = new System.Windows.Forms.ToolStripButton();
             this.dgPF = new System.Windows.Forms.DataGridView();
             this.idfornecedorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nomeCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +47,6 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgPJ = new System.Windows.Forms.DataGridView();
-            this.axFornecedorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.axFornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.qfornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.axFornecedorBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +54,12 @@
             this.seguimento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.axFornecedorBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.axFornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.qfornecedorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.axClienteBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.axFornecedorBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPF)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.axFornecedorBindingSource2)).BeginInit();
@@ -81,8 +80,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.InsertButton,
             this.UpdateButton,
-            this.DeleteButton,
-            this.btnRelatorio});
+            this.DeleteButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(973, 52);
@@ -118,15 +116,6 @@
             this.DeleteButton.Size = new System.Drawing.Size(103, 49);
             this.DeleteButton.Text = "Remover";
             this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
-            // 
-            // btnRelatorio
-            // 
-            this.btnRelatorio.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRelatorio.Image = ((System.Drawing.Image)(resources.GetObject("btnRelatorio.Image")));
-            this.btnRelatorio.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRelatorio.Name = "btnRelatorio";
-            this.btnRelatorio.Size = new System.Drawing.Size(23, 49);
-            this.btnRelatorio.Click += new System.EventHandler(this.btnRelatorio_Click);
             // 
             // dgPF
             // 
@@ -267,30 +256,6 @@
             this.dgPJ.TabIndex = 10;
             this.dgPJ.SelectionChanged += new System.EventHandler(this.dgPJ_SelectionChanged);
             // 
-            // axFornecedorBindingSource1
-            // 
-            this.axFornecedorBindingSource1.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
-            // axFornecedorBindingSource
-            // 
-            this.axFornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
-            // fornecedorBindingSource
-            // 
-            this.fornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.fornecedor);
-            // 
-            // qfornecedorBindingSource
-            // 
-            this.qfornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.query.pFornecedor);
-            // 
-            // axClienteBindingSource
-            // 
-            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
-            // 
-            // axFornecedorBindingSource3
-            // 
-            this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "idfornecedor";
@@ -340,6 +305,30 @@
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
             // 
+            // axFornecedorBindingSource1
+            // 
+            this.axFornecedorBindingSource1.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // axFornecedorBindingSource
+            // 
+            this.axFornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
+            // fornecedorBindingSource
+            // 
+            this.fornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.conexão.fornecedor);
+            // 
+            // qfornecedorBindingSource
+            // 
+            this.qfornecedorBindingSource.DataSource = typeof(ErpSigmaVenda.query.pFornecedor);
+            // 
+            // axClienteBindingSource
+            // 
+            this.axClienteBindingSource.DataSource = typeof(ErpSigmaVenda.auxiliar.AxCliente);
+            // 
+            // axFornecedorBindingSource3
+            // 
+            this.axFornecedorBindingSource3.DataSource = typeof(ErpSigmaVenda.auxiliar.AxFornecedor);
+            // 
             // FrmNavFornecedor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -385,7 +374,6 @@
         private System.Windows.Forms.DataGridView dgPF;
         private System.Windows.Forms.BindingSource axFornecedorBindingSource3;
         private System.Windows.Forms.BindingSource axClienteBindingSource;
-        private System.Windows.Forms.ToolStripButton btnRelatorio;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;

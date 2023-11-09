@@ -181,12 +181,6 @@
     <Compile Include="form\busca\FrmBuscarFornecedor.Designer.cs">
       <DependentUpon>FrmBuscarFornecedor.cs</DependentUpon>
     </Compile>
-    <Compile Include="form\relatorios\FrmRelFornecedores.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="form\relatorios\FrmRelFornecedores.Designer.cs">
-      <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
-    </Compile>
     <Compile Include="form\relatorios\FrmRelVenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,13 +295,9 @@
     <EmbeddedResource Include="form\nav\FrmNavProduto.resx">
       <DependentUpon>FrmNavProduto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\relatorios\FrmRelFornecedores.resx">
-      <DependentUpon>FrmRelFornecedores.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="form\relatorios\FrmRelVenda.resx">
       <DependentUpon>FrmRelVenda.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="form\relatorios\RelFornecedor.rdlc" />
     <EmbeddedResource Include="form\relatorios\RelVenda.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

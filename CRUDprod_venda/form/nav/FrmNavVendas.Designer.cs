@@ -303,7 +303,7 @@
             this.ReportBtn.Name = "ReportBtn";
             this.ReportBtn.Size = new System.Drawing.Size(134, 42);
             this.ReportBtn.TabIndex = 26;
-            this.ReportBtn.Text = "Gerar Relatório";
+            this.ReportBtn.Text = "Reimprimir Nota";
             this.ReportBtn.UseVisualStyleBackColor = true;
             this.ReportBtn.Click += new System.EventHandler(this.button1_Click_2);
             // 

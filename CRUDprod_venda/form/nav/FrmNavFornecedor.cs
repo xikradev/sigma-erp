@@ -108,11 +108,7 @@ namespace ErpSigmaVenda.fornecedores
             }
         }
 
-        private void btnRelatorio_Click(object sender, EventArgs e)
-        {
-            FrmRelFornecedores frm = new FrmRelFornecedores();
-            frm.Show();
-        }
+        
 
         private void dgPJ_SelectionChanged(object sender, EventArgs e)
         {

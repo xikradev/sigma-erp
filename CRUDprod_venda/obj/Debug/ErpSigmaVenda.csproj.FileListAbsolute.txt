@@ -338,7 +338,6 @@ C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\bin\Debug\zh-CHT\Mi
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.csprojAssemblyReference.cache
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\RdlCompile.cache
 C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\RdlCompile.compiled
-C:\Users\Micro-12\source\repos\CRUDprod_venda\CRUDprod_venda\obj\Debug\ErpSigmaVenda.form.relatorios.FrmRelFornecedores.resources
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\SqlServerTypes\x64\msvcr120.dll
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
 C:\projetos-trabalho\sigma-erp\CRUDprod_venda\bin\Debug\SqlServerTypes\x86\msvcr120.dll

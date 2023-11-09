@@ -40,6 +40,7 @@ namespace ErpSigmaVenda.navegacao
             {
                 this.SwitchUserBtn.Visible = true;
                 var oUsuario = pLoginUsr.oUsuario;
+                this.infoUserLabel.Text = $"Usuário(a) {oUsuario.role} logado(a) em {DateTime.Now.ToShortDateString()} às {DateTime.Now.ToShortTimeString()}";
                 if (oUsuario.role.Equals("ADM"))
                 {
                     this.btnProduto.Visible = true;
@@ -47,7 +48,7 @@ namespace ErpSigmaVenda.navegacao
                     this.btnFornecedor.Visible = true;
                     this.btnClientes.Visible = true;
                     this.btnUsuarios.Visible = true;
-                    this.infoUserLabel.Text = $"Usuário(a) {oUsuario.role} logado(a) em {DateTime.Now.ToShortDateString()} às {DateTime.Now.ToShortTimeString()}";
+                    
                 }
                 else if (oUsuario.role.Equals("Vendedor"))
                 {
