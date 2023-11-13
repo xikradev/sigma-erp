@@ -73,6 +73,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.9\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -111,6 +112,11 @@
     </Compile>
     <Compile Include="conexão\ItensVenda.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
+    </Compile>
+    <Compile Include="conexão\linq\dataContextErpSigma.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dataContextErpSigma.dbml</DependentUpon>
     </Compile>
     <Compile Include="conexão\produto.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
@@ -328,6 +334,14 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>venda_produto.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="conexão\linq\dataContextErpSigma.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dataContextErpSigma.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="conexão\linq\dataContextErpSigma.dbml.layout">
+      <DependentUpon>dataContextErpSigma.dbml</DependentUpon>
+    </None>
     <None Include="conexão\venda_produto.edmx.diagram">
       <DependentUpon>venda_produto.edmx</DependentUpon>
     </None>
@@ -383,6 +397,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
