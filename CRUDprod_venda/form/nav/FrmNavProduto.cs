@@ -1,5 +1,6 @@
 ﻿using ErpSigmaVenda.auxiliar;
-using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ErpSigmaVenda.Produtos
 {
     public partial class FrmNavProduto : Form
     {
-        venda_produtoEntities dbProduto = new venda_produtoEntities();
+        
         produto oProduto = new produto();
         produto_fornecedor prod_forn = new produto_fornecedor();
         fornecedor oFornecedor = new fornecedor();
@@ -37,12 +38,12 @@ namespace ErpSigmaVenda.Produtos
         private void loading()
         {
             var oUsuario = pLoginUsr.oUsuario;
-            this.dg.DataSource = pProduto.GetProduto();
-            if(dbProduto.produto_fornecedor.ToList().Count == 0 && oUsuario.role.Equals("ADM"))
+            this.dg.DataSource = pProduto_fornecedor.GetProduto();
+            if(pProduto_fornecedor.ReturnAll().Count == 0 && oUsuario.role.Equals("ADM"))
             {
                 InsertButton.Enabled = true;
             }
-            else if(dbProduto.produto_fornecedor.ToList().Count > 0 && oUsuario.role.Equals("ADM"))
+            else if(pProduto_fornecedor.ReturnAll().Count > 0 && oUsuario.role.Equals("ADM"))
             {
                 InsertButton.Enabled = true;
                 UpdateButton.Enabled = true;
@@ -54,20 +55,25 @@ namespace ErpSigmaVenda.Produtos
         {
 
             FrmCadProduto produtoForm = new FrmCadProduto();
-            produtoForm.oProduto = new produto();
-            produtoForm.oFornecedor = new fornecedor();
+            produtoForm.oProduto = pProduto.Create();
+            produtoForm.oFornecedor = pFornecedor.Create();
             if(produtoForm.ShowDialog() == DialogResult.OK)
             {
-                
-                dbProduto.produto.Add(produtoForm.oProduto);
-                dbProduto.SaveChanges();
-                dbProduto = new venda_produtoEntities();
-
-                produto_fornecedor prod_forn = new produto_fornecedor();
-                prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
+                pProduto.Insert(produtoForm.oProduto);
+                produto_fornecedor prod_forn = pProduto_fornecedor.Create();
                 prod_forn.idproduto = produtoForm.oProduto.idproduto;
-                dbProduto.produto_fornecedor.Add(prod_forn);
-                dbProduto.SaveChanges();
+                prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
+                pProduto_fornecedor.Insert(prod_forn);
+
+                //dbProduto.produto.Add(produtoForm.oProduto);
+                //dbProduto.SaveChanges();
+                //dbProduto = new venda_produtoEntities();
+
+                //produto_fornecedor prod_forn = new produto_fornecedor();
+                //prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
+                //prod_forn.idproduto = produtoForm.oProduto.idproduto;
+                //dbProduto.produto_fornecedor.Add(prod_forn);
+                //dbProduto.SaveChanges();
 
                 loading();
             }
@@ -79,12 +85,14 @@ namespace ErpSigmaVenda.Produtos
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             FrmCadProduto produtoForm = new FrmCadProduto();
-            produtoForm.oProduto = dbProduto.produto.Find(this.oProduto.idproduto);
-            produtoForm.oFornecedor = dbProduto.fornecedor.Find(this.oFornecedor.idfornecedor);
+            produtoForm.oProduto = pProduto.load(this.oProduto.idproduto);
+            produtoForm.oFornecedor = pFornecedor.load(this.oFornecedor.idfornecedor);
             if (produtoForm.ShowDialog() == DialogResult.OK)
             {
+                pProduto.Update(produtoForm.oProduto);
                 this.prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
-                dbProduto.SaveChanges();
+                this.prod_forn.idproduto = produtoForm.oProduto.idproduto;
+                pProduto_fornecedor.Update(this.prod_forn);
                 loading();
             }
         }
@@ -99,9 +107,9 @@ namespace ErpSigmaVenda.Produtos
             try
             {
                 AxProduto axProduto = (AxProduto) dg.SelectedRows[0].DataBoundItem;
-                this.oProduto = dbProduto.produto.Find(axProduto.idproduto);
-                this.oFornecedor = dbProduto.fornecedor.Find(axProduto.idfornecedor);
-                this.prod_forn = dbProduto.produto_fornecedor.Find(axProduto.codProduto);
+                this.oProduto = pProduto.load(axProduto.idproduto);
+                this.oFornecedor = pFornecedor.load(axProduto.idfornecedor);
+                this.prod_forn = pProduto_fornecedor.Load(axProduto.codProduto);
             }
             catch (Exception ex)
             {
@@ -116,9 +124,8 @@ namespace ErpSigmaVenda.Produtos
             if (MessageBox.Show("Você tem certeza que deseja apagar esse dado?","",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                dbProduto.produto.Remove(dbProduto.produto.Find(this.oProduto.idproduto));
-                dbProduto.produto_fornecedor.Remove(dbProduto.produto_fornecedor.Find(this.prod_forn.codProduto));
-                dbProduto.SaveChanges();
+                pProduto.Delete(this.oProduto);
+                pProduto_fornecedor.Delete(this.prod_forn);
                 loading();
             }
         }

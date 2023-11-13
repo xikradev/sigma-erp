@@ -52,8 +52,8 @@ namespace ErpSigmaVenda.query
         public static fornecedor LoadWhere(Expression<Func<fornecedor, bool>> predicate)
         {
             UpdateDc();
-            var oEndereco = tFornecedor.Where(predicate).SingleOrDefault();
-            return oEndereco;
+            var oFornecedor = tFornecedor.Where(predicate).SingleOrDefault();
+            return oFornecedor;
         }
 
         public static void Update(fornecedor pobjFornecedor)

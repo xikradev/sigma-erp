@@ -1,5 +1,6 @@
-﻿using ErpSigmaVenda.conexão;
+﻿
 using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.linq;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ErpSigmaVenda.Produtos
 {
     public partial class FrmBuscarFornecedor : Form
     {
-        venda_produtoEntities dbFornecedor = new venda_produtoEntities();
+        private dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
         public fornecedor oFornecedor = new fornecedor();
 
         public FrmBuscarFornecedor()
@@ -61,7 +62,7 @@ namespace ErpSigmaVenda.Produtos
 
             try
             {
-                dg.DataSource = dbFornecedor.Database.SqlQuery<AxFornecedor>("select fornecedor.*, endereco.rua, endereco.cep, endereco.estado from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco where " + filter + " like '" + SearchTextBox.Text + "%';").ToList();
+                dg.DataSource = dc.ExecuteQuery<AxFornecedor>("select fornecedor.*, endereco.rua, endereco.cep, endereco.estado from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco where " + filter + " like '" + SearchTextBox.Text + "%';").ToList();
 
             }
             catch(Exception ex)
@@ -77,7 +78,7 @@ namespace ErpSigmaVenda.Produtos
             try
             {
                 AxFornecedor axFornecedor = (AxFornecedor)dg.SelectedRows[0].DataBoundItem;
-                this.oFornecedor = dbFornecedor.fornecedor.Find(axFornecedor.idfornecedor);
+                this.oFornecedor = pFornecedor.load(axFornecedor.idfornecedor);
 
             }
             catch (Exception ex)

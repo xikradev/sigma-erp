@@ -197,6 +197,7 @@
     <Compile Include="persistencia\pItemProd.cs" />
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
+    <Compile Include="persistencia\pProduto_fornecedor.cs" />
     <Compile Include="persistencia\pUsuario.cs" />
     <Compile Include="form\cad\FrmCadUsuario.cs">
       <SubType>Form</SubType>

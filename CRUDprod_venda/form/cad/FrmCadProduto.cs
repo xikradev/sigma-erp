@@ -1,4 +1,4 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using ErpSigmaVenda.linq;
 using ErpSigmaVenda.Produtos;
 using System;
 using System.Collections.Generic;

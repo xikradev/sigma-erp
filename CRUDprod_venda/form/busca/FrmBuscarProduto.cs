@@ -1,5 +1,6 @@
 ﻿using ErpSigmaVenda.auxiliar;
 using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace ErpSigmaVenda.vendas
 
         private void PesquisarProdFrm_Load(object sender, EventArgs e)
         {
-            dg.DataSource = pProduto.GetProduto();
+            dg.DataSource = pProduto_fornecedor.GetProduto();
             FilterCb.SelectedIndex = 0;
             rowsCheck();
         }
@@ -122,7 +123,7 @@ namespace ErpSigmaVenda.vendas
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            dg.DataSource = pProduto.GetProduto();
+            dg.DataSource = pProduto_fornecedor.GetProduto();
             rowsCheck();
         }
     }
