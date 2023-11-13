@@ -1,5 +1,5 @@
-﻿using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.auxiliar;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.linq;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace ErpSigmaVenda.vendas
 {
     public partial class FrmBuscarVenda : Form
     {
-        private venda_produtoEntities db = new venda_produtoEntities();
+        private dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
         public venda oVenda = new venda();
 
         public FrmBuscarVenda()
@@ -44,7 +44,7 @@ namespace ErpSigmaVenda.vendas
                 {
                     FilterComboBox.Items.Remove("Vendedor");
                 }
-                dg.DataSource = db.Database.SqlQuery<AxVenda>("select idvenda, usr.nomeCompleto as vendedor, usr.idusuario, cli.nomeCompleto as cliente, precoTotal, data from venda " +
+                dg.DataSource = dc.ExecuteQuery<AxVenda>("select idvenda, usr.nomeCompleto as vendedor, usr.idusuario, cli.nomeCompleto as cliente, precoTotal, data from venda " +
                 $"inner join usuario usr on venda.idusuario = usr.idusuario inner join cliente cli on venda.idcliente = cli.idcliente where usr.idusuario = {pLoginUsr.oUsuario.idusuario};").ToList();
             }
             
@@ -57,7 +57,7 @@ namespace ErpSigmaVenda.vendas
             try
             {
                 AxVenda axVenda = (AxVenda) dg.SelectedRows[0].DataBoundItem;
-                this.oVenda = db.venda.Find(axVenda.idvenda);
+                //this.oVenda = db.venda.Find(axVenda.idvenda);
             }
             catch (Exception)
             {
@@ -81,7 +81,7 @@ namespace ErpSigmaVenda.vendas
                 {
                     string idvenda = oIndex.ToString();
 
-                    this.oVenda = db.venda.Find(int.Parse(idvenda));
+                    //this.oVenda = db.venda.Find(int.Parse(idvenda));
                     this.DialogResult = DialogResult.OK;
                 }
 
@@ -105,7 +105,7 @@ namespace ErpSigmaVenda.vendas
                 filter = "usr.nomeCompleto";
             }
 
-            List<AxVenda> vendaList = db.Database.SqlQuery<AxVenda>("select idvenda, usr.nomeCompleto as vendedor, usr.idusuario, cli.nomeCompleto as cliente, precoTotal, data from venda " +
+            List<AxVenda> vendaList = dc.ExecuteQuery<AxVenda>("select idvenda, usr.nomeCompleto as vendedor, usr.idusuario, cli.nomeCompleto as cliente, precoTotal, data from venda " +
                 $"inner join usuario usr on venda.idusuario = usr.idusuario inner join cliente cli on venda.idcliente = cli.idcliente where {filter} like '{SearchTextBox.Text}%';").ToList();
 
             if(pLoginUsr.oUsuario.role == "ADM")

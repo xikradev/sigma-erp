@@ -1,4 +1,4 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using ErpSigmaVenda.linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,16 @@ namespace ErpSigmaVenda.query
 {
     public static class pLoginUsr
     {
+        static dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
+
         public static usuario oUsuario { get; set; }
 
         public static usuario GetUser(string email, string senha)
         {
-            venda_produtoEntities db = new venda_produtoEntities();
+            dc = new dataContextErpSigmaDataContext();
             StringBuilder query = new StringBuilder();
             query.AppendLine("select * from usuario where email ='"+email+"' and senha ='"+senha+"';");
-            oUsuario = db.Database.SqlQuery<usuario>(query.ToString()).FirstOrDefault();
+            oUsuario = dc.ExecuteQuery<usuario>(query.ToString()).FirstOrDefault();
             return oUsuario;
         }
     }

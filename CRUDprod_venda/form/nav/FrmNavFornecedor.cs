@@ -1,5 +1,4 @@
-﻿using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.auxiliar;
+﻿using ErpSigmaVenda.auxiliar;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ErpSigmaVenda.form.relatorios;
+using ErpSigmaVenda.persistencia;
+using ErpSigmaVenda.linq;
 
 namespace ErpSigmaVenda.fornecedores
 {
     public partial class FrmNavFornecedor : Form
     {
-        private venda_produtoEntities db = new venda_produtoEntities();
+        //private venda_produtoEntities db = new venda_produtoEntities();
         fornecedor oFornecedor = new fornecedor();
         public FrmNavFornecedor()
         {
@@ -26,17 +27,21 @@ namespace ErpSigmaVenda.fornecedores
         private void InsertButton_Click(object sender, EventArgs e)
         {
             FrmCadfornecedor fornecedoresForm = new FrmCadfornecedor();
-            fornecedoresForm.oFornecedor = new fornecedor();
-            fornecedoresForm.oEndereco = new endereco();
+            fornecedoresForm.oFornecedor = pFornecedor.Create();
+            fornecedoresForm.oEndereco = pEndereco.Create();
             if(fornecedoresForm.ShowDialog() == DialogResult.OK)
             {
-                db = new venda_produtoEntities();
-                db.endereco.Add(fornecedoresForm.oEndereco);
-                db.SaveChanges();
-                db = new venda_produtoEntities();
+                pEndereco.Insert(fornecedoresForm.oEndereco);
                 fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
-                db.fornecedor.Add(fornecedoresForm.oFornecedor);
-                db.SaveChanges();
+                pFornecedor.Insert(fornecedoresForm.oFornecedor);
+
+                //db = new venda_produtoEntities();
+                //db.endereco.Add(fornecedoresForm.oEndereco);
+                //db.SaveChanges();
+                //db = new venda_produtoEntities();
+                //fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
+                //db.fornecedor.Add(fornecedoresForm.oFornecedor);
+                //db.SaveChanges();
                 loading();
             }
         }
@@ -55,7 +60,7 @@ namespace ErpSigmaVenda.fornecedores
         {
             dgPF.DataSource = pFornecedor.GetFornecedor().Where(o => o.seguimento == null).ToList();
             dgPJ.DataSource = pFornecedor.GetFornecedor().Where(o => o.sexo == null).ToList();
-            if(db.fornecedor.ToList().Count == 0)
+            if(pFornecedor.ReturnAll().Count == 0)
             {
                 UpdateButton.Enabled = false;
                 DeleteButton.Enabled = false;
@@ -82,8 +87,10 @@ namespace ErpSigmaVenda.fornecedores
             if (MessageBox.Show("Você tem certeza que deseja apagar esse dado?", "",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                db.fornecedor.Remove(db.fornecedor.Find(this.oFornecedor.idfornecedor));
-                db.SaveChanges();
+
+                pFornecedor.Delete(this.oFornecedor);
+                //db.fornecedor.Remove(db.fornecedor.Find(this.oFornecedor.idfornecedor));
+                //db.SaveChanges();
                 loading();
             }
         }
@@ -91,11 +98,12 @@ namespace ErpSigmaVenda.fornecedores
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             FrmCadfornecedor fornecedoresForm = new FrmCadfornecedor();
-            fornecedoresForm.oFornecedor = db.fornecedor.Find(this.oFornecedor.idfornecedor);
-            fornecedoresForm.oEndereco = db.endereco.Find(this.oFornecedor.idendereco);
+            fornecedoresForm.oFornecedor = pFornecedor.load(this.oFornecedor.idfornecedor);
+            fornecedoresForm.oEndereco = pEndereco.Load(this.oFornecedor.idendereco);
             if(fornecedoresForm.ShowDialog() == DialogResult.OK)
             {
-                db.SaveChanges();
+                pEndereco.Update(fornecedoresForm.oEndereco);
+                pFornecedor.Update(fornecedoresForm.oFornecedor);
                 loading();
             }
         }
@@ -112,7 +120,7 @@ namespace ErpSigmaVenda.fornecedores
             try
             {
                 AxFornecedor axFornecedor = (AxFornecedor)dgPJ.SelectedRows[0].DataBoundItem;
-                this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
+                this.oFornecedor = pFornecedor.load(axFornecedor.idfornecedor);
             }
             catch (Exception ex)
             {
@@ -125,7 +133,7 @@ namespace ErpSigmaVenda.fornecedores
             try
             {
                 AxFornecedor axFornecedor = (AxFornecedor)dgPF.SelectedRows[0].DataBoundItem;
-                this.oFornecedor = db.fornecedor.Find(axFornecedor.idfornecedor);
+                this.oFornecedor = pFornecedor.load(axFornecedor.idfornecedor);
             }
             catch (Exception ex)
             {

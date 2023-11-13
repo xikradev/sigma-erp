@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ErpSigmaVenda.auxiliar
 {
-    class AxFornecedor
+    public class AxFornecedor
     {
         public int idfornecedor { get; set; }
         public string nomeCompleto { get; set; }

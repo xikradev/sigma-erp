@@ -1,6 +1,6 @@
 ﻿using ErpSigmaVenda.auxiliar;
-using ErpSigmaVenda.conexão;
 using ErpSigmaVenda.form.relatorios;
+using ErpSigmaVenda.linq;
 using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
@@ -22,7 +22,7 @@ namespace ErpSigmaVenda.vendas
         private int itemIndex;
         public venda oVenda { get; set; }
         private BindingList<AxItemProd> items = new BindingList<AxItemProd>();
-        private venda_produtoEntities db = new venda_produtoEntities();
+        //private venda_produtoEntities db = new venda_produtoEntities();
 
         private const string VENDA_ABERTA = "Venda Aberta";
         private const string VENDA_FECHADA = "Venda Fechada";
@@ -86,7 +86,7 @@ namespace ErpSigmaVenda.vendas
             FrmBuscarCliente frm = new FrmBuscarCliente();
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                this.oCliente = frm.oCliente;
+                //this.oCliente = frm.oCliente;
                 ClienteTb.Text = $"{this.oCliente.idcliente}- {this.oCliente.nomeCompleto}";
             }
         }
@@ -114,20 +114,20 @@ namespace ErpSigmaVenda.vendas
         {
             this.oVenda = new venda();
             updatingVenda();
-            db = new venda_produtoEntities();
-            db.venda.Add(this.oVenda);
-            db.SaveChanges();
+            //db = new venda_produtoEntities();
+            //db.venda.Add(this.oVenda);
+            //db.SaveChanges();
             foreach (var item in this.items)
             {
                 ItensVenda oItemProd = new ItensVenda();
                 updatingItems(oItemProd, item);
-                db = new venda_produtoEntities();
-                db.ItensVenda.Add(oItemProd);
-                db.SaveChanges();
-                db = new venda_produtoEntities();
-                produto oProduto = db.produto.Find(oItemProd.idproduto);
-                oProduto.estoque_qnt -= oItemProd.quantidade;
-                db.SaveChanges();
+                //db = new venda_produtoEntities();
+                //db.ItensVenda.Add(oItemProd);
+                //db.SaveChanges();
+                //db = new venda_produtoEntities();
+                //produto oProduto = db.produto.Find(oItemProd.idproduto);
+                //oProduto.estoque_qnt -= oItemProd.quantidade;
+                //db.SaveChanges();
                 
             }
 
@@ -253,13 +253,13 @@ namespace ErpSigmaVenda.vendas
             FrmBuscarVenda frm = new FrmBuscarVenda();
             if(frm.ShowDialog() == DialogResult.OK)
             {
-                this.oVenda = db.venda.Find(frm.oVenda.idvenda);
-                CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
-                MetPagCB.SelectedItem = this.oVenda.metodo_pagamento;
-                this.oCliente = db.cliente.Find(this.oVenda.idcliente);
-                this.oUsuario = db.usuario.Find(this.oVenda.idusuario);
+                //this.oVenda = db.venda.Find(frm.oVenda.idvenda);
+                //CodVendaTextBox.Text = this.oVenda.idvenda.ToString();
+                //MetPagCB.SelectedItem = this.oVenda.metodo_pagamento;
+                //this.oCliente = db.cliente.Find(this.oVenda.idcliente);
+                //this.oUsuario = db.usuario.Find(this.oVenda.idusuario);
                 VendedorTextBox.Text = $"{oUsuario.idusuario}- {oUsuario.nomeCompleto}";
-                this.items = searchItems(this.oVenda.idvenda);
+                //this.items = searchItems(this.oVenda.idvenda);
                 StatusTextBox.Text = VENDA_FECHADA;
                 dgItem.DataSource = this.items;
                 ReportBtn.Enabled = true;
@@ -268,11 +268,11 @@ namespace ErpSigmaVenda.vendas
             }  
         }
 
-        private BindingList<AxItemProd> searchItems(int id)
-        {
-            return new BindingList<AxItemProd>(db.Database.SqlQuery<AxItemProd>($"select ItensVenda.iditem,ItensVenda.idproduto, ItensVenda.quantidade, produto.nome, produto.preco as precoUnit, produto.estoque_qnt, ItensVenda.precoTotal from ItensVenda " +
-            $"inner join produto on ItensVenda.idproduto = produto.idproduto where ItensVenda.idvenda = {id}; ").ToList());
-        }
+        //private BindingList<AxItemProd> searchItems(int id)
+        //{
+        //    return new BindingList<AxItemProd>(db.Database.SqlQuery<AxItemProd>($"select ItensVenda.iditem,ItensVenda.idproduto, ItensVenda.quantidade, produto.nome, produto.preco as precoUnit, produto.estoque_qnt, ItensVenda.precoTotal from ItensVenda " +
+        //    $"inner join produto on ItensVenda.idproduto = produto.idproduto where ItensVenda.idvenda = {id}; ").ToList());
+        //}
 
         private void dgItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -396,44 +396,44 @@ namespace ErpSigmaVenda.vendas
 
         private void AtualizarVendaBtn_Click(object sender, EventArgs e)
         {
-            db = new venda_produtoEntities();
-            if(verify() == true)
-            {
-                this.oVenda = db.venda.Find(this.oVenda.idvenda);
-                updatingVenda();
-                db.SaveChanges();
-                List<ItensVenda> itensSaveds = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
-                //remover items
-                foreach (var item in itensSaveds)
-                {
-                    db = new venda_produtoEntities();
-                    var itemFounded = this.items.FirstOrDefault(o => o.iditem == item.iditem);
-                    if (itemFounded == null)
-                    {
-                        db.ItensVenda.Remove(db.ItensVenda.Find(item.iditem));
-                        db.SaveChanges();
-                    }
-                }
-                //atualizar e adiconar itens
-                foreach (var item in this.items)
-                {
-                    db = new venda_produtoEntities();
-                    var itemFounded = itensSaveds.FirstOrDefault(o => o.iditem == item.iditem);
-                    if (itemFounded != null)
-                    {
-                        updatingItems(itemFounded, item);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        ItensVenda newItem = new ItensVenda();
-                        updatingItems(newItem, item);
-                        db.ItensVenda.Add(newItem);
-                        db.SaveChanges();
-                    }
-                }
-                MessageBox.Show("Venda Atualizada com sucesso!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            //db = new venda_produtoEntities();
+            //if(verify() == true)
+            //{
+            //    this.oVenda = db.venda.Find(this.oVenda.idvenda);
+            //    updatingVenda();
+            //    db.SaveChanges();
+            //    List<ItensVenda> itensSaveds = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
+            //    //remover items
+            //    foreach (var item in itensSaveds)
+            //    {
+            //        db = new venda_produtoEntities();
+            //        var itemFounded = this.items.FirstOrDefault(o => o.iditem == item.iditem);
+            //        if (itemFounded == null)
+            //        {
+            //            db.ItensVenda.Remove(db.ItensVenda.Find(item.iditem));
+            //            db.SaveChanges();
+            //        }
+            //    }
+            //    //atualizar e adiconar itens
+            //    foreach (var item in this.items)
+            //    {
+            //        db = new venda_produtoEntities();
+            //        var itemFounded = itensSaveds.FirstOrDefault(o => o.iditem == item.iditem);
+            //        if (itemFounded != null)
+            //        {
+            //            updatingItems(itemFounded, item);
+            //            db.SaveChanges();
+            //        }
+            //        else
+            //        {
+            //            ItensVenda newItem = new ItensVenda();
+            //            updatingItems(newItem, item);
+            //            db.ItensVenda.Add(newItem);
+            //            db.SaveChanges();
+            //        }
+            //    }
+            //    MessageBox.Show("Venda Atualizada com sucesso!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -443,15 +443,15 @@ namespace ErpSigmaVenda.vendas
                 if(MessageBox.Show("Você tem certeza que deseja Cancelar essa venda? ela será apagada permanentemente","",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    var itemsToBeDeleted = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
-                    foreach (var item in itemsToBeDeleted)
-                    {
-                        db.ItensVenda.Remove(item);
-                    }
-                    db.venda.Remove(this.oVenda);
-                    db.SaveChanges();
-                    clearFields();
-                    MessageBox.Show("Venda Cancelada com Sucesso!!","", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    //var itemsToBeDeleted = db.ItensVenda.Where(o => o.idvenda == this.oVenda.idvenda).ToList();
+                    //foreach (var item in itemsToBeDeleted)
+                    //{
+                    //    db.ItensVenda.Remove(item);
+                    //}
+                    //db.venda.Remove(this.oVenda);
+                    //db.SaveChanges();
+                    //clearFields();
+                    //MessageBox.Show("Venda Cancelada com Sucesso!!","", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
             else

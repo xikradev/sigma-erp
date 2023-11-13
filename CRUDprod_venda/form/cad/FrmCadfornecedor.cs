@@ -1,5 +1,7 @@
 ﻿using CpfCnpjLibrary;
-using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
+using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -233,10 +235,10 @@ namespace ErpSigmaVenda.fornecedores
 
         private bool EmailValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
             fornecedor foundedFornecedor = new fornecedor();
 
-            foundedFornecedor = db.fornecedor.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
+            foundedFornecedor = pFornecedor.LoadWhere(o => o.email.Equals(EmailTextBox.Text));
+            //foundedFornecedor = db.fornecedor.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
             if (foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor)
             {
                 MessageBox.Show("Já existe um registro com esse Email, por favor insire outro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -306,10 +308,12 @@ namespace ErpSigmaVenda.fornecedores
         }
         private bool cpfValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
+            
             fornecedor foundedFornecedor = new fornecedor();
 
-            foundedFornecedor = db.fornecedor.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+            foundedFornecedor = pFornecedor.LoadWhere(o => o.registro.Equals(RegisterTextBox.Text));
+
+            //foundedFornecedor = db.fornecedor.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
 
             if (this.PFisicaBtn.Checked && !Cpf.Validar(this.RegisterTextBox.Text))
             {
@@ -330,10 +334,11 @@ namespace ErpSigmaVenda.fornecedores
 
         private bool cnpjValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
+            
             fornecedor foundedFornecedor = new fornecedor();
 
-            foundedFornecedor = db.fornecedor.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+            foundedFornecedor = pFornecedor.LoadWhere(o => o.registro.Equals(RegisterTextBox.Text));
+            //foundedFornecedor = db.fornecedor.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
 
             if (this.PJuridicaBtn.Checked && !Cnpj.Validar(this.RegisterTextBox.Text))
             {
@@ -379,9 +384,9 @@ namespace ErpSigmaVenda.fornecedores
                 MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            venda_produtoEntities db = new venda_produtoEntities();
             endereco foundedEndereco = new endereco();
-            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            foundedEndereco = pEndereco.LoadWhere(o => o.cep.Equals(CepTextBox.Text));
+            //foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
             if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
             {
                 MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);

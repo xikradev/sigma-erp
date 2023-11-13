@@ -1,10 +1,13 @@
 ﻿
 
+using ErpSigmaVenda.auxiliar;
 using ErpSigmaVenda.linq;
 using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace ErpSigmaVenda.query
 {
@@ -46,6 +49,13 @@ namespace ErpSigmaVenda.query
             return oFornecedor;
         }
 
+        public static fornecedor LoadWhere(Expression<Func<fornecedor, bool>> predicate)
+        {
+            UpdateDc();
+            var oEndereco = tFornecedor.Where(predicate).SingleOrDefault();
+            return oEndereco;
+        }
+
         public static void Update(fornecedor pobjFornecedor)
         {
             var oFornecedor = (from f in tFornecedor
@@ -74,15 +84,20 @@ namespace ErpSigmaVenda.query
 
         public static List<fornecedor> ReturnAll()
         {
-
+            UpdateDc();
+            var lstFornecedor = (from f in tFornecedor
+                                    orderby f.idfornecedor 
+                                    descending select f).ToList<fornecedor>();
+            return lstFornecedor;
         }
-        //public static IEnumerable<AxFornecedor> GetFornecedor()
-        //{
-        //    venda_produtoEntities db = new venda_produtoEntities();
-        //    StringBuilder query = new StringBuilder();
-        //    query.AppendLine("select fornecedor.*, endereco.complemento, endereco.cep from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco ");
-        //    return db.Database.SqlQuery<AxFornecedor>(query.ToString()).ToList();
-        //}
+
+        public static IEnumerable<AxFornecedor> GetFornecedor()
+        {
+            UpdateDc();
+            StringBuilder query = new StringBuilder();
+            query.AppendLine("select fornecedor.*, endereco.complemento, endereco.cep from fornecedor inner join endereco on fornecedor.idendereco = endereco.idendereco ");
+            return dc.ExecuteQuery<AxFornecedor>(query.ToString()).ToList();
+        }
 
 
     }

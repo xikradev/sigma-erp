@@ -113,7 +113,7 @@
     <Compile Include="conexão\ItensVenda.cs">
       <DependentUpon>venda_produto.tt</DependentUpon>
     </Compile>
-    <Compile Include="conexão\linq\dataContextErpSigma.designer.cs">
+    <Compile Include="linq\dataContextErpSigma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dataContextErpSigma.dbml</DependentUpon>
@@ -193,6 +193,7 @@
     <Compile Include="form\relatorios\FrmRelVenda.Designer.cs">
       <DependentUpon>FrmRelVenda.cs</DependentUpon>
     </Compile>
+    <Compile Include="persistencia\pEndereco.cs" />
     <Compile Include="persistencia\pItemProd.cs" />
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
@@ -334,12 +335,12 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>venda_produto.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="conexão\linq\dataContextErpSigma.dbml">
+    <None Include="linq\dataContextErpSigma.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dataContextErpSigma.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="conexão\linq\dataContextErpSigma.dbml.layout">
+    <None Include="linq\dataContextErpSigma.dbml.layout">
       <DependentUpon>dataContextErpSigma.dbml</DependentUpon>
     </None>
     <None Include="conexão\venda_produto.edmx.diagram">

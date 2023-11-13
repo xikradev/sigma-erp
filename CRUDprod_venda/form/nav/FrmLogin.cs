@@ -1,4 +1,4 @@
-﻿using ErpSigmaVenda.conexão;
+﻿using ErpSigmaVenda.linq;
 using ErpSigmaVenda.login;
 using ErpSigmaVenda.navegacao;
 using ErpSigmaVenda.query;
@@ -17,7 +17,7 @@ namespace ErpSigmaVenda
 {
     public partial class FrmLogin : Form
     {
-        private venda_produtoEntities db = new venda_produtoEntities();
+        //private venda_produtoEntities db = new venda_produtoEntities();
         public static usuario oUsuario { get; set; }
 
         public FrmLogin()
@@ -43,15 +43,15 @@ namespace ErpSigmaVenda
         private void label5_Click(object sender, EventArgs e)
         {
             FrmCadUsuario usuarioForm = new FrmCadUsuario();
-            usuarioForm.oEndereco = new endereco();
-            usuarioForm.oUsuario = new usuario();
+            //usuarioForm.oEndereco = new endereco();
+            //usuarioForm.oUsuario = new usuario();
             if(usuarioForm.ShowDialog() == DialogResult.OK)
             {
-                db = new venda_produtoEntities();
-                db.endereco.Add(usuarioForm.oEndereco);
+                //db = new venda_produtoEntities();
+                //db.endereco.Add(usuarioForm.oEndereco);
                 try
                 {
-                    db.SaveChanges();
+                    //db.SaveChanges();
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -64,10 +64,10 @@ namespace ErpSigmaVenda
                     }
                 }
 
-                db = new venda_produtoEntities();
+                //db = new venda_produtoEntities();
                 usuarioForm.oUsuario.idendereco = usuarioForm.oEndereco.idendereco;
-                db.usuario.Add(usuarioForm.oUsuario);
-                db.SaveChanges();
+                //db.usuario.Add(usuarioForm.oUsuario);
+                //db.SaveChanges();
                 EmailTextBox.Text = "";
                 SenhaTextBox.Text = "";
                 
