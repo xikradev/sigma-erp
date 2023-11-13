@@ -113,7 +113,11 @@ namespace ErpSigmaVenda.login
 
         private Boolean verifyUsuario()
         {
-            
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text) || NomeComplTextBox.Text.Length > 150)
+            {
+                MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             if (emailValidation() || EmailTextBox.Text.Length > 80)
             {
                 MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -334,26 +338,6 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 CepTextBox.Text = "";
             }
-        }
-
-        private void NomeComplTextBox_Leave(object sender, EventArgs e)
-        {
-            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
-            {
-                NameErrorLabel.Visible = true;
-                MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                NomeComplTextBox.Focus();
-            }
-        }
-
-        private void CpfTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void NomeComplTextBox_TextChanged(object sender, EventArgs e)
-        {
-            NameErrorLabel.Visible = false;
         }
     }
 }
