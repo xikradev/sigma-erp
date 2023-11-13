@@ -1,5 +1,6 @@
-﻿using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.auxiliar;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace ErpSigmaVenda.clientes
 {
     public partial class FrmNavCliente : Form
     {
-        private venda_produtoEntities db = new venda_produtoEntities();
+        private dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
         cliente oCliente = new cliente();
 
         public FrmNavCliente()
@@ -36,16 +37,16 @@ namespace ErpSigmaVenda.clientes
             var oUsuario = pLoginUsr.oUsuario;
             dgPF.DataSource = pCliente.GetCliente().Where(o => o.seguimento == null).ToList();
             dgPJ.DataSource = pCliente.GetCliente().Where(o => o.sexo == null).ToList();
-            if(db.cliente.ToList().Count() == 0 && oUsuario.role.Equals("ADM"))
+            if(pCliente.ReturnAll().Count() == 0 && oUsuario.role.Equals("ADM"))
             {
                 InsertButton.Enabled = true;
             }
-            else if(db.cliente.ToList().Count() > 0 && oUsuario.role.Equals("ADM"))
+            else if(pCliente.ReturnAll().Count() > 0 && oUsuario.role.Equals("ADM"))
             {
                 InsertButton.Enabled = true;
                 UpdateButton.Enabled = true;
                 DeleteButton.Enabled = true;
-            }else if(db.cliente.ToList().Count() > 0 && oUsuario.role.Equals("Vendedor"))
+            }else if(pCliente.ReturnAll().Count() > 0 && oUsuario.role.Equals("Vendedor"))
             {
                 InsertButton.Enabled = true;
                 UpdateButton.Enabled = true;
@@ -55,17 +56,13 @@ namespace ErpSigmaVenda.clientes
         private void InsertButton_Click(object sender, EventArgs e)
         {
             FrmCadCliente clienteForm = new FrmCadCliente();
-            clienteForm.oCliente = new cliente();
-            clienteForm.oEndereco = new endereco();
+            clienteForm.oCliente = pCliente.Create();
+            clienteForm.oEndereco = pEndereco.Create();
             if(clienteForm.ShowDialog() == DialogResult.OK)
             {
-                db = new venda_produtoEntities();
-                db.endereco.Add(clienteForm.oEndereco);
-                db.SaveChanges();
-                db = new venda_produtoEntities();
+                pEndereco.Insert(clienteForm.oEndereco);
                 clienteForm.oCliente.idendereco = clienteForm.oEndereco.idendereco;
-                db.cliente.Add(clienteForm.oCliente);
-                db.SaveChanges();
+                pCliente.Insert(clienteForm.oCliente);
                 loading();
             }
         }
@@ -77,8 +74,7 @@ namespace ErpSigmaVenda.clientes
             if(MessageBox.Show("Você tem certeza que deseja apagar esse dado?", "",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                db.cliente.Remove(db.cliente.Find(this.oCliente.idcliente));
-                db.SaveChanges();
+                pCliente.Delete(this.oCliente);
                 loading();
             }
         }
@@ -91,11 +87,12 @@ namespace ErpSigmaVenda.clientes
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             FrmCadCliente clienteForm = new FrmCadCliente();
-            clienteForm.oCliente = db.cliente.Find(this.oCliente.idcliente);
-            clienteForm.oEndereco = db.endereco.Find(clienteForm.oCliente.idendereco);
+            clienteForm.oCliente = pCliente.load(this.oCliente.idcliente);
+            clienteForm.oEndereco = pEndereco.Load(clienteForm.oCliente.idendereco);
             if(clienteForm.ShowDialog() == DialogResult.OK)
             {
-                db.SaveChanges();
+                pCliente.Update(clienteForm.oCliente);
+                pEndereco.Update(clienteForm.oEndereco);
                 this.loading();
             }
         }
@@ -110,7 +107,7 @@ namespace ErpSigmaVenda.clientes
             try
             {
                 AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
-                this.oCliente = db.cliente.Find(axCliente.idcliente);
+                this.oCliente = pCliente.load(axCliente.idcliente);
 
             }
             catch (Exception ex)
@@ -124,7 +121,7 @@ namespace ErpSigmaVenda.clientes
             try
             {
                 AxCliente axCliente = (AxCliente)dgPJ.SelectedRows[0].DataBoundItem;
-                this.oCliente = db.cliente.Find(axCliente.idcliente);
+                this.oCliente = pCliente.load(axCliente.idcliente);
 
             }
             catch (Exception ex)

@@ -321,7 +321,7 @@ namespace ErpSigmaVenda.fornecedores
                 return true;
             }
 
-            if (foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor)
+            if (foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor && this.PFisicaBtn.Checked)
             {
                 MessageBox.Show("Já existe um Cliente com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegisterTextBox.Text = "";
@@ -346,7 +346,7 @@ namespace ErpSigmaVenda.fornecedores
                 return true;
             }
 
-            if (foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor)
+            if (foundedFornecedor != null && this.oFornecedor.idfornecedor != foundedFornecedor.idfornecedor && this.PJuridicaBtn.Checked)
             {
                 MessageBox.Show("Já existe um Cliente com este CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegisterTextBox.Text = "";

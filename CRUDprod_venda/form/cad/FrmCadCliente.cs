@@ -1,5 +1,7 @@
 ﻿using CpfCnpjLibrary;
-using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
+using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -223,10 +225,9 @@ namespace ErpSigmaVenda.clientes
 
         private bool EmailValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
             cliente foundedCliente = new cliente();
 
-            foundedCliente = db.cliente.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
+            foundedCliente = pCliente.LoadWhere(o => o.email.Equals(EmailTextBox.Text));
             if(foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
             {
                 MessageBox.Show("Já existe um registro com esse Email, por favor insire outro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -297,10 +298,10 @@ namespace ErpSigmaVenda.clientes
 
         private bool cpfValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
+
             cliente foundedCliente = new cliente();
 
-            foundedCliente = db.cliente.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+            foundedCliente = pCliente.LoadWhere(o => o.registro.Equals(RegisterTextBox.Text));
 
             if (this.PFisicaBtn.Checked && !Cpf.Validar(this.RegisterTextBox.Text))
             {
@@ -308,7 +309,7 @@ namespace ErpSigmaVenda.clientes
                 return true;
             }
             
-            if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
+            if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente && this.PFisicaBtn.Checked)
             {
                 MessageBox.Show("Já existe um Cliente com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegisterTextBox.Text = "";
@@ -321,23 +322,22 @@ namespace ErpSigmaVenda.clientes
 
         private bool cnpjValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
             cliente foundedCliente = new cliente();
 
-            foundedCliente = db.cliente.Where(o => o.registro.Equals(RegisterTextBox.Text)).FirstOrDefault();
+            foundedCliente = pCliente.LoadWhere(o => o.registro.Equals(RegisterTextBox.Text));
 
             if (this.PJuridicaBtn.Checked && !Cnpj.Validar(this.RegisterTextBox.Text))
             {
                 MessageBox.Show("CNPJ Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;
             }
-            
-            if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente)
+            if (foundedCliente != null && this.oCliente.idcliente != foundedCliente.idcliente && this.PJuridicaBtn.Checked)
             {
                 MessageBox.Show("Já existe um Cliente com este CNPJ", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 RegisterTextBox.Text = "";
                 return true;
             }
+
 
             return false;
         }
@@ -370,9 +370,8 @@ namespace ErpSigmaVenda.clientes
                 MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            venda_produtoEntities db = new venda_produtoEntities();
             endereco foundedEndereco = new endereco();
-            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            foundedEndereco = pEndereco.LoadWhere(o => o.cep.Equals(CepTextBox.Text));
             if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
             {
                 MessageBox.Show("Já existe um Cliente com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
