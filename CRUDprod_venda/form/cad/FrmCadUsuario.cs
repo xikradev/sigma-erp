@@ -1,6 +1,7 @@
 ﻿using CpfCnpjLibrary;
-using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
+using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -203,9 +204,8 @@ namespace ErpSigmaVenda.login
 
         private bool emailValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
             usuario foundedUsuario = new usuario();
-            foundedUsuario = db.usuario.Where(o => o.email.Equals(EmailTextBox.Text)).FirstOrDefault();
+            foundedUsuario = pUsuario.LoadWhere(o => o.email.Equals(EmailTextBox.Text));
             if (foundedUsuario != null && this.oUsuario.idusuario != foundedUsuario.idusuario)
             {
                 MessageBox.Show("Já existe um Usuário com este Email", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -223,10 +223,9 @@ namespace ErpSigmaVenda.login
 
         private bool cpfValidation()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
             usuario foundedCliente = new usuario();
 
-            foundedCliente = db.usuario.Where(o => o.cpf.Equals(CpfTextBox.Text)).FirstOrDefault();
+            foundedCliente = pUsuario.LoadWhere(o => o.cpf.Equals(CpfTextBox.Text));
 
             if (!Cpf.Validar(this.CpfTextBox.Text))
             {
@@ -326,9 +325,8 @@ namespace ErpSigmaVenda.login
                 MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
-            venda_produtoEntities db = new venda_produtoEntities();
             endereco foundedEndereco = new endereco();
-            foundedEndereco = db.endereco.Where(o => o.cep.Equals(CepTextBox.Text)).FirstOrDefault();
+            foundedEndereco = pEndereco.LoadWhere(o => o.cep.Equals(CepTextBox.Text));
             if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
             {
                 MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);

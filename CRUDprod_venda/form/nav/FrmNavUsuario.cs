@@ -1,6 +1,7 @@
-﻿using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.auxiliar;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.linq;
 using ErpSigmaVenda.login;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace ErpSigmaVenda.usuarios
 {
     public partial class FrmNavUsuario : Form
     {
-        private venda_produtoEntities db = new venda_produtoEntities();
+        private dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
         usuario oUsuario = new usuario();
 
         public FrmNavUsuario()
@@ -27,17 +28,13 @@ namespace ErpSigmaVenda.usuarios
         private void InsertButton_Click(object sender, EventArgs e)
         {
             FrmCadUsuario usuarioForm = new FrmCadUsuario();
-            usuarioForm.oUsuario = new usuario();
-            usuarioForm.oEndereco = new endereco();
+            usuarioForm.oUsuario = pUsuario.Create();
+            usuarioForm.oEndereco = pEndereco.Create();
             if (usuarioForm.ShowDialog() == DialogResult.OK)
             {
-                db = new venda_produtoEntities();
-                db.endereco.Add(usuarioForm.oEndereco);
-                db.SaveChanges();
-                db = new venda_produtoEntities();
+                pEndereco.Insert(usuarioForm.oEndereco);
                 usuarioForm.oUsuario.idendereco = usuarioForm.oEndereco.idendereco;
-                db.usuario.Add(usuarioForm.oUsuario);
-                db.SaveChanges();
+                pUsuario.Insert(usuarioForm.oUsuario);
                 loading();
             }
         }
@@ -50,7 +47,7 @@ namespace ErpSigmaVenda.usuarios
         private void loading() {
 
             dg.DataSource = pUsuario.GetUsuario();
-            if (db.usuario.ToList().Count() == 0)
+            if (pUsuario.ReturnAll().Count() == 0)
             {
                 UpdateButton.Enabled = false;
                 DeleteButton.Enabled = false;
@@ -66,10 +63,11 @@ namespace ErpSigmaVenda.usuarios
         private void UpdateButton_Click(object sender, EventArgs e)
         {
             FrmCadUsuario usuarioForm = new FrmCadUsuario();
-            usuarioForm.oUsuario = db.usuario.Find(this.oUsuario.idusuario);
-            usuarioForm.oEndereco = db.endereco.Find(this.oUsuario.idendereco);
+            usuarioForm.oUsuario = pUsuario.load(this.oUsuario.idusuario);
+            usuarioForm.oEndereco = pEndereco.Load(this.oUsuario.idendereco);
             if (usuarioForm.ShowDialog() == DialogResult.OK) {
-                db.SaveChanges();
+                pEndereco.Update(usuarioForm.oEndereco);
+                pUsuario.Update(usuarioForm.oUsuario);
                 loading();
             }
         }
@@ -79,7 +77,7 @@ namespace ErpSigmaVenda.usuarios
             try
             {
                 AxUsuario axUsuario = (AxUsuario)dg.SelectedRows[0].DataBoundItem;
-                this.oUsuario = db.usuario.Find(axUsuario.idusuario);
+                this.oUsuario = pUsuario.load(axUsuario.idusuario);
             }
             catch (Exception ex) {
 
@@ -92,8 +90,7 @@ namespace ErpSigmaVenda.usuarios
             if (MessageBox.Show("Você tem certeza que deseja apagar esse dado?", "",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                db.usuario.Remove(db.usuario.Find(this.oUsuario.idusuario));
-                db.SaveChanges();
+                pUsuario.Delete(this.oUsuario);
                 loading();
             }
         }
