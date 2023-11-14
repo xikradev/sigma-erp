@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="venda_produto" Class="dataContextErpSigmaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=MICRO-12\SQLEXPRESS;Initial Catalog=venda_produto;User ID=sa" SettingsObjectName="ErpSigmaVenda.Properties.Settings" SettingsPropertyName="venda_produtoConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=MICRO-12\SQLEXPRESS;Initial Catalog=venda_produto;Integrated Security=True" SettingsObjectName="ErpSigmaVenda.Properties.Settings" SettingsPropertyName="venda_produtoConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.cliente" Member="cliente">
     <Type Name="cliente">
       <Column Name="idcliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -25,34 +25,6 @@
       <Association Name="venda_ItensVenda" Member="ItensVenda" ThisKey="idvenda" OtherKey="idvenda" Type="ItensVenda" />
       <Association Name="cliente_venda" Member="cliente" ThisKey="idcliente" OtherKey="idcliente" Type="cliente" IsForeignKey="true" />
       <Association Name="usuario_venda" Member="usuario" ThisKey="idusuario" OtherKey="idusuario" Type="usuario" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.endereco" Member="endereco">
-    <Type Name="endereco">
-      <Column Name="idendereco" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="rua" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="complemento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="cep" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
-      <Column Name="numero" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="estado" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
-      <Column Name="cidade" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Association Name="endereco_cliente" Member="cliente" ThisKey="idendereco" OtherKey="idendereco" Type="cliente" />
-      <Association Name="endereco_fornecedor" Member="fornecedor" ThisKey="idendereco" OtherKey="idendereco" Type="fornecedor" />
-      <Association Name="endereco_usuario" Member="usuario" ThisKey="idendereco" OtherKey="idendereco" Type="usuario" />
-    </Type>
-  </Table>
-  <Table Name="dbo.fornecedor" Member="fornecedor">
-    <Type Name="fornecedor">
-      <Column Name="idfornecedor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="idendereco" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="nomeCompleto" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
-      <Column Name="registro" Type="System.String" DbType="VarChar(18) NOT NULL" CanBeNull="false" />
-      <Column Name="email" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
-      <Column Name="dataNascimento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="sexo" Type="System.String" DbType="Char(3)" CanBeNull="true" />
-      <Column Name="seguimento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
-      <Association Name="fornecedor_produto_fornecedor" Member="produto_fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="produto_fornecedor" />
-      <Association Name="endereco_fornecedor" Member="endereco" ThisKey="idendereco" OtherKey="idendereco" Type="endereco" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ItensVenda" Member="ItensVenda">
@@ -83,8 +55,8 @@
       <Column Name="codProduto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idfornecedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idproduto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="fornecedor_produto_fornecedor" Member="fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="fornecedor" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="produto_produto_fornecedor" Member="produto" ThisKey="idproduto" OtherKey="idproduto" Type="produto" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="fornecedor_produto_fornecedor" Member="fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="fornecedor" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.usuario" Member="usuario">
@@ -100,6 +72,34 @@
       <Column Name="sexo" Type="System.String" DbType="Char(3) NOT NULL" CanBeNull="false" />
       <Association Name="usuario_venda" Member="venda" ThisKey="idusuario" OtherKey="idusuario" Type="venda" />
       <Association Name="endereco_usuario" Member="endereco" ThisKey="idendereco" OtherKey="idendereco" Type="endereco" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.endereco" Member="endereco">
+    <Type Name="endereco">
+      <Column Name="idendereco" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="rua" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="complemento" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="cep" Type="System.String" DbType="VarChar(9) NOT NULL" CanBeNull="false" />
+      <Column Name="numero" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="estado" Type="System.String" DbType="Char(2) NOT NULL" CanBeNull="false" />
+      <Column Name="cidade" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="endereco_cliente" Member="cliente" ThisKey="idendereco" OtherKey="idendereco" Type="cliente" />
+      <Association Name="endereco_usuario" Member="usuario" ThisKey="idendereco" OtherKey="idendereco" Type="usuario" />
+      <Association Name="endereco_fornecedor" Member="fornecedor" ThisKey="idendereco" OtherKey="idendereco" Type="fornecedor" />
+    </Type>
+  </Table>
+  <Table Name="dbo.fornecedor" Member="fornecedor">
+    <Type Name="fornecedor">
+      <Column Name="idfornecedor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="idendereco" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="nomeCompleto" Type="System.String" DbType="VarChar(150) NOT NULL" CanBeNull="false" />
+      <Column Name="registro" Type="System.String" DbType="VarChar(18) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(80) NOT NULL" CanBeNull="false" />
+      <Column Name="dataNascimento" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sexo" Type="System.String" DbType="Char(3)" CanBeNull="true" />
+      <Column Name="seguimento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="fornecedor_produto_fornecedor" Member="produto_fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="produto_fornecedor" />
+      <Association Name="endereco_fornecedor" Member="endereco" ThisKey="idendereco" OtherKey="idendereco" Type="endereco" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

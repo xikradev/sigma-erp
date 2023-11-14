@@ -36,12 +36,6 @@ namespace ErpSigmaVenda.linq
     partial void Insertvenda(venda instance);
     partial void Updatevenda(venda instance);
     partial void Deletevenda(venda instance);
-    partial void Insertendereco(endereco instance);
-    partial void Updateendereco(endereco instance);
-    partial void Deleteendereco(endereco instance);
-    partial void Insertfornecedor(fornecedor instance);
-    partial void Updatefornecedor(fornecedor instance);
-    partial void Deletefornecedor(fornecedor instance);
     partial void InsertItensVenda(ItensVenda instance);
     partial void UpdateItensVenda(ItensVenda instance);
     partial void DeleteItensVenda(ItensVenda instance);
@@ -54,10 +48,16 @@ namespace ErpSigmaVenda.linq
     partial void Insertusuario(usuario instance);
     partial void Updateusuario(usuario instance);
     partial void Deleteusuario(usuario instance);
+    partial void Insertendereco(endereco instance);
+    partial void Updateendereco(endereco instance);
+    partial void Deleteendereco(endereco instance);
+    partial void Insertfornecedor(fornecedor instance);
+    partial void Updatefornecedor(fornecedor instance);
+    partial void Deletefornecedor(fornecedor instance);
     #endregion
 		
 		public dataContextErpSigmaDataContext() : 
-				base(global::ErpSigmaVenda.Properties.Settings.Default.venda_produtoConnectionString, mappingSource)
+				base(global::ErpSigmaVenda.Properties.Settings.Default.venda_produtoConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -102,22 +102,6 @@ namespace ErpSigmaVenda.linq
 			}
 		}
 		
-		public System.Data.Linq.Table<endereco> endereco
-		{
-			get
-			{
-				return this.GetTable<endereco>();
-			}
-		}
-		
-		public System.Data.Linq.Table<fornecedor> fornecedor
-		{
-			get
-			{
-				return this.GetTable<fornecedor>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ItensVenda> ItensVenda
 		{
 			get
@@ -147,6 +131,22 @@ namespace ErpSigmaVenda.linq
 			get
 			{
 				return this.GetTable<usuario>();
+			}
+		}
+		
+		public System.Data.Linq.Table<endereco> endereco
+		{
+			get
+			{
+				return this.GetTable<endereco>();
+			}
+		}
+		
+		public System.Data.Linq.Table<fornecedor> fornecedor
+		{
+			get
+			{
+				return this.GetTable<fornecedor>();
 			}
 		}
 	}
@@ -742,595 +742,6 @@ namespace ErpSigmaVenda.linq
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.endereco")]
-	public partial class endereco : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idendereco;
-		
-		private string _rua;
-		
-		private string _complemento;
-		
-		private string _cep;
-		
-		private int _numero;
-		
-		private string _estado;
-		
-		private string _cidade;
-		
-		private EntitySet<cliente> _cliente;
-		
-		private EntitySet<fornecedor> _fornecedor;
-		
-		private EntitySet<usuario> _usuario;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidenderecoChanging(int value);
-    partial void OnidenderecoChanged();
-    partial void OnruaChanging(string value);
-    partial void OnruaChanged();
-    partial void OncomplementoChanging(string value);
-    partial void OncomplementoChanged();
-    partial void OncepChanging(string value);
-    partial void OncepChanged();
-    partial void OnnumeroChanging(int value);
-    partial void OnnumeroChanged();
-    partial void OnestadoChanging(string value);
-    partial void OnestadoChanged();
-    partial void OncidadeChanging(string value);
-    partial void OncidadeChanged();
-    #endregion
-		
-		public endereco()
-		{
-			this._cliente = new EntitySet<cliente>(new Action<cliente>(this.attach_cliente), new Action<cliente>(this.detach_cliente));
-			this._fornecedor = new EntitySet<fornecedor>(new Action<fornecedor>(this.attach_fornecedor), new Action<fornecedor>(this.detach_fornecedor));
-			this._usuario = new EntitySet<usuario>(new Action<usuario>(this.attach_usuario), new Action<usuario>(this.detach_usuario));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idendereco", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idendereco
-		{
-			get
-			{
-				return this._idendereco;
-			}
-			set
-			{
-				if ((this._idendereco != value))
-				{
-					this.OnidenderecoChanging(value);
-					this.SendPropertyChanging();
-					this._idendereco = value;
-					this.SendPropertyChanged("idendereco");
-					this.OnidenderecoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rua", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string rua
-		{
-			get
-			{
-				return this._rua;
-			}
-			set
-			{
-				if ((this._rua != value))
-				{
-					this.OnruaChanging(value);
-					this.SendPropertyChanging();
-					this._rua = value;
-					this.SendPropertyChanged("rua");
-					this.OnruaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_complemento", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string complemento
-		{
-			get
-			{
-				return this._complemento;
-			}
-			set
-			{
-				if ((this._complemento != value))
-				{
-					this.OncomplementoChanging(value);
-					this.SendPropertyChanging();
-					this._complemento = value;
-					this.SendPropertyChanged("complemento");
-					this.OncomplementoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cep", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
-		public string cep
-		{
-			get
-			{
-				return this._cep;
-			}
-			set
-			{
-				if ((this._cep != value))
-				{
-					this.OncepChanging(value);
-					this.SendPropertyChanging();
-					this._cep = value;
-					this.SendPropertyChanged("cep");
-					this.OncepChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero", DbType="Int NOT NULL")]
-		public int numero
-		{
-			get
-			{
-				return this._numero;
-			}
-			set
-			{
-				if ((this._numero != value))
-				{
-					this.OnnumeroChanging(value);
-					this.SendPropertyChanging();
-					this._numero = value;
-					this.SendPropertyChanged("numero");
-					this.OnnumeroChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Char(2) NOT NULL", CanBeNull=false)]
-		public string estado
-		{
-			get
-			{
-				return this._estado;
-			}
-			set
-			{
-				if ((this._estado != value))
-				{
-					this.OnestadoChanging(value);
-					this.SendPropertyChanging();
-					this._estado = value;
-					this.SendPropertyChanged("estado");
-					this.OnestadoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cidade", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string cidade
-		{
-			get
-			{
-				return this._cidade;
-			}
-			set
-			{
-				if ((this._cidade != value))
-				{
-					this.OncidadeChanging(value);
-					this.SendPropertyChanging();
-					this._cidade = value;
-					this.SendPropertyChanged("cidade");
-					this.OncidadeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_cliente", Storage="_cliente", ThisKey="idendereco", OtherKey="idendereco")]
-		public EntitySet<cliente> cliente
-		{
-			get
-			{
-				return this._cliente;
-			}
-			set
-			{
-				this._cliente.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_fornecedor", Storage="_fornecedor", ThisKey="idendereco", OtherKey="idendereco")]
-		public EntitySet<fornecedor> fornecedor
-		{
-			get
-			{
-				return this._fornecedor;
-			}
-			set
-			{
-				this._fornecedor.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_usuario", Storage="_usuario", ThisKey="idendereco", OtherKey="idendereco")]
-		public EntitySet<usuario> usuario
-		{
-			get
-			{
-				return this._usuario;
-			}
-			set
-			{
-				this._usuario.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_cliente(cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = this;
-		}
-		
-		private void detach_cliente(cliente entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = null;
-		}
-		
-		private void attach_fornecedor(fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = this;
-		}
-		
-		private void detach_fornecedor(fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = null;
-		}
-		
-		private void attach_usuario(usuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = this;
-		}
-		
-		private void detach_usuario(usuario entity)
-		{
-			this.SendPropertyChanging();
-			entity.endereco = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fornecedor")]
-	public partial class fornecedor : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idfornecedor;
-		
-		private int _idendereco;
-		
-		private string _nomeCompleto;
-		
-		private string _registro;
-		
-		private string _email;
-		
-		private System.DateTime _dataNascimento;
-		
-		private string _sexo;
-		
-		private string _seguimento;
-		
-		private EntitySet<produto_fornecedor> _produto_fornecedor;
-		
-		private EntityRef<endereco> _endereco;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidfornecedorChanging(int value);
-    partial void OnidfornecedorChanged();
-    partial void OnidenderecoChanging(int value);
-    partial void OnidenderecoChanged();
-    partial void OnnomeCompletoChanging(string value);
-    partial void OnnomeCompletoChanged();
-    partial void OnregistroChanging(string value);
-    partial void OnregistroChanged();
-    partial void OnemailChanging(string value);
-    partial void OnemailChanged();
-    partial void OndataNascimentoChanging(System.DateTime value);
-    partial void OndataNascimentoChanged();
-    partial void OnsexoChanging(string value);
-    partial void OnsexoChanged();
-    partial void OnseguimentoChanging(string value);
-    partial void OnseguimentoChanged();
-    #endregion
-		
-		public fornecedor()
-		{
-			this._produto_fornecedor = new EntitySet<produto_fornecedor>(new Action<produto_fornecedor>(this.attach_produto_fornecedor), new Action<produto_fornecedor>(this.detach_produto_fornecedor));
-			this._endereco = default(EntityRef<endereco>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idfornecedor", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idfornecedor
-		{
-			get
-			{
-				return this._idfornecedor;
-			}
-			set
-			{
-				if ((this._idfornecedor != value))
-				{
-					this.OnidfornecedorChanging(value);
-					this.SendPropertyChanging();
-					this._idfornecedor = value;
-					this.SendPropertyChanged("idfornecedor");
-					this.OnidfornecedorChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idendereco", DbType="Int NOT NULL")]
-		public int idendereco
-		{
-			get
-			{
-				return this._idendereco;
-			}
-			set
-			{
-				if ((this._idendereco != value))
-				{
-					if (this._endereco.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnidenderecoChanging(value);
-					this.SendPropertyChanging();
-					this._idendereco = value;
-					this.SendPropertyChanged("idendereco");
-					this.OnidenderecoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomeCompleto", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string nomeCompleto
-		{
-			get
-			{
-				return this._nomeCompleto;
-			}
-			set
-			{
-				if ((this._nomeCompleto != value))
-				{
-					this.OnnomeCompletoChanging(value);
-					this.SendPropertyChanging();
-					this._nomeCompleto = value;
-					this.SendPropertyChanged("nomeCompleto");
-					this.OnnomeCompletoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_registro", DbType="VarChar(18) NOT NULL", CanBeNull=false)]
-		public string registro
-		{
-			get
-			{
-				return this._registro;
-			}
-			set
-			{
-				if ((this._registro != value))
-				{
-					this.OnregistroChanging(value);
-					this.SendPropertyChanging();
-					this._registro = value;
-					this.SendPropertyChanged("registro");
-					this.OnregistroChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
-		public string email
-		{
-			get
-			{
-				return this._email;
-			}
-			set
-			{
-				if ((this._email != value))
-				{
-					this.OnemailChanging(value);
-					this.SendPropertyChanging();
-					this._email = value;
-					this.SendPropertyChanged("email");
-					this.OnemailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataNascimento", DbType="DateTime NOT NULL")]
-		public System.DateTime dataNascimento
-		{
-			get
-			{
-				return this._dataNascimento;
-			}
-			set
-			{
-				if ((this._dataNascimento != value))
-				{
-					this.OndataNascimentoChanging(value);
-					this.SendPropertyChanging();
-					this._dataNascimento = value;
-					this.SendPropertyChanged("dataNascimento");
-					this.OndataNascimentoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sexo", DbType="Char(3)")]
-		public string sexo
-		{
-			get
-			{
-				return this._sexo;
-			}
-			set
-			{
-				if ((this._sexo != value))
-				{
-					this.OnsexoChanging(value);
-					this.SendPropertyChanging();
-					this._sexo = value;
-					this.SendPropertyChanged("sexo");
-					this.OnsexoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seguimento", DbType="VarChar(100)")]
-		public string seguimento
-		{
-			get
-			{
-				return this._seguimento;
-			}
-			set
-			{
-				if ((this._seguimento != value))
-				{
-					this.OnseguimentoChanging(value);
-					this.SendPropertyChanging();
-					this._seguimento = value;
-					this.SendPropertyChanged("seguimento");
-					this.OnseguimentoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fornecedor_produto_fornecedor", Storage="_produto_fornecedor", ThisKey="idfornecedor", OtherKey="idfornecedor")]
-		public EntitySet<produto_fornecedor> produto_fornecedor
-		{
-			get
-			{
-				return this._produto_fornecedor;
-			}
-			set
-			{
-				this._produto_fornecedor.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_fornecedor", Storage="_endereco", ThisKey="idendereco", OtherKey="idendereco", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public endereco endereco
-		{
-			get
-			{
-				return this._endereco.Entity;
-			}
-			set
-			{
-				endereco previousValue = this._endereco.Entity;
-				if (((previousValue != value) 
-							|| (this._endereco.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._endereco.Entity = null;
-						previousValue.fornecedor.Remove(this);
-					}
-					this._endereco.Entity = value;
-					if ((value != null))
-					{
-						value.fornecedor.Add(this);
-						this._idendereco = value.idendereco;
-					}
-					else
-					{
-						this._idendereco = default(int);
-					}
-					this.SendPropertyChanged("endereco");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_produto_fornecedor(produto_fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.fornecedor = this;
-		}
-		
-		private void detach_produto_fornecedor(produto_fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.fornecedor = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ItensVenda")]
 	public partial class ItensVenda : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1821,9 +1232,9 @@ namespace ErpSigmaVenda.linq
 		
 		private int _idproduto;
 		
-		private EntityRef<fornecedor> _fornecedor;
-		
 		private EntityRef<produto> _produto;
+		
+		private EntityRef<fornecedor> _fornecedor;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1839,8 +1250,8 @@ namespace ErpSigmaVenda.linq
 		
 		public produto_fornecedor()
 		{
-			this._fornecedor = default(EntityRef<fornecedor>);
 			this._produto = default(EntityRef<produto>);
+			this._fornecedor = default(EntityRef<fornecedor>);
 			OnCreated();
 		}
 		
@@ -1912,40 +1323,6 @@ namespace ErpSigmaVenda.linq
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fornecedor_produto_fornecedor", Storage="_fornecedor", ThisKey="idfornecedor", OtherKey="idfornecedor", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public fornecedor fornecedor
-		{
-			get
-			{
-				return this._fornecedor.Entity;
-			}
-			set
-			{
-				fornecedor previousValue = this._fornecedor.Entity;
-				if (((previousValue != value) 
-							|| (this._fornecedor.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._fornecedor.Entity = null;
-						previousValue.produto_fornecedor.Remove(this);
-					}
-					this._fornecedor.Entity = value;
-					if ((value != null))
-					{
-						value.produto_fornecedor.Add(this);
-						this._idfornecedor = value.idfornecedor;
-					}
-					else
-					{
-						this._idfornecedor = default(int);
-					}
-					this.SendPropertyChanged("fornecedor");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_produto_fornecedor", Storage="_produto", ThisKey="idproduto", OtherKey="idproduto", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public produto produto
 		{
@@ -1976,6 +1353,40 @@ namespace ErpSigmaVenda.linq
 						this._idproduto = default(int);
 					}
 					this.SendPropertyChanged("produto");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fornecedor_produto_fornecedor", Storage="_fornecedor", ThisKey="idfornecedor", OtherKey="idfornecedor", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public fornecedor fornecedor
+		{
+			get
+			{
+				return this._fornecedor.Entity;
+			}
+			set
+			{
+				fornecedor previousValue = this._fornecedor.Entity;
+				if (((previousValue != value) 
+							|| (this._fornecedor.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._fornecedor.Entity = null;
+						previousValue.produto_fornecedor.Remove(this);
+					}
+					this._fornecedor.Entity = value;
+					if ((value != null))
+					{
+						value.produto_fornecedor.Add(this);
+						this._idfornecedor = value.idfornecedor;
+					}
+					else
+					{
+						this._idfornecedor = default(int);
+					}
+					this.SendPropertyChanged("fornecedor");
 				}
 			}
 		}
@@ -2321,6 +1732,595 @@ namespace ErpSigmaVenda.linq
 		{
 			this.SendPropertyChanging();
 			entity.usuario = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.endereco")]
+	public partial class endereco : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idendereco;
+		
+		private string _rua;
+		
+		private string _complemento;
+		
+		private string _cep;
+		
+		private System.Nullable<int> _numero;
+		
+		private string _estado;
+		
+		private string _cidade;
+		
+		private EntitySet<cliente> _cliente;
+		
+		private EntitySet<usuario> _usuario;
+		
+		private EntitySet<fornecedor> _fornecedor;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidenderecoChanging(int value);
+    partial void OnidenderecoChanged();
+    partial void OnruaChanging(string value);
+    partial void OnruaChanged();
+    partial void OncomplementoChanging(string value);
+    partial void OncomplementoChanged();
+    partial void OncepChanging(string value);
+    partial void OncepChanged();
+    partial void OnnumeroChanging(System.Nullable<int> value);
+    partial void OnnumeroChanged();
+    partial void OnestadoChanging(string value);
+    partial void OnestadoChanged();
+    partial void OncidadeChanging(string value);
+    partial void OncidadeChanged();
+    #endregion
+		
+		public endereco()
+		{
+			this._cliente = new EntitySet<cliente>(new Action<cliente>(this.attach_cliente), new Action<cliente>(this.detach_cliente));
+			this._usuario = new EntitySet<usuario>(new Action<usuario>(this.attach_usuario), new Action<usuario>(this.detach_usuario));
+			this._fornecedor = new EntitySet<fornecedor>(new Action<fornecedor>(this.attach_fornecedor), new Action<fornecedor>(this.detach_fornecedor));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idendereco", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idendereco
+		{
+			get
+			{
+				return this._idendereco;
+			}
+			set
+			{
+				if ((this._idendereco != value))
+				{
+					this.OnidenderecoChanging(value);
+					this.SendPropertyChanging();
+					this._idendereco = value;
+					this.SendPropertyChanged("idendereco");
+					this.OnidenderecoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rua", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string rua
+		{
+			get
+			{
+				return this._rua;
+			}
+			set
+			{
+				if ((this._rua != value))
+				{
+					this.OnruaChanging(value);
+					this.SendPropertyChanging();
+					this._rua = value;
+					this.SendPropertyChanged("rua");
+					this.OnruaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_complemento", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string complemento
+		{
+			get
+			{
+				return this._complemento;
+			}
+			set
+			{
+				if ((this._complemento != value))
+				{
+					this.OncomplementoChanging(value);
+					this.SendPropertyChanging();
+					this._complemento = value;
+					this.SendPropertyChanged("complemento");
+					this.OncomplementoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cep", DbType="VarChar(9) NOT NULL", CanBeNull=false)]
+		public string cep
+		{
+			get
+			{
+				return this._cep;
+			}
+			set
+			{
+				if ((this._cep != value))
+				{
+					this.OncepChanging(value);
+					this.SendPropertyChanging();
+					this._cep = value;
+					this.SendPropertyChanged("cep");
+					this.OncepChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_numero", DbType="Int")]
+		public System.Nullable<int> numero
+		{
+			get
+			{
+				return this._numero;
+			}
+			set
+			{
+				if ((this._numero != value))
+				{
+					this.OnnumeroChanging(value);
+					this.SendPropertyChanging();
+					this._numero = value;
+					this.SendPropertyChanged("numero");
+					this.OnnumeroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estado", DbType="Char(2) NOT NULL", CanBeNull=false)]
+		public string estado
+		{
+			get
+			{
+				return this._estado;
+			}
+			set
+			{
+				if ((this._estado != value))
+				{
+					this.OnestadoChanging(value);
+					this.SendPropertyChanging();
+					this._estado = value;
+					this.SendPropertyChanged("estado");
+					this.OnestadoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cidade", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string cidade
+		{
+			get
+			{
+				return this._cidade;
+			}
+			set
+			{
+				if ((this._cidade != value))
+				{
+					this.OncidadeChanging(value);
+					this.SendPropertyChanging();
+					this._cidade = value;
+					this.SendPropertyChanged("cidade");
+					this.OncidadeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_cliente", Storage="_cliente", ThisKey="idendereco", OtherKey="idendereco")]
+		public EntitySet<cliente> cliente
+		{
+			get
+			{
+				return this._cliente;
+			}
+			set
+			{
+				this._cliente.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_usuario", Storage="_usuario", ThisKey="idendereco", OtherKey="idendereco")]
+		public EntitySet<usuario> usuario
+		{
+			get
+			{
+				return this._usuario;
+			}
+			set
+			{
+				this._usuario.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_fornecedor", Storage="_fornecedor", ThisKey="idendereco", OtherKey="idendereco")]
+		public EntitySet<fornecedor> fornecedor
+		{
+			get
+			{
+				return this._fornecedor;
+			}
+			set
+			{
+				this._fornecedor.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_cliente(cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = this;
+		}
+		
+		private void detach_cliente(cliente entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = null;
+		}
+		
+		private void attach_usuario(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = this;
+		}
+		
+		private void detach_usuario(usuario entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = null;
+		}
+		
+		private void attach_fornecedor(fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = this;
+		}
+		
+		private void detach_fornecedor(fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.endereco = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.fornecedor")]
+	public partial class fornecedor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idfornecedor;
+		
+		private int _idendereco;
+		
+		private string _nomeCompleto;
+		
+		private string _registro;
+		
+		private string _email;
+		
+		private System.DateTime _dataNascimento;
+		
+		private string _sexo;
+		
+		private string _seguimento;
+		
+		private EntitySet<produto_fornecedor> _produto_fornecedor;
+		
+		private EntityRef<endereco> _endereco;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidfornecedorChanging(int value);
+    partial void OnidfornecedorChanged();
+    partial void OnidenderecoChanging(int value);
+    partial void OnidenderecoChanged();
+    partial void OnnomeCompletoChanging(string value);
+    partial void OnnomeCompletoChanged();
+    partial void OnregistroChanging(string value);
+    partial void OnregistroChanged();
+    partial void OnemailChanging(string value);
+    partial void OnemailChanged();
+    partial void OndataNascimentoChanging(System.DateTime value);
+    partial void OndataNascimentoChanged();
+    partial void OnsexoChanging(string value);
+    partial void OnsexoChanged();
+    partial void OnseguimentoChanging(string value);
+    partial void OnseguimentoChanged();
+    #endregion
+		
+		public fornecedor()
+		{
+			this._produto_fornecedor = new EntitySet<produto_fornecedor>(new Action<produto_fornecedor>(this.attach_produto_fornecedor), new Action<produto_fornecedor>(this.detach_produto_fornecedor));
+			this._endereco = default(EntityRef<endereco>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idfornecedor", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idfornecedor
+		{
+			get
+			{
+				return this._idfornecedor;
+			}
+			set
+			{
+				if ((this._idfornecedor != value))
+				{
+					this.OnidfornecedorChanging(value);
+					this.SendPropertyChanging();
+					this._idfornecedor = value;
+					this.SendPropertyChanged("idfornecedor");
+					this.OnidfornecedorChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idendereco", DbType="Int NOT NULL")]
+		public int idendereco
+		{
+			get
+			{
+				return this._idendereco;
+			}
+			set
+			{
+				if ((this._idendereco != value))
+				{
+					if (this._endereco.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnidenderecoChanging(value);
+					this.SendPropertyChanging();
+					this._idendereco = value;
+					this.SendPropertyChanged("idendereco");
+					this.OnidenderecoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nomeCompleto", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string nomeCompleto
+		{
+			get
+			{
+				return this._nomeCompleto;
+			}
+			set
+			{
+				if ((this._nomeCompleto != value))
+				{
+					this.OnnomeCompletoChanging(value);
+					this.SendPropertyChanging();
+					this._nomeCompleto = value;
+					this.SendPropertyChanged("nomeCompleto");
+					this.OnnomeCompletoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_registro", DbType="VarChar(18) NOT NULL", CanBeNull=false)]
+		public string registro
+		{
+			get
+			{
+				return this._registro;
+			}
+			set
+			{
+				if ((this._registro != value))
+				{
+					this.OnregistroChanging(value);
+					this.SendPropertyChanging();
+					this._registro = value;
+					this.SendPropertyChanged("registro");
+					this.OnregistroChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_email", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string email
+		{
+			get
+			{
+				return this._email;
+			}
+			set
+			{
+				if ((this._email != value))
+				{
+					this.OnemailChanging(value);
+					this.SendPropertyChanging();
+					this._email = value;
+					this.SendPropertyChanged("email");
+					this.OnemailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dataNascimento", DbType="DateTime NOT NULL")]
+		public System.DateTime dataNascimento
+		{
+			get
+			{
+				return this._dataNascimento;
+			}
+			set
+			{
+				if ((this._dataNascimento != value))
+				{
+					this.OndataNascimentoChanging(value);
+					this.SendPropertyChanging();
+					this._dataNascimento = value;
+					this.SendPropertyChanged("dataNascimento");
+					this.OndataNascimentoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sexo", DbType="Char(3)")]
+		public string sexo
+		{
+			get
+			{
+				return this._sexo;
+			}
+			set
+			{
+				if ((this._sexo != value))
+				{
+					this.OnsexoChanging(value);
+					this.SendPropertyChanging();
+					this._sexo = value;
+					this.SendPropertyChanged("sexo");
+					this.OnsexoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_seguimento", DbType="VarChar(100)")]
+		public string seguimento
+		{
+			get
+			{
+				return this._seguimento;
+			}
+			set
+			{
+				if ((this._seguimento != value))
+				{
+					this.OnseguimentoChanging(value);
+					this.SendPropertyChanging();
+					this._seguimento = value;
+					this.SendPropertyChanged("seguimento");
+					this.OnseguimentoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fornecedor_produto_fornecedor", Storage="_produto_fornecedor", ThisKey="idfornecedor", OtherKey="idfornecedor")]
+		public EntitySet<produto_fornecedor> produto_fornecedor
+		{
+			get
+			{
+				return this._produto_fornecedor;
+			}
+			set
+			{
+				this._produto_fornecedor.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="endereco_fornecedor", Storage="_endereco", ThisKey="idendereco", OtherKey="idendereco", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public endereco endereco
+		{
+			get
+			{
+				return this._endereco.Entity;
+			}
+			set
+			{
+				endereco previousValue = this._endereco.Entity;
+				if (((previousValue != value) 
+							|| (this._endereco.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._endereco.Entity = null;
+						previousValue.fornecedor.Remove(this);
+					}
+					this._endereco.Entity = value;
+					if ((value != null))
+					{
+						value.fornecedor.Add(this);
+						this._idendereco = value.idendereco;
+					}
+					else
+					{
+						this._idendereco = default(int);
+					}
+					this.SendPropertyChanged("endereco");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_produto_fornecedor(produto_fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.fornecedor = this;
+		}
+		
+		private void detach_produto_fornecedor(produto_fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.fornecedor = null;
 		}
 	}
 }

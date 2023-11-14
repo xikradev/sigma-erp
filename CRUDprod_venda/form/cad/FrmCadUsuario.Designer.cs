@@ -51,12 +51,17 @@
             this.TipoUsrComboBox = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.InsertBtn = new System.Windows.Forms.ToolStripButton();
             this.label13 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.UFComboBox = new System.Windows.Forms.ComboBox();
             this.CidadeTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.CepErrorLabel = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.CepTextBox = new System.Windows.Forms.MaskedTextBox();
             this.CpfTextBox = new System.Windows.Forms.MaskedTextBox();
             this.labelRule2 = new System.Windows.Forms.Label();
@@ -65,14 +70,9 @@
             this.labelRule5 = new System.Windows.Forms.Label();
             this.labelRule1 = new System.Windows.Forms.Label();
             this.NameErrorLabel = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.EmailErrorLabel = new System.Windows.Forms.Label();
+            this.CpfErrorLabel = new System.Windows.Forms.Label();
+            this.DateErrorLabel = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -151,12 +151,12 @@
             // 
             // DataNascDTP
             // 
-            this.DataNascDTP.Enabled = false;
             this.DataNascDTP.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DataNascDTP.Location = new System.Drawing.Point(15, 330);
             this.DataNascDTP.Name = "DataNascDTP";
             this.DataNascDTP.Size = new System.Drawing.Size(194, 20);
             this.DataNascDTP.TabIndex = 45;
+            this.DataNascDTP.Leave += new System.EventHandler(this.DataNascDTP_Leave);
             // 
             // label6
             // 
@@ -194,9 +194,10 @@
             this.EmailTextBox.Location = new System.Drawing.Point(11, 113);
             this.EmailTextBox.MaxLength = 80;
             this.EmailTextBox.Name = "EmailTextBox";
-            this.EmailTextBox.ReadOnly = true;
             this.EmailTextBox.Size = new System.Drawing.Size(227, 20);
             this.EmailTextBox.TabIndex = 40;
+            this.EmailTextBox.TextChanged += new System.EventHandler(this.EmailTextBox_TextChanged);
+            this.EmailTextBox.Leave += new System.EventHandler(this.EmailTextBox_Leave);
             // 
             // label3
             // 
@@ -232,10 +233,10 @@
             this.SenhaTextBox.Location = new System.Drawing.Point(12, 197);
             this.SenhaTextBox.MaxLength = 20;
             this.SenhaTextBox.Name = "SenhaTextBox";
-            this.SenhaTextBox.ReadOnly = true;
             this.SenhaTextBox.Size = new System.Drawing.Size(196, 20);
             this.SenhaTextBox.TabIndex = 56;
             this.SenhaTextBox.TextChanged += new System.EventHandler(this.SenhaTextBox_TextChanged);
+            this.SenhaTextBox.Leave += new System.EventHandler(this.SenhaTextBox_Leave);
             // 
             // label1
             // 
@@ -273,7 +274,7 @@
             this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.InsertBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 603);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -292,16 +293,17 @@
             this.toolStripButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // toolStripButton2
+            // InsertBtn
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(74, 36);
-            this.toolStripButton2.Text = "Salvar";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.InsertBtn.Enabled = false;
+            this.InsertBtn.Image = ((System.Drawing.Image)(resources.GetObject("InsertBtn.Image")));
+            this.InsertBtn.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.InsertBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.InsertBtn.Name = "InsertBtn";
+            this.InsertBtn.Size = new System.Drawing.Size(74, 36);
+            this.InsertBtn.Text = "Salvar";
+            this.InsertBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.InsertBtn.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // label13
             // 
@@ -324,6 +326,7 @@
             // UFComboBox
             // 
             this.UFComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.UFComboBox.Enabled = false;
             this.UFComboBox.FormattingEnabled = true;
             this.UFComboBox.Items.AddRange(new object[] {
             "RO",
@@ -368,7 +371,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label22);
+            this.groupBox1.Controls.Add(this.CepErrorLabel);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label19);
@@ -392,14 +395,70 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Endereço";
             // 
+            // CepErrorLabel
+            // 
+            this.CepErrorLabel.AutoSize = true;
+            this.CepErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.CepErrorLabel.Location = new System.Drawing.Point(11, 68);
+            this.CepErrorLabel.Name = "CepErrorLabel";
+            this.CepErrorLabel.Size = new System.Drawing.Size(132, 13);
+            this.CepErrorLabel.TabIndex = 90;
+            this.CepErrorLabel.Text = "* Campo CEP é obrigatório";
+            this.CepErrorLabel.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.DarkRed;
+            this.label21.Location = new System.Drawing.Point(14, 188);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(157, 13);
+            this.label21.TabIndex = 92;
+            this.label21.Text = "* O Campo Cidade é Obrigatório";
+            this.label21.Visible = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.DarkRed;
+            this.label20.Location = new System.Drawing.Point(280, 123);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(101, 13);
+            this.label20.TabIndex = 91;
+            this.label20.Text = "* Somente Números";
+            this.label20.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.DarkRed;
+            this.label19.Location = new System.Drawing.Point(10, 123);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(142, 13);
+            this.label19.TabIndex = 90;
+            this.label19.Text = "* O Campo Rua é obrigatório";
+            this.label19.Visible = false;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.ForeColor = System.Drawing.Color.DarkRed;
+            this.label18.Location = new System.Drawing.Point(159, 68);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(142, 13);
+            this.label18.TabIndex = 89;
+            this.label18.Text = "* O Campo Rua é obrigatório";
+            this.label18.Visible = false;
+            // 
             // CepTextBox
             // 
             this.CepTextBox.Location = new System.Drawing.Point(10, 45);
             this.CepTextBox.Mask = "99999-999";
             this.CepTextBox.Name = "CepTextBox";
-            this.CepTextBox.ReadOnly = true;
             this.CepTextBox.Size = new System.Drawing.Size(142, 20);
             this.CepTextBox.TabIndex = 85;
+            this.CepTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CepTextBox_MaskInputRejected);
+            this.CepTextBox.TextChanged += new System.EventHandler(this.CepTextBox_TextChanged);
             this.CepTextBox.Leave += new System.EventHandler(this.CepTextBox_Leave);
             // 
             // CpfTextBox
@@ -407,10 +466,10 @@
             this.CpfTextBox.Location = new System.Drawing.Point(249, 113);
             this.CpfTextBox.Mask = "999,999,999-99";
             this.CpfTextBox.Name = "CpfTextBox";
-            this.CpfTextBox.ReadOnly = true;
             this.CpfTextBox.Size = new System.Drawing.Size(144, 20);
             this.CpfTextBox.TabIndex = 79;
-            this.CpfTextBox.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.CpfTextBox_MaskInputRejected);
+            this.CpfTextBox.TextChanged += new System.EventHandler(this.CpfTextBox_TextChanged);
+            this.CpfTextBox.Leave += new System.EventHandler(this.CpfTextBox_Leave);
             // 
             // labelRule2
             // 
@@ -474,93 +533,38 @@
             this.NameErrorLabel.Text = "* O Campo Nome Completo é obrigatório";
             this.NameErrorLabel.Visible = false;
             // 
-            // label14
+            // EmailErrorLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.DarkRed;
-            this.label14.Location = new System.Drawing.Point(12, 136);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(147, 13);
-            this.label14.TabIndex = 86;
-            this.label14.Text = "* O Campo Email é obrigatório";
-            this.label14.Visible = false;
+            this.EmailErrorLabel.AutoSize = true;
+            this.EmailErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.EmailErrorLabel.Location = new System.Drawing.Point(12, 136);
+            this.EmailErrorLabel.Name = "EmailErrorLabel";
+            this.EmailErrorLabel.Size = new System.Drawing.Size(147, 13);
+            this.EmailErrorLabel.TabIndex = 86;
+            this.EmailErrorLabel.Text = "* O Campo Email é obrigatório";
+            this.EmailErrorLabel.Visible = false;
             // 
-            // label15
+            // CpfErrorLabel
             // 
-            this.label15.AutoSize = true;
-            this.label15.ForeColor = System.Drawing.Color.DarkRed;
-            this.label15.Location = new System.Drawing.Point(246, 136);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(142, 13);
-            this.label15.TabIndex = 87;
-            this.label15.Text = "* O Campo CPF é obrigatório";
-            this.label15.Visible = false;
+            this.CpfErrorLabel.AutoSize = true;
+            this.CpfErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.CpfErrorLabel.Location = new System.Drawing.Point(246, 136);
+            this.CpfErrorLabel.Name = "CpfErrorLabel";
+            this.CpfErrorLabel.Size = new System.Drawing.Size(142, 13);
+            this.CpfErrorLabel.TabIndex = 87;
+            this.CpfErrorLabel.Text = "* O Campo CPF é obrigatório";
+            this.CpfErrorLabel.Visible = false;
             // 
-            // label16
+            // DateErrorLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.ForeColor = System.Drawing.Color.DarkRed;
-            this.label16.Location = new System.Drawing.Point(12, 353);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(191, 13);
-            this.label16.TabIndex = 88;
-            this.label16.Text = "* O Usuário tem que ser maior de idade";
-            this.label16.Visible = false;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.ForeColor = System.Drawing.Color.DarkRed;
-            this.label18.Location = new System.Drawing.Point(159, 68);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(142, 13);
-            this.label18.TabIndex = 89;
-            this.label18.Text = "* O Campo Rua é obrigatório";
-            this.label18.Visible = false;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.ForeColor = System.Drawing.Color.DarkRed;
-            this.label19.Location = new System.Drawing.Point(10, 123);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(142, 13);
-            this.label19.TabIndex = 90;
-            this.label19.Text = "* O Campo Rua é obrigatório";
-            this.label19.Visible = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.ForeColor = System.Drawing.Color.DarkRed;
-            this.label20.Location = new System.Drawing.Point(280, 123);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(101, 13);
-            this.label20.TabIndex = 91;
-            this.label20.Text = "* Somente Números";
-            this.label20.Visible = false;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.ForeColor = System.Drawing.Color.DarkRed;
-            this.label21.Location = new System.Drawing.Point(14, 188);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(157, 13);
-            this.label21.TabIndex = 92;
-            this.label21.Text = "* O Campo Cidade é Obrigatório";
-            this.label21.Visible = false;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.DarkRed;
-            this.label22.Location = new System.Drawing.Point(11, 68);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(132, 13);
-            this.label22.TabIndex = 90;
-            this.label22.Text = "* Campo CEP é obrigatório";
-            this.label22.Visible = false;
+            this.DateErrorLabel.AutoSize = true;
+            this.DateErrorLabel.ForeColor = System.Drawing.Color.DarkRed;
+            this.DateErrorLabel.Location = new System.Drawing.Point(12, 353);
+            this.DateErrorLabel.Name = "DateErrorLabel";
+            this.DateErrorLabel.Size = new System.Drawing.Size(191, 13);
+            this.DateErrorLabel.TabIndex = 88;
+            this.DateErrorLabel.Text = "* O Usuário tem que ser maior de idade";
+            this.DateErrorLabel.Visible = false;
             // 
             // FrmCadUsuario
             // 
@@ -568,9 +572,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(414, 642);
             this.ControlBox = false;
-            this.Controls.Add(this.label16);
-            this.Controls.Add(this.label15);
-            this.Controls.Add(this.label14);
+            this.Controls.Add(this.DateErrorLabel);
+            this.Controls.Add(this.CpfErrorLabel);
+            this.Controls.Add(this.EmailErrorLabel);
             this.Controls.Add(this.NameErrorLabel);
             this.Controls.Add(this.labelRule1);
             this.Controls.Add(this.labelRule5);
@@ -630,7 +634,7 @@
         private System.Windows.Forms.ComboBox TipoUsrComboBox;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton InsertBtn;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox UFComboBox;
@@ -643,14 +647,14 @@
         private System.Windows.Forms.Label labelRule5;
         private System.Windows.Forms.Label labelRule1;
         private System.Windows.Forms.MaskedTextBox CepTextBox;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label CepErrorLabel;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label NameErrorLabel;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label EmailErrorLabel;
+        private System.Windows.Forms.Label CpfErrorLabel;
+        private System.Windows.Forms.Label DateErrorLabel;
     }
 }

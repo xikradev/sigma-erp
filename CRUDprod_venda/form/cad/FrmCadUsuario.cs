@@ -37,6 +37,8 @@ namespace ErpSigmaVenda.login
 
         private void loading()
         {
+            SexoComboBox.SelectedIndex = 0;
+            TipoUsrComboBox.SelectedIndex = 0;
             NomeComplTextBox.Text = this.oUsuario.nomeCompleto;
             EmailTextBox.Text = this.oUsuario.email;
             CpfTextBox.Text = this.oUsuario.cpf;
@@ -115,24 +117,10 @@ namespace ErpSigmaVenda.login
         private Boolean verifyUsuario()
         {
             
-            if (emailValidation() || EmailTextBox.Text.Length > 80)
-            {
-                MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (!regexSenha.IsMatch(SenhaTextBox.Text) || SenhaTextBox.Text.Length > 20)
-            {
-                MessageBox.Show("A senha não está formatada corretamente", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if (cpfValidation())
-            {
-                return false;
-            }
-            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year || DataNascDTP.Value.Year > DateTime.Now.Year) {
-                MessageBox.Show("O Usuário deve ser maior de idade", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            
+            
+            
+            
             
 
             return updateUsuario();
@@ -152,7 +140,7 @@ namespace ErpSigmaVenda.login
 
         private Boolean verifyEndereco()
         {
-            if (String.IsNullOrEmpty(ComplTextBox.Text) || ComplTextBox.Text.Length > 100)
+            if (String.IsNullOrEmpty(ComplTextBox.Text))
             {
                 MessageBox.Show("O Campo Bairro não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -208,14 +196,14 @@ namespace ErpSigmaVenda.login
             foundedUsuario = pUsuario.LoadWhere(o => o.email.Equals(EmailTextBox.Text));
             if (foundedUsuario != null && this.oUsuario.idusuario != foundedUsuario.idusuario)
             {
-                MessageBox.Show("Já existe um Usuário com este Email", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                EmailTextBox.Text = "";
+
+                EmailErrorLabel.Text = "Esse Email já foi cadastrado";
                 return true;
             }
 
             if (!regexEmail.IsMatch(EmailTextBox.Text))
             {
-                MessageBox.Show("O Campo Email não está formatado", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                EmailErrorLabel.Text = "Email não está no formato correto";
                 return true;
             }
             return false;
@@ -229,13 +217,13 @@ namespace ErpSigmaVenda.login
 
             if (!Cpf.Validar(this.CpfTextBox.Text))
             {
-                MessageBox.Show("CPF Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CpfErrorLabel.Text = "CPF não é válido";
                 return true;
             }
 
             if (foundedCliente != null && this.oUsuario.idusuario != foundedCliente.idusuario)
             {
-                MessageBox.Show("Já existe um Usuário com este CPF", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CpfErrorLabel.Text = "CPF já cadastrado";
                 CpfTextBox.Text = "";
                 return true;
             }
@@ -312,46 +300,207 @@ namespace ErpSigmaVenda.login
 
         private void CepTextBox_Leave(object sender, EventArgs e)
         {
-            var result = searchCep(this.CepTextBox.Text);
-            if (result != null)
-            {
-                this.RuaTextBox.Text = result.Street;
-                this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
-                this.CidadeTextBox.Text = result.City;
-                this.UFComboBox.SelectedItem = result.StateInitials;
-            }
-            else
-            {
-                MessageBox.Show("CEP Inválido", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-
-            endereco foundedEndereco = new endereco();
-            foundedEndereco = pEndereco.LoadWhere(o => o.cep.Equals(CepTextBox.Text));
-            if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
-            {
-                MessageBox.Show("Já existe um Usuário com este CEP", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                CepTextBox.Text = "";
-            }
+           
         }
+
+        private bool camposPreenchidos()
+        {
+            if (String.IsNullOrEmpty(NomeComplTextBox.Text))
+            {
+                NameErrorLabel.Visible = true;
+
+                return false;
+            }
+            if (String.IsNullOrEmpty(EmailTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(CpfTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(SenhaTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(CepTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(RuaTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(ComplTextBox.Text))
+            {
+                return false;
+            }
+            if (String.IsNullOrEmpty(CidadeTextBox.Text))
+            {
+                return false;
+            }
+           
+
+            return true;
+
+        }
+        
 
         private void NomeComplTextBox_Leave(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(NomeComplTextBox.Text))
             {
-                NameErrorLabel.Visible = true;
-                MessageBox.Show("O Campo Nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                NomeComplTextBox.Focus();
+                
+                //NomeComplTextBox.Focus();
+                InsertBtn.Enabled = false;
             }
-        }
-
-        private void CpfTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
+            else
+            {
+                InsertBtn.Enabled = camposPreenchidos();
+            }
         }
 
         private void NomeComplTextBox_TextChanged(object sender, EventArgs e)
         {
             NameErrorLabel.Visible = false;
+        }
+
+        private void EmailTextBox_Leave(object sender, EventArgs e)
+        {
+            if (emailValidation())
+            {
+                EmailErrorLabel.Visible = true;
+               // EmailTextBox.Focus();
+                InsertBtn.Enabled = false;
+            }
+            else
+            {
+                InsertBtn.Enabled = camposPreenchidos();
+            }
+        }
+
+        private void EmailTextBox_TextChanged(object sender, EventArgs e)
+        {
+            EmailErrorLabel.Visible = false;
+        }
+
+        private void CpfTextBox_Leave(object sender, EventArgs e)
+        {
+            if (cpfValidation())
+            {
+                CpfErrorLabel.Visible= true;
+                //CpfTextBox.Focus();
+                InsertBtn.Enabled = false;
+            }
+            else
+            {
+                InsertBtn.Enabled = camposPreenchidos();
+            }
+        }
+
+        private void CpfTextBox_TextChanged(object sender, EventArgs e)
+        {
+            CpfErrorLabel.Visible = false;
+        }
+
+        private void DataNascDTP_Leave(object sender, EventArgs e)
+        {
+            if ((DataNascDTP.Value.Year + 18) > DateTime.Now.Year)
+            {
+                DateErrorLabel.Text = "O usuário deve ser maior de Idade";
+                DateErrorLabel.Visible = true;
+                InsertBtn.Enabled = false;
+
+            }
+            else if(DataNascDTP.Value.Year > DateTime.Now.Year)
+            {
+                DateErrorLabel.Text = "Data inválida";
+                DateErrorLabel.Visible = true;
+                InsertBtn.Enabled = false;
+            }
+            else
+            {
+                DateErrorLabel.Visible = false;
+                InsertBtn.Enabled = camposPreenchidos();
+            }
+        }
+
+        private void SenhaTextBox_Leave(object sender, EventArgs e)
+        {
+            if (!regexSenha.IsMatch(SenhaTextBox.Text))
+            {
+                InsertBtn.Enabled = false;
+            }
+            else
+            {
+                InsertBtn.Enabled = camposPreenchidos();
+            }
+        }
+
+        private void CepTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if(CepTextBox.Text.Length == 9)
+            {
+                var result = searchCep(this.CepTextBox.Text);
+                if (result.ZipCode != null)
+                {
+                    this.RuaTextBox.Text = result.Street;
+                    this.ComplTextBox.Text = result.Neighborhood + " " + result.Complement;
+                    this.CidadeTextBox.Text = result.City;
+                    this.UFComboBox.SelectedItem = result.StateInitials;
+
+                    this.ComplTextBox.ReadOnly = false;
+                    this.RuaTextBox.ReadOnly = false;
+                    this.CidadeTextBox.ReadOnly = false;
+                    this.UFComboBox.Enabled = true;
+                }
+                else
+                {
+                    CepErrorLabel.Visible = true;
+                    CepErrorLabel.Text = "CEP inválido";
+
+                    this.ComplTextBox.ReadOnly = true;
+                    this.RuaTextBox.ReadOnly = true;
+                    this.CidadeTextBox.ReadOnly = true;
+                    this.UFComboBox.Enabled = false;
+
+                    InsertBtn.Enabled = false;
+                }
+
+                endereco foundedEndereco = new endereco();
+                foundedEndereco = pEndereco.LoadWhere(o => o.cep.Equals(CepTextBox.Text));
+                if (foundedEndereco != null && this.oEndereco.idendereco != foundedEndereco.idendereco)
+                {
+                    CepErrorLabel.Visible = true;
+                    CepErrorLabel.Text = "CEP já cadastrado";
+
+                    this.ComplTextBox.ReadOnly = true;
+                    this.RuaTextBox.ReadOnly = true;
+                    this.CidadeTextBox.ReadOnly = true;
+                    this.UFComboBox.Enabled = false;
+
+                    InsertBtn.Enabled = false;
+                }
+            }
+            else
+            {
+                CepErrorLabel.Visible = false;
+
+                this.ComplTextBox.ReadOnly = true;
+                this.RuaTextBox.ReadOnly = true;
+                this.CidadeTextBox.ReadOnly = true;
+                this.UFComboBox.Enabled = false;
+
+                this.RuaTextBox.Text = "";
+                this.ComplTextBox.Text = "";
+                this.CidadeTextBox.Text = "";
+                this.UFComboBox.SelectedItem = ""; 
+            }
+        }
+
+        private void CepTextBox_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

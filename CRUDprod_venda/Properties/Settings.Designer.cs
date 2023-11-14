@@ -33,5 +33,16 @@ namespace ErpSigmaVenda.Properties {
                 return ((string)(this["venda_produtoConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=MICRO-12\\SQLEXPRESS;Initial Catalog=venda_produto;Integrated Security" +
+            "=True")]
+        public string venda_produtoConnectionString1 {
+            get {
+                return ((string)(this["venda_produtoConnectionString1"]));
+            }
+        }
     }
 }
