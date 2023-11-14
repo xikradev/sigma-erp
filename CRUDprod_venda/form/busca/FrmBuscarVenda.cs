@@ -1,5 +1,6 @@
 ﻿using ErpSigmaVenda.auxiliar;
 using ErpSigmaVenda.linq;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,7 @@ namespace ErpSigmaVenda.vendas
             try
             {
                 AxVenda axVenda = (AxVenda) dg.SelectedRows[0].DataBoundItem;
-                //this.oVenda = db.venda.Find(axVenda.idvenda);
+                this.oVenda = pVenda.load(axVenda.idvenda);
             }
             catch (Exception)
             {
@@ -81,7 +82,7 @@ namespace ErpSigmaVenda.vendas
                 {
                     string idvenda = oIndex.ToString();
 
-                    //this.oVenda = db.venda.Find(int.Parse(idvenda));
+                    this.oVenda = pVenda.load(int.Parse(idvenda));
                     this.DialogResult = DialogResult.OK;
                 }
 

@@ -1,5 +1,5 @@
-﻿using ErpSigmaVenda.conexão;
-using ErpSigmaVenda.auxiliar;
+﻿using ErpSigmaVenda.auxiliar;
+using ErpSigmaVenda.linq;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,7 @@ namespace ErpSigmaVenda.vendas
 {
     public partial class FrmBuscarCliente : Form
     {
-        venda_produtoEntities dbCliente = new venda_produtoEntities();
+        private dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
         public cliente oCliente = new cliente();
 
         public FrmBuscarCliente()
@@ -66,7 +66,7 @@ namespace ErpSigmaVenda.vendas
                 
                 if(PersonsTypeTabControl.SelectedIndex == 0)
                 {
-                    List<AxCliente> pfList = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                    List<AxCliente> pfList = dc.ExecuteQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
                     "where " + filter + " like '" + SearchTextBox.Text + "%' " +
                     "and sexo IS NOT NULL;").ToList();
                     if (pfList.Count() > 0)
@@ -82,7 +82,7 @@ namespace ErpSigmaVenda.vendas
 
                 if(PersonsTypeTabControl.SelectedIndex == 1)
                 {
-                    List<AxCliente> pJList = dbCliente.Database.SqlQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
+                    List<AxCliente> pJList = dc.ExecuteQuery<AxCliente>("select cliente.*, endereco.complemento as endereco from cliente inner join endereco on cliente.idendereco = endereco.idendereco " +
                     "where " + filter + " like '" + SearchTextBox.Text + "%' " +
                     "and seguimento IS NOT NULL;").ToList();
                     if(pJList.Count() > 0)
@@ -111,7 +111,7 @@ namespace ErpSigmaVenda.vendas
                 if (dgPF.Rows.Count > 0)
                 {
                     AxCliente axCliente = (AxCliente)dgPF.SelectedRows[0].DataBoundItem;
-                    this.oCliente = dbCliente.cliente.Find(axCliente.idcliente);
+                    this.oCliente = pCliente.load(axCliente.idcliente);
                 }
 
             }
@@ -138,7 +138,7 @@ namespace ErpSigmaVenda.vendas
                 if (dgPJ.Rows.Count > 0)
                 {
                     AxCliente axCliente = (AxCliente)dgPJ.SelectedRows[0].DataBoundItem;
-                    this.oCliente = dbCliente.cliente.Find(axCliente.idcliente);
+                    this.oCliente = pCliente.load(axCliente.idcliente);
                 }
             }
             catch (Exception ex)

@@ -1,6 +1,7 @@
 ﻿using ErpSigmaVenda.linq;
 using ErpSigmaVenda.login;
 using ErpSigmaVenda.navegacao;
+using ErpSigmaVenda.persistencia;
 using ErpSigmaVenda.query;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,6 @@ namespace ErpSigmaVenda
 {
     public partial class FrmLogin : Form
     {
-        //private venda_produtoEntities db = new venda_produtoEntities();
         public static usuario oUsuario { get; set; }
 
         public FrmLogin()
@@ -43,31 +43,13 @@ namespace ErpSigmaVenda
         private void label5_Click(object sender, EventArgs e)
         {
             FrmCadUsuario usuarioForm = new FrmCadUsuario();
-            //usuarioForm.oEndereco = new endereco();
-            //usuarioForm.oUsuario = new usuario();
+            usuarioForm.oEndereco = pEndereco.Create();
+            usuarioForm.oUsuario = pUsuario.Create();
             if(usuarioForm.ShowDialog() == DialogResult.OK)
             {
-                //db = new venda_produtoEntities();
-                //db.endereco.Add(usuarioForm.oEndereco);
-                try
-                {
-                    //db.SaveChanges();
-                }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (var validationErrors in ex.EntityValidationErrors)
-                    {
-                        foreach (var validationError in validationErrors.ValidationErrors)
-                        {
-                            Console.WriteLine($"Propriedade: {validationError.PropertyName}, Erro: {validationError.ErrorMessage}");
-                        }
-                    }
-                }
-
-                //db = new venda_produtoEntities();
+                pEndereco.Insert(usuarioForm.oEndereco);
                 usuarioForm.oUsuario.idendereco = usuarioForm.oEndereco.idendereco;
-                //db.usuario.Add(usuarioForm.oUsuario);
-                //db.SaveChanges();
+                pUsuario.Insert(usuarioForm.oUsuario);
                 EmailTextBox.Text = "";
                 SenhaTextBox.Text = "";
                 

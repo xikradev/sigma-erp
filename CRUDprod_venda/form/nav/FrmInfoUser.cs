@@ -96,10 +96,9 @@ namespace ErpSigmaVenda.form.nav
             {
                 if (this.NewPwTextBox.Text.Equals(ConfirmPwTextBox.Text))
                 {
-                    //venda_produtoEntities db = new venda_produtoEntities();
-                    //var updatedUsr = db.usuario.Find(this.oUsuario.idusuario);
-                   // updatedUsr.senha = NewPwTextBox.Text;
-                    //db.SaveChanges();
+                    var updatedUsr = pUsuario.load(this.oUsuario.idusuario);
+                    updatedUsr.senha = NewPwTextBox.Text;
+                    pUsuario.Update(updatedUsr);
                     pLoginUsr.GetUser(EmailTextBox.Text, NewPwTextBox.Text);
                     MessageBox.Show("Redefinição de Senha efetuada com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     loading();

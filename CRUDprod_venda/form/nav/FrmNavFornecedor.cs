@@ -17,7 +17,6 @@ namespace ErpSigmaVenda.fornecedores
 {
     public partial class FrmNavFornecedor : Form
     {
-        //private venda_produtoEntities db = new venda_produtoEntities();
         fornecedor oFornecedor = new fornecedor();
         public FrmNavFornecedor()
         {
@@ -34,14 +33,6 @@ namespace ErpSigmaVenda.fornecedores
                 pEndereco.Insert(fornecedoresForm.oEndereco);
                 fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
                 pFornecedor.Insert(fornecedoresForm.oFornecedor);
-
-                //db = new venda_produtoEntities();
-                //db.endereco.Add(fornecedoresForm.oEndereco);
-                //db.SaveChanges();
-                //db = new venda_produtoEntities();
-                //fornecedoresForm.oFornecedor.idendereco = fornecedoresForm.oEndereco.idendereco;
-                //db.fornecedor.Add(fornecedoresForm.oFornecedor);
-                //db.SaveChanges();
                 loading();
             }
         }
@@ -89,8 +80,6 @@ namespace ErpSigmaVenda.fornecedores
             {
 
                 pFornecedor.Delete(this.oFornecedor);
-                //db.fornecedor.Remove(db.fornecedor.Find(this.oFornecedor.idfornecedor));
-                //db.SaveChanges();
                 loading();
             }
         }

@@ -1,8 +1,10 @@
 ﻿using ErpSigmaVenda.auxiliar;
-using ErpSigmaVenda.conexão;
+using ErpSigmaVenda.linq;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,91 +14,90 @@ namespace ErpSigmaVenda.query
     {
         static dataContextErpSigmaDataContext dc = new dataContextErpSigmaDataContext();
 
-        static Table<fornecedor> tFornecedor = dc.GetTable<fornecedor>();
+        static Table<venda> tVenda = dc.GetTable<venda>();
 
         public static void UpdateDc()
         {
             dc = new dataContextErpSigmaDataContext();
 
-            tFornecedor = dc.GetTable<fornecedor>();
+            tVenda = dc.GetTable<venda>();
         }
 
-        public static fornecedor Create()
+        public static venda Create()
         {
             UpdateDc();
-            fornecedor f = new fornecedor();
-            string query = "select * from fornecedor";
-            var lstFornecedor = dc.ExecuteQuery<fornecedor>(query).ToList().OrderBy(o => o.idfornecedor).ToList();
-            var oFornecedor = lstFornecedor[(lstFornecedor.Count - 1)];
-            f.idfornecedor = (oFornecedor.idfornecedor + 1);
+            venda v = new venda();
+            string query = "select * from venda";
+            var lstVenda = dc.ExecuteQuery<venda>(query).ToList().OrderBy(o => o.idvenda).ToList();
+            var oVenda = lstVenda[(lstVenda.Count - 1)];
+            v.idvenda = (oVenda.idvenda + 1);
 
-            return f;
+            return v;
         }
 
-        public static void Insert(fornecedor pobjFornecedor)
+        public static void Insert(venda pobjVenda)
         {
-            tFornecedor.InsertOnSubmit(pobjFornecedor);
+            tVenda.InsertOnSubmit(pobjVenda);
             dc.SubmitChanges();
         }
 
-        public static fornecedor load(int id)
+        public static venda load(int id)
         {
             UpdateDc();
-            var oFornecedor = (from f in tFornecedor where f.idfornecedor == id select f).SingleOrDefault();
-            return oFornecedor;
+            var oVenda = (from v in tVenda where v.idvenda == id select v).SingleOrDefault();
+            return oVenda;
         }
 
-        public static fornecedor LoadWhere(Expression<Func<fornecedor, bool>> predicate)
+        public static venda LoadWhere(Expression<Func<venda, bool>> predicate)
         {
             UpdateDc();
-            var oFornecedor = tFornecedor.Where(predicate).SingleOrDefault();
-            return oFornecedor;
+            var oVenda = tVenda.Where(predicate).SingleOrDefault();
+            return oVenda;
         }
 
-        public static void Update(fornecedor pobjFornecedor)
+        public static void Update(venda pobjVenda)
         {
-            var oFornecedor = (from f in tFornecedor
-                               where f.idfornecedor == pobjFornecedor.idfornecedor
-                               select f).SingleOrDefault();
+            var oVenda = (from v in tVenda
+                               where v.idvenda == pobjVenda.idvenda
+                               select v).SingleOrDefault();
 
-            oFornecedor.idfornecedor = pobjFornecedor.idfornecedor;
-            oFornecedor.nomeCompleto = pobjFornecedor.nomeCompleto;
-            oFornecedor.registro = pobjFornecedor.registro;
-            oFornecedor.email = pobjFornecedor.email;
-            oFornecedor.dataNascimento = pobjFornecedor.dataNascimento;
-            oFornecedor.sexo = pobjFornecedor.sexo;
-            oFornecedor.seguimento = pobjFornecedor.seguimento;
-
+            oVenda.idvenda = pobjVenda.idvenda;
+            oVenda.idusuario = pobjVenda.idusuario;
+            oVenda.idcliente = pobjVenda.idcliente;
+            oVenda.precoTotal = pobjVenda.precoTotal;
+            oVenda.data = pobjVenda.data;
+            oVenda.metodo_pagamento = pobjVenda.metodo_pagamento;
+            
             dc.SubmitChanges();
 
         }
 
-        public static void Delete(fornecedor pobjFornecedor)
+        public static void Delete(venda pobjVenda)
         {
-            var oFornecedor = (from f in tFornecedor
-                               where f.idfornecedor == pobjFornecedor.idfornecedor
-                               select f).SingleOrDefault();
-            tFornecedor.DeleteOnSubmit(oFornecedor);
+            var oVenda = (from v in tVenda
+                               where v.idvenda == pobjVenda.idvenda
+                               select v).SingleOrDefault();
+            tVenda.DeleteOnSubmit(oVenda);
             dc.SubmitChanges();
         }
 
-        public static List<fornecedor> ReturnAll()
+        public static List<venda> ReturnAll()
         {
             UpdateDc();
-            var lstFornecedor = (from f in tFornecedor
-                                 orderby f.idfornecedor
+            var lstVenda = (from v in tVenda
+                                 orderby v.idvenda
                                  descending
-                                 select f).ToList<fornecedor>();
-            return lstFornecedor;
+                                 select v).ToList<venda>();
+            return lstVenda;
         }
 
         public static IEnumerable<AxVenda> GetVenda()
         {
-            venda_produtoEntities db = new venda_produtoEntities();
+            UpdateDc();
             StringBuilder query = new StringBuilder();
             query.AppendLine("select idvenda, usr.nomeCompleto as vendedor, cli.nomeCompleto as cliente, precoTotal, data from venda " +
             "inner join usuario usr on venda.idusuario = usr.idusuario inner join cliente cli on venda.idcliente = cli.idcliente;");
-            return db.Database.SqlQuery<AxVenda>(query.ToString()).ToList();
+            return dc.ExecuteQuery<AxVenda>(query.ToString()).ToList();
         }
     }
 }

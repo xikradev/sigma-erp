@@ -65,15 +65,7 @@ namespace ErpSigmaVenda.Produtos
                 prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
                 pProduto_fornecedor.Insert(prod_forn);
 
-                //dbProduto.produto.Add(produtoForm.oProduto);
-                //dbProduto.SaveChanges();
-                //dbProduto = new venda_produtoEntities();
-
-                //produto_fornecedor prod_forn = new produto_fornecedor();
-                //prod_forn.idfornecedor = produtoForm.oFornecedor.idfornecedor;
-                //prod_forn.idproduto = produtoForm.oProduto.idproduto;
-                //dbProduto.produto_fornecedor.Add(prod_forn);
-                //dbProduto.SaveChanges();
+                
 
                 loading();
             }
