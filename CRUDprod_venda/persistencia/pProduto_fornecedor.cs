@@ -92,7 +92,7 @@ namespace ErpSigmaVenda.persistencia
             StringBuilder query = new StringBuilder();
             query.AppendLine("select prod.*, prod_forn.codProduto, forn.idfornecedor, forn.nomeCompleto as fornecedor from produto_fornecedor prod_forn " +
                 "inner join produto prod on prod_forn.idproduto = prod.idproduto " +
-                "inner join fornecedor forn on prod_forn.idfornecedor = forn.idfornecedor;");
+                "inner join fornecedor forn on prod_forn.idfornecedor = forn.idfornecedor where prod.estoque_qnt > 10;");
             return dc.ExecuteQuery<AxProduto>(query.ToString()).ToList();
         }
     }

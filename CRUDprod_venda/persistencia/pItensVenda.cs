@@ -20,7 +20,7 @@ namespace ErpSigmaVenda.persistencia
         {
             dc = new dataContextErpSigmaDataContext();
 
-            tItens = dc.GetTable<ItensVenda>();
+            tItensVenda = dc.GetTable<ItensVenda>();
         }
 
         public static ItensVenda Create()
@@ -44,7 +44,7 @@ namespace ErpSigmaVenda.persistencia
         public static ItensVenda load(int id)
         {
             UpdateDc();
-            var oItensVenda = (from iv in tItensVenda where iv.iditem == id select v).SingleOrDefault();
+            var oItensVenda = (from iv in tItensVenda where iv.iditem == id select iv).SingleOrDefault();
             return oItensVenda;
         }
 

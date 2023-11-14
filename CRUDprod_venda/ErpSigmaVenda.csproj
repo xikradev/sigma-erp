@@ -194,7 +194,7 @@
       <DependentUpon>FrmRelVenda.cs</DependentUpon>
     </Compile>
     <Compile Include="persistencia\pEndereco.cs" />
-    <Compile Include="persistencia\pItemProd.cs" />
+    <Compile Include="persistencia\pItensVenda.cs" />
     <Compile Include="persistencia\pLoginUsr.cs" />
     <Compile Include="persistencia\pProduto.cs" />
     <Compile Include="persistencia\pProduto_fornecedor.cs" />
