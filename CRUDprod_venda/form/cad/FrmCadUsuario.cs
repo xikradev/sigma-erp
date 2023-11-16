@@ -321,6 +321,7 @@ namespace ErpSigmaVenda.login
             InsertBtn.Enabled = allFieldsFilled();
         }
 
+
         private void EmailTextBox_TextChanged(object sender, EventArgs e)
         {
             EmailErrorLabel.Visible = false;

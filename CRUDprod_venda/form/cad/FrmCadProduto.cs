@@ -56,13 +56,13 @@ namespace ErpSigmaVenda
             }
         }
 
-        private Boolean update(Decimal preco, int quant)
+        private Boolean update()
         {
             
             oProduto.nome = NomeTextBox.Text;
             oProduto.descricao = DescricaoTextBox.Text;
-            oProduto.preco = preco;
-            oProduto.estoque_qnt = quant;
+            oProduto.preco = decimal.Parse(PrecoTextBox.Text);
+            oProduto.estoque_qnt = int.Parse(Qnt_esTtextBox.Text);
             
            
             return true;
@@ -85,19 +85,19 @@ namespace ErpSigmaVenda
                 MessageBox.Show("O Campo Descrição não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!Decimal.TryParse(PrecoTextBox.Text, out decimal preco))
-            {
-                MessageBox.Show("O campo tem que ser um número decimal", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-            if(!int.TryParse(Qnt_esTtextBox.Text, out int quant))
-            {
-                MessageBox.Show("O campo tem que ser um número inteiro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            //if (!Decimal.TryParse(PrecoTextBox.Text, out decimal preco))
+            //{
+            //    MessageBox.Show("O campo tem que ser um número decimal", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return false;
+            //}
+            //if(!int.TryParse(Qnt_esTtextBox.Text, out int quant))
+            //{
+            //    MessageBox.Show("O campo tem que ser um número inteiro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return false;
+            //}
             
 
-            return update(preco, quant);
+            return update();
             
         }
 
@@ -123,6 +123,32 @@ namespace ErpSigmaVenda
             {
                 this.oFornecedor = frm.oFornecedor;
                 ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
+            }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PrecoTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ',')) 
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Qnt_esTtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }
