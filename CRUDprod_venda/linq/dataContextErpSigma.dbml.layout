@@ -20,12 +20,6 @@
         <elementListCompartment Id="36baaade-343f-4059-85c5-1d19446fe7ee" absoluteBounds="9.765, 1.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2c9ffa86-67e8-4b4b-8377-31fb51001b3d" absoluteBounds="7, 5.125, 2, 1.7708968098958344">
-      <DataClassMoniker Name="/dataContextErpSigmaDataContext/produto" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7b059aa9-5216-44ae-bad1-74554ae4b76c" absoluteBounds="7.015, 5.5850000000000009, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="bf394a7a-aab3-4bf0-a267-ed0eea15164d" absoluteBounds="9.75, 5.25, 2, 1.3862939453125005">
       <DataClassMoniker Name="/dataContextErpSigmaDataContext/produto_fornecedor" />
       <nestedChildShapes>
@@ -38,35 +32,21 @@
         <elementListCompartment Id="c88f6dcf-7e66-4f0b-bf7a-ef5d176ac83a" absoluteBounds="3.89, 5.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.25 : 1.98159912109375); (7 : 1.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.25 : 1.98159912109375); (7 : 1.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/cliente/cliente_venda" />
       <nodes>
         <classShapeMoniker Id="adfe33be-5510-4003-82d1-7b0aad41b372" />
         <classShapeMoniker Id="fdbfdfe5-fd0b-441b-b828-46809707d449" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 1.98159912109375); (9.75 : 1.98159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9 : 1.98159912109375); (9.75 : 1.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/venda/venda_ItensVenda" />
       <nodes>
         <classShapeMoniker Id="fdbfdfe5-fd0b-441b-b828-46809707d449" />
         <classShapeMoniker Id="0634513a-2823-4ae5-8043-e75a7aaa9a66" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(9 : 5.125); (9.375 : 4.75); (9.375 : 2.50365068164063); (9.75 : 2.50365068164063)]" fixedFrom="NotFixed" fixedTo="Algorithm">
-      <AssociationMoniker Name="/dataContextErpSigmaDataContext/produto/produto_ItensVenda" />
-      <nodes>
-        <classShapeMoniker Id="2c9ffa86-67e8-4b4b-8377-31fb51001b3d" />
-        <classShapeMoniker Id="0634513a-2823-4ae5-8043-e75a7aaa9a66" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9 : 5.94314697265625); (9.75 : 5.94314697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/dataContextErpSigmaDataContext/produto/produto_produto_fornecedor" />
-      <nodes>
-        <classShapeMoniker Id="2c9ffa86-67e8-4b4b-8377-31fb51001b3d" />
-        <classShapeMoniker Id="bf394a7a-aab3-4bf0-a267-ed0eea15164d" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(5.875 : 4.875); (6.25 : 4.5); (8 : 4.5); (8 : 2.9631982421875)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.875 : 7.24924967447917); (8.84375 : 7.24924967447917); (8.84375 : 2.9631982421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/usuario/usuario_venda" />
       <nodes>
         <classShapeMoniker Id="23b5b729-3187-417c-8565-87e1785d80fb" />
@@ -79,14 +59,14 @@
         <elementListCompartment Id="0e36e60e-dbe8-4516-a77c-62c2e5dac938" absoluteBounds="1.3899999999999997, 1.71, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 2.29890055338542); (4.25 : 2.29890055338542)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.375 : 2.29890055338542); (4.25 : 2.29890055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/endereco/endereco_cliente" />
       <nodes>
         <classShapeMoniker Id="3d52ab9d-cd19-4542-84a7-e87f8d6ba11a" />
         <classShapeMoniker Id="adfe33be-5510-4003-82d1-7b0aad41b372" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.03125 : 3.40549967447917); (3.03125 : 7.10020182291667); (3.875 : 7.10020182291667)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.03125 : 3.40549967447917); (3.03125 : 7.10020182291667); (3.875 : 7.10020182291667)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/endereco/endereco_usuario" />
       <nodes>
         <classShapeMoniker Id="3d52ab9d-cd19-4542-84a7-e87f8d6ba11a" />
@@ -99,18 +79,38 @@
         <elementListCompartment Id="0acc176b-ad3d-4348-a554-8816b2569969" absoluteBounds="0.63999999999999968, 4.835, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.625 : 4.65625); (2.94791666666667 : 4.65625 : JumpStart); (3.11458333333333 : 4.65625 : JumpEnd); (6.01041666666667 : 4.65625 : JumpStart); (6.17708333333333 : 4.65625 : JumpEnd); (9.29166666666667 : 4.65625 : JumpStart); (9.45833333333333 : 4.65625 : JumpEnd); (10.75 : 4.65625); (10.75 : 5.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.625 : 4.59375); (2.94791666666667 : 4.59375 : JumpStart); (3.11458333333333 : 4.59375 : JumpEnd); (8.76041666666667 : 4.59375 : JumpStart); (8.92708333333333 : 4.59375 : JumpEnd); (10.1666671666667 : 4.59375 : JumpStart); (10.3333338333333 : 4.59375 : JumpEnd); (10.75 : 4.59375); (10.75 : 5.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/fornecedor/fornecedor_produto_fornecedor" />
       <nodes>
         <classShapeMoniker Id="5b5df8eb-5428-4d97-be39-8799f4f68383" />
         <classShapeMoniker Id="bf394a7a-aab3-4bf0-a267-ed0eea15164d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2 : 3.40549967447917); (2 : 4.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2 : 3.40549967447917); (2 : 4.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dataContextErpSigmaDataContext/endereco/endereco_fornecedor" />
       <nodes>
         <classShapeMoniker Id="3d52ab9d-cd19-4542-84a7-e87f8d6ba11a" />
         <classShapeMoniker Id="5b5df8eb-5428-4d97-be39-8799f4f68383" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="05f1e618-58b8-4dc0-9c17-20f0f9daee1f" absoluteBounds="6.625, 5.25, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/dataContextErpSigmaDataContext/produto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="335391ff-a7a7-4081-9375-8581f44688b0" absoluteBounds="6.6400000000000006, 5.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.625 : 5.25); (8.78482443490112 : 5.09017556509888 : JumpStart); (8.90267556509888 : 4.97232443490112 : JumpEnd); (9 : 4.875); (10.2500005 : 4.875); (10.2500005 : 2.9631982421875)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dataContextErpSigmaDataContext/produto/produto_ItensVenda" />
+      <nodes>
+        <classShapeMoniker Id="05f1e618-58b8-4dc0-9c17-20f0f9daee1f" />
+        <classShapeMoniker Id="0634513a-2823-4ae5-8043-e75a7aaa9a66" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.625 : 5.97439947265625); (8.76041666666667 : 5.97439947265625 : JumpStart); (8.92708333333333 : 5.97439947265625 : JumpEnd); (9.75 : 5.97439947265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dataContextErpSigmaDataContext/produto/produto_produto_fornecedor" />
+      <nodes>
+        <classShapeMoniker Id="05f1e618-58b8-4dc0-9c17-20f0f9daee1f" />
+        <classShapeMoniker Id="bf394a7a-aab3-4bf0-a267-ed0eea15164d" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

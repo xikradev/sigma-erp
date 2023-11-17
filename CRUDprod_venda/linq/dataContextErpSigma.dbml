@@ -39,24 +39,13 @@
       <Association Name="produto_ItensVenda" Member="produto" ThisKey="idproduto" OtherKey="idproduto" Type="produto" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.produto" Member="produto">
-    <Type Name="produto">
-      <Column Name="idproduto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="nome" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="preco" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
-      <Column Name="descricao" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="estoque_qnt" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="produto_ItensVenda" Member="ItensVenda" ThisKey="idproduto" OtherKey="idproduto" Type="ItensVenda" />
-      <Association Name="produto_produto_fornecedor" Member="produto_fornecedor" ThisKey="idproduto" OtherKey="idproduto" Type="produto_fornecedor" />
-    </Type>
-  </Table>
   <Table Name="dbo.produto_fornecedor" Member="produto_fornecedor">
     <Type Name="produto_fornecedor">
       <Column Name="codProduto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="idfornecedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="idproduto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="produto_produto_fornecedor" Member="produto" ThisKey="idproduto" OtherKey="idproduto" Type="produto" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="fornecedor_produto_fornecedor" Member="fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="fornecedor" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="produto_produto_fornecedor" Member="produto" ThisKey="idproduto" OtherKey="idproduto" Type="produto" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.usuario" Member="usuario">
@@ -100,6 +89,17 @@
       <Column Name="seguimento" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
       <Association Name="fornecedor_produto_fornecedor" Member="produto_fornecedor" ThisKey="idfornecedor" OtherKey="idfornecedor" Type="produto_fornecedor" />
       <Association Name="endereco_fornecedor" Member="endereco" ThisKey="idendereco" OtherKey="idendereco" Type="endereco" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.produto" Member="produto">
+    <Type Name="produto">
+      <Column Name="idproduto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="nome" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="preco" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="descricao" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="estoque_qnt" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Association Name="produto_ItensVenda" Member="ItensVenda" ThisKey="idproduto" OtherKey="idproduto" Type="ItensVenda" />
+      <Association Name="produto_produto_fornecedor" Member="produto_fornecedor" ThisKey="idproduto" OtherKey="idproduto" Type="produto_fornecedor" />
     </Type>
   </Table>
 </Database>

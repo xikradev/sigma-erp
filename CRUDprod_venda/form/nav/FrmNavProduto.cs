@@ -111,15 +111,28 @@ namespace ErpSigmaVenda.Produtos
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            
-
-            if (MessageBox.Show("Você tem certeza que deseja apagar esse dado?","",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            var itensList = pItensVenda.ReturnAll().Where(o => o.idproduto == this.oProduto.idproduto);
+            if (itensList.Count() > 0)
             {
-                pProduto.Delete(this.oProduto);
-                pProduto_fornecedor.Delete(this.prod_forn);
-                loading();
+                MessageBox.Show($"Você não pode deletar o produto: {this.oProduto.nome}, " +
+                "pois existem Vendas relacionadas a ele", "",
+                MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+            else
+            {
+                if (MessageBox.Show("Você tem certeza que deseja apagar esse dado?", "",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    pProduto.Delete(this.oProduto);
+                    pProduto_fornecedor.Delete(this.prod_forn);
+                    loading();
+                }
+            }
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

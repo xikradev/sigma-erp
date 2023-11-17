@@ -31,12 +31,12 @@ namespace ErpSigmaVenda
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            
+            SaveButton.Enabled = AllFieldsFilled();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            SaveButton.Enabled = AllFieldsFilled();
         }
 
         private void ProdutoForm_Load(object sender, EventArgs e)
@@ -47,68 +47,67 @@ namespace ErpSigmaVenda
         private void loading()
         {
             this.NomeTextBox.Text = this.oProduto.nome;
-            this.PrecoTextBox.Text = this.oProduto.preco.ToString();
+            this.PrecoTextBox.Text = this.oProduto.preco == 0 ? "0,00": this.oProduto.preco.ToString();
             this.DescricaoTextBox.Text = this.oProduto.descricao;
             this.Qnt_esTtextBox.Text = this.oProduto.estoque_qnt.ToString();
             if (!String.IsNullOrEmpty(this.oFornecedor.nomeCompleto))
             {
-                this.ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
+                this.FornecedorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
             }
         }
 
-        private Boolean update()
+        private void update()
         {
             
             oProduto.nome = NomeTextBox.Text;
             oProduto.descricao = DescricaoTextBox.Text;
+            decimal value = decimal.Parse(Qnt_esTtextBox.Text);
+            int decimalPlaces = BitConverter.GetBytes(decimal.GetBits(value)[3])[2];
+            if (decimalPlaces > 2)
+            {
+                Qnt_esTtextBox.Text = value.ToString("0.00");
+            }
             oProduto.preco = decimal.Parse(PrecoTextBox.Text);
-            oProduto.estoque_qnt = int.Parse(Qnt_esTtextBox.Text);
-            
-           
-            return true;
+            oProduto.estoque_qnt = decimal.Parse(Qnt_esTtextBox.Text);
         }
 
-        private Boolean verify()
+        private Boolean AllFieldsFilled()
         {
             if (String.IsNullOrEmpty(NomeTextBox.Text))
             {
-                MessageBox.Show("O Campo nome não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (String.IsNullOrEmpty(PrecoTextBox.Text))
-            {
-                MessageBox.Show("O Campo preço não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (PrecoTextBox.Text.Equals("0,00"))
+            { 
                 return false;
             }
             if (String.IsNullOrEmpty(DescricaoTextBox.Text))
             {
-                MessageBox.Show("O Campo Descrição não pode ser vazio", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                
                 return false;
             }
-            //if (!Decimal.TryParse(PrecoTextBox.Text, out decimal preco))
-            //{
-            //    MessageBox.Show("O campo tem que ser um número decimal", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return false;
-            //}
-            //if(!int.TryParse(Qnt_esTtextBox.Text, out int quant))
-            //{
-            //    MessageBox.Show("O campo tem que ser um número inteiro", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    return false;
-            //}
-            
+            if (String.IsNullOrEmpty(FornecedorTb.Text))
+            {
+                
+                return false;
+            }
+            if (Qnt_esTtextBox.Text.Equals("0"))
+            {
+                
+                return false;
+            }
 
-            return update();
+
+            return true;
             
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
+            update();
+            this.DialogResult = DialogResult.OK;
             
-            if (this.verify())
-            {
-                this.DialogResult = DialogResult.OK;
-            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -122,7 +121,7 @@ namespace ErpSigmaVenda
             if(frm.ShowDialog() == DialogResult.OK)
             {
                 this.oFornecedor = frm.oFornecedor;
-                ForneceorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
+                FornecedorTb.Text = $"{this.oFornecedor.idfornecedor}- {this.oFornecedor.nomeCompleto}";
             }
         }
 
@@ -138,17 +137,101 @@ namespace ErpSigmaVenda
 
         private void PrecoTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ',')) 
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void Qnt_esTtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != ','))
             {
                 e.Handled = true;
             }
         }
 
-        private void Qnt_esTtextBox_KeyPress(object sender, KeyPressEventArgs e)
+        private void PrecoTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            if (!PrecoTextBox.Text.Equals(""))
             {
-                e.Handled = true;
+                TextBox textBox = (TextBox)sender;
+
+                string text = textBox.Text.Replace(",", "").Replace(".", "");
+
+                decimal value = decimal.Parse(text);
+
+                textBox.Text = (value / 100).ToString("0.00");
+
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+            else
+            {
+                PrecoTextBox.Text = "0.00";
+                PrecoTextBox.SelectAll();
+            }
+
+            SaveButton.Enabled = AllFieldsFilled();
+        }
+
+        private void Qnt_esTtextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!Qnt_esTtextBox.Text.Equals(""))
+            {
+                decimal value = decimal.Parse(Qnt_esTtextBox.Text);
+                int decimalPlaces = BitConverter.GetBytes(decimal.GetBits(value)[3])[2];
+                if (decimalPlaces > 2)
+                {
+                    Qnt_esTtextBox.Text = value.ToString("0.00");
+                    Qnt_esTtextBox.SelectionStart = Qnt_esTtextBox.Text.Length;
+                }
+            }
+            else
+            {
+                Qnt_esTtextBox.Text = "0";
+                Qnt_esTtextBox.SelectAll();
+            }
+
+            SaveButton.Enabled = AllFieldsFilled();
+        }
+
+        private void ForneceorTb_TextChanged(object sender, EventArgs e)
+        {
+            
+            SaveButton.Enabled = AllFieldsFilled();
+        }
+
+        private void PrecoTextBox_Click(object sender, EventArgs e)
+        {
+            if (PrecoTextBox.Text.Equals("0,00"))
+            {
+                PrecoTextBox.SelectAll();
+            }
+        }
+
+        private void Qnt_esTtextBox_Click(object sender, EventArgs e)
+        {
+            if (Qnt_esTtextBox.Text.Equals("0"))
+            {
+                Qnt_esTtextBox.SelectAll();
+            }
+        }
+
+        private void Qnt_esTtextBox_Leave(object sender, EventArgs e)
+        {
+            if (Qnt_esTtextBox.Text.Equals(""))
+            {
+                Qnt_esTtextBox.Text = "0";
+            }
+            
+        }
+
+        private void PrecoTextBox_Leave(object sender, EventArgs e)
+        {
+            if (PrecoTextBox.Text.Equals(""))
+            {
+                PrecoTextBox.Text = "0,00";
             }
         }
     }

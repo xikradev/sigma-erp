@@ -39,9 +39,6 @@ namespace ErpSigmaVenda.linq
     partial void InsertItensVenda(ItensVenda instance);
     partial void UpdateItensVenda(ItensVenda instance);
     partial void DeleteItensVenda(ItensVenda instance);
-    partial void Insertproduto(produto instance);
-    partial void Updateproduto(produto instance);
-    partial void Deleteproduto(produto instance);
     partial void Insertproduto_fornecedor(produto_fornecedor instance);
     partial void Updateproduto_fornecedor(produto_fornecedor instance);
     partial void Deleteproduto_fornecedor(produto_fornecedor instance);
@@ -54,6 +51,9 @@ namespace ErpSigmaVenda.linq
     partial void Insertfornecedor(fornecedor instance);
     partial void Updatefornecedor(fornecedor instance);
     partial void Deletefornecedor(fornecedor instance);
+    partial void Insertproduto(produto instance);
+    partial void Updateproduto(produto instance);
+    partial void Deleteproduto(produto instance);
     #endregion
 		
 		public dataContextErpSigmaDataContext() : 
@@ -110,14 +110,6 @@ namespace ErpSigmaVenda.linq
 			}
 		}
 		
-		public System.Data.Linq.Table<produto> produto
-		{
-			get
-			{
-				return this.GetTable<produto>();
-			}
-		}
-		
 		public System.Data.Linq.Table<produto_fornecedor> produto_fornecedor
 		{
 			get
@@ -147,6 +139,14 @@ namespace ErpSigmaVenda.linq
 			get
 			{
 				return this.GetTable<fornecedor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<produto> produto
+		{
+			get
+			{
+				return this.GetTable<produto>();
 			}
 		}
 	}
@@ -1006,220 +1006,6 @@ namespace ErpSigmaVenda.linq
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.produto")]
-	public partial class produto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _idproduto;
-		
-		private string _nome;
-		
-		private decimal _preco;
-		
-		private string _descricao;
-		
-		private int _estoque_qnt;
-		
-		private EntitySet<ItensVenda> _ItensVenda;
-		
-		private EntitySet<produto_fornecedor> _produto_fornecedor;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidprodutoChanging(int value);
-    partial void OnidprodutoChanged();
-    partial void OnnomeChanging(string value);
-    partial void OnnomeChanged();
-    partial void OnprecoChanging(decimal value);
-    partial void OnprecoChanged();
-    partial void OndescricaoChanging(string value);
-    partial void OndescricaoChanged();
-    partial void Onestoque_qntChanging(int value);
-    partial void Onestoque_qntChanged();
-    #endregion
-		
-		public produto()
-		{
-			this._ItensVenda = new EntitySet<ItensVenda>(new Action<ItensVenda>(this.attach_ItensVenda), new Action<ItensVenda>(this.detach_ItensVenda));
-			this._produto_fornecedor = new EntitySet<produto_fornecedor>(new Action<produto_fornecedor>(this.attach_produto_fornecedor), new Action<produto_fornecedor>(this.detach_produto_fornecedor));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idproduto", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int idproduto
-		{
-			get
-			{
-				return this._idproduto;
-			}
-			set
-			{
-				if ((this._idproduto != value))
-				{
-					this.OnidprodutoChanging(value);
-					this.SendPropertyChanging();
-					this._idproduto = value;
-					this.SendPropertyChanged("idproduto");
-					this.OnidprodutoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nome", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-		public string nome
-		{
-			get
-			{
-				return this._nome;
-			}
-			set
-			{
-				if ((this._nome != value))
-				{
-					this.OnnomeChanging(value);
-					this.SendPropertyChanging();
-					this._nome = value;
-					this.SendPropertyChanged("nome");
-					this.OnnomeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_preco", DbType="Decimal(10,2) NOT NULL")]
-		public decimal preco
-		{
-			get
-			{
-				return this._preco;
-			}
-			set
-			{
-				if ((this._preco != value))
-				{
-					this.OnprecoChanging(value);
-					this.SendPropertyChanging();
-					this._preco = value;
-					this.SendPropertyChanged("preco");
-					this.OnprecoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descricao", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string descricao
-		{
-			get
-			{
-				return this._descricao;
-			}
-			set
-			{
-				if ((this._descricao != value))
-				{
-					this.OndescricaoChanging(value);
-					this.SendPropertyChanging();
-					this._descricao = value;
-					this.SendPropertyChanged("descricao");
-					this.OndescricaoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estoque_qnt", DbType="Int NOT NULL")]
-		public int estoque_qnt
-		{
-			get
-			{
-				return this._estoque_qnt;
-			}
-			set
-			{
-				if ((this._estoque_qnt != value))
-				{
-					this.Onestoque_qntChanging(value);
-					this.SendPropertyChanging();
-					this._estoque_qnt = value;
-					this.SendPropertyChanged("estoque_qnt");
-					this.Onestoque_qntChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_ItensVenda", Storage="_ItensVenda", ThisKey="idproduto", OtherKey="idproduto")]
-		public EntitySet<ItensVenda> ItensVenda
-		{
-			get
-			{
-				return this._ItensVenda;
-			}
-			set
-			{
-				this._ItensVenda.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_produto_fornecedor", Storage="_produto_fornecedor", ThisKey="idproduto", OtherKey="idproduto")]
-		public EntitySet<produto_fornecedor> produto_fornecedor
-		{
-			get
-			{
-				return this._produto_fornecedor;
-			}
-			set
-			{
-				this._produto_fornecedor.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ItensVenda(ItensVenda entity)
-		{
-			this.SendPropertyChanging();
-			entity.produto = this;
-		}
-		
-		private void detach_ItensVenda(ItensVenda entity)
-		{
-			this.SendPropertyChanging();
-			entity.produto = null;
-		}
-		
-		private void attach_produto_fornecedor(produto_fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.produto = this;
-		}
-		
-		private void detach_produto_fornecedor(produto_fornecedor entity)
-		{
-			this.SendPropertyChanging();
-			entity.produto = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.produto_fornecedor")]
 	public partial class produto_fornecedor : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1232,9 +1018,9 @@ namespace ErpSigmaVenda.linq
 		
 		private int _idproduto;
 		
-		private EntityRef<produto> _produto;
-		
 		private EntityRef<fornecedor> _fornecedor;
+		
+		private EntityRef<produto> _produto;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1250,8 +1036,8 @@ namespace ErpSigmaVenda.linq
 		
 		public produto_fornecedor()
 		{
-			this._produto = default(EntityRef<produto>);
 			this._fornecedor = default(EntityRef<fornecedor>);
+			this._produto = default(EntityRef<produto>);
 			OnCreated();
 		}
 		
@@ -1323,40 +1109,6 @@ namespace ErpSigmaVenda.linq
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_produto_fornecedor", Storage="_produto", ThisKey="idproduto", OtherKey="idproduto", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public produto produto
-		{
-			get
-			{
-				return this._produto.Entity;
-			}
-			set
-			{
-				produto previousValue = this._produto.Entity;
-				if (((previousValue != value) 
-							|| (this._produto.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._produto.Entity = null;
-						previousValue.produto_fornecedor.Remove(this);
-					}
-					this._produto.Entity = value;
-					if ((value != null))
-					{
-						value.produto_fornecedor.Add(this);
-						this._idproduto = value.idproduto;
-					}
-					else
-					{
-						this._idproduto = default(int);
-					}
-					this.SendPropertyChanged("produto");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="fornecedor_produto_fornecedor", Storage="_fornecedor", ThisKey="idfornecedor", OtherKey="idfornecedor", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public fornecedor fornecedor
 		{
@@ -1387,6 +1139,40 @@ namespace ErpSigmaVenda.linq
 						this._idfornecedor = default(int);
 					}
 					this.SendPropertyChanged("fornecedor");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_produto_fornecedor", Storage="_produto", ThisKey="idproduto", OtherKey="idproduto", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public produto produto
+		{
+			get
+			{
+				return this._produto.Entity;
+			}
+			set
+			{
+				produto previousValue = this._produto.Entity;
+				if (((previousValue != value) 
+							|| (this._produto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._produto.Entity = null;
+						previousValue.produto_fornecedor.Remove(this);
+					}
+					this._produto.Entity = value;
+					if ((value != null))
+					{
+						value.produto_fornecedor.Add(this);
+						this._idproduto = value.idproduto;
+					}
+					else
+					{
+						this._idproduto = default(int);
+					}
+					this.SendPropertyChanged("produto");
 				}
 			}
 		}
@@ -2321,6 +2107,220 @@ namespace ErpSigmaVenda.linq
 		{
 			this.SendPropertyChanging();
 			entity.fornecedor = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.produto")]
+	public partial class produto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _idproduto;
+		
+		private string _nome;
+		
+		private decimal _preco;
+		
+		private string _descricao;
+		
+		private decimal _estoque_qnt;
+		
+		private EntitySet<ItensVenda> _ItensVenda;
+		
+		private EntitySet<produto_fornecedor> _produto_fornecedor;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidprodutoChanging(int value);
+    partial void OnidprodutoChanged();
+    partial void OnnomeChanging(string value);
+    partial void OnnomeChanged();
+    partial void OnprecoChanging(decimal value);
+    partial void OnprecoChanged();
+    partial void OndescricaoChanging(string value);
+    partial void OndescricaoChanged();
+    partial void Onestoque_qntChanging(decimal value);
+    partial void Onestoque_qntChanged();
+    #endregion
+		
+		public produto()
+		{
+			this._ItensVenda = new EntitySet<ItensVenda>(new Action<ItensVenda>(this.attach_ItensVenda), new Action<ItensVenda>(this.detach_ItensVenda));
+			this._produto_fornecedor = new EntitySet<produto_fornecedor>(new Action<produto_fornecedor>(this.attach_produto_fornecedor), new Action<produto_fornecedor>(this.detach_produto_fornecedor));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_idproduto", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int idproduto
+		{
+			get
+			{
+				return this._idproduto;
+			}
+			set
+			{
+				if ((this._idproduto != value))
+				{
+					this.OnidprodutoChanging(value);
+					this.SendPropertyChanging();
+					this._idproduto = value;
+					this.SendPropertyChanged("idproduto");
+					this.OnidprodutoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nome", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		public string nome
+		{
+			get
+			{
+				return this._nome;
+			}
+			set
+			{
+				if ((this._nome != value))
+				{
+					this.OnnomeChanging(value);
+					this.SendPropertyChanging();
+					this._nome = value;
+					this.SendPropertyChanged("nome");
+					this.OnnomeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_preco", DbType="Decimal(10,2) NOT NULL")]
+		public decimal preco
+		{
+			get
+			{
+				return this._preco;
+			}
+			set
+			{
+				if ((this._preco != value))
+				{
+					this.OnprecoChanging(value);
+					this.SendPropertyChanging();
+					this._preco = value;
+					this.SendPropertyChanged("preco");
+					this.OnprecoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_descricao", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string descricao
+		{
+			get
+			{
+				return this._descricao;
+			}
+			set
+			{
+				if ((this._descricao != value))
+				{
+					this.OndescricaoChanging(value);
+					this.SendPropertyChanging();
+					this._descricao = value;
+					this.SendPropertyChanged("descricao");
+					this.OndescricaoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_estoque_qnt", DbType="Decimal(10,2) NOT NULL")]
+		public decimal estoque_qnt
+		{
+			get
+			{
+				return this._estoque_qnt;
+			}
+			set
+			{
+				if ((this._estoque_qnt != value))
+				{
+					this.Onestoque_qntChanging(value);
+					this.SendPropertyChanging();
+					this._estoque_qnt = value;
+					this.SendPropertyChanged("estoque_qnt");
+					this.Onestoque_qntChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_ItensVenda", Storage="_ItensVenda", ThisKey="idproduto", OtherKey="idproduto")]
+		public EntitySet<ItensVenda> ItensVenda
+		{
+			get
+			{
+				return this._ItensVenda;
+			}
+			set
+			{
+				this._ItensVenda.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="produto_produto_fornecedor", Storage="_produto_fornecedor", ThisKey="idproduto", OtherKey="idproduto")]
+		public EntitySet<produto_fornecedor> produto_fornecedor
+		{
+			get
+			{
+				return this._produto_fornecedor;
+			}
+			set
+			{
+				this._produto_fornecedor.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ItensVenda(ItensVenda entity)
+		{
+			this.SendPropertyChanging();
+			entity.produto = this;
+		}
+		
+		private void detach_ItensVenda(ItensVenda entity)
+		{
+			this.SendPropertyChanging();
+			entity.produto = null;
+		}
+		
+		private void attach_produto_fornecedor(produto_fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.produto = this;
+		}
+		
+		private void detach_produto_fornecedor(produto_fornecedor entity)
+		{
+			this.SendPropertyChanging();
+			entity.produto = null;
 		}
 	}
 }

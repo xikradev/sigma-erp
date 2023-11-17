@@ -12,7 +12,7 @@ namespace ErpSigmaVenda.auxiliar
         public string nome { get; set; }
         public decimal preco { get; set; }
         public string descricao { get; set; }
-        public int estoque_qnt { get; set; }
+        public decimal estoque_qnt { get; set; }
         public string fornecedor { get; set; }
         public int idfornecedor { get; set; }
         public int codProduto { get; set; }
